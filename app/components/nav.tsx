@@ -1,34 +1,39 @@
 import Link from 'next/link'
+import { ArrowIcon } from './arrow-icon'
 
 const navItems = {
   '/': {
-    name: 'home',
+    name: 'Home',
   },
   '/blog': {
-    name: 'blog',
+    name: 'Blog',
   },
   'https://linkedin.com/in/gutierrezjoel': {
-    name: 'linkedin',
+    name: 'LinkedIn',
   },
 }
 
 export function Navbar() {
   return (
-    <aside className="-ml-[8px] mb-16 tracking-tight">
+    <aside className="mb-16 tracking-tight">
       <div className="lg:sticky lg:top-20">
         <nav
           className="flex flex-row items-start relative px-0 pb-0 fade md:overflow-auto scroll-pr-6 md:relative"
           id="nav"
         >
-          <div className="flex flex-row space-x-0 pr-10">
+          <div className="flex flex-row space-x-6 pr-10">
             {Object.entries(navItems).map(([path, { name }]) => {
+              const isExternal = path.startsWith('http')
               return (
                 <Link
                   key={path}
                   href={path}
-                  className="transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative py-1 px-2 m-1"
+                  target={isExternal ? '_blank' : undefined}
+                  rel={isExternal ? 'noopener noreferrer' : undefined}
+                  className="group flex items-center transition-colors text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 hover:underline underline-offset-4 w-fit"
                 >
                   {name}
+                  {isExternal && <ArrowIcon className="ml-1.5 opacity-50 group-hover:opacity-100 transition-opacity" />}
                 </Link>
               )
             })}

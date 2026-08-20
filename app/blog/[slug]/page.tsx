@@ -104,7 +104,7 @@ export default async function Blog({ params }: { params: Promise<{ slug: string 
               href={post.metadata.medium}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium underline underline-offset-2 hover:text-neutral-800 dark:hover:text-neutral-200"
+              className="font-medium hover:underline underline-offset-4 hover:text-neutral-800 dark:hover:text-neutral-200"
             >
               Medium
             </a>
@@ -120,7 +120,7 @@ export default async function Blog({ params }: { params: Promise<{ slug: string 
               href={post.metadata.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium underline underline-offset-2 hover:text-neutral-800 dark:hover:text-neutral-200"
+              className="font-medium hover:underline underline-offset-4 hover:text-neutral-800 dark:hover:text-neutral-200"
             >
               LinkedIn
             </a>

@@ -54,7 +54,7 @@ html {
 }
 
 .prose a {
-  @apply underline transition-all decoration-neutral-400 dark:decoration-neutral-600 underline-offset-2 decoration-[0.1em];
+  @apply no-underline hover:underline underline-offset-4;
 }
 
 .prose .anchor:after {

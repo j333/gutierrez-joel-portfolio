@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { highlight } from 'sugar-high'
 import React from 'react'
+import { ArrowIcon } from './arrow-icon'
 
 function Table({ data }) {
   let headers = data.headers.map((header, index) => (
@@ -41,7 +42,12 @@ function CustomLink(props) {
     return <a {...props} />
   }
 
-  return <a target="_blank" rel="noopener noreferrer" {...props} />
+  return (
+    <a target="_blank" rel="noopener noreferrer" {...props} className={[props.className, "group inline-flex items-center"].filter(Boolean).join(" ")}>
+      {props.children}
+      <ArrowIcon className="ml-1 opacity-50 group-hover:opacity-100 transition-opacity" />
+    </a>
+  )
 }
 
 function RoundedImage(props) {

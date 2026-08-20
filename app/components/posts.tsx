@@ -13,7 +13,7 @@ export function BlogPosts() {
   let allBlogs = getBlogPosts()
 
   return (
-    <ul className="space-y-3">
+    <ul className="mb-16 space-y-8">
       {allBlogs
         .sort((a, b) => {
           if (
@@ -26,21 +26,22 @@ export function BlogPosts() {
         .map((post) => (
           <li
             key={post.slug}
-            className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4"
+            className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between sm:gap-4"
           >
-            <p>
+            <div className="flex flex-col">
               <Link
                 href={`/blog/${post.slug}`}
-                className="font-medium underline underline-offset-2 hover:text-neutral-800 dark:hover:text-neutral-200"
+                className="font-medium text-neutral-900 dark:text-neutral-100 hover:underline underline-offset-4 w-fit mb-1"
               >
                 {post.metadata.title}
               </Link>
-              <span className="text-neutral-600 dark:text-neutral-400">
-                {' '}
-                {post.metadata.summary}
-              </span>
-            </p>
-            <span className="shrink-0 text-sm text-neutral-500 dark:text-neutral-400">
+              {post.metadata.summary && (
+                <span className="text-sm text-neutral-500 dark:text-neutral-400 leading-snug">
+                  {post.metadata.summary}
+                </span>
+              )}
+            </div>
+            <span className="mt-2 sm:mt-0 shrink-0 font-mono text-xs text-neutral-500 dark:text-neutral-400">
               {formatListDate(post.metadata.publishedAt)}
             </span>
           </li>

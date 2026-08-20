@@ -1,81 +1,44 @@
-function ArrowIcon() {
-  return (
-    <svg
-      width="12"
-      height="12"
-      viewBox="0 0 12 12"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M2.07102 11.3494L0.963068 10.2415L9.2017 1.98864H2.83807L2.85227 0.454545H11.8438V9.46023H10.2955L10.3097 3.09659L2.07102 11.3494Z"
-        fill="currentColor"
-      />
-    </svg>
-  )
-}
+import { ArrowIcon } from './arrow-icon'
+
+const links = [
+  { name: 'RSS', url: '/rss', external: true },
+  { name: 'LinkedIn', url: 'https://linkedin.com/in/gutierrezjoel', external: true },
+  { name: 'Behance', url: 'https://behance.net/gutierrezjoel', external: true },
+  { name: 'Dribbble', url: 'https://dribbble.com/gutierrezjoel', external: true },
+  { name: 'Email', url: 'mailto:joelg333@gmail.com', external: true },
+]
 
 export default function Footer() {
   return (
-    <footer className="mb-16">
-      <ul className="font-sm mt-8 flex flex-col space-x-0 space-y-2 text-neutral-600 md:flex-row md:space-x-4 md:space-y-0 dark:text-neutral-300">
-        <li>
+    <footer className="mt-24 mb-16">
+      <div className="flex flex-col gap-8">
+        <ul className="grid grid-cols-2 gap-x-4 gap-y-6 sm:grid-cols-3 md:flex md:flex-row md:gap-x-8 md:gap-y-0 text-neutral-600 dark:text-neutral-400">
+          {links.map((link) => (
+            <li key={link.name}>
+              <a
+                className="group flex items-center transition-colors hover:text-neutral-900 dark:hover:text-neutral-100 hover:underline underline-offset-4 w-fit"
+                rel={link.external ? "noopener noreferrer" : undefined}
+                target={link.external ? "_blank" : undefined}
+                href={link.url}
+              >
+                {link.name}
+                {link.external && <ArrowIcon className="ml-1.5 opacity-50 group-hover:opacity-100 transition-opacity" />}
+              </a>
+            </li>
+          ))}
+        </ul>
+        <p className="font-mono text-xs text-neutral-400 dark:text-neutral-500">
+          Designed & developed by Joel Gutiérrez.{' '}
           <a
-            className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
-            rel="noopener noreferrer"
+            href="https://github.com/j333/gutierrez-joel-portfolio/"
             target="_blank"
-            href="/rss"
-          >
-            <ArrowIcon />
-            <p className="ml-2 h-7">rss</p>
-          </a>
-        </li>
-        <li>
-          <a
-            className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
             rel="noopener noreferrer"
-            target="_blank"
-            href="https://linkedin.com/in/gutierrezjoel"
+            className="hover:text-neutral-900 dark:hover:text-neutral-100 hover:underline underline-offset-4"
           >
-            <ArrowIcon />
-            <p className="ml-2 h-7">linkedin</p>
+            View on GitHub
           </a>
-        </li>
-        <li>
-          <a
-            className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
-            rel="noopener noreferrer"
-            target="_blank"
-            href="https://behance.net/gutierrezjoel"
-          >
-            <ArrowIcon />
-            <p className="ml-2 h-7">behance</p>
-          </a>
-        </li>
-        <li>
-          <a
-            className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
-            rel="noopener noreferrer"
-            target="_blank"
-            href="https://dribbble.com/gutierrezjoel"
-          >
-            <ArrowIcon />
-            <p className="ml-2 h-7">dribbble</p>
-          </a>
-        </li>
-        <li>
-          <a
-            className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
-            href="mailto:joelg333@gmail.com"
-          >
-            <ArrowIcon />
-            <p className="ml-2 h-7">email</p>
-          </a>
-        </li>
-      </ul>
-      <p className="mt-8 text-neutral-600 dark:text-neutral-300">
-        © {new Date().getFullYear()} Joel Gutiérrez
-      </p>
+        </p>
+      </div>
     </footer>
   )
 }
