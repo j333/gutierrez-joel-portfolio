@@ -24,8 +24,8 @@ importers:
         specifier: ^2.0.1
         version: 2.0.1(next@16.3.1(@types/node@20.11.17)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react@19.2.3)
       '@vercel/speed-insights':
-        specifier: ^1.0.9
-        version: 1.0.9(next@16.3.1(@types/node@20.11.17)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react@19.2.3)
+        specifier: ^2.0.0
+        version: 2.0.0(next@16.3.1(@types/node@20.11.17)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react@19.2.3)
       next:
         specifier: ^16.3.1
         version: 16.3.1(@types/node@20.11.17)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -439,19 +439,22 @@ packages:
       vue-router:
         optional: true
 
-  '@vercel/speed-insights@1.0.9':
-    resolution: {integrity: sha512-f+XFP0O+aZ4Olj9h+BitkB1b4NJQaxtyCb69wWuDxytJHY6Pa4QtZPdBUftHOcajUCHRVeq062fk3MKXKtjNVQ==}
+  '@vercel/speed-insights@2.0.0':
+    resolution: {integrity: sha512-jwkNcrTeafWxjmWq4AHBaptSqZiJkYU5adLC9QBSqeim0GcqDMgN5Ievh8OG1rJ6W3A4l1oiP7qr9CWxGuzu3w==}
     peerDependencies:
       '@sveltejs/kit': ^1 || ^2
       next: '>= 13'
-      react: ^18 || ^19
-      svelte: ^4
+      nuxt: '>= 3'
+      react: ^18 || ^19 || ^19.0.0-rc
+      svelte: '>= 4'
       vue: ^3
       vue-router: ^4
     peerDependenciesMeta:
       '@sveltejs/kit':
         optional: true
       next:
+        optional: true
+      nuxt:
         optional: true
       react:
         optional: true
@@ -1324,7 +1327,7 @@ snapshots:
       next: 16.3.1(@types/node@20.11.17)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       react: 19.2.3
 
-  '@vercel/speed-insights@1.0.9(next@16.3.1(@types/node@20.11.17)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react@19.2.3)':
+  '@vercel/speed-insights@2.0.0(next@16.3.1(@types/node@20.11.17)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react@19.2.3)':
     optionalDependencies:
       next: 16.3.1(@types/node@20.11.17)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       react: 19.2.3
