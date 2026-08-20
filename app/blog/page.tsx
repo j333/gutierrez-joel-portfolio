@@ -1,8 +1,12 @@
 import { BlogPosts } from 'app/components/posts'
+import { baseUrl } from 'app/sitemap'
 
 export const metadata = {
   title: 'Blog',
   description: 'Writing and notes from Joel Gutiérrez.',
+  alternates: {
+    canonical: `${baseUrl}/blog`,
+  },
 }
 
 export default function Page() {

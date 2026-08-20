@@ -6,6 +6,7 @@ export function ArrowIcon({ className }: { className?: string }) {
       viewBox="0 0 12 12"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
       className={className || "opacity-50 group-hover:opacity-100 transition-opacity"}
     >
       <path

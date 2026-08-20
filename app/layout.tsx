@@ -4,6 +4,7 @@ import { Geist, Geist_Mono } from 'next/font/google'
 import { Navbar } from './components/nav'
 import { Metrics } from './components/metrics'
 import Footer from './components/footer'
+import { toJsonLd } from './lib/escape'
 import { baseUrl } from './sitemap'
 
 const geistSans = Geist({
@@ -22,7 +23,24 @@ const geistMono = Geist_Mono({
 
 const siteTitle = 'Joel Gutiérrez | Product Design Manager'
 const siteDescription =
-  'Product Design Manager con experiencia en SaaS y productos impulsados por IA para equipos globales. Especializado en estrategia de producto y diseño UX/UI.'
+  'Product Design Manager with experience in SaaS and AI-driven products for global teams. Specialized in product strategy and UX/UI design.'
+
+const personJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Joel Gutiérrez',
+  jobTitle: 'Product Design Manager',
+  url: baseUrl,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Mendoza',
+    addressCountry: 'Argentina',
+  },
+  sameAs: [
+    'https://linkedin.com/in/gutierrezjoel',
+    'https://github.com/j333',
+  ],
+}
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
@@ -31,6 +49,9 @@ export const metadata: Metadata = {
     template: '%s | Joel Gutiérrez',
   },
   description: siteDescription,
+  alternates: {
+    canonical: 'https://www.gutierrezjoel.com',
+  },
   openGraph: {
     title: siteTitle,
     description: siteDescription,
@@ -38,6 +59,11 @@ export const metadata: Metadata = {
     siteName: 'Joel Gutiérrez',
     locale: 'en_US',
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: siteTitle,
+    description: siteDescription,
   },
   robots: {
     index: true,
@@ -69,6 +95,15 @@ export default function RootLayout({
         geistMono.variable
       )}
     >
+      <head>
+        <script
+          type="application/ld+json"
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{
+            __html: toJsonLd(personJsonLd),
+          }}
+        />
+      </head>
       <body className="antialiased max-w-xl mx-4 mt-8 lg:mx-auto">
         <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
           <Navbar />
