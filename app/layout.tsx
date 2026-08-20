@@ -1,6 +1,6 @@
 import './global.css'
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Geist } from 'next/font/google'
 import { Navbar } from './components/nav'
 import { Metrics } from './components/metrics'
 import Footer from './components/footer'
@@ -12,13 +12,6 @@ const geistSans = Geist({
   display: 'swap',
   preload: true,
   variable: '--font-geist-sans',
-})
-
-const geistMono = Geist_Mono({
-  subsets: ['latin'],
-  display: 'swap',
-  preload: false,
-  variable: '--font-geist-mono',
 })
 
 const siteTitle = 'Joel Gutiérrez | Product Design Manager'
@@ -91,8 +84,7 @@ export default function RootLayout({
       className={cx(
         'text-black bg-white dark:text-white dark:bg-black',
         geistSans.className,
-        geistSans.variable,
-        geistMono.variable
+        geistSans.variable
       )}
     >
       <head>
