@@ -26,7 +26,7 @@ export default function Footer() {
             </li>
           ))}
         </ul>
-        <p className="font-mono text-xs text-neutral-400 dark:text-neutral-500">
+        <p className="font-mono text-xs text-neutral-600 dark:text-neutral-400">
           Designed & developed by Joel Gutiérrez.{' '}
           <a
             href="https://github.com/j333/gutierrez-joel-portfolio/"
