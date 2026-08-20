@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation'
 import { CustomMDX } from 'app/components/mdx'
 import { formatDate, getBlogPosts } from 'app/blog/utils'
+import { toJsonLd } from 'app/lib/escape'
 import { baseUrl } from 'app/sitemap'
 
 export async function generateStaticParams() {
@@ -66,7 +67,7 @@ export default async function Blog({ params }: { params: Promise<{ slug: string 
         type="application/ld+json"
         suppressHydrationWarning
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
+          __html: toJsonLd({
             '@context': 'https://schema.org',
             '@type': 'BlogPosting',
             headline: post.metadata.title,

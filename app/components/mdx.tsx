@@ -103,6 +103,11 @@ export function CustomMDX(props) {
   return (
     <MDXRemote
       {...props}
+      options={{
+        mdxOptions: {
+          format: 'md',
+        },
+      }}
       components={{ ...components, ...(props.components || {}) }}
     />
   )
