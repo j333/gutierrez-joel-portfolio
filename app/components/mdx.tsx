@@ -56,12 +56,18 @@ function descriptiveAlt(alt?: string) {
   return typeof alt === 'string' && alt.trim() ? alt : DEFAULT_IMAGE_ALT
 }
 
-function RoundedImage({ alt, ...props }) {
-  return <Image alt={descriptiveAlt(alt)} className="rounded-lg" {...props} />
+function RoundedImage(props) {
+  return (
+    <Image
+      {...props}
+      alt={descriptiveAlt(props.alt)}
+      className="rounded-lg"
+    />
+  )
 }
 
-function MarkdownImage({ alt, ...props }) {
-  return <img alt={descriptiveAlt(alt)} {...props} />
+function MarkdownImage(props) {
+  return <img {...props} alt={descriptiveAlt(props.alt)} />
 }
 
 function Code({ children, ...props }) {
