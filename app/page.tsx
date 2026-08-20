@@ -84,7 +84,7 @@ export default function Page() {
             guided exploratory work on AI-based solutions alongside AI engineers.`}
           </p>
           <p>
-            {`I'm currently open to my next role — Remote/Disponibilidad.`}
+            {`I'm currently open to my next role.`}
           </p>
         </div>
       </header>
