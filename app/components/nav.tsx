@@ -15,13 +15,13 @@ const navItems = {
 
 export function Navbar() {
   return (
-    <aside className="mb-16 tracking-tight">
+    <aside className="mb-16">
       <div className="lg:sticky lg:top-20">
         <nav
           className="flex flex-row items-start relative px-0 pb-0 fade md:overflow-auto scroll-pr-6 md:relative"
           id="nav"
         >
-          <div className="flex flex-row space-x-6 pr-10">
+          <div className="flex flex-row space-x-5 pr-10">
             {Object.entries(navItems).map(([path, { name }]) => {
               const isExternal = path.startsWith('http')
               return (
@@ -30,10 +30,10 @@ export function Navbar() {
                   href={path}
                   target={isExternal ? '_blank' : undefined}
                   rel={isExternal ? 'noopener noreferrer' : undefined}
-                  className="group flex items-center transition-colors text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 hover:underline underline-offset-4 w-fit"
+                  className="group flex items-center font-mono text-xs uppercase tracking-wider transition-colors text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 hover:underline underline-offset-2 w-fit"
                 >
                   {name}
-                  {isExternal && <ArrowIcon className="ml-1.5 opacity-50 group-hover:opacity-100 transition-opacity" />}
+                  {isExternal && <ArrowIcon className="ml-1 opacity-50 group-hover:opacity-100 transition-opacity" />}
                 </Link>
               )
             })}
