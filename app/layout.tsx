@@ -2,7 +2,6 @@ import './global.css'
 import type { Metadata } from 'next'
 import { Geist } from 'next/font/google'
 import { Navbar } from './components/nav'
-import { Metrics } from './components/metrics'
 import Footer from './components/footer'
 import { toJsonLd } from './lib/escape'
 import { baseUrl } from './sitemap'
@@ -102,7 +101,6 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
-        <Metrics />
       </body>
     </html>
   )

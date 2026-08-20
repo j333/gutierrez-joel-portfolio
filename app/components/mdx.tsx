@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { highlight } from 'sugar-high'
 import React from 'react'
@@ -56,16 +55,6 @@ function descriptiveAlt(alt?: string) {
   return typeof alt === 'string' && alt.trim() ? alt : DEFAULT_IMAGE_ALT
 }
 
-function RoundedImage(props) {
-  return (
-    <Image
-      {...props}
-      alt={descriptiveAlt(props.alt)}
-      className="rounded-lg"
-    />
-  )
-}
-
 function MarkdownImage(props) {
   return <img {...props} alt={descriptiveAlt(props.alt)} />
 }
@@ -115,7 +104,6 @@ let components = {
   h4: createHeading(4),
   h5: createHeading(5),
   h6: createHeading(6),
-  Image: RoundedImage,
   img: MarkdownImage,
   a: CustomLink,
   code: Code,
