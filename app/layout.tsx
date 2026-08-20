@@ -1,12 +1,24 @@
 import './global.css'
 import type { Metadata } from 'next'
-import { GeistSans } from 'geist/font/sans'
-import { GeistMono } from 'geist/font/mono'
+import { Geist, Geist_Mono } from 'next/font/google'
 import { Navbar } from './components/nav'
-import { Analytics } from '@vercel/analytics/next'
-import { SpeedInsights } from '@vercel/speed-insights/next'
+import { Metrics } from './components/metrics'
 import Footer from './components/footer'
 import { baseUrl } from './sitemap'
+
+const geistSans = Geist({
+  subsets: ['latin'],
+  display: 'swap',
+  preload: true,
+  variable: '--font-geist-sans',
+})
+
+const geistMono = Geist_Mono({
+  subsets: ['latin'],
+  display: 'swap',
+  preload: false,
+  variable: '--font-geist-mono',
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
@@ -50,8 +62,9 @@ export default function RootLayout({
       lang="en"
       className={cx(
         'text-black bg-white dark:text-white dark:bg-black',
-        GeistSans.variable,
-        GeistMono.variable
+        geistSans.className,
+        geistSans.variable,
+        geistMono.variable
       )}
     >
       <body className="antialiased max-w-xl mx-4 mt-8 lg:mx-auto">
@@ -59,8 +72,7 @@ export default function RootLayout({
           <Navbar />
           {children}
           <Footer />
-          <Analytics />
-          <SpeedInsights />
+          <Metrics />
         </main>
       </body>
     </html>

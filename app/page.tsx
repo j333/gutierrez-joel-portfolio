@@ -1,5 +1,7 @@
 import { BlogPosts } from 'app/components/posts'
 
+export const dynamic = 'force-static'
+
 const places = [
   {
     name: 'Marketfully',

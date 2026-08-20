@@ -26,9 +26,6 @@ importers:
       '@vercel/speed-insights':
         specifier: ^1.0.9
         version: 1.0.9(next@16.3.1(@types/node@20.11.17)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react@19.2.3)
-      geist:
-        specifier: 1.2.2
-        version: 1.2.2(next@16.3.1(@types/node@20.11.17)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))
       next:
         specifier: ^16.3.1
         version: 16.3.1(@types/node@20.11.17)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -577,11 +574,6 @@ packages:
 
   function-bind@1.1.2:
     resolution: {integrity: sha512-7XHNxH7qX9xG5mIwxkhumTox/MIRNcOgDrxWsMt2pAr23WHp6MrRlN7FBSFpCpr+oVO0F744iUgR82nJMfG2SA==}
-
-  geist@1.2.2:
-    resolution: {integrity: sha512-uRDrxhvdnPwWJmh+K5+/5LXSKwvJzaYCl9tDXgiBi4hj7hB4K7+n/WLcvJMFs5btvyn0r9OSwCd1s6CmqAsxEw==}
-    peerDependencies:
-      next: '>=13.2.0 <15'
 
   hasown@2.0.1:
     resolution: {integrity: sha512-1/th4MHjnwncwXsIW6QMzlvYL9kG5e/CpVvLRZe4XPa8TOUNbCELqmvhDmnkNsAjwaG4+I8gJJL0JBvTTLO9qA==}
@@ -1438,10 +1430,6 @@ snapshots:
   extend@3.0.2: {}
 
   function-bind@1.1.2: {}
-
-  geist@1.2.2(next@16.3.1(@types/node@20.11.17)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)):
-    dependencies:
-      next: 16.3.1(@types/node@20.11.17)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
 
   hasown@2.0.1:
     dependencies:
