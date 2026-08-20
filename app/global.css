@@ -84,7 +84,7 @@ html {
 }
 
 .prose p {
-  @apply my-4 text-neutral-800 dark:text-neutral-200;
+  @apply my-5 text-neutral-800 dark:text-neutral-200 leading-relaxed;
 }
 
 .prose h1 {
@@ -92,7 +92,7 @@ html {
 }
 
 .prose h2 {
-  @apply text-xl font-medium tracking-tight mt-6 mb-2;
+  @apply text-xl font-medium tracking-tight mt-10 mb-3;
 }
 
 .prose h3 {
@@ -104,15 +104,31 @@ html {
 }
 
 .prose strong {
-  @apply font-medium;
+  @apply font-medium text-neutral-900 dark:text-neutral-100;
+}
+
+.prose em {
+  @apply text-neutral-700 dark:text-neutral-300;
+}
+
+.prose blockquote {
+  @apply my-6 pl-4 border-l border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 italic;
+}
+
+.prose blockquote p {
+  @apply my-0;
 }
 
 .prose ul {
-  @apply list-disc pl-6;
+  @apply list-disc pl-6 my-5 space-y-2;
 }
 
 .prose ol {
-  @apply list-decimal pl-6;
+  @apply list-decimal pl-6 my-5 space-y-2;
+}
+
+.prose li {
+  @apply text-neutral-800 dark:text-neutral-200 leading-relaxed;
 }
 
 .prose > :first-child {
