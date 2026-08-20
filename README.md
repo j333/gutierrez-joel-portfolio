@@ -44,13 +44,13 @@ Minimum frontmatter:
 ---
 title: 'Article title'
 publishedAt: '2026-08-20'
-summary: 'Short description used in listings, RSS, and Open Graph.'
+summary: 'Short description used in listings and Open Graph.'
 ---
 ```
 
 `image` is optional. If omitted, `/og` generates the Open Graph image from the title.
 
-Publishing a new `.mdx` file updates the blog index, sitemap, and RSS feed automatically.
+Publishing a new `.mdx` file updates the blog index and sitemap automatically.
 
 ## Configuration
 
@@ -58,7 +58,7 @@ Before going to production, update:
 
 | What | Where |
 | --- | --- |
-| Canonical URL | `baseUrl` in `app/sitemap.ts` (SEO, RSS, OG, JSON-LD) |
+| Canonical URL | `baseUrl` in `app/sitemap.ts` (SEO, OG, JSON-LD) |
 | Site title and description | `metadata` in `app/layout.tsx` |
 | Home | `app/page.tsx` |
 | Navigation and footer | `app/components/nav.tsx`, `app/components/footer.tsx` |
@@ -75,7 +75,6 @@ app/
   blog/utils.ts          Post loading and dates
   components/            Shared UI
   og/route.tsx           Open Graph images
-  rss/route.ts           Feed
   sitemap.ts             Sitemap and baseUrl
   robots.ts
 ```

@@ -1,7 +1,6 @@
 import { ArrowIcon } from './arrow-icon'
 
 const links = [
-  { name: 'RSS', url: '/rss', external: true },
   { name: 'LinkedIn', url: 'https://linkedin.com/in/gutierrezjoel', external: true },
   { name: 'Behance', url: 'https://behance.net/gutierrezjoel', external: true },
   { name: 'Dribbble', url: 'https://dribbble.com/gutierrezjoel', external: true },
