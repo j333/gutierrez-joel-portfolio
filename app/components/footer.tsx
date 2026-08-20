@@ -32,9 +32,10 @@ export default function Footer() {
             href="https://github.com/j333/gutierrez-joel-portfolio/"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-neutral-900 dark:hover:text-neutral-100 hover:underline underline-offset-4"
+            className="group inline-flex items-center hover:text-neutral-900 dark:hover:text-neutral-100 hover:underline underline-offset-4"
           >
-            Ver el código de este portafolio en GitHub
+            View this portfolio&apos;s code on GitHub
+            <ArrowIcon className="ml-1 opacity-50 group-hover:opacity-100 transition-opacity" />
           </a>
         </p>
       </div>
