@@ -7,6 +7,10 @@ const nextConfig = {
   turbopack: {
     root: process.cwd(),
   },
+  experimental: {
+    // Inline CSS to remove the render-blocking stylesheet request (~120ms on mobile PSI).
+    inlineCss: true,
+  },
 };
 
 export default nextConfig;
