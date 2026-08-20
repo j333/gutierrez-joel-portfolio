@@ -1,4 +1,4 @@
-# Portfolio — Joel Gutiérrez
+# Portfolio: Joel Gutiérrez
 
 Personal website portfolio of Joel Gutierrez, Product Designer, built with Next.js: home, blog, and articles. Content lives in MDX; the rest is App Router, metadata, and SEO.
 

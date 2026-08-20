@@ -15,11 +15,11 @@ export const metadata: Metadata = {
     template: '%s | Joel Gutiérrez',
   },
   description:
-    'Product Design Manager. I design SaaS and AI products for global teams.',
+    'Product Design Manager. SaaS and AI-driven products for global teams.',
   openGraph: {
     title: 'Joel Gutiérrez',
     description:
-      'Product Design Manager. I design SaaS and AI products for global teams.',
+      'Product Design Manager. SaaS and AI-driven products for global teams.',
     url: baseUrl,
     siteName: 'Joel Gutiérrez',
     locale: 'en_US',

@@ -11,8 +11,9 @@ export async function generateStaticParams() {
   }))
 }
 
-export function generateMetadata({ params }) {
-  let post = getBlogPosts().find((post) => post.slug === params.slug)
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  let post = getBlogPosts().find((post) => post.slug === slug)
   if (!post) {
     return
   }
@@ -51,8 +52,9 @@ export function generateMetadata({ params }) {
   }
 }
 
-export default function Blog({ params }) {
-  let post = getBlogPosts().find((post) => post.slug === params.slug)
+export default async function Blog({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  let post = getBlogPosts().find((post) => post.slug === slug)
 
   if (!post) {
     notFound()
@@ -73,7 +75,7 @@ export default function Blog({ params }) {
             description: post.metadata.summary,
             image: post.metadata.image
               ? `${baseUrl}${post.metadata.image}`
-              : `/og?title=${encodeURIComponent(post.metadata.title)}`,
+              : `${baseUrl}/og?title=${encodeURIComponent(post.metadata.title)}`,
             url: `${baseUrl}/blog/${post.slug}`,
             author: {
               '@type': 'Person',
@@ -82,14 +84,48 @@ export default function Blog({ params }) {
           }),
         }}
       />
-      <h1 className="title font-semibold text-2xl tracking-tighter">
+      <h1 className="mb-2 text-2xl font-semibold tracking-tighter">
         {post.metadata.title}
       </h1>
-      <div className="flex justify-between items-center mt-2 mb-8 text-sm">
-        <p className="text-sm text-neutral-600 dark:text-neutral-400">
-          {formatDate(post.metadata.publishedAt)}
+      <p
+        className={
+          post.metadata.medium || post.metadata.linkedin
+            ? 'mb-2 text-neutral-600 dark:text-neutral-400'
+            : 'mb-8 text-neutral-600 dark:text-neutral-400'
+        }
+      >
+        {formatDate(post.metadata.publishedAt)}
+      </p>
+      {(post.metadata.medium || post.metadata.linkedin) && (
+        <p className="mb-8 text-neutral-600 dark:text-neutral-400">
+          {post.metadata.medium && (
+            <a
+              href={post.metadata.medium}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium underline underline-offset-2 hover:text-neutral-800 dark:hover:text-neutral-200"
+            >
+              Medium
+            </a>
+          )}
+          {post.metadata.medium && post.metadata.linkedin && (
+            <span className="text-neutral-400 dark:text-neutral-500">
+              {' '}
+              ·{' '}
+            </span>
+          )}
+          {post.metadata.linkedin && (
+            <a
+              href={post.metadata.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium underline underline-offset-2 hover:text-neutral-800 dark:hover:text-neutral-200"
+            >
+              LinkedIn
+            </a>
+          )}
         </p>
-      </div>
+      )}
       <article className="prose">
         <CustomMDX source={post.content} />
       </article>
