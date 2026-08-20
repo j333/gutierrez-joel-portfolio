@@ -6,6 +6,10 @@ const nextConfig = {
   allowedDevOrigins: ['*.local', '192.168.*.*', '10.*.*.*', '172.*.*.*'],
   turbopack: {
     root: process.cwd(),
+    resolveAlias: {
+      '../build/polyfills/polyfill-module': './app/lib/modern-polyfill.js',
+      'next/dist/build/polyfills/polyfill-module': './app/lib/modern-polyfill.js',
+    },
   },
   experimental: {
     // Inline CSS to remove the render-blocking stylesheet request (~120ms on mobile PSI).
