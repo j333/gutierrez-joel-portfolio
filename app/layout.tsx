@@ -20,18 +20,20 @@ const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
 })
 
+const siteTitle = 'Joel Gutiérrez | Product Design Manager'
+const siteDescription =
+  'Product Design Manager con experiencia en SaaS y productos impulsados por IA para equipos globales. Especializado en estrategia de producto y diseño UX/UI.'
+
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: 'Joel Gutiérrez',
+    default: siteTitle,
     template: '%s | Joel Gutiérrez',
   },
-  description:
-    'Product Design Manager. SaaS and AI-driven products for global teams.',
+  description: siteDescription,
   openGraph: {
-    title: 'Joel Gutiérrez',
-    description:
-      'Product Design Manager. SaaS and AI-driven products for global teams.',
+    title: siteTitle,
+    description: siteDescription,
     url: baseUrl,
     siteName: 'Joel Gutiérrez',
     locale: 'en_US',
@@ -71,9 +73,9 @@ export default function RootLayout({
         <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
           <Navbar />
           {children}
-          <Footer />
-          <Metrics />
         </main>
+        <Footer />
+        <Metrics />
       </body>
     </html>
   )

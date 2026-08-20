@@ -50,8 +50,18 @@ function CustomLink(props) {
   )
 }
 
-function RoundedImage(props) {
-  return <Image alt={props.alt} className="rounded-lg" {...props} />
+const DEFAULT_IMAGE_ALT = 'Joel Gutiérrez, Product Design Manager'
+
+function descriptiveAlt(alt?: string) {
+  return typeof alt === 'string' && alt.trim() ? alt : DEFAULT_IMAGE_ALT
+}
+
+function RoundedImage({ alt, ...props }) {
+  return <Image alt={descriptiveAlt(alt)} className="rounded-lg" {...props} />
+}
+
+function MarkdownImage({ alt, ...props }) {
+  return <img alt={descriptiveAlt(alt)} {...props} />
 }
 
 function Code({ children, ...props }) {
@@ -100,6 +110,7 @@ let components = {
   h5: createHeading(5),
   h6: createHeading(6),
   Image: RoundedImage,
+  img: MarkdownImage,
   a: CustomLink,
   code: Code,
   Table,

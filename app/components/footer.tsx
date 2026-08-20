@@ -10,7 +10,7 @@ const links = [
 
 export default function Footer() {
   return (
-    <footer className="mt-24 mb-16">
+    <footer className="mt-24 mb-16 px-2 md:px-0">
       <div className="flex flex-col gap-8">
         <ul className="grid grid-cols-2 gap-x-4 gap-y-6 sm:grid-cols-3 md:flex md:flex-row md:gap-x-6 md:gap-y-0 text-neutral-600 dark:text-neutral-400">
           {links.map((link) => (
@@ -35,7 +35,7 @@ export default function Footer() {
             rel="noopener noreferrer"
             className="hover:text-neutral-900 dark:hover:text-neutral-100 hover:underline underline-offset-4"
           >
-            View on GitHub
+            Ver el código de este portafolio en GitHub
           </a>
         </p>
       </div>
