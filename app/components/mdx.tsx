@@ -63,7 +63,7 @@ function MarkdownImage(props) {
       : undefined
 
   return (
-    <span className="my-8 block">
+    <figure className="my-8">
       <img
         {...props}
         alt={alt}
@@ -73,12 +73,28 @@ function MarkdownImage(props) {
         className="m-0 h-auto w-full rounded-xl"
       />
       {caption ? (
-        <span className="mt-3 block text-sm leading-6 text-neutral-500 dark:text-neutral-400">
+        <figcaption className="mt-3 text-sm leading-6 text-neutral-500 dark:text-neutral-400">
           {caption}
-        </span>
+        </figcaption>
       ) : null}
-    </span>
+    </figure>
   )
+}
+
+function Paragraph({ children, ...props }) {
+  const meaningfulChildren = React.Children.toArray(children).filter((child) =>
+    typeof child === 'string' ? child.trim() !== '' : true
+  )
+  const isStandaloneImage =
+    meaningfulChildren.length === 1 &&
+    React.isValidElement(meaningfulChildren[0]) &&
+    meaningfulChildren[0].type === MarkdownImage
+
+  if (isStandaloneImage) {
+    return meaningfulChildren[0]
+  }
+
+  return <p {...props}>{children}</p>
 }
 
 function Code({ children, ...props }) {
@@ -97,9 +113,21 @@ function slugify(str) {
     .replace(/\-\-+/g, '-') // Replace multiple - with single -
 }
 
+function headingLabel(children) {
+  if (typeof children === 'string') {
+    return children
+  }
+
+  return React.Children.toArray(children)
+    .map((child) => (typeof child === 'string' ? child : ''))
+    .join('')
+    .trim() || 'this section'
+}
+
 function createHeading(level) {
   const Heading = ({ children }) => {
     let slug = slugify(children)
+    const label = headingLabel(children)
     return React.createElement(
       `h${level}`,
       { id: slug },
@@ -108,6 +136,7 @@ function createHeading(level) {
           href: `#${slug}`,
           key: `link-${slug}`,
           className: 'anchor',
+          'aria-label': `Permalink to ${label}`,
         }),
       ],
       children
@@ -120,12 +149,13 @@ function createHeading(level) {
 }
 
 let components = {
-  h1: createHeading(1),
+  h1: createHeading(2),
   h2: createHeading(2),
   h3: createHeading(3),
   h4: createHeading(4),
   h5: createHeading(5),
   h6: createHeading(6),
+  p: Paragraph,
   img: MarkdownImage,
   a: CustomLink,
   code: Code,

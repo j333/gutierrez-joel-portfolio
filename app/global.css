@@ -40,6 +40,33 @@ html {
   min-width: 360px;
 }
 
+.skip-link {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  left: 1rem;
+  top: 1rem;
+  z-index: 50;
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 0.25rem;
+  overflow: visible;
+  clip: auto;
+  clip-path: none;
+  white-space: nowrap;
+}
+
 .prose .anchor {
   @apply absolute invisible no-underline;
 
@@ -50,7 +77,9 @@ html {
   cursor: pointer;
 }
 
-.anchor:hover {
+.anchor:hover,
+.prose .anchor:focus,
+.prose .anchor:focus-visible {
   @apply visible;
 }
 
@@ -102,19 +131,24 @@ html {
 }
 
 .prose h1 {
-  @apply text-4xl font-medium tracking-tight mt-6 mb-2;
+  @apply relative text-4xl font-medium tracking-tight mt-6 mb-2;
 }
 
 .prose h2 {
-  @apply text-xl font-medium tracking-tight mt-10 mb-3;
+  @apply relative text-xl font-medium tracking-tight mt-10 mb-3;
 }
 
 .prose h3 {
-  @apply text-xl font-medium tracking-tight mt-6 mb-2;
+  @apply relative text-xl font-medium tracking-tight mt-6 mb-2;
 }
 
 .prose h4 {
-  @apply text-lg font-medium tracking-tight mt-6 mb-2;
+  @apply relative text-lg font-medium tracking-tight mt-6 mb-2;
+}
+
+.prose h5,
+.prose h6 {
+  @apply relative;
 }
 
 .prose strong {

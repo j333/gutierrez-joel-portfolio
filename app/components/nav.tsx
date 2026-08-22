@@ -1,38 +1,55 @@
-import Link from 'next/link'
+'use client'
 
-const navLinkClassName =
-  'group flex w-fit items-center font-mono text-xs uppercase leading-4 tracking-wider text-neutral-600 transition-colors hover:text-neutral-900 hover:underline underline-offset-2 dark:text-neutral-400 dark:hover:text-neutral-100'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { ctaLinkClassName } from './cta-link-class'
+
+const navLinkClassName = `${ctaLinkClassName} -mx-1`
 
 const navItems = [
   { href: '/', name: 'Home' },
   { href: '/blog', name: 'Writing' },
 ]
 
+const isCurrentPath = (pathname: string, href: string) => {
+  if (href === '/') {
+    return pathname === '/'
+  }
+
+  return pathname === href || pathname.startsWith(`${href}/`)
+}
+
 export function Navbar() {
+  const pathname = usePathname() ?? ''
+
   return (
-    <aside className="mb-16">
-      <nav
-        className="flex flex-row items-center justify-between overflow-x-auto"
-        id="nav"
-        aria-label="Primary"
-      >
-        <div className="flex flex-row space-x-5 pr-10">
-          {navItems.map((item) => (
-            <Link key={item.href} href={item.href} className={navLinkClassName}>
+    <nav className="mb-16" id="nav" aria-label="Primary">
+      <ul className="flex w-full flex-row items-center gap-x-5">
+        {navItems.map((item) => (
+          <li key={item.href}>
+            <Link
+              href={item.href}
+              className={navLinkClassName}
+              aria-current={
+                isCurrentPath(pathname, item.href) ? 'page' : undefined
+              }
+            >
               {item.name}
             </Link>
-          ))}
-        </div>
-        <a
-          href="/Joel_Gutierrez_Resume.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={navLinkClassName}
-          aria-label="Resume, opens PDF in a new tab"
-        >
-          Resume
-        </a>
-      </nav>
-    </aside>
+          </li>
+        ))}
+        <li className="ml-auto">
+          <a
+            href="/Joel_Gutierrez_Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={navLinkClassName}
+            aria-label="Resume, opens PDF in a new tab"
+          >
+            Resume
+          </a>
+        </li>
+      </ul>
+    </nav>
   )
 }

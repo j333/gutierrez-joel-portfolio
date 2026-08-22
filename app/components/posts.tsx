@@ -13,7 +13,7 @@ export function BlogPosts() {
   let allBlogs = getBlogPosts()
 
   return (
-    <ul className="space-y-8">
+    <ul className="mb-16 space-y-8">
       {allBlogs
         .sort((a, b) => {
           if (
@@ -24,26 +24,30 @@ export function BlogPosts() {
           return 1
         })
         .map((post) => (
-          <li
-            key={post.slug}
-            className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between sm:gap-4"
-          >
-            <div className="flex flex-col">
-              <Link
-                href={`/blog/${post.slug}`}
-                className="font-medium text-neutral-900 dark:text-neutral-100 hover:underline underline-offset-4 w-fit mb-1"
+          <li key={post.slug}>
+            <article className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
+              <div className="flex flex-col">
+                <h2 className="mb-1 text-base font-medium leading-6 text-neutral-900 dark:text-neutral-100">
+                  <Link
+                    href={`/blog/${post.slug}`}
+                    className="w-fit hover:underline underline-offset-4"
+                  >
+                    {post.metadata.title}
+                  </Link>
+                </h2>
+                {post.metadata.summary && (
+                  <p className="text-sm leading-snug text-neutral-500 dark:text-neutral-400">
+                    {post.metadata.summary}
+                  </p>
+                )}
+              </div>
+              <time
+                dateTime={post.metadata.publishedAt}
+                className="mt-2 shrink-0 font-mono text-xs text-neutral-500 dark:text-neutral-400 sm:mt-0"
               >
-                {post.metadata.title}
-              </Link>
-              {post.metadata.summary && (
-                <span className="text-sm text-neutral-500 dark:text-neutral-400 leading-snug">
-                  {post.metadata.summary}
-                </span>
-              )}
-            </div>
-            <span className="mt-2 sm:mt-0 shrink-0 font-mono text-xs text-neutral-500 dark:text-neutral-400">
-              {formatListDate(post.metadata.publishedAt)}
-            </span>
+                {formatListDate(post.metadata.publishedAt)}
+              </time>
+            </article>
           </li>
         ))}
     </ul>

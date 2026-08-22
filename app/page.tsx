@@ -22,13 +22,8 @@ const places = [
   },
   {
     name: 'Centric Digital',
-    role: (
-      <>
-        Senior Product Designer for enterprise and startup clients, including{' '}
-        <em>AIG</em>, <em>Kaiser Permanente</em>, <em>Humana</em>,{' '}
-        <em>Victoria&apos;s Secret</em>, and <em>Dummies</em>.
-      </>
-    ),
+    role:
+      "Senior Product Designer for enterprise and startup clients, including AIG, Kaiser Permanente, Humana, Victoria's Secret, and Dummies.",
     years: '2014-2021',
   },
 ]
@@ -47,6 +42,29 @@ const skills = [
 const sectionHeadingClassName =
   'mb-6 font-mono text-xs font-normal uppercase leading-4 tracking-wider text-neutral-500 dark:text-neutral-400'
 
+const yearRangeClassName =
+  'mt-2 shrink-0 font-mono text-xs leading-4 text-neutral-500 dark:text-neutral-400 sm:mt-0'
+
+const YearRange = ({ years }: { years: string }) => {
+  const [start, end] = years.split('-')
+
+  if (!end) {
+    return (
+      <time dateTime={start} className={yearRangeClassName}>
+        {years}
+      </time>
+    )
+  }
+
+  return (
+    <span className={yearRangeClassName}>
+      <time dateTime={start}>{start}</time>
+      -
+      <time dateTime={end}>{end}</time>
+    </span>
+  )
+}
+
 export default function Page() {
   return (
     <>
@@ -61,9 +79,9 @@ export default function Page() {
           <p>
             I design scalable digital experiences that align product strategy
             with business goals. My track record ranges from building design
-            teams and taking startups from MVP to acquisition (<em>GetGloby →
-            Marketfully</em>), to shipping enterprise solutions for global
-            brands like <em>AIG</em> and <em>Victoria&apos;s Secret</em>.
+            teams and taking startups from MVP to acquisition (GetGloby →
+            Marketfully), to shipping enterprise solutions for global brands
+            like AIG and Victoria&apos;s Secret.
           </p>
           <p>
             I&apos;m currently working on new experimental personal projects
@@ -81,29 +99,27 @@ export default function Page() {
               className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between sm:gap-4"
             >
               <div className="flex flex-col">
-                {place.href ? (
-                  <a
-                    href={place.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group mb-1 flex w-fit items-center font-medium text-neutral-900 dark:text-neutral-100 hover:underline underline-offset-4"
-                    aria-label={`${place.name}, opens in a new tab`}
-                  >
-                    {place.name}
-                    <ArrowIcon className="ml-1.5 opacity-50 transition-opacity group-hover:opacity-100" />
-                  </a>
-                ) : (
-                  <span className="mb-1 font-medium text-neutral-900 dark:text-neutral-100">
-                    {place.name}
-                  </span>
-                )}
-                <span className="text-sm leading-5 text-neutral-500 dark:text-neutral-400">
+                <h3 className="mb-1 text-base font-medium leading-6 text-neutral-900 dark:text-neutral-100">
+                  {place.href ? (
+                    <a
+                      href={place.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex w-fit items-center hover:underline underline-offset-4"
+                      aria-label={`${place.name}, opens in a new tab`}
+                    >
+                      {place.name}
+                      <ArrowIcon className="ml-1.5 opacity-50 transition-opacity group-hover:opacity-100" />
+                    </a>
+                  ) : (
+                    place.name
+                  )}
+                </h3>
+                <p className="text-sm leading-5 text-neutral-500 dark:text-neutral-400">
                   {place.role}
-                </span>
+                </p>
               </div>
-              <span className="mt-2 shrink-0 font-mono text-xs leading-4 text-neutral-500 dark:text-neutral-400 sm:mt-0">
-                {place.years}
-              </span>
+              <YearRange years={place.years} />
             </li>
           ))}
         </ul>
@@ -128,26 +144,26 @@ export default function Page() {
         <ul className="space-y-8">
           <li className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
             <div className="flex flex-col">
-              <span className="mb-1 font-medium text-neutral-900 dark:text-neutral-100">
+              <h3 className="mb-1 text-base font-medium leading-6 text-neutral-900 dark:text-neutral-100">
                 Graphic Design
-              </span>
-              <span className="text-sm leading-5 text-neutral-500 dark:text-neutral-400">
+              </h3>
+              <p className="text-sm leading-5 text-neutral-500 dark:text-neutral-400">
                 Universidad Nacional de Cuyo
-              </span>
+              </p>
             </div>
-            <span className="mt-2 shrink-0 font-mono text-xs leading-4 text-neutral-500 dark:text-neutral-400 sm:mt-0">
-              2008-2013
-            </span>
+            <YearRange years="2008-2013" />
           </li>
-          <li className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
-            <div className="flex flex-col">
-              <span className="mb-1 font-medium text-neutral-900 dark:text-neutral-100">
-                Languages
-              </span>
-              <span className="text-sm leading-5 text-neutral-500 dark:text-neutral-400">
-                English (C1), Spanish (native)
-              </span>
-            </div>
+        </ul>
+      </section>
+
+      <section className="mb-16">
+        <h2 className={sectionHeadingClassName}>Languages</h2>
+        <ul className="grid grid-cols-2 gap-y-3 sm:grid-cols-3">
+          <li className="text-sm leading-5 text-neutral-600 dark:text-neutral-400">
+            English (C1)
+          </li>
+          <li className="text-sm leading-5 text-neutral-600 dark:text-neutral-400">
+            Spanish (native)
           </li>
         </ul>
       </section>

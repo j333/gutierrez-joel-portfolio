@@ -90,14 +90,18 @@ export default async function Blog({ params }: { params: Promise<{ slug: string 
           }),
         }}
       />
-      <PageHeader
-        title={post.metadata.title}
-        description={formatDate(post.metadata.publishedAt)}
-      />
-      <section className="mb-16">
-        <article className="prose">
+      <article className="mb-16">
+        <PageHeader
+          title={post.metadata.title}
+          description={
+            <time dateTime={post.metadata.publishedAt}>
+              {formatDate(post.metadata.publishedAt)}
+            </time>
+          }
+        />
+        <div className="prose">
           <CustomMDX source={post.content} />
-        </article>
+        </div>
         {post.metadata.medium && (
           <p className="mt-16 text-base leading-6 text-neutral-600 dark:text-neutral-400">
             <a
@@ -112,7 +116,7 @@ export default async function Blog({ params }: { params: Promise<{ slug: string 
             </a>
           </p>
         )}
-      </section>
+      </article>
     </>
   )
 }

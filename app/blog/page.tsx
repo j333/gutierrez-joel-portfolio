@@ -1,4 +1,5 @@
 import { BlogPosts } from 'app/components/posts'
+import { PageHeader } from 'app/components/page-layout'
 import { baseUrl } from 'app/sitemap'
 
 export const metadata = {
@@ -12,17 +13,11 @@ export const metadata = {
 export default function Page() {
   return (
     <>
-      <header className="mb-16">
-        <h1 className="mb-2 text-2xl font-semibold leading-8 tracking-tighter">
-          Blog
-        </h1>
-        <p className="text-base leading-6 text-neutral-600 dark:text-neutral-400">
-          Notes on design, product, and the ideas that stick.
-        </p>
-      </header>
-      <section className="mb-16">
-        <BlogPosts />
-      </section>
+      <PageHeader
+        title="Blog"
+        description="Notes on design, product, and the ideas that stick."
+      />
+      <BlogPosts />
     </>
   )
 }
