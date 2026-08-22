@@ -25,11 +25,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title,
     publishedAt: publishedTime,
     summary: description,
-    image,
   } = post.metadata
-  let ogImage = image
-    ? image
-    : `${baseUrl}/og?title=${encodeURIComponent(title)}`
 
   return {
     title,
@@ -43,17 +39,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       type: 'article',
       publishedTime,
       url: `${baseUrl}/blog/${post.slug}`,
-      images: [
-        {
-          url: ogImage,
-        },
-      ],
+      siteName: 'Joel Gutiérrez',
+      locale: 'en_US',
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
-      images: [ogImage],
     },
   }
 }
@@ -81,7 +73,7 @@ export default async function Blog({ params }: { params: Promise<{ slug: string 
             description: post.metadata.summary,
             image: post.metadata.image
               ? `${baseUrl}${post.metadata.image}`
-              : `${baseUrl}/og?title=${encodeURIComponent(post.metadata.title)}`,
+              : `${baseUrl}/og?title=${encodeURIComponent(post.metadata.title)}&eyebrow=WRITING`,
             url: `${baseUrl}/blog/${post.slug}`,
             author: {
               '@type': 'Person',

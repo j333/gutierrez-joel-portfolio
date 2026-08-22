@@ -2,11 +2,27 @@ import { BlogPosts } from 'app/components/posts'
 import { PageHeader } from 'app/components/page-layout'
 import { baseUrl } from 'app/sitemap'
 
+const title = 'Blog'
+const description = 'Writing and notes from Joel Gutiérrez.'
+
 export const metadata = {
-  title: 'Blog',
-  description: 'Writing and notes from Joel Gutiérrez.',
+  title,
+  description,
   alternates: {
     canonical: `${baseUrl}/blog`,
+  },
+  openGraph: {
+    title,
+    description,
+    url: `${baseUrl}/blog`,
+    siteName: 'Joel Gutiérrez',
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title,
+    description,
   },
 }
 

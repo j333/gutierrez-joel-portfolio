@@ -1,28 +1,36 @@
-import { ImageResponse } from 'next/og'
+import { createOgImage } from './card'
 
 const DEFAULT_TITLE = 'Joel Gutiérrez'
+const DEFAULT_SUBTITLE = 'Product Design Manager'
 const MAX_TITLE_LENGTH = 120
+const MAX_SUBTITLE_LENGTH = 160
+const MAX_EYEBROW_LENGTH = 40
+const MAX_FOOTER_LENGTH = 80
+
+const readParam = (value: string | null, maxLength: number) => {
+  if (!value) {
+    return undefined
+  }
+
+  const trimmed = value.trim().slice(0, maxLength)
+  return trimmed || undefined
+}
 
 export function GET(request: Request) {
-  let url = new URL(request.url)
-  let rawTitle = url.searchParams.get('title') || DEFAULT_TITLE
-  let title = rawTitle.slice(0, MAX_TITLE_LENGTH)
+  const url = new URL(request.url)
+  const title = readParam(url.searchParams.get('title'), MAX_TITLE_LENGTH) || DEFAULT_TITLE
+  const subtitle =
+    readParam(url.searchParams.get('subtitle'), MAX_SUBTITLE_LENGTH) ||
+    (title === DEFAULT_TITLE ? DEFAULT_SUBTITLE : undefined)
+  const eyebrow = readParam(url.searchParams.get('eyebrow'), MAX_EYEBROW_LENGTH)
+  const footer = readParam(url.searchParams.get('footer'), MAX_FOOTER_LENGTH)
 
-  let image = new ImageResponse(
-    (
-      <div tw="flex flex-col w-full h-full items-center justify-center bg-white">
-        <div tw="flex flex-col md:flex-row w-full py-12 px-4 md:items-center justify-between p-8">
-          <h2 tw="flex flex-col text-4xl font-bold tracking-tight text-left">
-            {title}
-          </h2>
-        </div>
-      </div>
-    ),
-    {
-      width: 1200,
-      height: 630,
-    }
-  )
+  const image = createOgImage({
+    title,
+    subtitle,
+    eyebrow,
+    footer,
+  })
 
   image.headers.set(
     'Cache-Control',
