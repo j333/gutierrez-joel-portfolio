@@ -1,16 +1,26 @@
 import './global.css'
 import type { Metadata } from 'next'
-import { Geist } from 'next/font/google'
+import { IBM_Plex_Mono, IBM_Plex_Sans } from 'next/font/google'
 import { Navbar } from './components/nav'
 import Footer from './components/footer'
 import { toJsonLd } from './lib/escape'
 import { baseUrl } from './sitemap'
 
-const geistSans = Geist({
-  subsets: ['latin'],
+const ibmPlexSans = IBM_Plex_Sans({
+  subsets: ['latin', 'latin-ext'],
+  weight: ['400', '500', '600'],
+  style: ['normal', 'italic'],
   display: 'swap',
   preload: true,
-  variable: '--font-geist-sans',
+  variable: '--font-ibm-plex-sans',
+})
+
+const ibmPlexMono = IBM_Plex_Mono({
+  subsets: ['latin', 'latin-ext'],
+  weight: ['400'],
+  display: 'swap',
+  preload: true,
+  variable: '--font-ibm-plex-mono',
 })
 
 const siteTitle = 'Joel Gutiérrez | Product Design Manager'
@@ -70,7 +80,8 @@ export const metadata: Metadata = {
   },
 }
 
-const cx = (...classes) => classes.filter(Boolean).join(' ')
+const cx = (...classes: Array<string | false | null | undefined>) =>
+  classes.filter(Boolean).join(' ')
 
 export default function RootLayout({
   children,
@@ -81,9 +92,10 @@ export default function RootLayout({
     <html
       lang="en"
       className={cx(
-        'text-black bg-white dark:text-white dark:bg-black',
-        geistSans.className,
-        geistSans.variable
+        'font-sans text-black bg-white dark:text-white dark:bg-black',
+        ibmPlexSans.className,
+        ibmPlexSans.variable,
+        ibmPlexMono.variable
       )}
     >
       <head>
@@ -95,8 +107,8 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="antialiased max-w-xl mx-4 mt-8 lg:mx-auto">
-        <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
+      <body className="antialiased mx-auto flex w-full max-w-xl flex-col gap-8 px-4 py-8">
+        <main className="flex min-w-0 flex-auto flex-col">
           <Navbar />
           {children}
         </main>
