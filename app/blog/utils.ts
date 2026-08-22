@@ -7,7 +7,6 @@ type Metadata = {
   summary: string
   image?: string
   medium?: string
-  linkedin?: string
 }
 
 function parseFrontmatter(fileContent: string) {
