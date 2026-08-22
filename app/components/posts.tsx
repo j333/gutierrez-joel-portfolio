@@ -13,7 +13,7 @@ export function BlogPosts() {
   let allBlogs = getBlogPosts()
 
   return (
-    <ul className="mb-16 space-y-8">
+    <ul className="space-y-8">
       {allBlogs
         .sort((a, b) => {
           if (

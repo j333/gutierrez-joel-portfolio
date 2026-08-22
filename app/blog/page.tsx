@@ -11,14 +11,18 @@ export const metadata = {
 
 export default function Page() {
   return (
-    <section>
-      <h1 className="mb-2 text-2xl font-semibold leading-8 tracking-tighter">
-        Blog
-      </h1>
-      <p className="mb-8 text-base leading-6 text-neutral-600 dark:text-neutral-400">
-        Notes on design, product, and the ideas that stick.
-      </p>
-      <BlogPosts />
-    </section>
+    <>
+      <header className="mb-16">
+        <h1 className="mb-2 text-2xl font-semibold leading-8 tracking-tighter">
+          Blog
+        </h1>
+        <p className="text-base leading-6 text-neutral-600 dark:text-neutral-400">
+          Notes on design, product, and the ideas that stick.
+        </p>
+      </header>
+      <section className="mb-16">
+        <BlogPosts />
+      </section>
+    </>
   )
 }
