@@ -56,7 +56,29 @@ function descriptiveAlt(alt?: string) {
 }
 
 function MarkdownImage(props) {
-  return <img {...props} alt={descriptiveAlt(props.alt)} />
+  const alt = descriptiveAlt(props.alt)
+  const caption =
+    typeof props.title === 'string' && props.title.trim()
+      ? props.title
+      : undefined
+
+  return (
+    <span className="my-8 block">
+      <img
+        {...props}
+        alt={alt}
+        title={undefined}
+        loading="lazy"
+        decoding="async"
+        className="m-0 h-auto w-full rounded-xl"
+      />
+      {caption ? (
+        <span className="mt-3 block text-sm leading-6 text-neutral-500 dark:text-neutral-400">
+          {caption}
+        </span>
+      ) : null}
+    </span>
+  )
 }
 
 function Code({ children, ...props }) {
