@@ -9,6 +9,12 @@ type Metadata = {
   medium?: string
 }
 
+type BlogPost = {
+  metadata: Metadata
+  slug: string
+  content: string
+}
+
 function parseFrontmatter(fileContent: string) {
   let frontmatterRegex = /---\s*([\s\S]*?)\s*---/
   let match = frontmatterRegex.exec(fileContent)
@@ -52,6 +58,14 @@ function getMDXData(dir) {
 
 export function getBlogPosts() {
   return getMDXData(path.join(process.cwd(), 'app', 'blog', 'posts'))
+}
+
+export function getPostCanonicalUrl(post: BlogPost, siteUrl: string) {
+  if (post.metadata.medium) {
+    return post.metadata.medium
+  }
+
+  return `${siteUrl}/blog/${post.slug}`
 }
 
 export function formatDate(date: string, includeRelative = false) {

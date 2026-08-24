@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation'
 import { ArrowIcon } from 'app/components/arrow-icon'
 import { CustomMDX } from 'app/components/mdx'
 import { PageHeader } from 'app/components/page-layout'
-import { formatDate, getBlogPosts } from 'app/blog/utils'
+import { formatDate, getBlogPosts, getPostCanonicalUrl } from 'app/blog/utils'
 import { toJsonLd } from 'app/lib/escape'
 import { baseUrl } from 'app/sitemap'
 
@@ -26,19 +26,20 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     publishedAt: publishedTime,
     summary: description,
   } = post.metadata
+  const canonical = getPostCanonicalUrl(post, baseUrl)
 
   return {
     title,
     description,
     alternates: {
-      canonical: `${baseUrl}/blog/${post.slug}`,
+      canonical,
     },
     openGraph: {
       title,
       description,
       type: 'article',
       publishedTime,
-      url: `${baseUrl}/blog/${post.slug}`,
+      url: canonical,
       siteName: 'Joel Gutiérrez',
       locale: 'en_US',
     },
@@ -74,7 +75,7 @@ export default async function Blog({ params }: { params: Promise<{ slug: string 
             image: post.metadata.image
               ? `${baseUrl}${post.metadata.image}`
               : `${baseUrl}/og?title=${encodeURIComponent(post.metadata.title)}&eyebrow=WRITING`,
-            url: `${baseUrl}/blog/${post.slug}`,
+            url: getPostCanonicalUrl(post, baseUrl),
             author: {
               '@type': 'Person',
               name: 'Joel Gutiérrez',

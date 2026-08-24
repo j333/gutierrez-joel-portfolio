@@ -55,7 +55,54 @@ function descriptiveAlt(alt?: string) {
   return typeof alt === 'string' && alt.trim() ? alt : DEFAULT_IMAGE_ALT
 }
 
+const getYouTubeId = (src?: string) => {
+  if (!src) {
+    return null
+  }
+
+  try {
+    const url = new URL(src)
+    const host = url.hostname.replace(/^www\./, '')
+
+    if (host === 'youtu.be') {
+      return url.pathname.split('/').filter(Boolean)[0] || null
+    }
+
+    if (host === 'youtube.com' || host === 'm.youtube.com' || host === 'youtube-nocookie.com') {
+      if (url.pathname.startsWith('/embed/')) {
+        return url.pathname.split('/')[2] || null
+      }
+
+      return url.searchParams.get('v')
+    }
+  } catch {
+    return null
+  }
+
+  return null
+}
+
 function MarkdownImage(props) {
+  const youtubeId = getYouTubeId(props.src)
+
+  if (youtubeId) {
+    const title = descriptiveAlt(props.alt)
+
+    return (
+      <div className="my-8 aspect-video overflow-hidden rounded-xl">
+        <iframe
+          src={`https://www.youtube-nocookie.com/embed/${youtubeId}`}
+          title={title}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+          loading="lazy"
+          referrerPolicy="strict-origin-when-cross-origin"
+          className="h-full w-full border-0"
+        />
+      </div>
+    )
+  }
+
   const alt = descriptiveAlt(props.alt)
   const caption =
     typeof props.title === 'string' && props.title.trim()
@@ -113,21 +160,35 @@ function slugify(str) {
     .replace(/\-\-+/g, '-') // Replace multiple - with single -
 }
 
-function headingLabel(children) {
-  if (typeof children === 'string') {
-    return children
+function headingText(children) {
+  if (typeof children === 'string' || typeof children === 'number') {
+    return String(children)
   }
 
   return React.Children.toArray(children)
-    .map((child) => (typeof child === 'string' ? child : ''))
+    .map((child) => {
+      if (typeof child === 'string' || typeof child === 'number') {
+        return String(child)
+      }
+
+      if (React.isValidElement(child)) {
+        return headingText(child.props.children)
+      }
+
+      return ''
+    })
     .join('')
-    .trim() || 'this section'
+    .trim()
+}
+
+function headingLabel(children) {
+  return headingText(children) || 'this section'
 }
 
 function createHeading(level) {
   const Heading = ({ children }) => {
-    let slug = slugify(children)
     const label = headingLabel(children)
+    let slug = slugify(label)
     return React.createElement(
       `h${level}`,
       { id: slug },
