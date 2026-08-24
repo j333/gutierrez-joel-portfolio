@@ -115,7 +115,7 @@ export default function Page() {
                       href={place.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group flex w-fit items-center hover:underline underline-offset-4"
+                      className="content-link-hover group flex w-fit items-center"
                       aria-label={`${place.name}, opens in a new tab`}
                     >
                       {place.name}

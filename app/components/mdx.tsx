@@ -2,7 +2,6 @@ import Link from 'next/link'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { highlight } from 'sugar-high'
 import React from 'react'
-import { ArrowIcon } from './arrow-icon'
 
 function Table({ data }) {
   let headers = data.headers.map((header, index) => (
@@ -41,12 +40,7 @@ function CustomLink(props) {
     return <a {...props} />
   }
 
-  return (
-    <a target="_blank" rel="noopener noreferrer" {...props} className={[props.className, "group inline-flex items-center"].filter(Boolean).join(" ")}>
-      {props.children}
-      <ArrowIcon className="ml-1 opacity-50 group-hover:opacity-100 transition-opacity" />
-    </a>
-  )
+  return <a target="_blank" rel="noopener noreferrer" {...props} />
 }
 
 const DEFAULT_IMAGE_ALT = 'Joel Gutiérrez, Product Design Manager'
