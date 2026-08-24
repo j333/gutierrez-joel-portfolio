@@ -139,11 +139,11 @@ html {
 }
 
 .prose h3 {
-  @apply relative text-xl font-medium tracking-tight mt-6 mb-2;
+  @apply relative text-lg font-medium tracking-tight mt-8 mb-2;
 }
 
 .prose h4 {
-  @apply relative text-lg font-medium tracking-tight mt-6 mb-2;
+  @apply relative text-base font-medium tracking-tight mt-6 mb-2;
 }
 
 .prose h5,
