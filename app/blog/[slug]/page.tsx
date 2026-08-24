@@ -1,5 +1,4 @@
 import { notFound } from 'next/navigation'
-import { ArrowIcon } from 'app/components/arrow-icon'
 import { CustomMDX } from 'app/components/mdx'
 import { PageHeader } from 'app/components/page-layout'
 import { formatDate, getBlogPosts, getPostCanonicalUrl } from 'app/blog/utils'
@@ -101,11 +100,10 @@ export default async function Blog({ params }: { params: Promise<{ slug: string 
               href={post.metadata.medium}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex w-fit items-center font-medium hover:underline underline-offset-4 hover:text-neutral-800 dark:hover:text-neutral-200"
+              className="content-link"
               aria-label="View on Medium, opens in a new tab"
             >
               View on Medium
-              <ArrowIcon className="ml-1 opacity-50 transition-opacity group-hover:opacity-100" />
             </a>
           </p>
         )}

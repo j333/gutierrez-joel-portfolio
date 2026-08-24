@@ -70,10 +70,8 @@ html {
 .prose .anchor {
   @apply absolute invisible no-underline;
 
-  margin-left: -1em;
-  padding-right: 0.5em;
-  width: 80%;
-  max-width: 700px;
+  left: -1em;
+  width: 1em;
   cursor: pointer;
 }
 
@@ -83,8 +81,30 @@ html {
   @apply visible;
 }
 
-.prose a {
-  @apply no-underline hover:underline underline-offset-4;
+.content-link,
+.prose a:not(.anchor) {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-skip-ink: all;
+  text-underline-offset: 0.1em;
+}
+
+.content-link-hover {
+  color: inherit;
+  text-decoration-skip-ink: all;
+  text-underline-offset: 0.1em;
+}
+
+.content-link-hover:hover,
+.content-link-hover:focus-visible {
+  text-decoration: underline;
+}
+
+.content-link:focus-visible,
+.content-link-hover:focus-visible,
+.prose a:not(.anchor):focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
 }
 
 .prose .anchor:after {
