@@ -160,7 +160,11 @@ function slugify(str) {
     .replace(/\-\-+/g, '-') // Replace multiple - with single -
 }
 
-function headingText(children) {
+type HeadingChildProps = {
+  children?: React.ReactNode
+}
+
+const headingText = (children: React.ReactNode): string => {
   if (typeof children === 'string' || typeof children === 'number') {
     return String(children)
   }
@@ -171,7 +175,7 @@ function headingText(children) {
         return String(child)
       }
 
-      if (React.isValidElement(child)) {
+      if (React.isValidElement<HeadingChildProps>(child)) {
         return headingText(child.props.children)
       }
 
