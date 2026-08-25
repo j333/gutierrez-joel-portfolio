@@ -21,7 +21,7 @@ export const PageHeader = ({
           {description}
         </p>
       ) : null}
-      {children ? <div className="mt-16">{children}</div> : null}
+      {children ? <div className="mt-8">{children}</div> : null}
     </header>
   )
 }

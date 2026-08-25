@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation'
 import { CustomMDX } from 'app/components/mdx'
 import { PageHeader } from 'app/components/page-layout'
 import { getExperience, getExperienceCanonicalUrl } from 'app/experience/utils'
-import { YearRange } from 'app/components/year-range'
+import { ExperienceMeta } from 'app/components/experience-meta'
 import { toJsonLd } from 'app/lib/escape'
 import { baseUrl } from 'app/sitemap'
 
@@ -25,7 +25,8 @@ export async function generateMetadata({
     return
   }
 
-  let { title, startedAt, summary: description } = entry.metadata
+  let { title, startedAt, summary, role } = entry.metadata
+  const description = role ? `${role}. ${summary}` : summary
   const canonical = getExperienceCanonicalUrl(entry, baseUrl)
 
   return {
@@ -90,14 +91,10 @@ export default async function Experience({
       <article className="mb-16">
         <PageHeader
           title={entry.metadata.title}
-          description={
-            <YearRange
-              start={entry.metadata.startedAt}
-              end={entry.metadata.endedAt}
-              className="font-mono text-sm leading-4"
-            />
-          }
-        />
+          description={entry.metadata.role}
+        >
+          <ExperienceMeta metadata={entry.metadata} />
+        </PageHeader>
         <div className="prose">
           <CustomMDX source={entry.content} />
         </div>

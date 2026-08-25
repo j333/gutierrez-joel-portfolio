@@ -44,7 +44,11 @@ export function ExperiencePosts({
               </Heading>
               {entry.metadata.summary && (
                 <p className="text-pretty text-sm leading-5 text-neutral-500 dark:text-neutral-400">
-                  {preventWidow(entry.metadata.summary)}
+                  {preventWidow(
+                    entry.metadata.role
+                      ? `${entry.metadata.role}. ${entry.metadata.summary}`
+                      : entry.metadata.summary
+                  )}
                 </p>
               )}
             </div>

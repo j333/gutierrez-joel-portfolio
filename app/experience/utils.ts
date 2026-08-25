@@ -1,11 +1,18 @@
 import fs from 'fs'
 import path from 'path'
 
-type Metadata = {
+export type Metadata = {
   title: string
   startedAt: string
   endedAt: string
   summary: string
+  role?: string
+  type?: string
+  startedOn?: string
+  endedOn?: string
+  industry?: string
+  companyType?: string
+  workplace?: string
   image?: string
 }
 
