@@ -69,12 +69,6 @@ export default function Page() {
         </div>
       </header>
 
-      <section className="mb-16">
-        <h2 className={sectionHeadingClassName}>Experience</h2>
-        <ExperiencePosts limit={HOME_PREVIEW_LIMIT} heading="h3" />
-        {renderViewAll(experienceCount, '/experience', 'Experience')}
-      </section>
-
       {writingCount > 0 && (
         <section className="mb-16">
           <h2 className={sectionHeadingClassName}>Writing</h2>
@@ -84,17 +78,9 @@ export default function Page() {
       )}
 
       <section className="mb-16">
-        <h2 className={sectionHeadingClassName}>Capabilities</h2>
-        <ul className="grid grid-cols-2 gap-y-3 sm:grid-cols-3">
-          {skills.map((skill) => (
-            <li
-              key={skill}
-              className="text-sm leading-5 text-neutral-600 dark:text-neutral-400"
-            >
-              {skill}
-            </li>
-          ))}
-        </ul>
+        <h2 className={sectionHeadingClassName}>Experience</h2>
+        <ExperiencePosts limit={HOME_PREVIEW_LIMIT} heading="h3" />
+        {renderViewAll(experienceCount, '/experience', 'Experience')}
       </section>
 
       <section className="mb-16">
@@ -111,6 +97,20 @@ export default function Page() {
             </div>
             <YearRange start="2008" end="2013" />
           </li>
+        </ul>
+      </section>
+
+      <section className="mb-16">
+        <h2 className={sectionHeadingClassName}>Capabilities</h2>
+        <ul className="grid grid-cols-2 gap-y-3 sm:grid-cols-3">
+          {skills.map((skill) => (
+            <li
+              key={skill}
+              className="text-sm leading-5 text-neutral-600 dark:text-neutral-400"
+            >
+              {skill}
+            </li>
+          ))}
         </ul>
       </section>
 
