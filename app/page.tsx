@@ -52,11 +52,15 @@ export default function Page() {
         </p>
         <div className="mt-16 space-y-6 text-base leading-6 text-neutral-800 dark:text-neutral-200">
           <p>
-            I design digital experiences that align product strategy
-            with business goals. My track record includes building design
-            teams, taking a startup from MVP to acquisition (GetGloby →
-            Marketfully), and shipping enterprise solutions for global brands
-            like AIG and Victoria&apos;s Secret.
+            With over 12 years of experience designing{' '}
+            <em className="italic">SaaS and AI-driven products</em> for global
+            teams, I work closely with product and engineering to create
+            experiences that support product decisions and business goals.
+          </p>
+          <p>
+            Recently, I led the design of an AI-powered marketing content
+            product for global audiences, with a focus on{' '}
+            <em className="italic">speed, consistency, and quality</em>.
           </p>
           <p>
             I&apos;m currently working on experimental personal projects
