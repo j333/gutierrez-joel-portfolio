@@ -30,7 +30,7 @@ export function BlogPosts() {
                 <h2 className="mb-1 text-base font-medium leading-6 text-neutral-900 dark:text-neutral-100">
                   <Link
                     href={`/blog/${post.slug}`}
-                    className="content-link-hover w-fit"
+                    className="content-link w-fit"
                   >
                     {post.metadata.title}
                   </Link>

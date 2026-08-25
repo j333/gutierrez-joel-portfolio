@@ -2,12 +2,14 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { ctaLinkClassName } from './cta-link-class'
+import { ArrowIcon } from './arrow-icon'
+import { chromeLinkClassName } from './link-styles'
 
-const navLinkClassName = `${ctaLinkClassName} -mx-1`
+const navLinkClassName = `${chromeLinkClassName} -mx-1`
 
 const navItems = [
   { href: '/', name: 'Home' },
+  { href: '/experience', name: 'Experience' },
   { href: '/blog', name: 'Writing' },
 ]
 
@@ -47,6 +49,7 @@ export function Navbar() {
             aria-label="Resume, opens PDF in a new tab"
           >
             Resume
+            <ArrowIcon />
           </a>
         </li>
       </ul>

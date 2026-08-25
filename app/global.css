@@ -89,19 +89,7 @@ html {
   text-underline-offset: 0.1em;
 }
 
-.content-link-hover {
-  color: inherit;
-  text-decoration-skip-ink: all;
-  text-underline-offset: 0.1em;
-}
-
-.content-link-hover:hover,
-.content-link-hover:focus-visible {
-  text-decoration: underline;
-}
-
 .content-link:focus-visible,
-.content-link-hover:focus-visible,
 .prose a:not(.anchor):focus-visible {
   outline: 2px solid currentColor;
   outline-offset: 2px;

@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import { IBM_Plex_Mono, IBM_Plex_Sans } from 'next/font/google'
 import { Navbar } from './components/nav'
 import Footer from './components/footer'
-import { ctaLinkClassName } from './components/cta-link-class'
+import { chromeLinkClassName } from './components/link-styles'
 import { toJsonLd } from './lib/escape'
 import { baseUrl } from './sitemap'
 
@@ -109,7 +109,7 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased mx-auto flex w-full max-w-xl flex-col gap-8 px-4 py-8">
-        <a href="#main-content" className={`skip-link ${ctaLinkClassName}`}>
+        <a href="#main-content" className={`skip-link ${chromeLinkClassName}`}>
           Skip to main content
         </a>
         <div className="flex min-w-0 flex-auto flex-col">

@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation'
 import { CustomMDX } from 'app/components/mdx'
+import { CtaLink } from 'app/components/cta-link'
 import { PageHeader } from 'app/components/page-layout'
 import { formatDate, getBlogPosts, getPostCanonicalUrl } from 'app/blog/utils'
 import { toJsonLd } from 'app/lib/escape'
@@ -95,17 +96,14 @@ export default async function Blog({ params }: { params: Promise<{ slug: string 
           <CustomMDX source={post.content} />
         </div>
         {post.metadata.medium && (
-          <p className="mt-16 text-base leading-6 text-neutral-600 dark:text-neutral-400">
-            <a
+          <div className="mt-16">
+            <CtaLink
               href={post.metadata.medium}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="content-link"
               aria-label="View on Medium, opens in a new tab"
             >
               View on Medium
-            </a>
-          </p>
+            </CtaLink>
+          </div>
         )}
       </article>
     </>

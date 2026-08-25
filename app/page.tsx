@@ -1,42 +1,8 @@
-import { ArrowIcon } from 'app/components/arrow-icon'
+import { ExperiencePosts } from 'app/components/experience'
+import { YearRange } from 'app/components/year-range'
+import { CtaLink } from 'app/components/cta-link'
 
 export const dynamic = 'force-static'
-
-const places = [
-  {
-    name: 'Marketfully',
-    href: 'https://marketfully.com/',
-    role: 'Product Design Manager. Design leadership, product definition, and AI exploration.',
-    years: '2025-2026',
-  },
-  {
-    name: 'GetGloby',
-    role: 'Principal Product Designer. From MVP to scalable SaaS, and the design function.',
-    years: '2022-2025',
-  },
-  {
-    name: "Dickey's Barbecue",
-    href: 'https://www.dickeys.com/',
-    role: 'Senior Product Designer. Web and mobile experiences across restaurant brands, including ecommerce.',
-    years: '2021',
-  },
-  {
-    name: 'Centric Digital',
-    role:
-      "Senior Product Designer. Enterprise and startup clients, including AIG, Kaiser Permanente, Humana, Victoria's Secret, and Dummies.",
-    years: '2014-2021',
-  },
-]
-
-const preventWidow = (text: string) => {
-  const lastSpace = text.lastIndexOf(' ')
-
-  if (lastSpace === -1) {
-    return text
-  }
-
-  return `${text.slice(0, lastSpace)}\u00A0${text.slice(lastSpace + 1)}`
-}
 
 const skills = [
   'Product Design',
@@ -51,29 +17,6 @@ const skills = [
 
 const sectionHeadingClassName =
   'mb-6 font-mono text-xs font-normal uppercase leading-4 tracking-wider text-neutral-500 dark:text-neutral-400'
-
-const yearRangeClassName =
-  'mt-2 shrink-0 font-mono text-xs leading-4 text-neutral-500 dark:text-neutral-400 sm:mt-0'
-
-const YearRange = ({ years }: { years: string }) => {
-  const [start, end] = years.split('-')
-
-  if (!end) {
-    return (
-      <time dateTime={start} className={yearRangeClassName}>
-        {years}
-      </time>
-    )
-  }
-
-  return (
-    <span className={yearRangeClassName}>
-      <time dateTime={start}>{start}</time>
-      -
-      <time dateTime={end}>{end}</time>
-    </span>
-  )
-}
 
 export default function Page() {
   return (
@@ -102,37 +45,10 @@ export default function Page() {
 
       <section className="mb-16">
         <h2 className={sectionHeadingClassName}>Experience</h2>
-        <ul className="space-y-8">
-          {places.map((place) => (
-            <li
-              key={place.name}
-              className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between sm:gap-4"
-            >
-              <div className="flex flex-col">
-                <h3 className="mb-1 text-base font-medium leading-6 text-neutral-900 dark:text-neutral-100">
-                  {place.href ? (
-                    <a
-                      href={place.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="content-link-hover group flex w-fit items-center"
-                      aria-label={`${place.name}, opens in a new tab`}
-                    >
-                      {place.name}
-                      <ArrowIcon className="ml-1.5 opacity-50 transition-opacity group-hover:opacity-100" />
-                    </a>
-                  ) : (
-                    place.name
-                  )}
-                </h3>
-                <p className="text-pretty text-sm leading-5 text-neutral-500 dark:text-neutral-400">
-                  {preventWidow(place.role)}
-                </p>
-              </div>
-              <YearRange years={place.years} />
-            </li>
-          ))}
-        </ul>
+        <ExperiencePosts limit={3} heading="h3" />
+        <div className="mt-8">
+          <CtaLink href="/experience">View all experience</CtaLink>
+        </div>
       </section>
 
       <section className="mb-16">
@@ -161,7 +77,7 @@ export default function Page() {
                 Universidad Nacional de Cuyo
               </p>
             </div>
-            <YearRange years="2008-2013" />
+            <YearRange start="2008" end="2013" />
           </li>
         </ul>
       </section>

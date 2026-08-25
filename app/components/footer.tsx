@@ -1,4 +1,5 @@
 import { ArrowIcon } from './arrow-icon'
+import { chromeLinkClassName } from './link-styles'
 
 const links = [
   { name: 'LinkedIn', url: 'https://linkedin.com/in/gutierrezjoel', external: true },
@@ -16,7 +17,7 @@ export default function Footer() {
             {links.map((link) => (
               <li key={link.name}>
                 <a
-                  className="group flex w-fit items-center font-mono text-xs uppercase leading-4 tracking-wider transition-colors hover:text-neutral-900 hover:underline underline-offset-2 dark:hover:text-neutral-100"
+                  className={chromeLinkClassName}
                   rel={link.external ? 'noopener noreferrer' : undefined}
                   target={link.external ? '_blank' : undefined}
                   href={link.url}
@@ -28,7 +29,7 @@ export default function Footer() {
                 >
                   {link.name}
                   {link.external && (
-                    <ArrowIcon className="ml-1 opacity-50 transition-opacity group-hover:opacity-100" />
+                    <ArrowIcon />
                   )}
                 </a>
               </li>
@@ -43,11 +44,10 @@ export default function Footer() {
             href="https://github.com/j333/gutierrez-joel-portfolio/"
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex w-fit shrink-0 items-center hover:text-neutral-900 hover:underline underline-offset-4 dark:hover:text-neutral-100 sm:whitespace-nowrap"
+            className="content-link w-fit shrink-0 sm:whitespace-nowrap"
             aria-label="View this portfolio's code on GitHub, opens in a new tab"
           >
             View this portfolio&apos;s code on GitHub
-            <ArrowIcon className="ml-1 opacity-50 transition-opacity group-hover:opacity-100" />
           </a>
         </p>
       </div>
