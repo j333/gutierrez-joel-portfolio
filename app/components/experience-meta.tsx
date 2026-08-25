@@ -69,7 +69,7 @@ export const ExperienceMeta = ({ metadata }: ExperienceMetaProps) => {
   }
 
   return (
-    <dl className="grid gap-x-8 gap-y-6 sm:grid-cols-2">
+    <dl className="grid grid-cols-2 gap-x-8 gap-y-6">
       {rows.map((row) => (
         <div key={row.label} className="flex flex-col gap-0.5">
           <dt className="font-mono text-xs font-normal uppercase leading-4 tracking-wider text-neutral-500 dark:text-neutral-400">
