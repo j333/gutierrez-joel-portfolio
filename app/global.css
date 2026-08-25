@@ -176,7 +176,7 @@ html {
 }
 
 .prose em {
-  @apply text-neutral-700 dark:text-neutral-300;
+  font-style: italic;
 }
 
 .prose blockquote {
