@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { ArrowIcon } from './arrow-icon'
 import { chromeLinkClassName } from './link-styles'
+import { ThemeToggle } from './theme-toggle'
 
 const navLinkClassName = `${chromeLinkClassName} -mx-1`
 
@@ -40,7 +41,8 @@ export function Navbar() {
             </Link>
           </li>
         ))}
-        <li className="ml-auto">
+        <li className="ml-auto flex items-center gap-x-5">
+          <ThemeToggle />
           <a
             href="/Joel_Gutierrez_Resume.pdf"
             target="_blank"

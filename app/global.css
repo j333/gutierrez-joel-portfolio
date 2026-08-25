@@ -1,5 +1,11 @@
 @import 'tailwindcss';
 
+@custom-variant dark {
+  &:where(.dark, .dark *) {
+    @slot;
+  }
+}
+
 @theme {
   --font-family-sans: var(--font-ibm-plex-sans), ui-sans-serif, system-ui,
     sans-serif;
@@ -24,20 +30,28 @@
   --sh-entity: #e25a1c;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --sh-class: #4c97f8;
-    --sh-identifier: white;
-    --sh-keyword: #f47067;
-    --sh-string: #0fa295;
-  }
-  html {
-    color-scheme: dark;
-  }
+.dark {
+  --sh-class: #4c97f8;
+  --sh-identifier: white;
+  --sh-keyword: #f47067;
+  --sh-string: #0fa295;
+  color-scheme: dark;
 }
 
 html {
   min-width: 360px;
+  color-scheme: light;
+}
+
+.theme-toggle-label {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .theme-toggle:hover .theme-toggle-label,
+  .theme-toggle:focus-visible .theme-toggle-label {
+    display: inline;
+  }
 }
 
 .skip-link {
@@ -218,4 +232,16 @@ table {
 
 .title {
   text-wrap: balance;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }

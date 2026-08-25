@@ -5,6 +5,7 @@ import { Navbar } from './components/nav'
 import Footer from './components/footer'
 import { chromeLinkClassName } from './components/link-styles'
 import { toJsonLd } from './lib/escape'
+import { themeInitScript } from './lib/theme'
 import { baseUrl } from './sitemap'
 
 const ibmPlexSans = IBM_Plex_Sans({
@@ -92,6 +93,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={cx(
         'font-sans text-black bg-white dark:text-white dark:bg-black',
         ibmPlexSans.className,
@@ -100,6 +102,11 @@ export default function RootLayout({
       )}
     >
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: themeInitScript,
+          }}
+        />
         <script
           type="application/ld+json"
           suppressHydrationWarning

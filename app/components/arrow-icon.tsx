@@ -1,20 +1,22 @@
 export const arrowIconClassName =
-  'ml-1 opacity-50 transition-opacity group-hover:opacity-100'
+  'ml-1 size-2.5 shrink-0 self-start translate-y-px'
 
 export const ArrowIcon = ({ className }: { className?: string }) => {
   return (
     <svg
       width="10"
       height="10"
-      viewBox="0 0 12 12"
-      fill="none"
+      viewBox="0 0 32 32"
+      fill="currentColor"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
       className={className || arrowIconClassName}
     >
       <path
-        d="M2.07102 11.3494L0.963068 10.2415L9.2017 1.98864H2.83807L2.85227 0.454545H11.8438V9.46023H10.2955L10.3097 3.09659L2.07102 11.3494Z"
-        fill="currentColor"
+        d="M10 6 10 8 22.59 8 6 24.59 7.41 26 24 9.41 24 22 26 22 26 6 10 6z"
+        stroke="currentColor"
+        strokeWidth="1.2"
+        strokeLinejoin="miter"
       />
     </svg>
   )
