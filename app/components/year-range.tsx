@@ -12,6 +12,14 @@ export const YearRange = ({
   end,
   className = yearRangeClassName,
 }: YearRangeProps) => {
+  if (start === end) {
+    return (
+      <span className={className}>
+        <time dateTime={end}>{end}</time>
+      </span>
+    )
+  }
+
   return (
     <span className={className}>
       <time dateTime={start}>{start}</time>
