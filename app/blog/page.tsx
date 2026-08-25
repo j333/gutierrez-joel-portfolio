@@ -33,7 +33,9 @@ export default function Page() {
         title="Blog"
         description="Notes on design, product, and the ideas that stick."
       />
-      <BlogPosts />
+      <div className="mb-16">
+        <BlogPosts />
+      </div>
     </>
   )
 }

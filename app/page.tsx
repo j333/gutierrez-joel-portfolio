@@ -1,8 +1,13 @@
+import { getBlogPosts } from 'app/blog/utils'
 import { ExperiencePosts } from 'app/components/experience'
+import { BlogPosts } from 'app/components/posts'
 import { YearRange } from 'app/components/year-range'
 import { CtaLink } from 'app/components/cta-link'
+import { getExperience } from 'app/experience/utils'
 
 export const dynamic = 'force-static'
+
+const HOME_PREVIEW_LIMIT = 3
 
 const skills = [
   'Product Design',
@@ -18,7 +23,24 @@ const skills = [
 const sectionHeadingClassName =
   'mb-6 font-mono text-xs font-normal uppercase leading-4 tracking-wider text-neutral-500 dark:text-neutral-400'
 
+const renderViewAll = (count: number, href: string, sectionLabel: string) => {
+  if (count <= HOME_PREVIEW_LIMIT) {
+    return null
+  }
+
+  return (
+    <div className="mt-8">
+      <CtaLink href={href} aria-label={`View all ${sectionLabel.toLowerCase()}`}>
+        View all
+      </CtaLink>
+    </div>
+  )
+}
+
 export default function Page() {
+  const experienceCount = getExperience().length
+  const writingCount = getBlogPosts().length
+
   return (
     <>
       <header className="mb-16">
@@ -45,11 +67,17 @@ export default function Page() {
 
       <section className="mb-16">
         <h2 className={sectionHeadingClassName}>Experience</h2>
-        <ExperiencePosts limit={3} heading="h3" />
-        <div className="mt-8">
-          <CtaLink href="/experience">View all experience</CtaLink>
-        </div>
+        <ExperiencePosts limit={HOME_PREVIEW_LIMIT} heading="h3" />
+        {renderViewAll(experienceCount, '/experience', 'Experience')}
       </section>
+
+      {writingCount > 0 && (
+        <section className="mb-16">
+          <h2 className={sectionHeadingClassName}>Writing</h2>
+          <BlogPosts limit={HOME_PREVIEW_LIMIT} heading="h3" />
+          {renderViewAll(writingCount, '/blog', 'Writing')}
+        </section>
+      )}
 
       <section className="mb-16">
         <h2 className={sectionHeadingClassName}>Capabilities</h2>
