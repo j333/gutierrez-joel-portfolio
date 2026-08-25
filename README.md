@@ -1,6 +1,6 @@
 # Portfolio: Joel Gutiérrez
 
-Personal website portfolio of Joel Gutierrez, Product Designer, built with Next.js: home, blog, and articles. Content lives in MDX; the rest is App Router, metadata, and SEO.
+Personal website portfolio of Joel Gutierrez, Product Designer, built with Next.js: home, writing, and articles. Content lives in MDX; the rest is App Router, metadata, and SEO.
 
 ## Stack
 
@@ -36,7 +36,7 @@ The site runs at [http://localhost:3000](http://localhost:3000).
 
 ## Content
 
-Posts live in `app/blog/posts/`. The filename is the slug (`vim.mdx` → `/blog/vim`).
+Posts live in `app/writing/posts/`. The filename is the slug (`vim.mdx` → `/writing/vim`).
 
 Minimum frontmatter:
 
@@ -50,7 +50,7 @@ summary: 'Short description used in listings and Open Graph.'
 
 `image` is optional. If omitted, `/og` generates the Open Graph image from the title.
 
-Publishing a new `.mdx` file updates the blog index and sitemap automatically.
+Publishing a new `.mdx` file updates the writing index and sitemap automatically.
 
 ## Configuration
 
@@ -69,10 +69,10 @@ Before going to production, update:
 app/
   page.tsx               Home
   layout.tsx             Layout and global metadata
-  blog/page.tsx          Index
-  blog/[slug]/page.tsx   Article (includes JSON-LD)
-  blog/posts/            MDX
-  blog/utils.ts          Post loading and dates
+  writing/page.tsx          Index
+  writing/[slug]/page.tsx   Article (includes JSON-LD)
+  writing/posts/            MDX
+  writing/utils.ts          Post loading and dates
   components/            Shared UI
   og/route.tsx           Open Graph images
   sitemap.ts             Sitemap and baseUrl

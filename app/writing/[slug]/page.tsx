@@ -1,14 +1,14 @@
 import { notFound } from 'next/navigation'
 import { CustomMDX } from 'app/components/mdx'
 import { CtaLink } from 'app/components/cta-link'
-import { BlogMeta } from 'app/components/blog-meta'
+import { WritingMeta } from 'app/components/writing-meta'
 import { PageHeader } from 'app/components/page-layout'
-import { getBlogPosts, getPostCanonicalUrl } from 'app/blog/utils'
+import { getWritingPosts, getPostCanonicalUrl } from 'app/writing/utils'
 import { toJsonLd } from 'app/lib/escape'
 import { baseUrl } from 'app/sitemap'
 
 export async function generateStaticParams() {
-  let posts = getBlogPosts()
+  let posts = getWritingPosts()
 
   return posts.map((post) => ({
     slug: post.slug,
@@ -17,7 +17,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  let post = getBlogPosts().find((post) => post.slug === slug)
+  let post = getWritingPosts().find((post) => post.slug === slug)
   if (!post) {
     return
   }
@@ -52,9 +52,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   }
 }
 
-export default async function Blog({ params }: { params: Promise<{ slug: string }> }) {
+export default async function Writing({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  let post = getBlogPosts().find((post) => post.slug === slug)
+  let post = getWritingPosts().find((post) => post.slug === slug)
 
   if (!post) {
     notFound()
@@ -89,7 +89,7 @@ export default async function Blog({ params }: { params: Promise<{ slug: string 
           title={post.metadata.title}
           description={post.metadata.summary}
         >
-          <BlogMeta publishedAt={post.metadata.publishedAt} />
+          <WritingMeta publishedAt={post.metadata.publishedAt} />
         </PageHeader>
         <div className="prose">
           <CustomMDX source={post.content} />

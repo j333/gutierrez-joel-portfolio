@@ -1,5 +1,19 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  async redirects() {
+    return [
+      {
+        source: '/blog',
+        destination: '/writing',
+        permanent: true,
+      },
+      {
+        source: '/blog/:path*',
+        destination: '/writing/:path*',
+        permanent: true,
+      },
+    ];
+  },
   // Vercel injects an adapter that skips NFT traces; standalone then crashes the build.
   output: process.env.VERCEL ? undefined : 'standalone',
   // LAN devices on the same Wi-Fi need this to load /_next assets in development.

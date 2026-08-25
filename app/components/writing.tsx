@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { getBlogPosts } from 'app/blog/utils'
+import { getWritingPosts } from 'app/writing/utils'
 
 function formatListDate(date: string) {
   const value = date.includes('T') ? date : `${date}T00:00:00`
@@ -9,14 +9,14 @@ function formatListDate(date: string) {
   })
 }
 
-type BlogPostsProps = {
+type WritingPostsProps = {
   limit?: number
   heading?: 'h2' | 'h3'
 }
 
-export function BlogPosts({ limit, heading = 'h2' }: BlogPostsProps) {
+export function WritingPosts({ limit, heading = 'h2' }: WritingPostsProps) {
   const Heading = heading
-  let posts = getBlogPosts().sort((a, b) => {
+  let posts = getWritingPosts().sort((a, b) => {
     if (new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)) {
       return -1
     }
@@ -35,7 +35,7 @@ export function BlogPosts({ limit, heading = 'h2' }: BlogPostsProps) {
             <div className="flex flex-col">
               <Heading className="mb-1 text-base font-medium leading-6 text-neutral-900 dark:text-neutral-100">
                 <Link
-                  href={`/blog/${post.slug}`}
+                  href={`/writing/${post.slug}`}
                   className="content-link w-fit"
                 >
                   {post.metadata.title}

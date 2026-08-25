@@ -11,7 +11,7 @@ const navLinkClassName = `${chromeLinkClassName} -mx-1`
 const navItems = [
   { href: '/', name: 'Home' },
   { href: '/experience', name: 'Experience' },
-  { href: '/blog', name: 'Writing' },
+  { href: '/writing', name: 'Writing' },
 ]
 
 const isCurrentPath = (pathname: string, href: string) => {

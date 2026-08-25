@@ -7,7 +7,7 @@ export const contentType = ogContentType
 const Image = () =>
   createOgImage({
     eyebrow: 'WRITING',
-    title: 'Blog',
+    title: 'Writing',
     subtitle: 'Notes on design, product, and the ideas that stick.',
     footer: 'Joel Gutiérrez',
   })

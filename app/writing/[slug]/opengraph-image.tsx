@@ -1,4 +1,4 @@
-import { getBlogPosts } from 'app/blog/utils'
+import { getWritingPosts } from 'app/writing/utils'
 import { createOgImage, ogContentType, ogImageSize } from '../../og/card'
 
 export const alt = 'Writing by Joel Gutiérrez'
@@ -7,7 +7,7 @@ export const contentType = ogContentType
 
 const Image = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const { slug } = await params
-  const post = getBlogPosts().find((entry) => entry.slug === slug)
+  const post = getWritingPosts().find((entry) => entry.slug === slug)
 
   if (!post) {
     return createOgImage({

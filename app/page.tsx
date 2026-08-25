@@ -1,6 +1,6 @@
-import { getBlogPosts } from 'app/blog/utils'
+import { getWritingPosts } from 'app/writing/utils'
 import { ExperiencePosts } from 'app/components/experience'
-import { BlogPosts } from 'app/components/posts'
+import { WritingPosts } from 'app/components/writing'
 import { YearRange } from 'app/components/year-range'
 import { CtaLink } from 'app/components/cta-link'
 import { getExperience } from 'app/experience/utils'
@@ -39,7 +39,7 @@ const renderViewAll = (count: number, href: string, sectionLabel: string) => {
 
 export default function Page() {
   const experienceCount = getExperience().length
-  const writingCount = getBlogPosts().length
+  const writingCount = getWritingPosts().length
 
   return (
     <>
@@ -78,8 +78,8 @@ export default function Page() {
       {writingCount > 0 && (
         <section className="mb-16">
           <h2 className={sectionHeadingClassName}>Writing</h2>
-          <BlogPosts limit={HOME_PREVIEW_LIMIT} heading="h3" />
-          {renderViewAll(writingCount, '/blog', 'Writing')}
+          <WritingPosts limit={HOME_PREVIEW_LIMIT} heading="h3" />
+          {renderViewAll(writingCount, '/writing', 'Writing')}
         </section>
       )}
 

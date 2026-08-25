@@ -1,10 +1,10 @@
-import { formatDate } from 'app/blog/utils'
+import { formatDate } from 'app/writing/utils'
 
-type BlogMetaProps = {
+type WritingMetaProps = {
   publishedAt: string
 }
 
-export const BlogMeta = ({ publishedAt }: BlogMetaProps) => {
+export const WritingMeta = ({ publishedAt }: WritingMetaProps) => {
   return (
     <dl className="grid gap-x-8 gap-y-6 sm:grid-cols-2">
       <div className="flex flex-col gap-0.5">

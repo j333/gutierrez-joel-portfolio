@@ -1,3 +1,3 @@
 # Posts compile through the MDX pipeline. Review them as application code.
-app/blog/posts/ @j333
+app/writing/posts/ @j333
 app/components/mdx.tsx @j333

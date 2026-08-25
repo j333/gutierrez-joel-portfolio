@@ -9,7 +9,7 @@ type Metadata = {
   medium?: string
 }
 
-type BlogPost = {
+type WritingPost = {
   metadata: Metadata
   slug: string
   content: string
@@ -56,16 +56,16 @@ function getMDXData(dir) {
   })
 }
 
-export function getBlogPosts() {
-  return getMDXData(path.join(process.cwd(), 'app', 'blog', 'posts'))
+export function getWritingPosts() {
+  return getMDXData(path.join(process.cwd(), 'app', 'writing', 'posts'))
 }
 
-export function getPostCanonicalUrl(post: BlogPost, siteUrl: string) {
+export function getPostCanonicalUrl(post: WritingPost, siteUrl: string) {
   if (post.metadata.medium) {
     return post.metadata.medium
   }
 
-  return `${siteUrl}/blog/${post.slug}`
+  return `${siteUrl}/writing/${post.slug}`
 }
 
 export function formatDate(date: string, includeRelative = false) {
