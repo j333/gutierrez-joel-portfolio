@@ -11,7 +11,6 @@ export type Metadata = {
   startedOn?: string
   endedOn?: string
   industry?: string
-  companyType?: string
   workplace?: string
   image?: string
 }

@@ -91,7 +91,7 @@ export default async function Experience({
       <article className="mb-16">
         <PageHeader
           title={entry.metadata.title}
-          description={entry.metadata.role}
+          description={entry.metadata.summary}
         >
           <ExperienceMeta metadata={entry.metadata} />
         </PageHeader>

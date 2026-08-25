@@ -1,8 +1,9 @@
 import { notFound } from 'next/navigation'
 import { CustomMDX } from 'app/components/mdx'
 import { CtaLink } from 'app/components/cta-link'
+import { BlogMeta } from 'app/components/blog-meta'
 import { PageHeader } from 'app/components/page-layout'
-import { formatDate, getBlogPosts, getPostCanonicalUrl } from 'app/blog/utils'
+import { getBlogPosts, getPostCanonicalUrl } from 'app/blog/utils'
 import { toJsonLd } from 'app/lib/escape'
 import { baseUrl } from 'app/sitemap'
 
@@ -86,12 +87,10 @@ export default async function Blog({ params }: { params: Promise<{ slug: string 
       <article className="mb-16">
         <PageHeader
           title={post.metadata.title}
-          description={
-            <time dateTime={post.metadata.publishedAt}>
-              {formatDate(post.metadata.publishedAt)}
-            </time>
-          }
-        />
+          description={post.metadata.summary}
+        >
+          <BlogMeta publishedAt={post.metadata.publishedAt} />
+        </PageHeader>
         <div className="prose">
           <CustomMDX source={post.content} />
         </div>

@@ -52,12 +52,10 @@ export const ExperienceMeta = ({ metadata }: ExperienceMetaProps) => {
       : 'Present'
 
   const rows = [
+    metadata.role ? { label: 'Role', value: metadata.role } : null,
     metadata.type ? { label: 'Type', value: metadata.type } : null,
     metadata.industry
       ? { label: 'Industry', value: metadata.industry }
-      : null,
-    metadata.companyType
-      ? { label: 'Model', value: metadata.companyType }
       : null,
     metadata.workplace
       ? { label: 'Mode', value: metadata.workplace }
