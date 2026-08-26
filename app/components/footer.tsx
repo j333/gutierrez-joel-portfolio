@@ -5,6 +5,7 @@ const links = [
   { name: 'LinkedIn', url: 'https://linkedin.com/in/gutierrezjoel', external: true },
   { name: 'Behance', url: 'https://behance.net/gutierrezjoel', external: true },
   { name: 'Dribbble', url: 'https://dribbble.com/gutierrezjoel', external: true },
+  { name: 'Medium', url: 'https://medium.com/@j333', external: true },
   { name: 'Email', url: 'mailto:joelg333@gmail.com', external: false },
 ]
 
