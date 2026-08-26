@@ -67,6 +67,29 @@ html {
   border-width: 0;
 }
 
+.sticky-nav {
+  transition: transform 200ms ease-out;
+}
+
+.sticky-nav[data-scroll-hidden='true'] {
+  transform: translateY(-100%);
+  pointer-events: none;
+}
+
+.sticky-nav[data-scroll-hidden='true']:focus-within {
+  transform: none;
+  pointer-events: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sticky-nav,
+  .sticky-nav[data-scroll-hidden='true'] {
+    transform: none;
+    pointer-events: auto;
+    transition: none;
+  }
+}
+
 .skip-link:focus,
 .skip-link:focus-visible {
   left: 1rem;
