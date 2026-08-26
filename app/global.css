@@ -230,6 +230,13 @@ table {
   white-space: nowrap;
 }
 
+table.experience-projects-table {
+  display: table;
+  max-width: none;
+  overflow: visible;
+  white-space: normal;
+}
+
 .title {
   text-wrap: balance;
 }

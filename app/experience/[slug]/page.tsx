@@ -2,7 +2,12 @@ import { notFound } from 'next/navigation'
 import { CustomMDX } from 'app/components/mdx'
 import { PageHeader } from 'app/components/page-layout'
 import { getExperience, getExperienceCanonicalUrl } from 'app/experience/utils'
+import {
+  getExperienceProjects,
+  splitSelectedWork,
+} from 'app/experience/projects'
 import { ExperienceMeta } from 'app/components/experience-meta'
+import { ExperienceProjects } from 'app/components/experience-projects'
 import { toJsonLd } from 'app/lib/escape'
 import { baseUrl } from 'app/sitemap'
 
@@ -64,6 +69,9 @@ export default async function Experience({
     notFound()
   }
 
+  const projects = getExperienceProjects(entry.slug)
+  const { before, after } = splitSelectedWork(entry.content)
+
   return (
     <>
       <script
@@ -96,8 +104,17 @@ export default async function Experience({
           <ExperienceMeta metadata={entry.metadata} />
         </PageHeader>
         <div className="prose">
-          <CustomMDX source={entry.content} />
+          <CustomMDX source={before} />
         </div>
+        <ExperienceProjects
+          groups={projects}
+          heading={after ? undefined : 'Selected work'}
+        />
+        {after ? (
+          <div className="prose mt-16">
+            <CustomMDX source={after} />
+          </div>
+        ) : null}
       </article>
     </>
   )
