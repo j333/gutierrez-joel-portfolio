@@ -25,22 +25,29 @@ function Table({ data }) {
   )
 }
 
-function CustomLink(props) {
-  let href = props.href
+type CustomLinkProps = {
+  href?: string
+  children?: React.ReactNode
+} & Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>
 
+const CustomLink = ({ href = '', children, ...props }: CustomLinkProps) => {
   if (href.startsWith('/')) {
-    return (
-      <Link href={href} {...props}>
-        {props.children}
-      </Link>
-    )
+    return <Link href={href}>{children}</Link>
   }
 
   if (href.startsWith('#')) {
-    return <a {...props} />
+    return (
+      <a href={href} {...props}>
+        {children}
+      </a>
+    )
   }
 
-  return <a target="_blank" rel="noopener noreferrer" {...props} />
+  return (
+    <a href={href} target="_blank" rel="noopener noreferrer" {...props}>
+      {children}
+    </a>
+  )
 }
 
 const DEFAULT_IMAGE_ALT = 'Joel Gutiérrez, Product Design Manager'
