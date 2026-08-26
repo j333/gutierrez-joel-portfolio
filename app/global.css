@@ -40,6 +40,7 @@
 
 html {
   min-width: 360px;
+  overflow-x: clip;
   color-scheme: light;
 }
 
@@ -146,6 +147,31 @@ html {
 
 .prose p:has(img) {
   @apply my-8;
+}
+
+.article-image--wide {
+  width: min(100vw - 2rem, 56rem);
+  max-width: none;
+  margin-left: calc(50% - min(50vw - 1rem, 28rem));
+}
+
+.article-image-overlay {
+  animation: article-image-overlay-in 180ms ease-out;
+}
+
+@keyframes article-image-overlay-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .article-image-overlay {
+    animation: none;
+  }
 }
 
 .prose p {

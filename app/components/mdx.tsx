@@ -2,6 +2,10 @@ import Link from 'next/link'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { highlight } from 'sugar-high'
 import React from 'react'
+import {
+  ZoomableImage,
+  type ArticleImageSize,
+} from './zoomable-image'
 
 function Table({ data }) {
   let headers = data.headers.map((header, index) => (
@@ -83,6 +87,23 @@ const getYouTubeId = (src?: string) => {
   return null
 }
 
+const parseArticleImage = (rawSrc?: string) => {
+  if (!rawSrc) {
+    return { src: '', size: 'column' as ArticleImageSize }
+  }
+
+  const hashIndex = rawSrc.indexOf('#')
+  if (hashIndex === -1) {
+    return { src: rawSrc, size: 'column' as ArticleImageSize }
+  }
+
+  const src = rawSrc.slice(0, hashIndex)
+  const hash = rawSrc.slice(hashIndex + 1).toLowerCase()
+  const size: ArticleImageSize = hash === 'wide' ? 'wide' : 'column'
+
+  return { src, size }
+}
+
 function MarkdownImage(props) {
   const youtubeId = getYouTubeId(props.src)
 
@@ -109,23 +130,10 @@ function MarkdownImage(props) {
     typeof props.title === 'string' && props.title.trim()
       ? props.title
       : undefined
+  const { src, size } = parseArticleImage(props.src)
 
   return (
-    <figure className="my-8">
-      <img
-        {...props}
-        alt={alt}
-        title={undefined}
-        loading="lazy"
-        decoding="async"
-        className="m-0 h-auto w-full rounded-xl"
-      />
-      {caption ? (
-        <figcaption className="mt-3 text-sm leading-6 text-neutral-500 dark:text-neutral-400">
-          {caption}
-        </figcaption>
-      ) : null}
-    </figure>
+    <ZoomableImage src={src} alt={alt} size={size} caption={caption} />
   )
 }
 
