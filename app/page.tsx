@@ -71,14 +71,14 @@ export default function Page() {
 
       {writingCount > 0 && (
         <section className="mb-16">
-          <h2 className={sectionHeadingClassName}>Writing</h2>
+          <h2 className={sectionHeadingClassName}>Latest writing</h2>
           <WritingPosts limit={HOME_PREVIEW_LIMIT} heading="h3" />
           {renderViewAll(writingCount, '/writing', 'Writing')}
         </section>
       )}
 
       <section className="mb-16">
-        <h2 className={sectionHeadingClassName}>Experience</h2>
+        <h2 className={sectionHeadingClassName}>Latest experience</h2>
         <ExperiencePosts limit={HOME_PREVIEW_LIMIT} heading="h3" />
         {renderViewAll(experienceCount, '/experience', 'Experience')}
       </section>

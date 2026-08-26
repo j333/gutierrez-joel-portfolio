@@ -3,7 +3,7 @@ import { PageHeader } from 'app/components/page-layout'
 import { baseUrl } from 'app/sitemap'
 
 const title = 'Experience'
-const description = 'Selected product design work from Joel Gutiérrez.'
+const description = 'Brands, companies, and the projects in between.'
 
 export const metadata = {
   title,
@@ -31,7 +31,7 @@ export default function Page() {
     <>
       <PageHeader
         title="Experience"
-        description="Selected work across product, systems, and brand."
+        description="Brands, companies, and the projects in between."
       />
       <div className="mb-16">
         <ExperiencePosts />

@@ -8,7 +8,7 @@ const Image = () =>
   createOgImage({
     eyebrow: 'EXPERIENCE',
     title: 'Experience',
-    subtitle: 'Selected work across product, systems, and brand.',
+    subtitle: 'Brands, companies, and the projects in between.',
     footer: 'Joel Gutiérrez',
   })
 
