@@ -36,18 +36,18 @@ export default function Footer() {
             ))}
           </ul>
         </nav>
-        <p className="flex flex-col gap-2 font-mono text-xs leading-4 text-neutral-600 dark:text-neutral-400 sm:flex-row sm:flex-nowrap sm:items-center sm:gap-0">
-          <span className="sm:whitespace-nowrap">
-            Designed & developed by Joel Gutiérrez.{' '}
-          </span>
+        <p className="max-w-xl text-xs leading-5 text-neutral-600 dark:text-neutral-400">
+          Designed and built in Cursor by yours truly. Built with Next.js and
+          Tailwind CSS, deployed with Vercel. Type is set in IBM Plex.{' '}
           <a
             href="https://github.com/j333/gutierrez-joel-portfolio/"
             target="_blank"
             rel="noopener noreferrer"
-            className="content-link w-fit shrink-0 sm:whitespace-nowrap"
-            aria-label="View this portfolio's code on GitHub, opens in a new tab"
+            className="content-link inline-flex w-fit items-center"
+            aria-label="View source on GitHub, opens in a new tab"
           >
-            View this portfolio&apos;s code on GitHub
+            View source on GitHub
+            <ArrowIcon />
           </a>
         </p>
       </div>
