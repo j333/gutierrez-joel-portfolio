@@ -27,7 +27,7 @@ const ibmPlexMono = IBM_Plex_Mono({
 
 const siteTitle = 'Joel Gutiérrez | Product Design Manager'
 const siteDescription =
-  'Product Design Manager with experience in SaaS and AI-driven products for global teams. Specialized in product strategy and UX/UI design.'
+  'Product Design Manager. I direct product design from strategy through execution for SaaS and enterprise companies.'
 
 const personJsonLd = {
   '@context': 'https://schema.org',

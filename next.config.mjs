@@ -12,6 +12,16 @@ const nextConfig = {
         destination: '/writing/:path*',
         permanent: true,
       },
+      {
+        source: '/experience/getgloby',
+        destination: '/experience/marketfully',
+        permanent: true,
+      },
+      {
+        source: '/experience/golf-boost',
+        destination: '/experience/rehab-boost',
+        permanent: true,
+      },
     ];
   },
   // Vercel injects an adapter that skips NFT traces; standalone then crashes the build.

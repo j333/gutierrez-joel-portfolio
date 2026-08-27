@@ -85,7 +85,7 @@ Each article includes JSON-LD (`BlogPosting`). Old `/blog` URLs redirect permane
 
 ### Experience
 
-Entries live in `app/experience/posts/`. `getgloby.mdx` becomes `/experience/getgloby`. The index is `/experience`. Entries sort by `endedAt`, then `startedAt`, newest first.
+Entries live in `app/experience/posts/`. `marketfully.mdx` becomes `/experience/marketfully`. The index is `/experience`. Entries sort by `endedAt`, then `startedAt`, newest first.
 
 Listings show the role in front of the summary when `role` is set, and a year range from `startedAt`–`endedAt`. The entry page shows a metadata grid (role, type, industry, mode, start, end).
 
@@ -116,7 +116,7 @@ summary: 'Short description used in listings and Open Graph.'
 | `image`     | No       | Open Graph image. If omitted, `/og` generates one from the title                   |
 
 
-Each entry includes JSON-LD (`CreativeWork`).
+Each entry includes JSON-LD (`CreativeWork`). Old `/experience/getgloby` and `/experience/golf-boost` URLs redirect to the merged entries.
 
 ## Configuration
 

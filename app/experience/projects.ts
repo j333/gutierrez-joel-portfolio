@@ -111,7 +111,7 @@ const centricDigitalProjects: ExperienceProject[] = [
     endedAt: '2019',
   },
   {
-    name: 'USA and Malaysia Code-a-thons',
+    name: 'International Code-a-thons',
     role: 'UX/UI Designer',
     brand: 'AIG',
     client: 'AIG',

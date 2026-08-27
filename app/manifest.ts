@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: 'Joel Gutiérrez',
     short_name: 'Joel Gutiérrez',
     description:
-      'Product Design Manager with experience in SaaS and AI-driven products for global teams. Specialized in product strategy and UX/UI design.',
+      'Product Design Manager. I direct product design from strategy through execution for SaaS and enterprise companies.',
     start_url: '/',
     display: 'standalone',
     background_color: '#000000',

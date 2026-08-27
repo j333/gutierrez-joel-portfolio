@@ -52,15 +52,18 @@ export default function Page() {
         </p>
         <div className="mt-16 space-y-6 text-base leading-6 text-neutral-800 dark:text-neutral-200">
           <p>
-            With over 12 years of experience designing{' '}
-            <em className="italic">SaaS and AI-driven products</em> for global
-            teams, I work closely with product and engineering to create
-            experiences that support product decisions and business goals.
+            With over a decade in the industry, I direct product design from{' '}
+            <em className="italic">strategy</em> through{' '}
+            <em className="italic">execution</em> for SaaS and enterprise
+            companies. I work directly with engineering, marketing, and ops to
+            ensure what we build moves the needle.
           </p>
           <p>
-            Recently, I led the design of an AI-powered marketing content
-            product for global audiences, with a focus on{' '}
-            <em className="italic">speed, consistency, and quality</em>.
+            I run my teams with clear standards and a strict focus on{' '}
+            <em className="italic">business logic</em>. We use AI to accelerate
+            testing and delivery, and we build{' '}
+            <em className="italic">AI features</em> that give users smarter
+            tools.
           </p>
           <p>
             I&apos;m currently working on experimental personal projects
