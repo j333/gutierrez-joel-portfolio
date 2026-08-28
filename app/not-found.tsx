@@ -7,8 +7,10 @@ const NotFound = () => {
       <PageHeader
         title="404 - Page Not Found"
         description="The page you are looking for does not exist."
-      />
-      <CtaLink href="/">Back to home</CtaLink>
+        spacing="section"
+      >
+        <CtaLink href="/">Back to home</CtaLink>
+      </PageHeader>
     </>
   )
 }

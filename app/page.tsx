@@ -3,7 +3,10 @@ import { ExperiencePosts } from 'app/components/experience'
 import { WritingPosts } from 'app/components/writing'
 import { YearRange } from 'app/components/year-range'
 import { CtaLink } from 'app/components/cta-link'
-import { sectionHeadingClassName } from 'app/components/page-layout'
+import {
+  pageSectionClassName,
+  sectionHeadingClassName,
+} from 'app/components/page-layout'
 import { getExperience } from 'app/experience/utils'
 import { site } from 'app/lib/site'
 import type { ReactNode } from 'react'
@@ -45,7 +48,7 @@ type HomeSectionProps = {
 }
 
 const HomeSection = ({ title, children }: HomeSectionProps) => (
-  <section className="mb-16">
+  <section className={pageSectionClassName}>
     <h2 className={sectionHeadingClassName}>{title}</h2>
     {children}
   </section>
@@ -57,14 +60,14 @@ const Page = () => {
 
   return (
     <>
-      <header className="mb-16">
+      <header className={pageSectionClassName}>
         <h1 className="mb-2 text-2xl font-semibold leading-8 tracking-tighter">
           {site.name}
         </h1>
         <p className="text-base leading-6 text-neutral-600 dark:text-neutral-400">
           {site.jobTitle}
         </p>
-        <div className="mt-16 space-y-6 text-lg leading-7 text-neutral-800 dark:text-neutral-200">
+        <div className="mt-6 space-y-4 text-lg leading-7 text-neutral-800 dark:text-neutral-200">
           <p>
             With over a decade in the industry, I direct product design from{' '}
             <em className="italic">strategy</em> through{' '}
@@ -113,7 +116,7 @@ const Page = () => {
       </HomeSection>
 
       <HomeSection title="Capabilities">
-        <ul className="grid grid-cols-2 gap-y-3 sm:grid-cols-3">
+        <ul className="grid grid-cols-2 gap-y-2 sm:grid-cols-3">
           {skills.map((skill) => (
             <li
               key={skill}
@@ -126,7 +129,7 @@ const Page = () => {
       </HomeSection>
 
       <HomeSection title="Languages">
-        <ul className="grid grid-cols-2 gap-y-3 sm:grid-cols-3">
+        <ul className="grid grid-cols-2 gap-y-2 sm:grid-cols-3">
           {languages.map((language) => (
             <li
               key={language}

@@ -206,7 +206,7 @@ html {
 }
 
 .prose h2 {
-  @apply relative text-xl font-medium tracking-tight mt-10 mb-3;
+  @apply relative text-xl font-medium tracking-tight mt-12 mb-3;
 }
 
 .prose h3 {
@@ -252,7 +252,6 @@ html {
 
 .prose > :first-child {
   margin-top: 0 !important;
-  margin-bottom: 1.25em !important;
 }
 
 pre::-webkit-scrollbar {

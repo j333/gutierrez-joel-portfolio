@@ -3,7 +3,10 @@ import { CustomMDX } from 'app/components/mdx'
 import { CtaLink } from 'app/components/cta-link'
 import { JsonLd } from 'app/components/json-ld'
 import { WritingMeta } from 'app/components/writing-meta'
-import { PageHeader } from 'app/components/page-layout'
+import {
+  PageHeader,
+  pageSectionClassName,
+} from 'app/components/page-layout'
 import {
   createCreativeWorkJsonLd,
   createPageMetadata,
@@ -69,7 +72,7 @@ const Writing = async ({ params }: SlugPageProps) => {
           url: getPostCanonicalUrl(post),
         })}
       />
-      <article className="mb-16">
+      <article className={pageSectionClassName}>
         <PageHeader
           title={post.metadata.title}
           description={post.metadata.summary}

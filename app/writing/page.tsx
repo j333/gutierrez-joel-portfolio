@@ -1,5 +1,8 @@
 import { WritingPosts } from 'app/components/writing'
-import { PageHeader } from 'app/components/page-layout'
+import {
+  PageHeader,
+  pageSectionClassName,
+} from 'app/components/page-layout'
 import { createPageMetadata } from 'app/lib/metadata'
 import { site, writingIndex } from 'app/lib/site'
 
@@ -15,8 +18,9 @@ const Page = () => {
       <PageHeader
         title={writingIndex.title}
         description={writingIndex.intro}
+        spacing="section"
       />
-      <div className="mb-16">
+      <div className={pageSectionClassName}>
         <WritingPosts />
       </div>
     </>

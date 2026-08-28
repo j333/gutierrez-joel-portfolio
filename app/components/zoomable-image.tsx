@@ -192,7 +192,7 @@ export const ZoomableImage = ({
         {caption ? (
           <p
             id={captionId}
-            className="mt-3 max-w-[calc(100vw-2rem)] shrink-0 text-center text-sm leading-6 text-neutral-600 dark:text-neutral-400"
+            className="mt-2 max-w-[calc(100vw-2rem)] shrink-0 text-center text-sm leading-6 text-neutral-600 dark:text-neutral-400"
           >
             {caption}
           </p>
@@ -232,7 +232,7 @@ export const ZoomableImage = ({
         )}
       </button>
       {caption ? (
-        <figcaption className="mt-3 text-center text-sm leading-6 text-neutral-500 dark:text-neutral-400">
+        <figcaption className="mt-2 text-center text-sm leading-6 text-neutral-500 dark:text-neutral-400">
           {caption}
         </figcaption>
       ) : null}

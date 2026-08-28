@@ -71,7 +71,7 @@ export const ExperienceMeta = ({ metadata }: ExperienceMetaProps) => {
   }
 
   return (
-    <dl className="grid grid-cols-2 gap-x-8 gap-y-6">
+    <dl className="grid grid-cols-2 gap-x-8 gap-y-4">
       {rows.map((row) => (
         <MetaRow key={row.label} label={row.label}>
           {row.value}

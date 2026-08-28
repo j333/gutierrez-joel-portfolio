@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import type { ReactNode } from 'react'
-import { cx } from 'app/lib/cx'
 
 const PREVIEW_WIDTH = 160
 const PREVIEW_HEIGHT = 100
@@ -37,12 +36,7 @@ export const ContentListItem = ({
         href={href}
         className="group flex flex-col-reverse items-stretch gap-4 rounded-sm text-inherit outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900 sm:flex-row sm:items-start dark:focus-visible:outline-neutral-100"
       >
-        <div
-          className={cx(
-            'flex min-w-0 flex-1 flex-col',
-            image ? 'gap-3 sm:min-h-[100px] sm:justify-between' : 'gap-2'
-          )}
-        >
+        <div className="flex min-w-0 flex-1 flex-col gap-2">
           <div className="flex flex-col gap-1">
             <Heading className="text-base font-medium leading-6 text-neutral-900 [text-decoration-skip-ink:all] underline-offset-[0.1em] group-hover:underline group-focus-visible:underline dark:text-neutral-100">
               {title}

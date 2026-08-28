@@ -49,67 +49,69 @@ export const ExperienceProjects = ({
   const yearColumnStyle = { width: `${yearColumnCh}ch` }
 
   return (
-    <section className="mt-16 space-y-12" aria-label={heading ?? 'Client work'}>
+    <section className="mt-16" aria-label={heading ?? 'Client work'}>
       {heading ? (
-        <h2 className="mb-4 text-xl font-medium tracking-tight text-neutral-900 dark:text-neutral-100">
+        <h2 className="mb-8 text-xl font-medium tracking-tight text-neutral-900 dark:text-neutral-100">
           {heading}
         </h2>
       ) : null}
-      {groups.map((group) => (
-        <div key={group.name}>
-          <h3 className="mb-6 text-base font-medium tracking-tight text-neutral-900 dark:text-neutral-100">
-            {group.url ? (
-              <a
-                href={group.url}
-                className="content-link w-fit"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`${group.name}, opens in a new tab`}
-              >
-                {group.name}
-              </a>
-            ) : (
-              group.name
-            )}
-          </h3>
-          <table className="experience-projects-table w-full table-fixed border-collapse text-left font-mono text-xs">
-            <colgroup>
-              <col />
-              <col style={yearColumnStyle} />
-            </colgroup>
-            <thead>
-              <tr className="border-b border-neutral-300 dark:border-neutral-600">
-                <th className={`${headerClassName} pr-4`}>{PROJECT_HEADER}</th>
-                <th
-                  className={`${headerClassName} text-right`}
-                  style={yearColumnStyle}
+      <div className="space-y-12">
+        {groups.map((group) => (
+          <div key={group.name}>
+            <h3 className="mb-4 text-base font-medium tracking-tight text-neutral-900 dark:text-neutral-100">
+              {group.url ? (
+                <a
+                  href={group.url}
+                  className="content-link w-fit"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${group.name}, opens in a new tab`}
                 >
-                  {YEAR_HEADER}
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {group.projects.map((project) => (
-                <tr key={projectKey(project)} className={bodyRowClassName}>
-                  <td className="py-2 pr-4 align-baseline font-sans text-pretty text-sm leading-5 text-neutral-800 dark:text-neutral-200">
-                    {project.name}
-                  </td>
-                  <td
-                    className="py-2 align-baseline whitespace-nowrap text-right"
+                  {group.name}
+                </a>
+              ) : (
+                group.name
+              )}
+            </h3>
+            <table className="experience-projects-table w-full table-fixed border-collapse text-left font-mono text-xs">
+              <colgroup>
+                <col />
+                <col style={yearColumnStyle} />
+              </colgroup>
+              <thead>
+                <tr className="border-b border-neutral-300 dark:border-neutral-600">
+                  <th className={`${headerClassName} pr-4`}>{PROJECT_HEADER}</th>
+                  <th
+                    className={`${headerClassName} text-right`}
                     style={yearColumnStyle}
                   >
-                    <YearRange
-                      start={project.startedAt}
-                      end={project.endedAt}
-                      className={yearCellClassName}
-                    />
-                  </td>
+                    {YEAR_HEADER}
+                  </th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      ))}
+              </thead>
+              <tbody>
+                {group.projects.map((project) => (
+                  <tr key={projectKey(project)} className={bodyRowClassName}>
+                    <td className="py-2 pr-4 align-baseline font-sans text-pretty text-sm leading-5 text-neutral-800 dark:text-neutral-200">
+                      {project.name}
+                    </td>
+                    <td
+                      className="py-2 align-baseline whitespace-nowrap text-right"
+                      style={yearColumnStyle}
+                    >
+                      <YearRange
+                        start={project.startedAt}
+                        end={project.endedAt}
+                        className={yearCellClassName}
+                      />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ))}
+      </div>
     </section>
   )
 }

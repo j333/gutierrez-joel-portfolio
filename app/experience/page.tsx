@@ -1,5 +1,8 @@
 import { ExperiencePosts } from 'app/components/experience'
-import { PageHeader } from 'app/components/page-layout'
+import {
+  PageHeader,
+  pageSectionClassName,
+} from 'app/components/page-layout'
 import { createPageMetadata } from 'app/lib/metadata'
 import { experienceIndex, site } from 'app/lib/site'
 
@@ -15,8 +18,9 @@ const Page = () => {
       <PageHeader
         title={experienceIndex.title}
         description={experienceIndex.description}
+        spacing="section"
       />
-      <div className="mb-16">
+      <div className={pageSectionClassName}>
         <ExperiencePosts />
       </div>
     </>

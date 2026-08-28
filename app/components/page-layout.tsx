@@ -3,21 +3,32 @@ import type { ReactNode } from 'react'
 export const metaLabelClassName =
   'font-mono text-xs font-normal uppercase leading-4 tracking-wider text-neutral-500 dark:text-neutral-400'
 
-export const sectionHeadingClassName = `mb-6 ${metaLabelClassName}`
+export const pageSectionClassName = 'mb-16'
+
+export const sectionHeadingClassName = `mb-8 ${metaLabelClassName}`
+
+type PageHeaderSpacing = 'section' | 'article'
 
 type PageHeaderProps = {
   title: ReactNode
   description?: ReactNode
   children?: ReactNode
+  spacing?: PageHeaderSpacing
+}
+
+const pageHeaderSpacingClassName: Record<PageHeaderSpacing, string> = {
+  section: 'mb-8',
+  article: 'mb-12',
 }
 
 export const PageHeader = ({
   title,
   description,
   children,
+  spacing = 'article',
 }: PageHeaderProps) => {
   return (
-    <header className="mb-16">
+    <header className={pageHeaderSpacingClassName[spacing]}>
       <h1 className="mb-2 text-2xl font-semibold leading-8 tracking-tighter">
         {title}
       </h1>
@@ -26,7 +37,7 @@ export const PageHeader = ({
           {description}
         </p>
       ) : null}
-      {children ? <div className="mt-8">{children}</div> : null}
+      {children ? <div className="mt-6">{children}</div> : null}
     </header>
   )
 }

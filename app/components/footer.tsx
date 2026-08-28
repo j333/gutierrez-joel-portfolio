@@ -7,7 +7,7 @@ const Footer = () => {
     <footer>
       <div className="flex flex-col gap-8">
         <nav aria-label="Social">
-          <ul className="grid grid-cols-2 gap-x-4 gap-y-6 text-neutral-600 dark:text-neutral-400 sm:flex sm:flex-row sm:gap-x-6 sm:gap-y-0">
+          <ul className="grid grid-cols-2 gap-x-4 gap-y-3 text-neutral-600 dark:text-neutral-400 sm:flex sm:flex-row sm:gap-x-5 sm:gap-y-0">
             {socialLinks.map((link) => (
               <li key={link.name}>
                 <a
