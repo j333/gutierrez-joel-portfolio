@@ -1,7 +1,6 @@
 import {
   ContentListItem,
   contentListClassName,
-  contentListItemClassName,
 } from 'app/components/content-list-item'
 import { preventWidow } from 'app/lib/text'
 import {
@@ -22,7 +21,7 @@ export const WritingPosts = ({ limit, heading = 'h2' }: WritingPostsProps) => {
   return (
     <ul className={contentListClassName}>
       {visiblePosts.map((post) => (
-        <li key={post.slug} className={contentListItemClassName}>
+        <li key={post.slug}>
           <ContentListItem
             href={`/writing/${post.slug}`}
             title={post.metadata.title}

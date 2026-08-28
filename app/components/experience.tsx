@@ -1,7 +1,6 @@
 import {
   ContentListItem,
   contentListClassName,
-  contentListItemClassName,
 } from 'app/components/content-list-item'
 import { YearRange } from 'app/components/year-range'
 import { getExperience } from 'app/experience/utils'
@@ -22,7 +21,7 @@ export const ExperiencePosts = ({
   return (
     <ul className={contentListClassName}>
       {visibleEntries.map((entry) => (
-        <li key={entry.slug} className={contentListItemClassName}>
+        <li key={entry.slug}>
           <ContentListItem
             href={`/experience/${entry.slug}`}
             title={entry.metadata.title}

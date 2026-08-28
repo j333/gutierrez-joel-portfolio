@@ -21,10 +21,7 @@ type ContentListItemProps = {
   children?: ReactNode
 }
 
-export const contentListClassName =
-  'divide-y divide-neutral-200 dark:divide-neutral-800'
-
-export const contentListItemClassName = 'py-8 first:pt-0'
+export const contentListClassName = 'space-y-8'
 
 export const ContentListItem = ({
   href,
