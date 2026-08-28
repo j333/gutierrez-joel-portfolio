@@ -1,6 +1,10 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import type { ReactNode } from 'react'
+import { cx } from 'app/lib/cx'
+
+const PREVIEW_WIDTH = 160
+const PREVIEW_HEIGHT = 100
 
 type ContentListImage = {
   src: string
@@ -17,6 +21,11 @@ type ContentListItemProps = {
   children?: ReactNode
 }
 
+export const contentListClassName =
+  'divide-y divide-neutral-200 dark:divide-neutral-800'
+
+export const contentListItemClassName = 'py-8 first:pt-0'
+
 export const ContentListItem = ({
   href,
   title,
@@ -25,47 +34,37 @@ export const ContentListItem = ({
   image,
   children,
 }: ContentListItemProps) => {
-  const body = (
-    <>
-      <div className="flex flex-col">
-        <Heading className="mb-1 text-base font-medium leading-6 text-neutral-900 dark:text-neutral-100">
-          <Link href={href} className="content-link w-fit">
-            {title}
-          </Link>
-        </Heading>
-        {children}
-      </div>
-      {aside}
-    </>
-  )
-
-  if (!image) {
-    return (
-      <article className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
-        {body}
-      </article>
-    )
-  }
-
   return (
-    <article className="flex flex-col sm:flex-row sm:items-start sm:gap-4">
+    <article>
       <Link
         href={href}
-        tabIndex={-1}
-        aria-hidden="true"
-        className="relative mb-4 aspect-video w-full overflow-hidden rounded-xl sm:mb-0 sm:w-36 sm:shrink-0"
+        className="group flex items-start gap-4 rounded-sm text-inherit outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900 dark:focus-visible:outline-neutral-100"
       >
-        <Image
-          src={image.src}
-          alt=""
-          fill
-          sizes="(max-width: 640px) calc(100vw - 2rem), 9rem"
-          className="object-cover"
-        />
+        <div
+          className={cx(
+            'flex min-w-0 flex-1 flex-col',
+            image ? 'min-h-[100px] justify-between gap-3' : 'gap-2'
+          )}
+        >
+          <div className="flex flex-col gap-1">
+            <Heading className="text-base font-medium leading-6 text-neutral-900 [text-decoration-skip-ink:all] underline-offset-[0.1em] group-hover:underline group-focus-visible:underline dark:text-neutral-100">
+              {title}
+            </Heading>
+            {children}
+          </div>
+          {aside}
+        </div>
+        {image ? (
+          <Image
+            src={image.src}
+            alt=""
+            width={PREVIEW_WIDTH}
+            height={PREVIEW_HEIGHT}
+            sizes={`${PREVIEW_WIDTH}px`}
+            className="h-[100px] w-[160px] shrink-0 rounded-xl object-cover"
+          />
+        ) : null}
       </Link>
-      <div className="flex min-w-0 flex-1 flex-col sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
-        {body}
-      </div>
     </article>
   )
 }

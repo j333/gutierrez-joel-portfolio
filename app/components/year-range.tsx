@@ -1,5 +1,5 @@
 const yearRangeClassName =
-  'mt-2 shrink-0 font-mono text-xs leading-4 text-neutral-500 dark:text-neutral-400 sm:mt-0'
+  'font-mono text-xs leading-4 text-neutral-500 dark:text-neutral-400'
 
 type YearRangeProps = {
   start: string

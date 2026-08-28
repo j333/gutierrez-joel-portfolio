@@ -64,7 +64,7 @@ const Page = () => {
         <p className="text-base leading-6 text-neutral-600 dark:text-neutral-400">
           {site.jobTitle}
         </p>
-        <div className="mt-16 space-y-6 text-base leading-6 text-neutral-800 dark:text-neutral-200">
+        <div className="mt-16 space-y-6 text-lg leading-7 text-neutral-800 dark:text-neutral-200">
           <p>
             With over a decade in the industry, I direct product design from{' '}
             <em className="italic">strategy</em> through{' '}
@@ -100,16 +100,18 @@ const Page = () => {
 
       <HomeSection title="Education">
         <ul className="space-y-8">
-          <li className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
-            <div className="flex flex-col">
-              <h3 className="mb-1 text-base font-medium leading-6 text-neutral-900 dark:text-neutral-100">
-                Graphic Design
-              </h3>
-              <p className="text-sm leading-5 text-neutral-500 dark:text-neutral-400">
-                Universidad Nacional de Cuyo
-              </p>
+          <li>
+            <div className="flex min-w-0 flex-col gap-2">
+              <div className="flex flex-col gap-1">
+                <h3 className="text-base font-medium leading-6 text-neutral-900 dark:text-neutral-100">
+                  Graphic Design
+                </h3>
+                <p className="text-pretty text-sm leading-5 text-neutral-500 dark:text-neutral-400">
+                  Universidad Nacional de Cuyo
+                </p>
+              </div>
+              <YearRange start="2008" end="2013" />
             </div>
-            <YearRange start="2008" end="2013" />
           </li>
         </ul>
       </HomeSection>

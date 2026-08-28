@@ -1,4 +1,9 @@
-import { ContentListItem } from 'app/components/content-list-item'
+import {
+  ContentListItem,
+  contentListClassName,
+  contentListItemClassName,
+} from 'app/components/content-list-item'
+import { preventWidow } from 'app/lib/text'
 import {
   formatListDate,
   getWritingPostImage,
@@ -15,9 +20,9 @@ export const WritingPosts = ({ limit, heading = 'h2' }: WritingPostsProps) => {
   const visiblePosts = limit ? posts.slice(0, limit) : posts
 
   return (
-    <ul className="space-y-12 sm:space-y-8">
+    <ul className={contentListClassName}>
       {visiblePosts.map((post) => (
-        <li key={post.slug}>
+        <li key={post.slug} className={contentListItemClassName}>
           <ContentListItem
             href={`/writing/${post.slug}`}
             title={post.metadata.title}
@@ -26,15 +31,15 @@ export const WritingPosts = ({ limit, heading = 'h2' }: WritingPostsProps) => {
             aside={
               <time
                 dateTime={post.metadata.publishedAt}
-                className="mt-2 shrink-0 font-mono text-xs text-neutral-500 dark:text-neutral-400 sm:mt-0"
+                className="font-mono text-xs leading-4 text-neutral-500 dark:text-neutral-400"
               >
                 {formatListDate(post.metadata.publishedAt)}
               </time>
             }
           >
             {post.metadata.summary ? (
-              <p className="text-sm leading-snug text-neutral-500 dark:text-neutral-400">
-                {post.metadata.summary}
+              <p className="text-pretty text-sm leading-5 text-neutral-500 dark:text-neutral-400">
+                {preventWidow(post.metadata.summary)}
               </p>
             ) : null}
           </ContentListItem>

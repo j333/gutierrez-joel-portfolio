@@ -1,4 +1,8 @@
-import { ContentListItem } from 'app/components/content-list-item'
+import {
+  ContentListItem,
+  contentListClassName,
+  contentListItemClassName,
+} from 'app/components/content-list-item'
 import { YearRange } from 'app/components/year-range'
 import { getExperience } from 'app/experience/utils'
 import { preventWidow } from 'app/lib/text'
@@ -16,9 +20,9 @@ export const ExperiencePosts = ({
   const visibleEntries = limit ? entries.slice(0, limit) : entries
 
   return (
-    <ul className="space-y-8">
+    <ul className={contentListClassName}>
       {visibleEntries.map((entry) => (
-        <li key={entry.slug}>
+        <li key={entry.slug} className={contentListItemClassName}>
           <ContentListItem
             href={`/experience/${entry.slug}`}
             title={entry.metadata.title}
