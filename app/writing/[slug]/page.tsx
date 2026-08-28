@@ -1,60 +1,53 @@
 import { notFound } from 'next/navigation'
 import { CustomMDX } from 'app/components/mdx'
 import { CtaLink } from 'app/components/cta-link'
+import { JsonLd } from 'app/components/json-ld'
 import { WritingMeta } from 'app/components/writing-meta'
 import { PageHeader } from 'app/components/page-layout'
-import { getWritingPosts, getPostCanonicalUrl } from 'app/writing/utils'
-import { toJsonLd } from 'app/lib/escape'
-import { baseUrl } from 'app/sitemap'
+import {
+  createCreativeWorkJsonLd,
+  createPageMetadata,
+  getSocialImageUrl,
+} from 'app/lib/metadata'
+import type { SlugPageProps } from 'app/lib/params'
+import { writingIndex } from 'app/lib/site'
+import {
+  getPostCanonicalUrl,
+  getWritingPostBySlug,
+  getWritingPosts,
+} from 'app/writing/utils'
 
-export async function generateStaticParams() {
-  let posts = getWritingPosts()
-
-  return posts.map((post) => ({
+export const generateStaticParams = async () =>
+  getWritingPosts().map((post) => ({
     slug: post.slug,
   }))
-}
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+export const generateMetadata = async ({ params }: SlugPageProps) => {
   const { slug } = await params
-  let post = getWritingPosts().find((post) => post.slug === slug)
+  const post = getWritingPostBySlug(slug)
+
   if (!post) {
     return
   }
 
-  let {
+  const {
     title,
     publishedAt: publishedTime,
     summary: description,
   } = post.metadata
-  const canonical = getPostCanonicalUrl(post, baseUrl)
 
-  return {
+  return createPageMetadata({
     title,
     description,
-    alternates: {
-      canonical,
-    },
-    openGraph: {
-      title,
-      description,
-      type: 'article',
-      publishedTime,
-      url: canonical,
-      siteName: 'Joel Gutiérrez',
-      locale: 'en_US',
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title,
-      description,
-    },
-  }
+    canonical: getPostCanonicalUrl(post),
+    type: 'article',
+    publishedTime,
+  })
 }
 
-export default async function Writing({ params }: { params: Promise<{ slug: string }> }) {
+const Writing = async ({ params }: SlugPageProps) => {
   const { slug } = await params
-  let post = getWritingPosts().find((post) => post.slug === slug)
+  const post = getWritingPostBySlug(slug)
 
   if (!post) {
     notFound()
@@ -62,27 +55,19 @@ export default async function Writing({ params }: { params: Promise<{ slug: stri
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        suppressHydrationWarning
-        dangerouslySetInnerHTML={{
-          __html: toJsonLd({
-            '@context': 'https://schema.org',
-            '@type': 'BlogPosting',
-            headline: post.metadata.title,
-            datePublished: post.metadata.publishedAt,
-            dateModified: post.metadata.publishedAt,
-            description: post.metadata.summary,
-            image: post.metadata.image
-              ? `${baseUrl}${post.metadata.image}`
-              : `${baseUrl}/og?title=${encodeURIComponent(post.metadata.title)}&eyebrow=WRITING`,
-            url: getPostCanonicalUrl(post, baseUrl),
-            author: {
-              '@type': 'Person',
-              name: 'Joel Gutiérrez',
-            },
-          }),
-        }}
+      <JsonLd
+        data={createCreativeWorkJsonLd({
+          type: 'BlogPosting',
+          headline: post.metadata.title,
+          datePublished: post.metadata.publishedAt,
+          description: post.metadata.summary,
+          image: getSocialImageUrl(
+            post.metadata.image,
+            post.metadata.title,
+            writingIndex.eyebrow
+          ),
+          url: getPostCanonicalUrl(post),
+        })}
       />
       <article className="mb-16">
         <PageHeader
@@ -94,7 +79,7 @@ export default async function Writing({ params }: { params: Promise<{ slug: stri
         <div className="prose">
           <CustomMDX source={post.content} />
         </div>
-        {post.metadata.medium && (
+        {post.metadata.medium ? (
           <div className="mt-16">
             <CtaLink
               href={post.metadata.medium}
@@ -103,8 +88,10 @@ export default async function Writing({ params }: { params: Promise<{ slug: stri
               View on Medium
             </CtaLink>
           </div>
-        )}
+        ) : null}
       </article>
     </>
   )
 }
+
+export default Writing

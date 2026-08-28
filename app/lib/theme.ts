@@ -4,18 +4,20 @@ const STORAGE_KEY = 'theme'
 
 export const DEFAULT_THEME: ThemePreference = 'system'
 
+const parseThemePreference = (value: string | null): ThemePreference | null => {
+  if (value === 'light' || value === 'dark' || value === 'system') {
+    return value
+  }
+
+  return null
+}
+
 export const getStoredTheme = (): ThemePreference => {
   if (typeof window === 'undefined') {
     return DEFAULT_THEME
   }
 
-  const stored = localStorage.getItem(STORAGE_KEY)
-
-  if (stored === 'light' || stored === 'dark' || stored === 'system') {
-    return stored
-  }
-
-  return DEFAULT_THEME
+  return parseThemePreference(localStorage.getItem(STORAGE_KEY)) ?? DEFAULT_THEME
 }
 
 export const ensureDefaultTheme = () => {
@@ -23,10 +25,10 @@ export const ensureDefaultTheme = () => {
     return DEFAULT_THEME
   }
 
-  const stored = localStorage.getItem(STORAGE_KEY)
+  const stored = parseThemePreference(localStorage.getItem(STORAGE_KEY))
 
-  if (stored === 'light' || stored === 'dark' || stored === 'system') {
-    return stored as ThemePreference
+  if (stored) {
+    return stored
   }
 
   localStorage.setItem(STORAGE_KEY, DEFAULT_THEME)

@@ -1,4 +1,5 @@
 import { YearRange } from 'app/components/year-range'
+import { metaLabelClassName } from 'app/components/page-layout'
 import type {
   ExperienceProject,
   ExperienceProjectGroup,
@@ -10,8 +11,7 @@ const PROJECT_HEADER = 'Project'
 const yearCellClassName =
   'font-mono text-xs leading-4 text-neutral-500 dark:text-neutral-400'
 
-const headerClassName =
-  'pb-2 font-mono text-xs font-normal uppercase leading-4 tracking-wider text-neutral-500 dark:text-neutral-400'
+const headerClassName = `pb-2 ${metaLabelClassName}`
 
 const bodyRowClassName =
   'border-b border-neutral-200 last:border-b-0 dark:border-neutral-800'

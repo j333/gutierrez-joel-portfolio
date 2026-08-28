@@ -1,17 +1,24 @@
 import Link from 'next/link'
+import type { MDXRemoteProps } from 'next-mdx-remote/rsc'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { highlight } from 'sugar-high'
 import React from 'react'
+import { site } from 'app/lib/site'
 import {
   ZoomableImage,
   type ArticleImageSize,
 } from './zoomable-image'
 
-function Table({ data }) {
-  let headers = data.headers.map((header, index) => (
+type TableData = {
+  headers: React.ReactNode[]
+  rows: React.ReactNode[][]
+}
+
+const Table = ({ data }: { data: TableData }) => {
+  const headers = data.headers.map((header, index) => (
     <th key={index}>{header}</th>
   ))
-  let rows = data.rows.map((row, index) => (
+  const rows = data.rows.map((row, index) => (
     <tr key={index}>
       {row.map((cell, cellIndex) => (
         <td key={cellIndex}>{cell}</td>
@@ -54,11 +61,10 @@ const CustomLink = ({ href = '', children, ...props }: CustomLinkProps) => {
   )
 }
 
-const DEFAULT_IMAGE_ALT = 'Joel Gutiérrez, Product Design Manager'
+const DEFAULT_IMAGE_ALT = `${site.name}, ${site.jobTitle}`
 
-function descriptiveAlt(alt?: string) {
-  return typeof alt === 'string' && alt.trim() ? alt : DEFAULT_IMAGE_ALT
-}
+const descriptiveAlt = (alt?: string) =>
+  typeof alt === 'string' && alt.trim() ? alt : DEFAULT_IMAGE_ALT
 
 const getYouTubeId = (src?: string) => {
   if (!src) {
@@ -73,7 +79,11 @@ const getYouTubeId = (src?: string) => {
       return url.pathname.split('/').filter(Boolean)[0] || null
     }
 
-    if (host === 'youtube.com' || host === 'm.youtube.com' || host === 'youtube-nocookie.com') {
+    if (
+      host === 'youtube.com' ||
+      host === 'm.youtube.com' ||
+      host === 'youtube-nocookie.com'
+    ) {
       if (url.pathname.startsWith('/embed/')) {
         return url.pathname.split('/')[2] || null
       }
@@ -104,7 +114,13 @@ const parseArticleImage = (rawSrc?: string) => {
   return { src, size }
 }
 
-function MarkdownImage(props) {
+type MarkdownImageProps = {
+  src?: string
+  alt?: string
+  title?: string
+}
+
+const MarkdownImage = (props: MarkdownImageProps) => {
   const youtubeId = getYouTubeId(props.src)
 
   if (youtubeId) {
@@ -137,7 +153,10 @@ function MarkdownImage(props) {
   )
 }
 
-function Paragraph({ children, ...props }) {
+const Paragraph = ({
+  children,
+  ...props
+}: React.HTMLAttributes<HTMLParagraphElement>) => {
   const meaningfulChildren = React.Children.toArray(children).filter((child) =>
     typeof child === 'string' ? child.trim() !== '' : true
   )
@@ -153,21 +172,23 @@ function Paragraph({ children, ...props }) {
   return <p {...props}>{children}</p>
 }
 
-function Code({ children, ...props }) {
-  let codeHTML = highlight(children)
+const Code = ({
+  children,
+  ...props
+}: React.HTMLAttributes<HTMLElement> & { children?: React.ReactNode }) => {
+  const codeHTML = highlight(String(children))
   return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />
 }
 
-function slugify(str) {
-  return str
+const slugify = (value: string) =>
+  value
     .toString()
     .toLowerCase()
-    .trim() // Remove whitespace from both ends of a string
-    .replace(/\s+/g, '-') // Replace spaces with -
-    .replace(/&/g, '-and-') // Replace & with 'and'
-    .replace(/[^\w\-]+/g, '') // Remove all non-word characters except for -
-    .replace(/\-\-+/g, '-') // Replace multiple - with single -
-}
+    .trim()
+    .replace(/\s+/g, '-')
+    .replace(/&/g, '-and-')
+    .replace(/[^\w\-]+/g, '')
+    .replace(/\-\-+/g, '-')
 
 type HeadingChildProps = {
   children?: React.ReactNode
@@ -194,14 +215,13 @@ const headingText = (children: React.ReactNode): string => {
     .trim()
 }
 
-function headingLabel(children) {
-  return headingText(children) || 'this section'
-}
+const headingLabel = (children: React.ReactNode) =>
+  headingText(children) || 'this section'
 
-function createHeading(level) {
-  const Heading = ({ children }) => {
+const createHeading = (level: number) => {
+  const Heading = ({ children }: { children?: React.ReactNode }) => {
     const label = headingLabel(children)
-    let slug = slugify(label)
+    const slug = slugify(label)
     return React.createElement(
       `h${level}`,
       { id: slug },
@@ -222,7 +242,7 @@ function createHeading(level) {
   return Heading
 }
 
-let components = {
+const components = {
   h1: createHeading(2),
   h2: createHeading(2),
   h3: createHeading(3),
@@ -236,7 +256,7 @@ let components = {
   Table,
 }
 
-export function CustomMDX(props) {
+export const CustomMDX = (props: MDXRemoteProps) => {
   return (
     <MDXRemote
       {...props}

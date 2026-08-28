@@ -1,26 +1,19 @@
-import { getWritingPosts } from 'app/writing/utils'
-import { createOgImage, ogContentType, ogImageSize } from '../../og/card'
+import { createEntryOgImage, ogContentType, ogImageSize } from '../../og/card'
+import type { SlugPageProps } from 'app/lib/params'
+import { site, writingIndex } from 'app/lib/site'
+import { getWritingPostBySlug } from 'app/writing/utils'
 
-export const alt = 'Writing by Joel Gutiérrez'
+export const alt = `${writingIndex.title} by ${site.name}`
 export const size = ogImageSize
 export const contentType = ogContentType
 
-const Image = async ({ params }: { params: Promise<{ slug: string }> }) => {
+const Image = async ({ params }: SlugPageProps) => {
   const { slug } = await params
-  const post = getWritingPosts().find((entry) => entry.slug === slug)
+  const post = getWritingPostBySlug(slug)
 
-  if (!post) {
-    return createOgImage({
-      eyebrow: 'WRITING',
-      title: 'Joel Gutiérrez',
-      footer: 'gutierrezjoel.com',
-    })
-  }
-
-  return createOgImage({
-    eyebrow: 'WRITING',
-    title: post.metadata.title,
-    footer: 'Joel Gutiérrez',
+  return createEntryOgImage({
+    eyebrow: writingIndex.eyebrow,
+    title: post?.metadata.title,
   })
 }
 

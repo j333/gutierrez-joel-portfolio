@@ -1,7 +1,7 @@
 import { CtaLink } from 'app/components/cta-link'
 import { PageHeader } from 'app/components/page-layout'
 
-export default function NotFound() {
+const NotFound = () => {
   return (
     <>
       <PageHeader
@@ -12,3 +12,5 @@ export default function NotFound() {
     </>
   )
 }
+
+export default NotFound

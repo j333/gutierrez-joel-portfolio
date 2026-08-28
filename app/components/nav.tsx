@@ -3,6 +3,8 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useScrollNavVisibility } from '../hooks/use-scroll-nav-visibility'
+import { cx } from '../lib/cx'
+import { site } from '../lib/site'
 import { ArrowIcon } from './arrow-icon'
 import { chromeLinkClassName } from './link-styles'
 import { ThemeToggle } from './theme-toggle'
@@ -29,18 +31,18 @@ const isCurrentPath = (pathname: string, href: string) => {
   return pathname === href || pathname.startsWith(`${href}/`)
 }
 
-export function Navbar() {
+export const Navbar = () => {
   const pathname = usePathname() ?? ''
   const { isAwayFromTop, isHidden } = useScrollNavVisibility(pathname)
 
   return (
     <div className={navShellClassName}>
       <nav
-        className={`${navClassName}${
-          isAwayFromTop
-            ? ' shadow-[0_1px_0_rgba(0,0,0,0.06)] dark:shadow-[0_1px_0_rgba(255,255,255,0.08)]'
-            : ''
-        }`}
+        className={cx(
+          navClassName,
+          isAwayFromTop &&
+            'shadow-[0_1px_0_rgba(0,0,0,0.06)] dark:shadow-[0_1px_0_rgba(255,255,255,0.08)]'
+        )}
         id="nav"
         aria-label="Primary"
         data-scroll-hidden={isHidden ? 'true' : 'false'}
@@ -62,7 +64,7 @@ export function Navbar() {
           <li className="ml-auto flex items-center gap-x-5">
             <ThemeToggle />
             <a
-              href="/Joel_Gutierrez_Resume.pdf"
+              href={site.resumePath}
               target="_blank"
               rel="noopener noreferrer"
               className={navLinkClassName}

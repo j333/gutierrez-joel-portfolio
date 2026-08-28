@@ -1,37 +1,20 @@
 import { ExperiencePosts } from 'app/components/experience'
 import { PageHeader } from 'app/components/page-layout'
-import { baseUrl } from 'app/sitemap'
+import { createPageMetadata } from 'app/lib/metadata'
+import { experienceIndex, site } from 'app/lib/site'
 
-const title = 'Experience'
-const description = 'Brands, companies, and the projects in between.'
+export const metadata = createPageMetadata({
+  title: experienceIndex.title,
+  description: experienceIndex.description,
+  canonical: `${site.url}${experienceIndex.path}`,
+})
 
-export const metadata = {
-  title,
-  description,
-  alternates: {
-    canonical: `${baseUrl}/experience`,
-  },
-  openGraph: {
-    title,
-    description,
-    url: `${baseUrl}/experience`,
-    siteName: 'Joel Gutiérrez',
-    locale: 'en_US',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title,
-    description,
-  },
-}
-
-export default function Page() {
+const Page = () => {
   return (
     <>
       <PageHeader
-        title="Experience"
-        description="Brands, companies, and the projects in between."
+        title={experienceIndex.title}
+        description={experienceIndex.description}
       />
       <div className="mb-16">
         <ExperiencePosts />
@@ -39,3 +22,5 @@ export default function Page() {
     </>
   )
 }
+
+export default Page

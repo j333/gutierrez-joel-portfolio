@@ -1,11 +1,11 @@
 import type { MetadataRoute } from 'next'
+import { site } from 'app/lib/site'
 
-export default function manifest(): MetadataRoute.Manifest {
+const manifest = (): MetadataRoute.Manifest => {
   return {
-    name: 'Joel Gutiérrez',
-    short_name: 'Joel Gutiérrez',
-    description:
-      'Product Design Manager. I direct product design from strategy through execution for SaaS and enterprise companies.',
+    name: site.name,
+    short_name: site.name,
+    description: site.description,
     start_url: '/',
     display: 'standalone',
     background_color: '#000000',
@@ -32,3 +32,5 @@ export default function manifest(): MetadataRoute.Manifest {
     ],
   }
 }
+
+export default manifest

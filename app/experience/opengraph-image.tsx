@@ -1,15 +1,16 @@
 import { createOgImage, ogContentType, ogImageSize } from '../og/card'
+import { experienceIndex, site } from 'app/lib/site'
 
-export const alt = 'Experience by Joel Gutiérrez'
+export const alt = `${experienceIndex.title} by ${site.name}`
 export const size = ogImageSize
 export const contentType = ogContentType
 
 const Image = () =>
   createOgImage({
-    eyebrow: 'EXPERIENCE',
-    title: 'Experience',
-    subtitle: 'Brands, companies, and the projects in between.',
-    footer: 'Joel Gutiérrez',
+    eyebrow: experienceIndex.eyebrow,
+    title: experienceIndex.title,
+    subtitle: experienceIndex.description,
+    footer: site.name,
   })
 
 export default Image

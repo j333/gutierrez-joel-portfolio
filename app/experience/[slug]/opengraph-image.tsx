@@ -1,26 +1,19 @@
-import { getExperience } from 'app/experience/utils'
-import { createOgImage, ogContentType, ogImageSize } from '../../og/card'
+import { getExperienceBySlug } from 'app/experience/utils'
+import { createEntryOgImage, ogContentType, ogImageSize } from '../../og/card'
+import type { SlugPageProps } from 'app/lib/params'
+import { experienceIndex, site } from 'app/lib/site'
 
-export const alt = 'Experience by Joel Gutiérrez'
+export const alt = `${experienceIndex.title} by ${site.name}`
 export const size = ogImageSize
 export const contentType = ogContentType
 
-const Image = async ({ params }: { params: Promise<{ slug: string }> }) => {
+const Image = async ({ params }: SlugPageProps) => {
   const { slug } = await params
-  const entry = getExperience().find((item) => item.slug === slug)
+  const entry = getExperienceBySlug(slug)
 
-  if (!entry) {
-    return createOgImage({
-      eyebrow: 'EXPERIENCE',
-      title: 'Joel Gutiérrez',
-      footer: 'gutierrezjoel.com',
-    })
-  }
-
-  return createOgImage({
-    eyebrow: 'EXPERIENCE',
-    title: entry.metadata.title,
-    footer: 'Joel Gutiérrez',
+  return createEntryOgImage({
+    eyebrow: experienceIndex.eyebrow,
+    title: entry?.metadata.title,
   })
 }
 

@@ -1,5 +1,10 @@
 import type { ReactNode } from 'react'
 
+export const metaLabelClassName =
+  'font-mono text-xs font-normal uppercase leading-4 tracking-wider text-neutral-500 dark:text-neutral-400'
+
+export const sectionHeadingClassName = `mb-6 ${metaLabelClassName}`
+
 type PageHeaderProps = {
   title: ReactNode
   description?: ReactNode
@@ -25,3 +30,17 @@ export const PageHeader = ({
     </header>
   )
 }
+
+type MetaRowProps = {
+  label: string
+  children: ReactNode
+}
+
+export const MetaRow = ({ label, children }: MetaRowProps) => (
+  <div className="flex flex-col gap-0.5">
+    <dt className={metaLabelClassName}>{label}</dt>
+    <dd className="text-sm leading-5 text-neutral-800 dark:text-neutral-200">
+      {children}
+    </dd>
+  </div>
+)

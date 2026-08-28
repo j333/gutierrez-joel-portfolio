@@ -1,4 +1,5 @@
 import type { Metadata } from 'app/experience/utils'
+import { MetaRow } from 'app/components/page-layout'
 
 const MONTHS = [
   'Jan',
@@ -39,6 +40,11 @@ const formatExperienceDate = (value?: string) => {
   return `${MONTHS[monthIndex]} ${year}`
 }
 
+type MetaItem = {
+  label: string
+  value: string
+}
+
 type ExperienceMetaProps = {
   metadata: Metadata
 }
@@ -54,15 +60,11 @@ export const ExperienceMeta = ({ metadata }: ExperienceMetaProps) => {
   const rows = [
     metadata.role ? { label: 'Role', value: metadata.role } : null,
     metadata.type ? { label: 'Type', value: metadata.type } : null,
-    metadata.industry
-      ? { label: 'Industry', value: metadata.industry }
-      : null,
-    metadata.workplace
-      ? { label: 'Mode', value: metadata.workplace }
-      : null,
+    metadata.industry ? { label: 'Industry', value: metadata.industry } : null,
+    metadata.workplace ? { label: 'Mode', value: metadata.workplace } : null,
     joined ? { label: 'Start', value: joined } : null,
     left ? { label: 'End', value: left } : null,
-  ].filter(Boolean) as { label: string; value: string }[]
+  ].filter((row): row is MetaItem => Boolean(row))
 
   if (rows.length === 0) {
     return null
@@ -71,14 +73,9 @@ export const ExperienceMeta = ({ metadata }: ExperienceMetaProps) => {
   return (
     <dl className="grid grid-cols-2 gap-x-8 gap-y-6">
       {rows.map((row) => (
-        <div key={row.label} className="flex flex-col gap-0.5">
-          <dt className="font-mono text-xs font-normal uppercase leading-4 tracking-wider text-neutral-500 dark:text-neutral-400">
-            {row.label}
-          </dt>
-          <dd className="text-sm leading-5 text-neutral-800 dark:text-neutral-200">
-            {row.value}
-          </dd>
-        </div>
+        <MetaRow key={row.label} label={row.label}>
+          {row.value}
+        </MetaRow>
       ))}
     </dl>
   )

@@ -1,69 +1,54 @@
 import { notFound } from 'next/navigation'
 import { CustomMDX } from 'app/components/mdx'
+import { JsonLd } from 'app/components/json-ld'
 import { PageHeader } from 'app/components/page-layout'
-import { getExperience, getExperienceCanonicalUrl } from 'app/experience/utils'
+import { ExperienceMeta } from 'app/components/experience-meta'
+import { ExperienceProjects } from 'app/components/experience-projects'
+import {
+  getExperience,
+  getExperienceBySlug,
+  getExperienceCanonicalUrl,
+} from 'app/experience/utils'
 import {
   getExperienceProjects,
   splitSelectedWork,
 } from 'app/experience/projects'
-import { ExperienceMeta } from 'app/components/experience-meta'
-import { ExperienceProjects } from 'app/components/experience-projects'
-import { toJsonLd } from 'app/lib/escape'
-import { baseUrl } from 'app/sitemap'
+import {
+  createCreativeWorkJsonLd,
+  createPageMetadata,
+  getSocialImageUrl,
+} from 'app/lib/metadata'
+import type { SlugPageProps } from 'app/lib/params'
+import { experienceIndex } from 'app/lib/site'
 
-export async function generateStaticParams() {
-  let entries = getExperience()
-
-  return entries.map((entry) => ({
+export const generateStaticParams = async () =>
+  getExperience().map((entry) => ({
     slug: entry.slug,
   }))
-}
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>
-}) {
+export const generateMetadata = async ({ params }: SlugPageProps) => {
   const { slug } = await params
-  let entry = getExperience().find((entry) => entry.slug === slug)
+  const entry = getExperienceBySlug(slug)
+
   if (!entry) {
     return
   }
 
-  let { title, startedAt, summary, role } = entry.metadata
+  const { title, startedAt, summary, role } = entry.metadata
   const description = role ? `${role}. ${summary}` : summary
-  const canonical = getExperienceCanonicalUrl(entry, baseUrl)
 
-  return {
+  return createPageMetadata({
     title,
     description,
-    alternates: {
-      canonical,
-    },
-    openGraph: {
-      title,
-      description,
-      type: 'article',
-      publishedTime: `${startedAt}-01-01`,
-      url: canonical,
-      siteName: 'Joel Gutiérrez',
-      locale: 'en_US',
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title,
-      description,
-    },
-  }
+    canonical: getExperienceCanonicalUrl(entry),
+    type: 'article',
+    publishedTime: `${startedAt}-01-01`,
+  })
 }
 
-export default async function Experience({
-  params,
-}: {
-  params: Promise<{ slug: string }>
-}) {
+const Experience = async ({ params }: SlugPageProps) => {
   const { slug } = await params
-  let entry = getExperience().find((entry) => entry.slug === slug)
+  const entry = getExperienceBySlug(slug)
 
   if (!entry) {
     notFound()
@@ -74,27 +59,20 @@ export default async function Experience({
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        suppressHydrationWarning
-        dangerouslySetInnerHTML={{
-          __html: toJsonLd({
-            '@context': 'https://schema.org',
-            '@type': 'CreativeWork',
-            headline: entry.metadata.title,
-            datePublished: entry.metadata.startedAt,
-            dateModified: entry.metadata.endedAt,
-            description: entry.metadata.summary,
-            image: entry.metadata.image
-              ? `${baseUrl}${entry.metadata.image}`
-              : `${baseUrl}/og?title=${encodeURIComponent(entry.metadata.title)}&eyebrow=EXPERIENCE`,
-            url: getExperienceCanonicalUrl(entry, baseUrl),
-            author: {
-              '@type': 'Person',
-              name: 'Joel Gutiérrez',
-            },
-          }),
-        }}
+      <JsonLd
+        data={createCreativeWorkJsonLd({
+          type: 'CreativeWork',
+          headline: entry.metadata.title,
+          datePublished: entry.metadata.startedAt,
+          dateModified: entry.metadata.endedAt,
+          description: entry.metadata.summary,
+          image: getSocialImageUrl(
+            entry.metadata.image,
+            entry.metadata.title,
+            experienceIndex.eyebrow
+          ),
+          url: getExperienceCanonicalUrl(entry),
+        })}
       />
       <article className="mb-16">
         <PageHeader
@@ -119,3 +97,5 @@ export default async function Experience({
     </>
   )
 }
+
+export default Experience

@@ -1,13 +1,14 @@
 import { createOgImage, ogContentType, ogImageSize } from './og/card'
+import { site } from './lib/site'
 
-export const alt = 'Joel Gutiérrez, Product Design Manager'
+export const alt = `${site.name}, ${site.jobTitle}`
 export const size = ogImageSize
 export const contentType = ogContentType
 
 const Image = () =>
   createOgImage({
-    title: 'Joel Gutiérrez',
-    subtitle: 'Product Design Manager',
+    title: site.name,
+    subtitle: site.jobTitle,
   })
 
 export default Image

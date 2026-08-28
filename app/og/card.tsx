@@ -1,4 +1,5 @@
 import { ImageResponse } from 'next/og'
+import { site } from 'app/lib/site'
 import { ogFonts } from './fonts'
 
 export const ogImageSize = {
@@ -68,7 +69,7 @@ export const OgCard = ({ title, subtitle, eyebrow, footer }: OgCardProps) => {
             color: '#a3a3a3',
           }}
         >
-          gutierrezjoel.com
+          {site.host}
         </div>
       </div>
 
@@ -148,3 +149,16 @@ export const createOgImage = (props: OgCardProps) => {
     fonts: ogFonts,
   })
 }
+
+export const createEntryOgImage = ({
+  title,
+  eyebrow,
+}: {
+  title?: string
+  eyebrow: string
+}) =>
+  createOgImage({
+    eyebrow,
+    title: title ?? site.name,
+    footer: title ? site.name : site.host,
+  })

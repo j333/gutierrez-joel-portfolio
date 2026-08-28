@@ -1,12 +1,14 @@
-import { baseUrl } from 'app/sitemap'
+import { site } from 'app/lib/site'
 
-export default function robots() {
+const robots = () => {
   return {
     rules: [
       {
         userAgent: '*',
       },
     ],
-    sitemap: `${baseUrl}/sitemap.xml`,
+    sitemap: `${site.url}/sitemap.xml`,
   }
 }
+
+export default robots

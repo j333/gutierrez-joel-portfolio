@@ -3,10 +3,11 @@ import type { Metadata } from 'next'
 import { IBM_Plex_Mono, IBM_Plex_Sans } from 'next/font/google'
 import { Navbar } from './components/nav'
 import Footer from './components/footer'
+import { JsonLd } from './components/json-ld'
 import { chromeLinkClassName } from './components/link-styles'
-import { toJsonLd } from './lib/escape'
+import { cx } from './lib/cx'
+import { personJsonLd, site, siteTitle } from './lib/site'
 import { themeInitScript } from './lib/theme'
-import { baseUrl } from './sitemap'
 
 const ibmPlexSans = IBM_Plex_Sans({
   subsets: ['latin', 'latin-ext'],
@@ -25,49 +26,28 @@ const ibmPlexMono = IBM_Plex_Mono({
   variable: '--font-ibm-plex-mono',
 })
 
-const siteTitle = 'Joel Gutiérrez | Product Design Manager'
-const siteDescription =
-  'Product Design Manager. I direct product design from strategy through execution for SaaS and enterprise companies.'
-
-const personJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: 'Joel Gutiérrez',
-  jobTitle: 'Product Design Manager',
-  url: baseUrl,
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: 'Mendoza',
-    addressCountry: 'Argentina',
-  },
-  sameAs: [
-    'https://linkedin.com/in/gutierrezjoel',
-    'https://github.com/j333',
-  ],
-}
-
 export const metadata: Metadata = {
-  metadataBase: new URL(baseUrl),
+  metadataBase: new URL(site.url),
   title: {
     default: siteTitle,
-    template: '%s | Joel Gutiérrez',
+    template: `%s | ${site.name}`,
   },
-  description: siteDescription,
+  description: site.description,
   alternates: {
-    canonical: 'https://www.gutierrezjoel.com',
+    canonical: site.url,
   },
   openGraph: {
     title: siteTitle,
-    description: siteDescription,
-    url: baseUrl,
-    siteName: 'Joel Gutiérrez',
-    locale: 'en_US',
+    description: site.description,
+    url: site.url,
+    siteName: site.name,
+    locale: site.locale,
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
     title: siteTitle,
-    description: siteDescription,
+    description: site.description,
   },
   robots: {
     index: true,
@@ -82,14 +62,7 @@ export const metadata: Metadata = {
   },
 }
 
-const cx = (...classes: Array<string | false | null | undefined>) =>
-  classes.filter(Boolean).join(' ')
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html
       lang="en"
@@ -107,13 +80,7 @@ export default function RootLayout({
             __html: themeInitScript,
           }}
         />
-        <script
-          type="application/ld+json"
-          suppressHydrationWarning
-          dangerouslySetInnerHTML={{
-            __html: toJsonLd(personJsonLd),
-          }}
-        />
+        <JsonLd data={personJsonLd} />
       </head>
       <body className="antialiased mx-auto flex w-full max-w-xl flex-col gap-8 px-4 pb-8">
         <a href="#main-content" className={`skip-link ${chromeLinkClassName}`}>
@@ -134,3 +101,5 @@ export default function RootLayout({
     </html>
   )
 }
+
+export default RootLayout

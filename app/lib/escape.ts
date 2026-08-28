@@ -1,3 +1,2 @@
-export function toJsonLd(value: unknown) {
-  return JSON.stringify(value).replace(/</g, '\\u003c')
-}
+export const toJsonLd = (value: unknown) =>
+  JSON.stringify(value).replace(/</g, '\\u003c')

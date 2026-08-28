@@ -1,7 +1,8 @@
 import { createOgImage } from './card'
+import { site } from 'app/lib/site'
 
-const DEFAULT_TITLE = 'Joel Gutiérrez'
-const DEFAULT_SUBTITLE = 'Product Design Manager'
+const DEFAULT_TITLE = site.name
+const DEFAULT_SUBTITLE = site.jobTitle
 const MAX_TITLE_LENGTH = 120
 const MAX_SUBTITLE_LENGTH = 160
 const MAX_EYEBROW_LENGTH = 40
@@ -16,9 +17,10 @@ const readParam = (value: string | null, maxLength: number) => {
   return trimmed || undefined
 }
 
-export function GET(request: Request) {
+export const GET = (request: Request) => {
   const url = new URL(request.url)
-  const title = readParam(url.searchParams.get('title'), MAX_TITLE_LENGTH) || DEFAULT_TITLE
+  const title =
+    readParam(url.searchParams.get('title'), MAX_TITLE_LENGTH) || DEFAULT_TITLE
   const subtitle =
     readParam(url.searchParams.get('subtitle'), MAX_SUBTITLE_LENGTH) ||
     (title === DEFAULT_TITLE ? DEFAULT_SUBTITLE : undefined)

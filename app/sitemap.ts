@@ -1,23 +1,26 @@
 import { getWritingPosts } from 'app/writing/utils'
 import { getExperience } from 'app/experience/utils'
+import { site } from 'app/lib/site'
 
-export const baseUrl = 'https://www.gutierrezjoel.com'
+export const baseUrl = site.url
 
-export default async function sitemap() {
-  let writing = getWritingPosts().map((post) => ({
-    url: `${baseUrl}/writing/${post.slug}`,
+const sitemap = async () => {
+  const writing = getWritingPosts().map((post) => ({
+    url: `${site.url}/writing/${post.slug}`,
     lastModified: post.metadata.publishedAt,
   }))
 
-  let experience = getExperience().map((entry) => ({
-    url: `${baseUrl}/experience/${entry.slug}`,
+  const experience = getExperience().map((entry) => ({
+    url: `${site.url}/experience/${entry.slug}`,
     lastModified: entry.metadata.endedAt,
   }))
 
-  let routes = ['', '/writing', '/experience'].map((route) => ({
-    url: `${baseUrl}${route}`,
+  const routes = ['', '/writing', '/experience'].map((route) => ({
+    url: `${site.url}${route}`,
     lastModified: new Date().toISOString().split('T')[0],
   }))
 
   return [...routes, ...writing, ...experience]
 }
+
+export default sitemap

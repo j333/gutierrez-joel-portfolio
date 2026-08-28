@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import type { ReactNode } from 'react'
+import { cx } from 'app/lib/cx'
 import { ctaLinkClassName } from './link-styles'
 
 type CtaLinkProps = {
@@ -10,7 +11,9 @@ type CtaLinkProps = {
 }
 
 const isExternalHref = (href: string) =>
-  href.startsWith('http://') || href.startsWith('https://') || href.startsWith('mailto:')
+  href.startsWith('http://') ||
+  href.startsWith('https://') ||
+  href.startsWith('mailto:')
 
 export const CtaLink = ({
   children,
@@ -18,9 +21,7 @@ export const CtaLink = ({
   href,
   ...props
 }: CtaLinkProps) => {
-  const classNames = className
-    ? `${ctaLinkClassName} ${className}`
-    : ctaLinkClassName
+  const classNames = cx(ctaLinkClassName, className)
 
   if (isExternalHref(href)) {
     return (
