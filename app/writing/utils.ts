@@ -1,5 +1,14 @@
 import { getMdxData, getMdxDirectory, type MdxEntry } from 'app/lib/mdx'
+import { getPublicImageSize } from 'app/lib/public-image'
 import { site } from 'app/lib/site'
+
+const FIRST_MARKDOWN_IMAGE = /!\[[^\]]*]\(([^)\s]+)/
+
+export type WritingPostImage = {
+  src: string
+  width: number
+  height: number
+}
 
 export type WritingMetadata = {
   title: string
@@ -20,6 +29,30 @@ export const getWritingPosts = () =>
 
 export const getWritingPostBySlug = (slug: string) =>
   getWritingPosts().find((post) => post.slug === slug)
+
+export const getWritingPostImage = (
+  post: WritingPost
+): WritingPostImage | null => {
+  const match = FIRST_MARKDOWN_IMAGE.exec(post.content)
+  const rawSrc = match?.[1] ?? post.metadata.image
+
+  if (!rawSrc) {
+    return null
+  }
+
+  const src = rawSrc.split('#')[0]
+  const size = getPublicImageSize(src)
+
+  if (!size) {
+    return null
+  }
+
+  return {
+    src,
+    width: size.width,
+    height: size.height,
+  }
+}
 
 export const getPostCanonicalUrl = (post: WritingPost) => {
   if (post.metadata.medium) {

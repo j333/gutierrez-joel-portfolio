@@ -27,7 +27,7 @@ const nextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
-    imageSizes: [384],
+    imageSizes: [256, 384],
   },
   // Vercel injects an adapter that skips NFT traces; standalone then crashes the build.
   output: process.env.VERCEL ? undefined : 'standalone',

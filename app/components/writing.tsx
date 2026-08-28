@@ -1,5 +1,9 @@
 import { ContentListItem } from 'app/components/content-list-item'
-import { formatListDate, getWritingPosts } from 'app/writing/utils'
+import {
+  formatListDate,
+  getWritingPostImage,
+  getWritingPosts,
+} from 'app/writing/utils'
 
 type WritingPostsProps = {
   limit?: number
@@ -11,13 +15,14 @@ export const WritingPosts = ({ limit, heading = 'h2' }: WritingPostsProps) => {
   const visiblePosts = limit ? posts.slice(0, limit) : posts
 
   return (
-    <ul className="space-y-8">
+    <ul className="space-y-12 sm:space-y-8">
       {visiblePosts.map((post) => (
         <li key={post.slug}>
           <ContentListItem
             href={`/writing/${post.slug}`}
             title={post.metadata.title}
             heading={heading}
+            image={getWritingPostImage(post)}
             aside={
               <time
                 dateTime={post.metadata.publishedAt}
