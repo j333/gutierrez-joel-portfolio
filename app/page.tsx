@@ -79,10 +79,6 @@ const Page = () => {
             <em className="italic">AI features</em> that give users smarter
             tools.
           </p>
-          <p>
-            I&apos;m currently working on experimental personal projects
-            and am open to new opportunities.
-          </p>
         </div>
       </header>
 

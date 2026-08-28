@@ -38,12 +38,12 @@ export const ContentListItem = ({
     <article>
       <Link
         href={href}
-        className="group flex items-start gap-4 rounded-sm text-inherit outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900 dark:focus-visible:outline-neutral-100"
+        className="group flex flex-col-reverse items-stretch gap-4 rounded-sm text-inherit outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900 sm:flex-row sm:items-start dark:focus-visible:outline-neutral-100"
       >
         <div
           className={cx(
             'flex min-w-0 flex-1 flex-col',
-            image ? 'min-h-[100px] justify-between gap-3' : 'gap-2'
+            image ? 'gap-3 sm:min-h-[100px] sm:justify-between' : 'gap-2'
           )}
         >
           <div className="flex flex-col gap-1">
@@ -60,8 +60,8 @@ export const ContentListItem = ({
             alt=""
             width={PREVIEW_WIDTH}
             height={PREVIEW_HEIGHT}
-            sizes={`${PREVIEW_WIDTH}px`}
-            className="h-[100px] w-[160px] shrink-0 rounded-xl object-cover"
+            sizes={`(max-width: 639px) calc(100vw - 2rem), ${PREVIEW_WIDTH}px`}
+            className="h-auto w-full rounded-xl object-cover sm:h-[100px] sm:w-[160px] sm:shrink-0"
           />
         ) : null}
       </Link>
