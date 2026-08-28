@@ -1,0 +1,32 @@
+---
+description: Optimize every site image before adding it — WebP sources, capped dimensions, next/image
+alwaysApply: true
+---
+
+# Optimized images
+
+Never add unoptimized PNG/JPEG screenshots or photos to the site. Match the pipeline used for writing images.
+
+## Source files
+
+- Store article images in `public/writing/<slug>/` as `.webp`
+- Resize before committing. Do not enlarge smaller assets
+  - UI screenshots: max **1920px** wide, WebP quality ~82
+  - Photos: max **1600px** wide, WebP quality ~75
+- Do not commit native captures (e.g. 3024px Retina PNGs)
+- Point MDX frontmatter `image` and markdown `![]()` at the `.webp` path
+
+```mdx
+image: '/writing/my-slug/hero.webp'
+![Alt text](/writing/my-slug/hero.webp#wide "Caption")
+```
+
+## Rendering
+
+- Article images go through `ZoomableImage` + `next/image` with real `width`/`height` from `getPublicImageSize`
+- Do not use a raw `<img>` for post content
+- Keep `next.config.mjs` `images.formats` as AVIF then WebP
+
+## Leave as PNG/SVG
+
+PWA and platform icons only: `app/icon.svg`, `app/favicon.ico`, `app/apple-icon.png`, `public/icon-192.png`, `public/icon-512.png`

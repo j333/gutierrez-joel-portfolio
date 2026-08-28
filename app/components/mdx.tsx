@@ -3,6 +3,7 @@ import type { MDXRemoteProps } from 'next-mdx-remote/rsc'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { highlight } from 'sugar-high'
 import React from 'react'
+import { getPublicImageSize } from 'app/lib/public-image'
 import { site } from 'app/lib/site'
 import {
   ZoomableImage,
@@ -147,9 +148,17 @@ const MarkdownImage = (props: MarkdownImageProps) => {
       ? props.title
       : undefined
   const { src, size } = parseArticleImage(props.src)
+  const dimensions = getPublicImageSize(src)
 
   return (
-    <ZoomableImage src={src} alt={alt} size={size} caption={caption} />
+    <ZoomableImage
+      src={src}
+      alt={alt}
+      size={size}
+      caption={caption}
+      width={dimensions?.width}
+      height={dimensions?.height}
+    />
   )
 }
 

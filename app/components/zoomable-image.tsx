@@ -1,7 +1,16 @@
 'use client'
 
-import { useCallback, useEffect, useId, useRef, useState } from 'react'
+import Image from 'next/image'
+import {
+  useCallback,
+  useEffect,
+  useId,
+  useRef,
+  useState,
+  type MouseEvent,
+} from 'react'
 import { createPortal } from 'react-dom'
+import { cx } from 'app/lib/cx'
 
 export type ArticleImageSize = 'column' | 'wide'
 
@@ -10,6 +19,8 @@ type ZoomableImageProps = {
   alt: string
   size?: ArticleImageSize
   caption?: string
+  width?: number
+  height?: number
 }
 
 const figureClassName: Record<ArticleImageSize, string> = {
@@ -23,11 +34,18 @@ const triggerClassName =
 const closeButtonClassName =
   'absolute right-3 top-3 rounded-sm px-1 py-1 font-mono text-xs uppercase leading-4 tracking-wider text-neutral-600 outline-none hover:text-neutral-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100 dark:focus-visible:outline-neutral-100'
 
+const articleImageSizes: Record<ArticleImageSize, string> = {
+  column: '(max-width: 36rem) calc(100vw - 2rem), 36rem',
+  wide: '(max-width: 58rem) calc(100vw - 2rem), 56rem',
+}
+
 export const ZoomableImage = ({
   src,
   alt,
   size = 'column',
   caption,
+  width,
+  height,
 }: ZoomableImageProps) => {
   const labelId = useId()
   const captionId = useId()
@@ -111,9 +129,21 @@ export const ZoomableImage = ({
     }
   }, [handleClose, isOpen])
 
+  const hasDimensions = typeof width === 'number' && typeof height === 'number'
+
   const handleBackdropClick = () => {
     handleClose()
   }
+
+  const handleOverlayImageClick = (event: MouseEvent<HTMLImageElement>) => {
+    event.stopPropagation()
+    handleClose()
+  }
+
+  const overlayImageClassName = cx(
+    'h-auto w-auto max-w-[calc(100vw-2rem)] cursor-zoom-out select-none object-contain',
+    caption ? 'max-h-[calc(100vh-8rem)]' : 'max-h-[calc(100vh-3rem)]'
+  )
 
   const overlay = isOpen ? (
     <div
@@ -141,19 +171,24 @@ export const ZoomableImage = ({
         Close
       </button>
       <div className="flex max-h-full max-w-full flex-col items-center">
-        <img
-          src={src}
-          alt={alt}
-          onClick={(event) => {
-            event.stopPropagation()
-            handleClose()
-          }}
-          className={`h-auto w-auto max-w-[calc(100vw-2rem)] cursor-zoom-out select-none object-contain ${
-            caption
-              ? 'max-h-[calc(100vh-8rem)]'
-              : 'max-h-[calc(100vh-3rem)]'
-          }`}
-        />
+        {hasDimensions ? (
+          <Image
+            src={src}
+            alt={alt}
+            width={width}
+            height={height}
+            sizes="100vw"
+            onClick={handleOverlayImageClick}
+            className={overlayImageClassName}
+          />
+        ) : (
+          <img
+            src={src}
+            alt={alt}
+            onClick={handleOverlayImageClick}
+            className={overlayImageClassName}
+          />
+        )}
         {caption ? (
           <p
             id={captionId}
@@ -177,13 +212,24 @@ export const ZoomableImage = ({
         aria-expanded={isOpen}
         onClick={handleOpen}
       >
-        <img
-          src={src}
-          alt={alt}
-          loading="lazy"
-          decoding="async"
-          className="m-0 h-auto w-full rounded-xl"
-        />
+        {hasDimensions ? (
+          <Image
+            src={src}
+            alt={alt}
+            width={width}
+            height={height}
+            sizes={articleImageSizes[size]}
+            className="m-0 h-auto w-full rounded-xl"
+          />
+        ) : (
+          <img
+            src={src}
+            alt={alt}
+            loading="lazy"
+            decoding="async"
+            className="m-0 h-auto w-full rounded-xl"
+          />
+        )}
       </button>
       {caption ? (
         <figcaption className="mt-3 text-center text-sm leading-6 text-neutral-500 dark:text-neutral-400">
