@@ -67,20 +67,20 @@ const Page = () => {
         <p className="text-base leading-6 text-neutral-600 dark:text-neutral-400">
           {site.jobTitle}
         </p>
-        <div className="mt-6 space-y-4 text-lg leading-7 text-neutral-800 dark:text-neutral-200">
-          <p>
-            With over a decade in the industry, I direct product design from{' '}
-            <em className="italic">strategy</em> through{' '}
-            <em className="italic">execution</em> for SaaS and enterprise
-            companies. I work directly with engineering, marketing, and ops to
-            ensure what we build moves the needle.
+        <div className="mt-6 space-y-4 text-neutral-800 dark:text-neutral-200">
+          <p className="text-lg leading-7">
+            I am a product designer with over a decade of experience in product
+            strategy, design systems, design leadership, and UX.
           </p>
-          <p>
-            I run my teams with clear standards and a strict focus on{' '}
-            <em className="italic">business logic</em>. We use AI to accelerate
-            testing and delivery, and we build{' '}
-            <em className="italic">AI features</em> that give users smarter
-            tools.
+          <p className="text-base leading-6 text-neutral-600 dark:text-neutral-400">
+            I have worked with teams across healthcare, insurance, retail, and
+            SaaS on how to better understand their users, leverage design to
+            turn that into products worth shipping, and keep the work tied to
+            the business.
+          </p>
+          <p className="text-base leading-6 text-neutral-600 dark:text-neutral-400">
+            I have always loved building digital products, and keep that at the
+            center of my professional world.
           </p>
         </div>
       </header>

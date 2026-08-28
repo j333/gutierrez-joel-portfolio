@@ -4,7 +4,7 @@ export const site = {
   url: 'https://www.gutierrezjoel.com',
   host: 'gutierrezjoel.com',
   description:
-    'Product Design Manager. I direct product design from strategy through execution for SaaS and enterprise companies.',
+    'Product designer with over a decade of experience in product strategy, design systems, design leadership, and UX.',
   locale: 'en_US',
   githubUrl: 'https://github.com/j333/gutierrez-joel-portfolio/',
   resumePath: '/Joel_Gutierrez_Resume.pdf',
