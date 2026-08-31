@@ -18,8 +18,13 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: '/experience/golf-boost',
-        destination: '/experience/rehab-boost',
+        source: '/rehab-boost',
+        destination: '/golf-boost',
+        permanent: true,
+      },
+      {
+        source: '/experience/rehab-boost',
+        destination: '/experience/golf-boost',
         permanent: true,
       },
     ];

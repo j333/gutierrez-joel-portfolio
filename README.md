@@ -116,7 +116,7 @@ summary: 'Short description used in listings and Open Graph.'
 | `image`     | No       | Open Graph image. If omitted, `/og` generates one from the title                   |
 
 
-Each entry includes JSON-LD (`CreativeWork`). Old `/experience/getgloby` and `/experience/golf-boost` URLs redirect to the merged entries.
+Each entry includes JSON-LD (`CreativeWork`). Old `/experience/getgloby` and `/experience/rehab-boost` URLs redirect to the current entries.
 
 ## Configuration
 
