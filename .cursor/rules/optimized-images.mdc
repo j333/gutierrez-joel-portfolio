@@ -1,23 +1,33 @@
 ---
-description: Optimize every site image before adding it — WebP sources, capped dimensions, next/image
+description: Check every site image for size and format — do not convert or resize
 alwaysApply: true
 ---
 
-# Optimized images
+# Image check (no conversion)
 
-Never add unoptimized PNG/JPEG screenshots or photos to the site. Match the pipeline used for writing images.
+This applies to **every image on the site**: project covers, writing heroes, in-article photos, UI screenshots, illustrations. Not only new uploads.
 
-## Source files
+When the user provides an image, **inspect only**. Do not convert, resize, recompress, or transcode.
 
-- Store article images in `public/writing/<slug>/` as `.webp`
-- Store project covers in `public/projects/<slug>/` as `.webp`
-- Resize before committing. Do not enlarge smaller assets
-  - Images used at **100% of the site on desktop** (project heroes): **1920px** wide — matches `--max-width-site`
-  - UI screenshots: max **1920px** wide, WebP quality ~82
-  - Photos in the text column: max **1600px** wide, WebP quality ~75
-  - Flat illustrations, logos, art with type: WebP lossless (or SVG)
-- Do not commit native captures (e.g. 3024px Retina PNGs)
-- Do not use chat attachments as the master — Cursor saves them at 1024px
+1. Read width, height, and format
+2. Compare against the spec below
+3. If it fails, stop. Tell them exactly what to change (format, width, destination). Wait for a new file
+4. If it passes, copy the file as-is and point MDX/frontmatter at that path
+
+Do not use chat attachments as a source to “fix” — Cursor often saves them at 1024px. Report that and ask for the correct export.
+
+## Spec
+
+| Use | Path | Format | Width |
+| --- | --- | --- | --- |
+| Project cover / hero (full site) | `public/projects/<slug>/` | `.webp` | **1920px** |
+| Writing `#wide` (full column breakout) | `public/writing/<slug>/` | `.webp` | **1600–1920px** |
+| Photo in the text column | `public/writing/<slug>/` | `.webp` | max **1600px** |
+| UI screenshot | `public/writing/<slug>/` or `public/projects/<slug>/` | `.webp` | max **1920px** |
+| Flat illustration, logo, art with type | same folders | WebP lossless or SVG | do not enlarge |
+
+- Do not enlarge smaller assets
+- Reject native captures (e.g. 3024px Retina PNGs) and PNG/JPEG photos/screenshots
 - Point MDX frontmatter `image` and markdown `![]()` at the `.webp` path
 
 ```mdx
