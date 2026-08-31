@@ -11,16 +11,16 @@ When the user provides an image, **inspect only**. Do not convert, resize, recom
 
 1. Read width, height, and format
 2. Compare against the spec below
-3. If it fails, stop. Tell them exactly what to change (format, width, destination). Wait for a new file
+3. If it fails, stop. Tell them exactly what to change (format, width, height, destination). Wait for a new file
 4. If it passes, copy the file as-is and point MDX/frontmatter at that path
 
 Do not use chat attachments as a source to “fix” — Cursor often saves them at 1024px. Report that and ask for the correct export.
 
 ## Spec
 
-| Use | Path | Format | Width |
+| Use | Path | Format | Size |
 | --- | --- | --- | --- |
-| Project cover / hero (full site) | `public/projects/<slug>/` | `.webp` | **1920px** |
+| Project cover / hero (same 16:9 as the home card) | `public/projects/<slug>/` | `.webp` | **1920×1080** |
 | Writing `#wide` (full column breakout) | `public/writing/<slug>/` | `.webp` | **1600–1920px** |
 | Photo in the text column | `public/writing/<slug>/` | `.webp` | max **1600px** |
 | UI screenshot | `public/writing/<slug>/` or `public/projects/<slug>/` | `.webp` | max **1920px** |
