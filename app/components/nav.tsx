@@ -3,7 +3,6 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useScrollNavVisibility } from '../hooks/use-scroll-nav-visibility'
-import { cx } from '../lib/cx'
 import { site } from '../lib/site'
 import { ArrowIcon } from './arrow-icon'
 import { chromeLinkClassName } from './link-styles'
@@ -11,10 +10,10 @@ import { ThemeToggle } from './theme-toggle'
 
 const navLinkClassName = `${chromeLinkClassName} -mx-1`
 
-const navShellClassName = 'sticky top-4 z-40 w-full'
+const navShellClassName =
+  'sticky-nav sticky top-0 z-40 w-full bg-white pt-4 dark:bg-black'
 
-const navClassName =
-  'sticky-nav pointer-events-auto bg-white pb-3 dark:bg-black'
+const navClassName = 'pointer-events-auto bg-white pb-3 dark:bg-black'
 
 const navItems = [
   { href: '/writing', name: 'Writing' },
@@ -31,19 +30,17 @@ const isCurrentPath = (pathname: string, href: string) => {
 
 export const Navbar = () => {
   const pathname = usePathname() ?? ''
-  const { isAwayFromTop, isHidden } = useScrollNavVisibility(pathname)
+  const { isHidden } = useScrollNavVisibility(pathname)
 
   return (
-    <div className={navShellClassName}>
+    <div
+      className={navShellClassName}
+      data-scroll-hidden={isHidden ? 'true' : 'false'}
+    >
       <nav
-        className={cx(
-          navClassName,
-          isAwayFromTop &&
-            'shadow-[0_1px_0_rgba(0,0,0,0.06)] dark:shadow-[0_1px_0_rgba(255,255,255,0.08)]'
-        )}
+        className={navClassName}
         id="nav"
         aria-label="Primary"
-        data-scroll-hidden={isHidden ? 'true' : 'false'}
       >
         <div className="flex w-full items-start justify-between">
           <Link
