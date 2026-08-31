@@ -6,6 +6,7 @@ import { WritingMeta } from 'app/components/writing-meta'
 import {
   PageHeader,
   pageSectionClassName,
+  textColumnClassName,
 } from 'app/components/page-layout'
 import {
   createCreativeWorkJsonLd,
@@ -72,7 +73,7 @@ const Writing = async ({ params }: SlugPageProps) => {
           url: getPostCanonicalUrl(post),
         })}
       />
-      <article className={pageSectionClassName}>
+      <article className={`${textColumnClassName} ${pageSectionClassName}`}>
         <PageHeader
           title={post.metadata.title}
           description={post.metadata.summary}

@@ -1,5 +1,6 @@
 import { getWritingPosts } from 'app/writing/utils'
 import { getExperience } from 'app/experience/utils'
+import { getProjects } from 'app/projects/utils'
 import { site } from 'app/lib/site'
 
 export const baseUrl = site.url
@@ -15,12 +16,17 @@ const sitemap = async () => {
     lastModified: entry.metadata.endedAt,
   }))
 
-  const routes = ['', '/writing', '/experience'].map((route) => ({
+  const projects = getProjects().map((project) => ({
+    url: `${site.url}/${project.slug}`,
+    lastModified: project.metadata.endedAt,
+  }))
+
+  const routes = ['', '/about', '/writing', '/experience'].map((route) => ({
     url: `${site.url}${route}`,
     lastModified: new Date().toISOString().split('T')[0],
   }))
 
-  return [...routes, ...writing, ...experience]
+  return [...routes, ...projects, ...writing, ...experience]
 }
 
 export default sitemap

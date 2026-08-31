@@ -10,10 +10,14 @@ Never add unoptimized PNG/JPEG screenshots or photos to the site. Match the pipe
 ## Source files
 
 - Store article images in `public/writing/<slug>/` as `.webp`
+- Store project covers in `public/projects/<slug>/` as `.webp`
 - Resize before committing. Do not enlarge smaller assets
+  - Images used at **100% of the site on desktop** (project heroes): **1920px** wide — matches `--max-width-site`
   - UI screenshots: max **1920px** wide, WebP quality ~82
-  - Photos: max **1600px** wide, WebP quality ~75
+  - Photos in the text column: max **1600px** wide, WebP quality ~75
+  - Flat illustrations, logos, art with type: WebP lossless (or SVG)
 - Do not commit native captures (e.g. 3024px Retina PNGs)
+- Do not use chat attachments as the master — Cursor saves them at 1024px
 - Point MDX frontmatter `image` and markdown `![]()` at the `.webp` path
 
 ```mdx

@@ -52,3 +52,15 @@ export const writingIndex = {
   path: '/writing',
   eyebrow: 'WRITING',
 } as const
+
+export const aboutIndex = {
+  title: 'About',
+  description:
+    'Product designer with over a decade of experience in product strategy, design systems, design leadership, and UX.',
+  path: '/about',
+  eyebrow: 'ABOUT',
+} as const
+
+export const projectsIndex = {
+  eyebrow: 'PROJECT',
+} as const

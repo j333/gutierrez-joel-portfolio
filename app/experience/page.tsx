@@ -2,6 +2,7 @@ import { ExperiencePosts } from 'app/components/experience'
 import {
   PageHeader,
   pageSectionClassName,
+  textColumnClassName,
 } from 'app/components/page-layout'
 import { createPageMetadata } from 'app/lib/metadata'
 import { experienceIndex, site } from 'app/lib/site'
@@ -14,7 +15,7 @@ export const metadata = createPageMetadata({
 
 const Page = () => {
   return (
-    <>
+    <div className={textColumnClassName}>
       <PageHeader
         title={experienceIndex.title}
         description={experienceIndex.description}
@@ -23,7 +24,7 @@ const Page = () => {
       <div className={pageSectionClassName}>
         <ExperiencePosts />
       </div>
-    </>
+    </div>
   )
 }
 

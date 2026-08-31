@@ -82,16 +82,16 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
         />
         <JsonLd data={personJsonLd} />
       </head>
-      <body className="antialiased mx-auto flex w-full max-w-xl flex-col gap-8 px-4 pb-8">
+      <body className="mx-auto flex min-h-dvh w-full max-w-site flex-col gap-2 px-6 py-4 antialiased">
         <a href="#main-content" className={`skip-link ${chromeLinkClassName}`}>
           Skip to main content
         </a>
-        <div className="flex min-w-0 flex-auto flex-col">
+        <div className="flex min-h-0 min-w-0 flex-1 flex-col">
           <Navbar />
           <main
             id="main-content"
             tabIndex={-1}
-            className="mt-16 flex min-w-0 flex-auto flex-col focus:outline-none"
+            className="mt-16 flex min-h-0 min-w-0 flex-1 flex-col focus:outline-none"
           >
             {children}
           </main>

@@ -4,6 +4,7 @@ import { JsonLd } from 'app/components/json-ld'
 import {
   PageHeader,
   pageSectionClassName,
+  textColumnClassName,
 } from 'app/components/page-layout'
 import { ExperienceMeta } from 'app/components/experience-meta'
 import { ExperienceProjects } from 'app/components/experience-projects'
@@ -77,7 +78,7 @@ const Experience = async ({ params }: SlugPageProps) => {
           url: getExperienceCanonicalUrl(entry),
         })}
       />
-      <article className={pageSectionClassName}>
+      <article className={`${textColumnClassName} ${pageSectionClassName}`}>
         <PageHeader
           title={entry.metadata.title}
           description={entry.metadata.summary}

@@ -1,5 +1,7 @@
 import type { ReactNode } from 'react'
 
+export const textColumnClassName = 'w-full max-w-xl'
+
 export const metaLabelClassName =
   'font-mono text-xs font-normal uppercase leading-4 tracking-wider text-neutral-500 dark:text-neutral-400'
 
@@ -7,7 +9,7 @@ export const pageSectionClassName = 'mb-16'
 
 export const sectionHeadingClassName = `mb-8 ${metaLabelClassName}`
 
-type PageHeaderSpacing = 'section' | 'article'
+type PageHeaderSpacing = 'section' | 'article' | 'hero'
 
 type PageHeaderProps = {
   title: ReactNode
@@ -19,6 +21,7 @@ type PageHeaderProps = {
 const pageHeaderSpacingClassName: Record<PageHeaderSpacing, string> = {
   section: 'mb-8',
   article: 'mb-12',
+  hero: 'mb-16',
 }
 
 export const PageHeader = ({

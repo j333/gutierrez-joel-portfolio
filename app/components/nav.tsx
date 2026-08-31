@@ -11,16 +11,14 @@ import { ThemeToggle } from './theme-toggle'
 
 const navLinkClassName = `${chromeLinkClassName} -mx-1`
 
-const navShellClassName =
-  'pointer-events-none sticky top-0 z-40 w-screen max-w-none -ml-[calc(50vw-50%)]'
+const navShellClassName = 'sticky top-4 z-40 w-full'
 
 const navClassName =
-  'sticky-nav pointer-events-auto bg-white pb-3 pt-8 dark:bg-black'
+  'sticky-nav pointer-events-auto bg-white pb-3 dark:bg-black'
 
 const navItems = [
-  { href: '/', name: 'Home' },
-  { href: '/experience', name: 'Experience' },
   { href: '/writing', name: 'Writing' },
+  { href: '/about', name: 'About' },
 ]
 
 const isCurrentPath = (pathname: string, href: string) => {
@@ -47,34 +45,45 @@ export const Navbar = () => {
         aria-label="Primary"
         data-scroll-hidden={isHidden ? 'true' : 'false'}
       >
-        <ul className="mx-auto flex w-full max-w-xl flex-row items-center gap-x-5 px-4">
-          {navItems.map((item) => (
-            <li key={item.href}>
-              <Link
-                href={item.href}
-                className={navLinkClassName}
-                aria-current={
-                  isCurrentPath(pathname, item.href) ? 'page' : undefined
-                }
-              >
-                {item.name}
-              </Link>
+        <div className="flex w-full items-start justify-between">
+          <Link
+            href="/"
+            className={navLinkClassName}
+            aria-current={pathname === '/' ? 'page' : undefined}
+          >
+            gutierrez joel
+          </Link>
+          <ul className="flex items-center gap-x-8">
+            <li>
+              <ThemeToggle />
             </li>
-          ))}
-          <li className="ml-auto flex items-center gap-x-5">
-            <ThemeToggle />
-            <a
-              href={site.resumePath}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={navLinkClassName}
-              aria-label="Resume, opens PDF in a new tab"
-            >
-              Resume
-              <ArrowIcon />
-            </a>
-          </li>
-        </ul>
+            {navItems.map((item) => (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  className={navLinkClassName}
+                  aria-current={
+                    isCurrentPath(pathname, item.href) ? 'page' : undefined
+                  }
+                >
+                  {item.name}
+                </Link>
+              </li>
+            ))}
+            <li>
+              <a
+                href={site.resumePath}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={navLinkClassName}
+                aria-label="Resume, opens PDF in a new tab"
+              >
+                Resume
+                <ArrowIcon />
+              </a>
+            </li>
+          </ul>
+        </div>
       </nav>
     </div>
   )
