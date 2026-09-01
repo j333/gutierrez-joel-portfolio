@@ -82,7 +82,10 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
         />
         <JsonLd data={personJsonLd} />
       </head>
-      <body className="mx-auto flex min-h-dvh w-full max-w-site flex-col gap-2 px-6 pb-4 antialiased">
+      <body
+        suppressHydrationWarning
+        className="mx-auto flex min-h-dvh w-full max-w-site flex-col gap-2 px-6 pb-4 antialiased"
+      >
         <a href="#main-content" className={`skip-link ${chromeLinkClassName}`}>
           Skip to main content
         </a>
