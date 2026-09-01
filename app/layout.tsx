@@ -89,23 +89,25 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
       </head>
       <body
         suppressHydrationWarning
-        className="relative isolate mx-auto flex min-h-dvh w-full max-w-site flex-col gap-2 px-4 pb-4 antialiased sm:px-6"
+        className="relative isolate min-h-dvh w-full antialiased"
       >
         <div aria-hidden="true" className="site-noise" />
-        <a href="#main-content" className={`skip-link ${chromeLinkClassName}`}>
-          Skip to main content
-        </a>
-        <div className="flex min-h-0 min-w-0 flex-1 flex-col">
-          <Navbar />
-          <main
-            id="main-content"
-            tabIndex={-1}
-            className="mt-16 flex min-h-0 min-w-0 flex-1 flex-col focus:outline-none"
-          >
-            {children}
-          </main>
+        <div className="mx-auto flex min-h-dvh w-full max-w-site flex-col gap-2 px-4 pb-4 sm:px-6">
+          <a href="#main-content" className={`skip-link ${chromeLinkClassName}`}>
+            Skip to main content
+          </a>
+          <div className="flex min-h-0 min-w-0 flex-1 flex-col">
+            <Navbar />
+            <main
+              id="main-content"
+              tabIndex={-1}
+              className="mt-16 flex min-h-0 min-w-0 flex-1 flex-col focus:outline-none"
+            >
+              {children}
+            </main>
+          </div>
+          <Footer />
         </div>
-        <Footer />
       </body>
     </html>
   )
