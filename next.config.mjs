@@ -28,8 +28,18 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/experience/golf-boost',
+        destination: '/golf-boost',
+        permanent: true,
+      },
+      {
         source: '/experience/rehab-boost',
-        destination: '/experience/golf-boost',
+        destination: '/golf-boost',
+        permanent: true,
+      },
+      {
+        source: '/experience/vina-errazuriz',
+        destination: '/about',
         permanent: true,
       },
     ];

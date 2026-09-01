@@ -116,7 +116,7 @@ summary: 'Short description used in listings and Open Graph.'
 | `image`     | No       | Open Graph image. If omitted, `/og` generates one from the title                   |
 
 
-Each entry includes JSON-LD (`CreativeWork`). Old `/experience/getgloby` and `/experience/rehab-boost` URLs redirect to the current entries.
+Each entry includes JSON-LD (`CreativeWork`). Old `/experience/getgloby` URLs redirect to Marketfully. Old Golf Boost and Rehab Boost experience URLs redirect to the Golf Boost project. `/experience/vina-errazuriz` redirects to About.
 
 ## Configuration
 
