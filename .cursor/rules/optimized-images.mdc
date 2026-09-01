@@ -7,7 +7,7 @@ alwaysApply: true
 
 Content images on the site are **WebP only**. Do not copy PNG, JPEG, or GIF into `public/projects`, `public/writing`, or other content folders. Convert with the scripts, then point MDX at the `.webp` path.
 
-Platform icons stay as they are: `app/icon.svg`, `app/favicon.ico`, `app/apple-icon.png`, `public/icon-192.png`, `public/icon-512.png`. Flat vector logos may stay SVG. `docs/` is not site content.
+Platform icons stay as they are: `app/icon.png`, `app/favicon.ico`, `app/apple-icon.png`, `public/icon-192.png`, `public/icon-512.png`. Flat vector logos may stay SVG. `docs/` is not site content.
 
 Do not use chat attachments as a source to enlarge — Cursor often saves them at 1024px. If a cover is smaller than 1920×1080, stop and ask for a larger export.
 

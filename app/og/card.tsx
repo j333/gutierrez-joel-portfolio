@@ -1,6 +1,12 @@
+import { readFile } from 'node:fs/promises'
+import { join } from 'node:path'
 import { ImageResponse } from 'next/og'
 import { site } from 'app/lib/site'
 import { ogFonts } from './fonts'
+
+const brandIconSrc = `data:image/png;base64,${(
+  await readFile(join(process.cwd(), 'public/icon-512.png'))
+).toString('base64')}`
 
 export const ogImageSize = {
   width: 1200,
@@ -51,13 +57,14 @@ export const OgCard = ({ title, subtitle, eyebrow, footer }: OgCardProps) => {
           width: '100%',
         }}
       >
-        <div
+        <img
+          alt=""
+          src={brandIconSrc}
+          width={48}
+          height={48}
           style={{
-            display: 'flex',
-            width: 48,
-            height: 48,
             borderRadius: 24,
-            backgroundColor: '#fff',
+            objectFit: 'cover',
           }}
         />
         <div

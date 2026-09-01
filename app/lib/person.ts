@@ -12,7 +12,7 @@ export const buildPersonEntity = () => ({
   jobTitle: site.jobTitle,
   url: site.url,
   description: site.description,
-  image: `${site.url}/opengraph-image`,
+  image: `${site.url}/opengraph-image.png`,
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'Mendoza',
