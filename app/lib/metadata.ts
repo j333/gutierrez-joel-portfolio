@@ -72,6 +72,7 @@ export const createCreativeWorkJsonLd = ({
 }: CreativeWorkJsonLdInput) => ({
   '@context': 'https://schema.org',
   '@type': type,
+  name: headline,
   headline,
   datePublished,
   dateModified,
@@ -82,6 +83,45 @@ export const createCreativeWorkJsonLd = ({
   author: {
     '@type': 'Person',
     name: site.name,
+  },
+  creator: {
+    '@type': 'Person',
+    name: site.name,
+  },
+})
+
+type EmploymentJsonLdInput = {
+  organizationName: string
+  roleName?: string
+  startDate: string
+  endDate: string
+  description: string
+  url: string
+}
+
+export const createEmploymentJsonLd = ({
+  organizationName,
+  roleName,
+  startDate,
+  endDate,
+  description,
+  url,
+}: EmploymentJsonLdInput) => ({
+  '@context': 'https://schema.org',
+  '@type': 'OrganizationRole',
+  ...(roleName ? { roleName } : {}),
+  startDate: `${startDate}-01-01`,
+  endDate: `${endDate}-12-31`,
+  description,
+  url,
+  memberOf: {
+    '@type': 'Organization',
+    name: organizationName,
+  },
+  member: {
+    '@type': 'Person',
+    name: site.name,
+    url: site.url,
   },
 })
 

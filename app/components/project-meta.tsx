@@ -16,7 +16,10 @@ const metaValueClassName =
   'text-base leading-6 text-neutral-800 dark:text-neutral-200'
 
 export const ProjectMeta = ({ metadata }: ProjectMetaProps) => {
-  const rows: MetaItem[] = []
+  const rows: MetaItem[] = [
+    { label: 'Product', value: metadata.product },
+    { label: 'Deliverable', value: metadata.deliverable },
+  ]
 
   if (metadata.role) {
     rows.push({ label: 'Role', value: metadata.role })

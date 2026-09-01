@@ -17,7 +17,7 @@ const Page = () => {
         decade of experience in product strategy, design systems, design
         leadership, and UX.
       </p>
-      <div className={projectGridClassName}>
+      <div className={projectGridClassName} aria-label="Project case studies">
         {projects.map((project) => (
           <ProjectCard key={project.slug} project={project} />
         ))}

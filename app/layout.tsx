@@ -6,7 +6,8 @@ import Footer from './components/footer'
 import { JsonLd } from './components/json-ld'
 import { chromeLinkClassName } from './components/link-styles'
 import { cx } from './lib/cx'
-import { personJsonLd, site, siteTitle } from './lib/site'
+import { buildPersonJsonLd } from './lib/person'
+import { site, siteTitle } from './lib/site'
 import { themeInitScript } from './lib/theme'
 
 const ibmPlexSans = IBM_Plex_Sans({
@@ -83,7 +84,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
             __html: themeInitScript,
           }}
         />
-        <JsonLd data={personJsonLd} />
+        <JsonLd data={buildPersonJsonLd()} />
         <link rel="describedby" href="/llms.txt" />
       </head>
       <body

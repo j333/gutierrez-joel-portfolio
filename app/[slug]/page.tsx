@@ -22,6 +22,7 @@ import { projectsIndex } from 'app/lib/site'
 import {
   getProjectBySlug,
   getProjectCanonicalUrl,
+  getProjectCaseStudyDescription,
   getProjectImage,
   getProjectMarkdownUrl,
   getProjects,
@@ -41,17 +42,15 @@ export const generateMetadata = async ({ params }: SlugPageProps) => {
     return
   }
 
-  const { title, startedAt, summary } = project.metadata
-  const description =
-    summary ?? `${title} (${startedAt}–${project.metadata.endedAt}).`
+  const description = getProjectCaseStudyDescription(project)
 
   return createPageMetadata({
-    title,
+    title: project.metadata.title,
     description,
     canonical: getProjectCanonicalUrl(project),
     markdownUrl: getProjectMarkdownUrl(project),
     type: 'article',
-    publishedTime: `${startedAt}-01-01`,
+    publishedTime: `${project.metadata.startedAt}-01-01`,
   })
 }
 
@@ -65,6 +64,7 @@ const Project = async ({ params }: SlugPageProps) => {
 
   const image = getProjectImage(project)
   const { title, startedAt, endedAt, summary } = project.metadata
+  const caseStudyDescription = getProjectCaseStudyDescription(project)
 
   return (
     <>
@@ -74,7 +74,7 @@ const Project = async ({ params }: SlugPageProps) => {
           headline: title,
           datePublished: startedAt,
           dateModified: endedAt,
-          description: summary ?? title,
+          description: caseStudyDescription,
           image: getSocialImageUrl(
             project.metadata.image,
             title,

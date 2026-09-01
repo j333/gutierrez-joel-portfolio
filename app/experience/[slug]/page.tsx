@@ -19,12 +19,10 @@ import {
   splitSelectedWork,
 } from 'app/experience/projects'
 import {
-  createCreativeWorkJsonLd,
+  createEmploymentJsonLd,
   createPageMetadata,
-  getSocialImageUrl,
 } from 'app/lib/metadata'
 import type { SlugPageProps } from 'app/lib/params'
-import { experienceIndex } from 'app/lib/site'
 
 export const generateStaticParams = async () =>
   getExperience().map((entry) => ({
@@ -66,17 +64,12 @@ const Experience = async ({ params }: SlugPageProps) => {
   return (
     <>
       <JsonLd
-        data={createCreativeWorkJsonLd({
-          type: 'CreativeWork',
-          headline: entry.metadata.title,
-          datePublished: entry.metadata.startedAt,
-          dateModified: entry.metadata.endedAt,
+        data={createEmploymentJsonLd({
+          organizationName: entry.metadata.title,
+          roleName: entry.metadata.role,
+          startDate: entry.metadata.startedAt,
+          endDate: entry.metadata.endedAt,
           description: entry.metadata.summary,
-          image: getSocialImageUrl(
-            entry.metadata.image,
-            entry.metadata.title,
-            experienceIndex.eyebrow
-          ),
           url: getExperienceCanonicalUrl(entry),
         })}
       />

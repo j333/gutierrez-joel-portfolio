@@ -14,7 +14,8 @@ import {
   aboutSkills,
 } from 'app/lib/about-data'
 import { createPageMetadata, createProfilePageJsonLd } from 'app/lib/metadata'
-import { aboutIndex, personEntity, site } from 'app/lib/site'
+import { buildPersonEntity } from 'app/lib/person'
+import { aboutIndex, site } from 'app/lib/site'
 import type { ReactNode } from 'react'
 
 export const dynamic = 'force-static'
@@ -44,7 +45,7 @@ const Page = () => {
       <JsonLd
         data={createProfilePageJsonLd(
           `${site.url}${aboutIndex.path}`,
-          personEntity
+          buildPersonEntity()
         )}
       />
       <div className="w-full">

@@ -1,4 +1,5 @@
 import { getExperience } from 'app/experience/utils'
+import { getProjects } from 'app/projects/utils'
 import {
   aboutBio,
   aboutEducation,
@@ -45,12 +46,25 @@ ${aboutLanguages.map((language) => `- ${language}`).join('\n')}
 }
 
 export const buildHomeMarkdown = () => {
+  const caseStudies = getProjects()
+    .map(
+      (project) =>
+        `- **${project.metadata.title}** (${project.metadata.product}): ${project.metadata.summary ?? project.metadata.title}`
+    )
+    .join('\n')
+
   return `# ${site.name}
 
 > ${site.description}
 
 I'm a *product designer* with over a decade of experience in product strategy, design systems, design leadership, and UX.
 
-See [/about.md](${site.url}/about.md) for background, experience, and capabilities.
+## Project case studies
+
+These are portfolio case studies, not employers.
+
+${caseStudies}
+
+For employment history, see [/about.md](${site.url}/about.md).
 `
 }

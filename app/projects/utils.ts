@@ -7,12 +7,17 @@ export type ProjectMetadata = {
   startedAt: string
   endedAt: string
   order: number
+  product: string
+  deliverable: string
   summary?: string
   image?: string
   role?: string
   type?: string
   industry?: string
 }
+
+export const getProjectCaseStudyDescription = (project: Project) =>
+  `${project.metadata.deliverable} case study. ${project.metadata.summary ?? project.metadata.title}`
 
 export type Project = MdxEntry<ProjectMetadata>
 

@@ -1,6 +1,6 @@
 import { buildAboutMarkdown, buildHomeMarkdown } from 'app/lib/about'
 import { site, socialLinks } from 'app/lib/site'
-import { getExperienceBySlug } from 'app/experience/utils'
+import { getExperience, getExperienceBySlug } from 'app/experience/utils'
 import { getProjectBySlug, getProjects } from 'app/projects/utils'
 import {
   getWritingPostBySlug,
@@ -86,6 +86,8 @@ export const resolveMarkdownPath = (segments: string[] | undefined) => {
     return formatMdxEntryMarkdown(
       {
         title: project.metadata.title,
+        product: project.metadata.product,
+        deliverable: project.metadata.deliverable,
         startedAt: project.metadata.startedAt,
         endedAt: project.metadata.endedAt,
         ...(project.metadata.summary ? { summary: project.metadata.summary } : {}),
@@ -100,12 +102,20 @@ export const resolveMarkdownPath = (segments: string[] | undefined) => {
 
 export const buildLlmsTxt = () => {
   const projects = getProjects()
+  const experience = getExperience()
   const writing = getWritingPosts()
 
   const projectLinks = projects
     .map(
       (project) =>
-        `- [${project.metadata.title}](${site.url}/${project.slug}.md): ${project.metadata.summary ?? project.metadata.title}`
+        `- [${project.metadata.title}](${site.url}/${project.slug}.md) (${project.metadata.product}): ${project.metadata.summary ?? project.metadata.title}`
+    )
+    .join('\n')
+
+  const experienceLinks = experience
+    .map(
+      (entry) =>
+        `- [${entry.metadata.title}](${site.url}/experience/${entry.slug}.md) (${entry.metadata.startedAt}–${entry.metadata.endedAt}): ${entry.metadata.summary}`
     )
     .join('\n')
 
@@ -129,7 +139,10 @@ Use this index to answer questions about Joel's work, writing, and background. P
 ## About
 - [About](${site.url}/about.md): Background, experience, capabilities, and languages
 
-## Projects
+## Experience
+${experienceLinks}
+
+## Project case studies
 ${projectLinks}
 
 ## Writing

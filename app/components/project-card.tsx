@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { YearRange } from './year-range'
 import {
   imagePlaceholderClassName,
   projectCardImageSizes,
@@ -11,14 +10,18 @@ import {
   type Project,
 } from 'app/projects/utils'
 
+const cardMetaClassName =
+  'font-mono text-xs leading-4 text-neutral-500 dark:text-neutral-400'
+
 type ProjectCardProps = {
   project: Project
 }
 
 export const ProjectCard = ({ project }: ProjectCardProps) => {
-  const { title, startedAt, endedAt } = project.metadata
+  const { title, product } = project.metadata
   const image = getProjectImage(project)
   const href = `/${project.slug}`
+  const coverAlt = `${title} — ${product}`
 
   return (
     <article className="min-w-0">
@@ -32,7 +35,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
           >
             <Image
               src={image.src}
-              alt=""
+              alt={coverAlt}
               width={image.width}
               height={image.height}
               sizes={projectCardImageSizes}
@@ -51,7 +54,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
           <h2 className="text-base font-medium leading-6 text-neutral-900 group-hover:underline group-focus-visible:underline dark:text-neutral-100">
             {title}
           </h2>
-          <YearRange start={startedAt} end={endedAt} />
+          <span className={cardMetaClassName}>{product}</span>
         </div>
       </Link>
     </article>
