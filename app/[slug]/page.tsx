@@ -8,7 +8,10 @@ import {
   textColumnClassName,
 } from 'app/components/page-layout'
 import { ProjectMeta } from 'app/components/project-meta'
-import { fullWidthImageSizes } from 'app/lib/layout'
+import {
+  fullWidthImageSizes,
+  imagePlaceholderClassName,
+} from 'app/lib/image-sizes'
 import {
   createCreativeWorkJsonLd,
   createPageMetadata,
@@ -82,7 +85,9 @@ const Project = async ({ params }: SlugPageProps) => {
         <PageHeader title={title} description={summary} spacing="hero" />
         <ProjectMeta metadata={project.metadata} />
         {image ? (
-          <div className="relative mb-14 aspect-video w-full overflow-hidden bg-[#f5f5ff]">
+          <div
+            className={`relative mb-14 aspect-video w-full overflow-hidden ${imagePlaceholderClassName}`}
+          >
             <Image
               src={image.src}
               alt=""
@@ -97,7 +102,7 @@ const Project = async ({ params }: SlugPageProps) => {
         ) : (
           <div
             aria-hidden="true"
-            className="mb-14 aspect-video w-full bg-neutral-100 dark:bg-neutral-900"
+            className={`mb-14 aspect-video w-full ${imagePlaceholderClassName}`}
           />
         )}
         {project.content.trim() ? (

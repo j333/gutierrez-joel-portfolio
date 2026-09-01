@@ -11,6 +11,7 @@ import {
 } from 'react'
 import { createPortal } from 'react-dom'
 import { cx } from 'app/lib/cx'
+import { imagePlaceholderClassName } from 'app/lib/image-sizes'
 
 export type ArticleImageSize = 'column' | 'wide'
 
@@ -219,7 +220,7 @@ export const ZoomableImage = ({
             width={width}
             height={height}
             sizes={articleImageSizes[size]}
-            className="m-0 h-auto w-full rounded-none"
+            className={`m-0 h-auto w-full rounded-none ${imagePlaceholderClassName}`}
           />
         ) : (
           <img
@@ -227,7 +228,7 @@ export const ZoomableImage = ({
             alt={alt}
             loading="lazy"
             decoding="async"
-            className="m-0 h-auto w-full rounded-none"
+            className={`m-0 h-auto w-full rounded-none ${imagePlaceholderClassName}`}
           />
         )}
       </button>

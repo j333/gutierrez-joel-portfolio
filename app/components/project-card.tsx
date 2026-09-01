@@ -1,7 +1,10 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { YearRange } from './year-range'
-import { projectCardImageSizes } from 'app/lib/layout'
+import {
+  imagePlaceholderClassName,
+  projectCardImageSizes,
+} from 'app/lib/image-sizes'
 import {
   getProjectImage,
   projectImageQuality,
@@ -24,20 +27,24 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
         className="group flex flex-col gap-1 rounded-sm text-inherit outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900 dark:focus-visible:outline-neutral-100"
       >
         {image ? (
-          <Image
-            src={image.src}
-            alt=""
-            width={image.width}
-            height={image.height}
-            sizes={projectCardImageSizes}
-            quality={projectImageQuality}
-            unoptimized
-            className="aspect-video h-auto w-full rounded-none object-cover"
-          />
+          <div
+            className={`aspect-video w-full overflow-hidden ${imagePlaceholderClassName}`}
+          >
+            <Image
+              src={image.src}
+              alt=""
+              width={image.width}
+              height={image.height}
+              sizes={projectCardImageSizes}
+              quality={projectImageQuality}
+              unoptimized
+              className="h-full w-full rounded-none object-cover"
+            />
+          </div>
         ) : (
           <div
             aria-hidden="true"
-            className="aspect-video w-full bg-neutral-100 dark:bg-neutral-900"
+            className={`aspect-video w-full ${imagePlaceholderClassName}`}
           />
         )}
         <div className="flex items-baseline justify-between gap-4">

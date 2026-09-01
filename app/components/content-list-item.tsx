@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import type { ReactNode } from 'react'
+import { imagePlaceholderClassName } from 'app/lib/image-sizes'
 
 const PREVIEW_WIDTH = 160
 const PREVIEW_HEIGHT = 100
@@ -46,14 +47,18 @@ export const ContentListItem = ({
           {aside}
         </div>
         {image ? (
-          <Image
-            src={image.src}
-            alt=""
-            width={PREVIEW_WIDTH}
-            height={PREVIEW_HEIGHT}
-            sizes={`(max-width: 639px) calc(100vw - 2rem), ${PREVIEW_WIDTH}px`}
-            className="h-auto w-full rounded-none object-cover sm:h-[100px] sm:w-[160px] sm:shrink-0"
-          />
+          <div
+            className={`w-full overflow-hidden sm:h-[100px] sm:w-[160px] sm:shrink-0 ${imagePlaceholderClassName}`}
+          >
+            <Image
+              src={image.src}
+              alt=""
+              width={PREVIEW_WIDTH}
+              height={PREVIEW_HEIGHT}
+              sizes={`(max-width: 639px) calc(100vw - 2rem), ${PREVIEW_WIDTH}px`}
+              className="h-auto w-full rounded-none object-cover sm:h-full sm:w-full"
+            />
+          </div>
         ) : null}
       </Link>
     </article>
