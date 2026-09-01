@@ -43,6 +43,38 @@ html {
   min-width: 360px;
   overflow-x: clip;
   color-scheme: light;
+  --noise-opacity: 0.05;
+}
+
+html.dark {
+  --noise-opacity: 0.1;
+}
+
+.site-noise,
+.sticky-nav[data-away-from-top='true']::before {
+  pointer-events: none;
+  background-image: url('/bkg-noise.webp');
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  opacity: var(--noise-opacity);
+  filter: invert(1);
+}
+
+html.dark .site-noise,
+html.dark .sticky-nav[data-away-from-top='true']::before {
+  filter: none;
+}
+
+.site-noise {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.sticky-nav[data-away-from-top='true']::before {
+  content: '';
+  position: absolute;
+  inset: 0;
 }
 
 img {

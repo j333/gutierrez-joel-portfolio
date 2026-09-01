@@ -13,9 +13,9 @@ const navLinkClassName = `${chromeLinkClassName} -mx-1 whitespace-nowrap`
 const navListClassName = 'flex items-center gap-x-3 sm:gap-x-8'
 
 const navShellClassName =
-  'sticky-nav sticky top-0 z-40 w-full bg-white pt-4 dark:bg-black'
+  'sticky-nav sticky top-0 z-40 -mx-6 w-[calc(100%+3rem)] bg-transparent px-6 pt-4 data-[away-from-top=true]:bg-white dark:data-[away-from-top=true]:bg-black'
 
-const navClassName = 'pointer-events-auto bg-white pb-3 dark:bg-black'
+const navClassName = 'pointer-events-auto pb-3'
 
 const navItems = [
   { href: '/writing', name: 'Writing' },
@@ -32,12 +32,13 @@ const isCurrentPath = (pathname: string, href: string) => {
 
 export const Navbar = () => {
   const pathname = usePathname() ?? ''
-  const { isHidden } = useScrollNavVisibility(pathname)
+  const { isHidden, isAwayFromTop } = useScrollNavVisibility(pathname)
 
   return (
     <div
       className={navShellClassName}
       data-scroll-hidden={isHidden ? 'true' : 'false'}
+      data-away-from-top={isAwayFromTop ? 'true' : 'false'}
     >
       <nav
         className={navClassName}

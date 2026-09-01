@@ -29,7 +29,11 @@ export const useScrollNavVisibility = (pathname: string) => {
       frameId = 0
 
       if (mediaQuery.matches) {
-        setState(initialState)
+        const currentScrollY = Math.max(0, window.scrollY)
+        setState({
+          isAwayFromTop: currentScrollY > TOP_OFFSET,
+          isHidden: false,
+        })
         return
       }
 
