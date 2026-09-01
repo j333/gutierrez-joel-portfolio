@@ -1,38 +1,23 @@
-export type ThemePreference = 'light' | 'dark' | 'system'
+export type ThemePreference = 'light' | 'dark'
 
 const STORAGE_KEY = 'theme'
 
-export const DEFAULT_THEME: ThemePreference = 'system'
+export const DEFAULT_THEME: ThemePreference = 'light'
 
 const parseThemePreference = (value: string | null): ThemePreference | null => {
-  if (value === 'light' || value === 'dark' || value === 'system') {
+  if (value === 'light' || value === 'dark') {
     return value
   }
 
   return null
 }
 
-export const getStoredTheme = (): ThemePreference => {
+export const getStoredTheme = (): ThemePreference | null => {
   if (typeof window === 'undefined') {
-    return DEFAULT_THEME
+    return null
   }
 
-  return parseThemePreference(localStorage.getItem(STORAGE_KEY)) ?? DEFAULT_THEME
-}
-
-export const ensureDefaultTheme = () => {
-  if (typeof window === 'undefined') {
-    return DEFAULT_THEME
-  }
-
-  const stored = parseThemePreference(localStorage.getItem(STORAGE_KEY))
-
-  if (stored) {
-    return stored
-  }
-
-  localStorage.setItem(STORAGE_KEY, DEFAULT_THEME)
-  return DEFAULT_THEME
+  return parseThemePreference(localStorage.getItem(STORAGE_KEY))
 }
 
 export const getSystemPrefersDark = (): boolean => {
@@ -43,16 +28,24 @@ export const getSystemPrefersDark = (): boolean => {
   return window.matchMedia('(prefers-color-scheme: dark)').matches
 }
 
+export const getResolvedSystemTheme = (): ThemePreference => {
+  return getSystemPrefersDark() ? 'dark' : 'light'
+}
+
+export const resolveInitialTheme = (): ThemePreference => {
+  if (typeof window !== 'undefined') {
+    const storedValue = localStorage.getItem(STORAGE_KEY)
+
+    if (storedValue !== null && !parseThemePreference(storedValue)) {
+      localStorage.removeItem(STORAGE_KEY)
+    }
+  }
+
+  return getStoredTheme() ?? getResolvedSystemTheme()
+}
+
 export const resolveIsDark = (theme: ThemePreference): boolean => {
-  if (theme === 'dark') {
-    return true
-  }
-
-  if (theme === 'light') {
-    return false
-  }
-
-  return getSystemPrefersDark()
+  return theme === 'dark'
 }
 
 export const applyTheme = (theme: ThemePreference) => {
@@ -78,33 +71,22 @@ export const setTheme = (theme: ThemePreference) => {
 }
 
 export const cycleTheme = (current: ThemePreference): ThemePreference => {
-  if (current === 'system') {
-    return 'light'
-  }
-
-  if (current === 'light') {
-    return 'dark'
-  }
-
-  return 'system'
+  return current === 'light' ? 'dark' : 'light'
 }
 
-export const themeInitScript = `(function(){try{var k='theme',s=localStorage.getItem(k),t=s==='light'||s==='dark'||s==='system'?s:'system';if(t!==s)localStorage.setItem(k,t);var d=t==='dark'||(t==='system'&&window.matchMedia('(prefers-color-scheme: dark)').matches);var r=document.documentElement;r.classList.remove('light','dark');if(t==='light')r.classList.add('light');if(d)r.classList.add('dark');r.style.colorScheme=d?'dark':'light'}catch(e){}})()`
+export const themeInitScript = `(function(){try{var k='theme',s=localStorage.getItem(k),t=s==='light'||s==='dark'?s:(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');if(s!==null&&s!=='light'&&s!=='dark')localStorage.removeItem(k);var d=t==='dark';var r=document.documentElement;r.classList.remove('light','dark');if(t==='light')r.classList.add('light');if(d)r.classList.add('dark');r.style.colorScheme=d?'dark':'light'}catch(e){}})()`
 
 export const themeLabels: Record<ThemePreference, string> = {
   light: 'Light mode',
   dark: 'Dark mode',
-  system: 'System theme',
 }
 
 export const themeTooltipLabels: Record<ThemePreference, string> = {
   light: 'Light',
   dark: 'Dark',
-  system: 'System',
 }
 
 export const themeToggleLabels: Record<ThemePreference, string> = {
-  system: 'Switch to light mode',
   light: 'Switch to dark mode',
-  dark: 'Switch to system theme',
+  dark: 'Switch to light mode',
 }

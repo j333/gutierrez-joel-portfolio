@@ -5,8 +5,9 @@ import {
   applyTheme,
   cycleTheme,
   DEFAULT_THEME,
-  ensureDefaultTheme,
+  getResolvedSystemTheme,
   getStoredTheme,
+  resolveInitialTheme,
   setTheme,
   themeLabels,
   themeToggleLabels,
@@ -14,7 +15,7 @@ import {
   type ThemePreference,
 } from '../lib/theme'
 import { navTextClassName } from './link-styles'
-import { MoonIcon, SunIcon, SystemIcon } from './theme-icons'
+import { MoonIcon, SunIcon } from './theme-icons'
 
 const themeToggleClassName =
   'theme-toggle group relative inline-flex w-fit cursor-pointer items-center rounded-sm border-0 bg-transparent -mx-1 px-1 py-1 outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 dark:focus-visible:outline-neutral-100'
@@ -23,28 +24,26 @@ const themeLabelClassName = `${navTextClassName} theme-toggle-label whitespace-n
 
 const themeToggleIconClassName = 'shrink-0'
 
-const themeIcons: Record<ThemePreference, typeof SunIcon> = {
-  light: SunIcon,
-  dark: MoonIcon,
-  system: SystemIcon,
-}
-
 export const ThemeToggle = () => {
   const [theme, setThemeState] = useState<ThemePreference>(DEFAULT_THEME)
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    const storedTheme = ensureDefaultTheme()
-    setThemeState(storedTheme)
-    applyTheme(storedTheme)
+    const initialTheme = resolveInitialTheme()
+    setThemeState(initialTheme)
+    applyTheme(initialTheme)
     setMounted(true)
 
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
 
     const handleSystemThemeChange = () => {
-      if (getStoredTheme() === 'system') {
-        applyTheme('system')
+      if (getStoredTheme()) {
+        return
       }
+
+      const resolvedTheme = getResolvedSystemTheme()
+      applyTheme(resolvedTheme)
+      setThemeState(resolvedTheme)
     }
 
     mediaQuery.addEventListener('change', handleSystemThemeChange)
@@ -55,7 +54,8 @@ export const ThemeToggle = () => {
   }, [])
 
   const handleToggleTheme = () => {
-    const nextTheme = cycleTheme(theme)
+    const currentTheme = getStoredTheme() ?? getResolvedSystemTheme()
+    const nextTheme = cycleTheme(currentTheme)
     setTheme(nextTheme)
     setThemeState(nextTheme)
   }
@@ -68,8 +68,6 @@ export const ThemeToggle = () => {
     event.preventDefault()
     handleToggleTheme()
   }
-
-  const Icon = themeIcons[theme]
 
   return (
     <button
@@ -88,7 +86,8 @@ export const ThemeToggle = () => {
           {themeTooltipLabels[theme]}
         </span>
       ) : null}
-      <Icon className={themeToggleIconClassName} />
+      <SunIcon className={`${themeToggleIconClassName} dark:hidden`} />
+      <MoonIcon className={`${themeToggleIconClassName} hidden dark:inline`} />
     </button>
   )
 }
