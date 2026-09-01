@@ -2,8 +2,6 @@ import { getMdxData, getMdxDirectory, type MdxEntry } from 'app/lib/mdx'
 import { getPublicImageSize } from 'app/lib/public-image'
 import { site } from 'app/lib/site'
 
-const FIRST_MARKDOWN_IMAGE = /!\[[^\]]*]\(([^)\s]+)/
-
 export type WritingPostImage = {
   src: string
   width: number
@@ -33,8 +31,7 @@ export const getWritingPostBySlug = (slug: string) =>
 export const getWritingPostImage = (
   post: WritingPost
 ): WritingPostImage | null => {
-  const match = FIRST_MARKDOWN_IMAGE.exec(post.content)
-  const rawSrc = match?.[1] ?? post.metadata.image
+  const rawSrc = post.metadata.image
 
   if (!rawSrc) {
     return null

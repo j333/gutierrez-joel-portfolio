@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { CustomMDX } from 'app/components/mdx'
 import { CtaLink } from 'app/components/cta-link'
@@ -9,6 +10,10 @@ import {
   textColumnClassName,
 } from 'app/components/page-layout'
 import {
+  fullWidthImageSizes,
+  imagePlaceholderClassName,
+} from 'app/lib/image-sizes'
+import {
   createCreativeWorkJsonLd,
   createPageMetadata,
   getSocialImageUrl,
@@ -19,6 +24,7 @@ import {
   getPostCanonicalUrl,
   getPostMarkdownUrl,
   getWritingPostBySlug,
+  getWritingPostImage,
   getWritingPosts,
 } from 'app/writing/utils'
 
@@ -59,6 +65,9 @@ const Writing = async ({ params }: SlugPageProps) => {
     notFound()
   }
 
+  const image = getWritingPostImage(post)
+  const { title, publishedAt, summary } = post.metadata
+
   return (
     <>
       <JsonLd
@@ -76,18 +85,40 @@ const Writing = async ({ params }: SlugPageProps) => {
           ...(post.metadata.medium ? { sameAs: post.metadata.medium } : {}),
         })}
       />
-      <article className={`${textColumnClassName} ${pageSectionClassName}`}>
+      <article className={pageSectionClassName}>
         <PageHeader
-          title={post.metadata.title}
-          description={post.metadata.summary}
+          title={title}
+          description={summary}
+          spacing="hero"
         >
-          <WritingMeta publishedAt={post.metadata.publishedAt} />
+          <WritingMeta publishedAt={publishedAt} />
         </PageHeader>
-        <div className="prose">
+        {image ? (
+          <div
+            className={`relative mb-14 aspect-video w-full overflow-hidden ${imagePlaceholderClassName}`}
+          >
+            <Image
+              src={image.src}
+              alt=""
+              fill
+              sizes={fullWidthImageSizes}
+              quality={100}
+              unoptimized
+              className="rounded-none object-cover"
+              priority
+            />
+          </div>
+        ) : (
+          <div
+            aria-hidden="true"
+            className={`mb-14 aspect-video w-full ${imagePlaceholderClassName}`}
+          />
+        )}
+        <div className={`${textColumnClassName} prose`}>
           <CustomMDX source={post.content} />
         </div>
         {post.metadata.medium ? (
-          <div className="mt-16">
+          <div className={`mt-16 ${textColumnClassName}`}>
             <CtaLink
               href={post.metadata.medium}
               aria-label="View on Medium, opens in a new tab"

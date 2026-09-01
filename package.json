@@ -7,7 +7,9 @@
   "scripts": {
     "dev": "next dev -p 3000 -H 0.0.0.0",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "optimize-cover": "node scripts/optimize-cover.mjs",
+    "optimize-image": "node scripts/optimize-image.mjs"
   },
   "dependencies": {
     "@tailwindcss/postcss": "4.3.3",
@@ -22,5 +24,8 @@
     "sugar-high": "^2.0.1",
     "tailwindcss": "4.3.3",
     "typescript": "^7"
+  },
+  "devDependencies": {
+    "sharp": "^0.35.4"
   }
 }

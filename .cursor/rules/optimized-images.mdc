@@ -1,46 +1,53 @@
 ---
-description: Check every site image for size and format — do not convert or resize
+description: Convert every content image to WebP — covers 1920×1080, never commit PNG/JPEG
 alwaysApply: true
 ---
 
-# Image check (no conversion)
+# Images (always WebP)
 
-This applies to **every image on the site**: project covers, writing heroes, in-article photos, UI screenshots, illustrations. Not only new uploads.
+Content images on the site are **WebP only**. Do not copy PNG, JPEG, or GIF into `public/projects`, `public/writing`, or other content folders. Convert with the scripts, then point MDX at the `.webp` path.
 
-When the user provides an image, **inspect only**. Do not convert, resize, recompress, or transcode.
+Platform icons stay as they are: `app/icon.svg`, `app/favicon.ico`, `app/apple-icon.png`, `public/icon-192.png`, `public/icon-512.png`. Flat vector logos may stay SVG. `docs/` is not site content.
 
-1. Read width, height, and format
-2. Compare against the spec below
-3. If it fails, stop. Tell them exactly what to change (format, width, height, destination). Wait for a new file
-4. If it passes, copy the file as-is and point MDX/frontmatter at that path
+Do not use chat attachments as a source to enlarge — Cursor often saves them at 1024px. If a cover is smaller than 1920×1080, stop and ask for a larger export.
 
-Do not use chat attachments as a source to “fix” — Cursor often saves them at 1024px. Report that and ask for the correct export.
+## Covers (project and article)
 
-## Spec
+Same spec. Recenter-crop, never upscale.
 
-| Use | Path | Format | Size |
-| --- | --- | --- | --- |
-| Project cover / hero (same 16:9 as the home card) | `public/projects/<slug>/` | `.webp` | **1920×1080** |
-| Writing `#wide` (full column breakout) | `public/writing/<slug>/` | `.webp` | **1600–1920px** |
-| Photo in the text column | `public/writing/<slug>/` | `.webp` | max **1600px** |
-| UI screenshot | `public/writing/<slug>/` or `public/projects/<slug>/` | `.webp` | max **1920px** |
-| Flat illustration, logo, art with type | same folders | WebP lossless or SVG | do not enlarge |
+| Use | Path | Size |
+| --- | --- | --- |
+| Project cover | `public/projects/<slug>/cover.webp` | **1920×1080** |
+| Article cover | `public/writing/<slug>/cover.webp` | **1920×1080** |
 
-- Do not enlarge smaller assets
-- Reject native captures (e.g. 3024px Retina PNGs) and PNG/JPEG photos/screenshots
-- Point MDX frontmatter `image` and markdown `![]()` at the `.webp` path
+```bash
+pnpm optimize-cover -- <input> public/projects/<slug>/cover.webp
+pnpm optimize-cover -- <input> public/writing/<slug>/cover.webp
+```
+
+Frontmatter: `image: '/projects/<slug>/cover.webp'` or `image: '/writing/<slug>/cover.webp'`. Do not repeat the cover as the first `![]()` in the MDX body. The page renders it.
+
+## In-article images
+
+Also WebP. Do not force 16:9.
+
+| Use | Path | Max width |
+| --- | --- | --- |
+| Photo in the text column | `public/writing/<slug>/` | **1600px** |
+| UI screenshot or `#wide` breakout | `public/writing/<slug>/` or `public/projects/<slug>/` | **1920px** |
+
+```bash
+pnpm optimize-image -- <input> public/writing/<slug>/name.webp --max 1600
+pnpm optimize-image -- <input> public/writing/<slug>/name.webp --max 1920
+```
 
 ```mdx
-image: '/writing/my-slug/hero.webp'
-![Alt text](/writing/my-slug/hero.webp#wide "Caption")
+![Alt text](/writing/my-slug/name.webp "Caption")
+![Alt text](/writing/my-slug/name.webp#wide "Caption")
 ```
 
 ## Rendering
 
-- Article images go through `ZoomableImage` + `next/image` with real `width`/`height` from `getPublicImageSize`
+- Covers and article images go through `next/image` with real `width`/`height` from `getPublicImageSize`
 - Do not use a raw `<img>` for post content
 - Keep `next.config.mjs` `images.formats` as AVIF then WebP
-
-## Leave as PNG/SVG
-
-PWA and platform icons only: `app/icon.svg`, `app/favicon.ico`, `app/apple-icon.png`, `public/icon-192.png`, `public/icon-512.png`

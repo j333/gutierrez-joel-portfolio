@@ -1,6 +1,6 @@
 # [gutierrezjoel.com](https://www.gutierrezjoel.com)
 
-This repository is the source for [gutierrezjoel.com](https://www.gutierrezjoel.com), my personal website as a Product Design Manager. It is a small, content-first portfolio: a home page, an experience section, and writing.
+This repository is the source for [gutierrezjoel.com](https://www.gutierrezjoel.com), my personal website as a Product Design Manager. It is a small, content-first portfolio: project cases on the home page, an about page, and writing.
 
 I author the content in MDX. Routing, metadata, theming, and SEO live in the Next.js App Router. I designed and built it in Cursor with Next.js and Tailwind CSS, typeset in IBM Plex, and hosted it on Vercel.
 
@@ -42,24 +42,77 @@ pnpm dev
 The site runs at [http://localhost:3000](http://localhost:3000).
 
 
-| Command      | Purpose                                             |
-| ------------ | --------------------------------------------------- |
-| `pnpm dev`   | Development server                                  |
-| `pnpm build` | Production build                                    |
-| `pnpm start` | Serve the production build (run `pnpm build` first) |
+| Command               | Purpose                                             |
+| --------------------- | --------------------------------------------------- |
+| `pnpm dev`            | Development server                                  |
+| `pnpm build`          | Production build                                    |
+| `pnpm start`          | Serve the production build (run `pnpm build` first) |
+| `pnpm optimize-cover` | Crop a source image to a 1920×1080 WebP cover       |
+| `pnpm optimize-image` | Convert a source image to WebP at a max width       |
 
 
 
 
 ## Content
 
-Writing and experience are MDX collections. The filename is the slug. Publishing a new `.mdx` file updates the matching index, the home previews (latest three items), and the sitemap automatically.
+Projects and writing are MDX collections. The filename is the slug. A new `.mdx` file updates the matching index, the sitemap, and `llms.txt` automatically. The home page lists every project, sorted by `order`.
+
+Every content image on the site is **WebP**. Convert PNG/JPEG sources with the scripts below; do not commit those formats to `public/projects` or `public/writing`. Platform icons (`favicon.ico`, PWA PNGs) are the exception.
+
+### Images
+
+Covers (project and article) are the same 16:9 frame as the home cards: **1920×1080** WebP. The scripts crop to center and never upscale. If the source is smaller than 1920×1080, export a larger file first.
+
+```bash
+pnpm optimize-cover -- photo.jpg public/projects/<slug>/cover.webp
+pnpm optimize-cover -- photo.jpg public/writing/<slug>/cover.webp
+pnpm optimize-image -- shot.png public/writing/<slug>/name.webp --max 1600
+pnpm optimize-image -- shot.png public/writing/<slug>/name.webp --max 1920
+```
+
+In-article photos are also WebP: max **1600px** in the text column, max **1920px** for UI screenshots or `#wide` breakouts. Do not force those to 16:9.
+
+### Projects
+
+Cases live in `app/projects/posts/`. `jaga.mdx` becomes `/jaga`. They sort by `order` (lower first) on `/`. The page renders the cover from frontmatter; do not repeat it as the first image in the body.
+
+Do not use these slugs: `about`, `writing`, `experience`, `og`, `md`.
+
+Minimum frontmatter:
+
+```mdx
+---
+title: 'Project name'
+startedAt: '2022'
+endedAt: '2025'
+order: 1
+image: '/projects/my-slug/cover.webp'
+summary: 'Short description used in listings and Open Graph.'
+role: 'Product Design Manager'
+type: 'Full-time'
+industry: 'Marketing / SaaS'
+---
+```
+
+
+| Field       | Required | Notes                                                                 |
+| ----------- | -------- | --------------------------------------------------------------------- |
+| `title`     | Yes      | Page title and home card heading                                      |
+| `startedAt` | Yes      | Year (`YYYY`). Listing range and sort fallback                        |
+| `endedAt`   | Yes      | Year (`YYYY`). Listing range and sitemap                              |
+| `order`     | Yes      | Integer. Home grid order; bump the others if this case goes first     |
+| `image`     | Yes      | Cover at `/projects/<slug>/cover.webp` (1920×1080)                    |
+| `summary`   | No       | Card/page subtitle, meta description, and Open Graph                  |
+| `role`      | No       | Metadata grid on the case page                                        |
+| `type`      | No       | e.g. Full-time, Project                                               |
+| `industry`  | No       | Metadata grid on the case page                                        |
+
+
+Each case includes JSON-LD (`CreativeWork`). Copy [jaga.mdx](app/projects/posts/jaga.mdx) or [marketfully.mdx](app/projects/posts/marketfully.mdx) for tone and internal links.
 
 ### Writing
 
-Posts live in `app/writing/posts/`. `liquid-glass.mdx` becomes `/writing/liquid-glass`. The index is `/writing`. Posts sort by `publishedAt`, newest first.
-
-Images referenced in a post live under `public/writing/<slug>/`. Use the same path in frontmatter and in Markdown (`/writing/<slug>/hero.jpg`).
+Posts live in `app/writing/posts/`. `liquid-glass.mdx` becomes `/writing/liquid-glass`. The index is `/writing`. Posts sort by `publishedAt`, newest first. The page and the writing cards render the cover from frontmatter; do not repeat it as the first `![]()` in the body.
 
 Minimum frontmatter:
 
@@ -68,6 +121,7 @@ Minimum frontmatter:
 title: 'Article title'
 publishedAt: '2026-08-20'
 summary: 'Short description used in listings and Open Graph.'
+image: '/writing/my-slug/cover.webp'
 ---
 ```
 
@@ -77,11 +131,11 @@ summary: 'Short description used in listings and Open Graph.'
 | `title`       | Yes      | Page title and listing heading                                                                             |
 | `publishedAt` | Yes      | `YYYY-MM-DD`. Listings show month and year                                                                 |
 | `summary`     | Yes      | Listing subtitle, meta description, and Open Graph                                                         |
-| `image`       | No       | Open Graph image, rooted at `public/`. If omitted, `/og` generates one from the title                      |
-| `medium`      | No       | Medium URL for a “View on Medium” link. Set Medium’s canonical link to the matching `/writing/<slug>` page on this site |
+| `image`       | Yes      | Cover at `/writing/<slug>/cover.webp` (1920×1080)                                                          |
+| `medium`      | No       | Medium URL for a “View on Medium” link. Set Medium’s canonical link to the matching `/writing/<slug>` page |
 
 
-Each article includes JSON-LD (`BlogPosting`). Old `/blog` URLs redirect permanently to `/writing`.
+Each article includes JSON-LD (`BlogPosting`). Old `/blog` URLs redirect permanently to `/writing`. Copy [my-2026-tool-stack.mdx](app/writing/posts/my-2026-tool-stack.mdx) for structure.
 
 ### Experience
 
@@ -123,7 +177,7 @@ Each entry includes JSON-LD (`CreativeWork`). Old `/experience/getgloby` URLs re
 
 | What                                 | Where                                            |
 | ------------------------------------ | ------------------------------------------------ |
-| Canonical URL                        | `baseUrl` in `app/sitemap.ts` (SEO, OG, JSON-LD) |
+| Canonical URL                        | `site.url` in `app/lib/site.ts` (SEO, OG, JSON-LD) |
 | Site title and description           | `metadata` in `app/layout.tsx`                   |
 | Home                                 | `app/page.tsx`                                   |
 | Navigation, theme toggle, and resume | `app/components/nav.tsx`                         |
@@ -137,20 +191,25 @@ Each entry includes JSON-LD (`CreativeWork`). Old `/experience/getgloby` URLs re
 
 ```
 app/
-  page.tsx                    Home (bio, writing, experience, education)
+  page.tsx                    Home (bio + project cards)
   layout.tsx                  Layout, fonts, and global metadata
+  about/page.tsx              About
+  [slug]/page.tsx             Project case (includes JSON-LD)
   writing/page.tsx            Writing index
   writing/[slug]/page.tsx     Article (includes JSON-LD)
   writing/posts/              Writing MDX
   writing/utils.ts            Post loading and dates
+  projects/posts/             Project MDX
+  projects/utils.ts           Project loading and sort
   experience/page.tsx         Experience index
   experience/[slug]/page.tsx  Experience entry (includes JSON-LD)
   experience/posts/           Experience MDX
   experience/utils.ts         Entry loading and sort
   components/                 Shared UI (nav, theme, MDX, listings)
+  lib/site.ts                 Canonical URL, copy, JSON-LD person
   lib/theme.ts                Light / dark / system theme
   og/route.tsx                Fallback Open Graph images
-  sitemap.ts                  Sitemap and baseUrl
+  sitemap.ts
   robots.ts
   manifest.ts
 ```
@@ -159,18 +218,20 @@ app/
 
 ## Deploy
 
-The project is set up for Vercel. `baseUrl` in `app/sitemap.ts` already matches the live domain. If you deploy your own copy, point it at yours.
+The project is set up for Vercel. `site.url` in `app/lib/site.ts` already matches the live domain. If you deploy your own copy, point it at yours.
 
 ## Using this project
 
 The code is there to learn from or use as a starting point. The writing, experience, images, resume, and home copy are mine. If you fork the repo, replace:
 
 - `app/writing/posts/`
+- `app/projects/posts/`
 - `app/experience/posts/`
 - `public/writing/`
+- `public/projects/`
 - `public/Joel_Gutierrez_Resume.pdf`
 - Home copy in `app/page.tsx`
-- Site title and description in `app/layout.tsx`
+- Site title and description in `app/lib/site.ts`
 
 If you use it, a mention in your site credits is appreciated. Something like:
 

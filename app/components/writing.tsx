@@ -51,6 +51,8 @@ const WritingCard = ({
               width={image.width}
               height={image.height}
               sizes={projectCardImageSizes}
+              quality={100}
+              unoptimized
               priority={priority}
               className="h-full w-full rounded-none object-cover"
             />
