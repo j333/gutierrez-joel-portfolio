@@ -8,7 +8,9 @@ import { ArrowIcon } from './arrow-icon'
 import { chromeLinkClassName } from './link-styles'
 import { ThemeToggle } from './theme-toggle'
 
-const navLinkClassName = `${chromeLinkClassName} -mx-1`
+const navLinkClassName = `${chromeLinkClassName} -mx-1 whitespace-nowrap`
+
+const navListClassName = 'flex items-center gap-x-3 sm:gap-x-8'
 
 const navShellClassName =
   'sticky-nav sticky top-0 z-40 w-full bg-white pt-4 dark:bg-black'
@@ -42,20 +44,19 @@ export const Navbar = () => {
         id="nav"
         aria-label="Primary"
       >
-        <div className="flex w-full items-center justify-between">
-          <Link
-            href="/"
-            className={navLinkClassName}
-            aria-current={pathname === '/' ? 'page' : undefined}
-          >
-            gutierrez joel
-          </Link>
-          <ul className="flex items-center gap-x-8">
-            <li className="flex items-center">
-              <ThemeToggle />
+        <div className="flex w-full items-center justify-between gap-x-3 sm:gap-x-8">
+          <ul className={navListClassName}>
+            <li className="flex shrink-0 items-center">
+              <Link
+                href="/"
+                className={navLinkClassName}
+                aria-current={pathname === '/' ? 'page' : undefined}
+              >
+                gutierrez joel
+              </Link>
             </li>
             {navItems.map((item) => (
-              <li key={item.href} className="flex items-center">
+              <li key={item.href} className="flex shrink-0 items-center">
                 <Link
                   href={item.href}
                   className={navLinkClassName}
@@ -67,7 +68,12 @@ export const Navbar = () => {
                 </Link>
               </li>
             ))}
-            <li className="flex items-center">
+          </ul>
+          <ul className={navListClassName}>
+            <li className="flex shrink-0 items-center">
+              <ThemeToggle />
+            </li>
+            <li className="flex shrink-0 items-center">
               <a
                 href={site.resumePath}
                 target="_blank"
