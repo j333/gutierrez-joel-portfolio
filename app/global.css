@@ -44,10 +44,23 @@ html {
   overflow-x: clip;
   color-scheme: light;
   --noise-opacity: 0.05;
+  --noise-size: 200px;
 }
 
 html.dark {
   --noise-opacity: 0.1;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+  html {
+    --noise-size: 100px;
+  }
+}
+
+@media (-webkit-min-device-pixel-ratio: 3), (min-resolution: 3dppx) {
+  html {
+    --noise-size: calc(200px / 3);
+  }
 }
 
 .site-noise,
@@ -55,9 +68,10 @@ html.dark {
   pointer-events: none;
   background-image: url('/bkg-noise.webp');
   background-repeat: repeat;
-  background-size: 200px 200px;
+  background-size: var(--noise-size) var(--noise-size);
   opacity: var(--noise-opacity);
   filter: invert(1);
+  image-rendering: pixelated;
 }
 
 html.dark .site-noise,
