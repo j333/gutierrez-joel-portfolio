@@ -52,7 +52,7 @@ export const ContentListItem = ({
             width={PREVIEW_WIDTH}
             height={PREVIEW_HEIGHT}
             sizes={`(max-width: 639px) calc(100vw - 2rem), ${PREVIEW_WIDTH}px`}
-            className="h-auto w-full rounded-xl object-cover sm:h-[100px] sm:w-[160px] sm:shrink-0"
+            className="h-auto w-full rounded-none object-cover sm:h-[100px] sm:w-[160px] sm:shrink-0"
           />
         ) : null}
       </Link>

@@ -45,6 +45,10 @@ html {
   color-scheme: light;
 }
 
+img {
+  border-radius: 0;
+}
+
 .theme-toggle-label {
   position: absolute;
   right: 100%;
@@ -174,7 +178,7 @@ html {
 }
 
 .prose img {
-  @apply m-0 h-auto w-full rounded-xl;
+  @apply m-0 h-auto w-full rounded-none;
 }
 
 .prose p:has(img) {

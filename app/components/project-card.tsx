@@ -32,7 +32,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
             sizes={projectCardImageSizes}
             quality={projectImageQuality}
             unoptimized
-            className="aspect-video h-auto w-full object-cover"
+            className="aspect-video h-auto w-full rounded-none object-cover"
           />
         ) : (
           <div

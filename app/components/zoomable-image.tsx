@@ -219,7 +219,7 @@ export const ZoomableImage = ({
             width={width}
             height={height}
             sizes={articleImageSizes[size]}
-            className="m-0 h-auto w-full rounded-xl"
+            className="m-0 h-auto w-full rounded-none"
           />
         ) : (
           <img
@@ -227,7 +227,7 @@ export const ZoomableImage = ({
             alt={alt}
             loading="lazy"
             decoding="async"
-            className="m-0 h-auto w-full rounded-xl"
+            className="m-0 h-auto w-full rounded-none"
           />
         )}
       </button>

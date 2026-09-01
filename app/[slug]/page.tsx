@@ -90,7 +90,7 @@ const Project = async ({ params }: SlugPageProps) => {
               sizes={fullWidthImageSizes}
               quality={projectImageQuality}
               unoptimized
-              className="object-cover"
+              className="rounded-none object-cover"
               priority
             />
           </div>
