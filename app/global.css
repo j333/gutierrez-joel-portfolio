@@ -46,13 +46,21 @@ html {
 }
 
 .theme-toggle-label {
-  display: none;
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  margin-right: 0.25rem;
+  transform: translateY(-50%);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 @media (hover: hover) and (pointer: fine) {
   .theme-toggle:hover .theme-toggle-label,
   .theme-toggle:focus-visible .theme-toggle-label {
-    display: inline;
+    opacity: 1;
+    visibility: visible;
   }
 }
 

@@ -14,14 +14,14 @@ import {
   type ThemePreference,
 } from '../lib/theme'
 import { navTextClassName } from './link-styles'
-import { MoonIcon, SunIcon, SystemIcon, themeIconClassName } from './theme-icons'
+import { MoonIcon, SunIcon, SystemIcon } from './theme-icons'
 
 const themeToggleClassName =
-  'theme-toggle group inline-flex w-fit cursor-pointer items-center rounded-sm border-0 bg-transparent -mx-1 px-1 py-1 outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 dark:focus-visible:outline-neutral-100'
+  'theme-toggle group relative inline-flex w-fit cursor-pointer items-center rounded-sm border-0 bg-transparent -mx-1 px-1 py-1 outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 dark:focus-visible:outline-neutral-100'
 
-const themeLabelClassName = `${navTextClassName} theme-toggle-label mr-1 whitespace-nowrap`
+const themeLabelClassName = `${navTextClassName} theme-toggle-label whitespace-nowrap`
 
-const themeToggleIconClassName = `${themeIconClassName} theme-toggle-icon`
+const themeToggleIconClassName = 'shrink-0'
 
 const themeIcons: Record<ThemePreference, typeof SunIcon> = {
   light: SunIcon,

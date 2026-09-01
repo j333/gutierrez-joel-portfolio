@@ -2,17 +2,13 @@ import { ArrowIcon } from './arrow-icon'
 import { chromeLinkClassName } from './link-styles'
 import { socialLinks } from 'app/lib/site'
 
-const footerSocialLinks = socialLinks.filter((link) =>
-  ['LinkedIn', 'Behance', 'Dribbble'].includes(link.name)
-)
-
 const Footer = () => {
   return (
     <footer>
       <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
         <nav aria-label="Social">
           <ul className="flex flex-wrap gap-x-6 gap-y-3">
-            {footerSocialLinks.map((link) => (
+            {socialLinks.map((link) => (
               <li key={link.name}>
                 <a
                   className={chromeLinkClassName}

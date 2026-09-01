@@ -42,7 +42,7 @@ export const Navbar = () => {
         id="nav"
         aria-label="Primary"
       >
-        <div className="flex w-full items-start justify-between">
+        <div className="flex w-full items-center justify-between">
           <Link
             href="/"
             className={navLinkClassName}
@@ -51,11 +51,11 @@ export const Navbar = () => {
             gutierrez joel
           </Link>
           <ul className="flex items-center gap-x-8">
-            <li>
+            <li className="flex items-center">
               <ThemeToggle />
             </li>
             {navItems.map((item) => (
-              <li key={item.href}>
+              <li key={item.href} className="flex items-center">
                 <Link
                   href={item.href}
                   className={navLinkClassName}
@@ -67,7 +67,7 @@ export const Navbar = () => {
                 </Link>
               </li>
             ))}
-            <li>
+            <li className="flex items-center">
               <a
                 href={site.resumePath}
                 target="_blank"
