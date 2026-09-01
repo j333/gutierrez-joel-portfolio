@@ -13,6 +13,11 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/experience',
+        destination: '/about',
+        permanent: true,
+      },
+      {
         source: '/experience/getgloby',
         destination: '/experience/marketfully',
         permanent: true,

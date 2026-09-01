@@ -21,7 +21,7 @@ const sitemap = async () => {
     lastModified: project.metadata.endedAt,
   }))
 
-  const routes = ['', '/about', '/writing', '/experience'].map((route) => ({
+  const routes = ['', '/about', '/writing'].map((route) => ({
     url: `${site.url}${route}`,
     lastModified: new Date().toISOString().split('T')[0],
   }))

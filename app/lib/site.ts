@@ -57,6 +57,7 @@ export const aboutIndex = {
   title: 'About',
   description:
     'Product designer with over a decade of experience in product strategy, design systems, design leadership, and UX.',
+  intro: 'Background, experience, and how I work.',
   path: '/about',
   eyebrow: 'ABOUT',
 } as const
