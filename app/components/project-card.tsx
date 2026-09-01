@@ -62,4 +62,4 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
 }
 
 export const projectGridClassName =
-  'grid min-w-0 grid-cols-1 gap-x-4 gap-y-6 pb-16 lg:grid-cols-2'
+  'grid min-w-0 grid-cols-1 gap-6 pb-16 lg:grid-cols-2'
