@@ -1,5 +1,5 @@
 export const arrowIconClassName =
-  'ml-1 size-2.5 shrink-0 self-start translate-y-px'
+  'ml-1 size-2.5 shrink-0 self-start translate-y-[2px]'
 
 export const ArrowIcon = ({ className }: { className?: string }) => {
   return (

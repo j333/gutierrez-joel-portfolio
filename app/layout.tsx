@@ -89,7 +89,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
       </head>
       <body
         suppressHydrationWarning
-        className="relative isolate mx-auto flex min-h-dvh w-full max-w-site flex-col gap-2 px-6 pb-4 antialiased"
+        className="relative isolate mx-auto flex min-h-dvh w-full max-w-site flex-col gap-2 px-4 pb-4 antialiased sm:px-6"
       >
         <div aria-hidden="true" className="site-noise" />
         <a href="#main-content" className={`skip-link ${chromeLinkClassName}`}>

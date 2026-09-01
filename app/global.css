@@ -232,9 +232,15 @@ img {
 }
 
 .article-image--wide {
-  width: min(100vw - 3rem, 56rem);
+  width: min(100vw - 2rem, 56rem);
   max-width: none;
   margin-left: 0;
+}
+
+@media (min-width: 640px) {
+  .article-image--wide {
+    width: min(100vw - 3rem, 56rem);
+  }
 }
 
 .article-image-overlay {

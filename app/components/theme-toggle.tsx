@@ -18,7 +18,7 @@ import { navTextClassName } from './link-styles'
 import { MoonIcon, SunIcon } from './theme-icons'
 
 const themeToggleClassName =
-  'theme-toggle group relative inline-flex w-fit cursor-pointer items-center rounded-sm border-0 bg-transparent -mx-1 px-1 py-1 outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 dark:focus-visible:outline-neutral-100'
+  'theme-toggle group relative inline-flex min-h-11 w-fit cursor-pointer items-center rounded-sm border-0 bg-transparent -mx-1 px-1 py-1 outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 sm:min-h-0 dark:focus-visible:outline-neutral-100'
 
 const themeLabelClassName = `${navTextClassName} theme-toggle-label whitespace-nowrap`
 

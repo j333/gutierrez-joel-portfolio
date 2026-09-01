@@ -8,12 +8,13 @@ import { ArrowIcon } from './arrow-icon'
 import { chromeLinkClassName } from './link-styles'
 import { ThemeToggle } from './theme-toggle'
 
-const navLinkClassName = `${chromeLinkClassName} -mx-1 whitespace-nowrap`
+const navLinkClassName = `${chromeLinkClassName} -mx-1 min-h-11 whitespace-nowrap sm:min-h-0`
 
-const navListClassName = 'flex items-center gap-x-3 sm:gap-x-8'
+const navListClassName =
+  'flex items-center gap-x-4 min-[400px]:gap-x-6 sm:gap-x-8'
 
 const navShellClassName =
-  'sticky-nav sticky top-0 z-40 -mx-6 w-[calc(100%+3rem)] bg-transparent px-6 pt-4 data-[away-from-top=true]:bg-white dark:data-[away-from-top=true]:bg-black'
+  'sticky-nav sticky top-0 z-40 -mx-4 w-[calc(100%+2rem)] bg-transparent px-4 pt-4 sm:-mx-6 sm:w-[calc(100%+3rem)] sm:px-6 data-[away-from-top=true]:bg-white dark:data-[away-from-top=true]:bg-black'
 
 const navClassName = 'pointer-events-auto pb-3'
 
@@ -45,7 +46,7 @@ export const Navbar = () => {
         id="nav"
         aria-label="Primary"
       >
-        <div className="flex w-full items-center justify-between gap-x-3 sm:gap-x-8">
+        <div className="flex w-full items-center justify-between gap-x-4 min-[400px]:gap-x-6 sm:gap-x-8">
           <ul className={navListClassName}>
             <li className="flex shrink-0 items-center">
               <Link
@@ -53,7 +54,8 @@ export const Navbar = () => {
                 className={navLinkClassName}
                 aria-current={pathname === '/' ? 'page' : undefined}
               >
-                gutierrez joel
+                gutierrez
+                <span className="hidden sm:inline">&nbsp;joel</span>
               </Link>
             </li>
             {navItems.map((item) => (
@@ -82,8 +84,10 @@ export const Navbar = () => {
                 className={navLinkClassName}
                 aria-label="Resume, opens PDF in a new tab"
               >
-                Resume
-                <ArrowIcon />
+                <span className="inline-flex">
+                  Resume
+                  <ArrowIcon />
+                </span>
               </a>
             </li>
           </ul>
