@@ -1,3 +1,5 @@
+import { aboutEducation, aboutLanguages, aboutSkills } from './about-data'
+
 export const site = {
   name: 'Joel Gutiérrez',
   jobTitle: 'Product Design Manager',
@@ -20,22 +22,34 @@ export const socialLinks = [
 ] as const
 
 export const sameAs = [
-  socialLinks[0].url,
+  ...socialLinks.map((link) => link.url),
   'https://github.com/j333',
 ] as const
 
-export const personJsonLd = {
-  '@context': 'https://schema.org',
+export const personEntity = {
   '@type': 'Person',
   name: site.name,
   jobTitle: site.jobTitle,
   url: site.url,
+  description: site.description,
+  image: `${site.url}/opengraph-image`,
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'Mendoza',
     addressCountry: 'Argentina',
   },
   sameAs,
+  knowsAbout: [...aboutSkills],
+  knowsLanguage: aboutLanguages.map((language) => language.split(' ')[0]),
+  alumniOf: {
+    '@type': 'CollegeOrUniversity',
+    name: aboutEducation.school,
+  },
+} as const
+
+export const personJsonLd = {
+  '@context': 'https://schema.org',
+  ...personEntity,
 }
 
 export const experienceIndex = {

@@ -23,6 +23,7 @@ import {
   getProjectBySlug,
   getProjectCanonicalUrl,
   getProjectImage,
+  getProjectMarkdownUrl,
   getProjects,
   projectImageQuality,
 } from 'app/projects/utils'
@@ -48,6 +49,7 @@ export const generateMetadata = async ({ params }: SlugPageProps) => {
     title,
     description,
     canonical: getProjectCanonicalUrl(project),
+    markdownUrl: getProjectMarkdownUrl(project),
     type: 'article',
     publishedTime: `${startedAt}-01-01`,
   })

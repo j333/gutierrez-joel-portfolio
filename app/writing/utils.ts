@@ -54,13 +54,11 @@ export const getWritingPostImage = (
   }
 }
 
-export const getPostCanonicalUrl = (post: WritingPost) => {
-  if (post.metadata.medium) {
-    return post.metadata.medium
-  }
+export const getPostCanonicalUrl = (post: WritingPost) =>
+  `${site.url}/writing/${post.slug}`
 
-  return `${site.url}/writing/${post.slug}`
-}
+export const getPostMarkdownUrl = (post: WritingPost) =>
+  `${site.url}/writing/${post.slug}.md`
 
 export const formatDate = (date: string, includeRelative = false) => {
   const currentDate = new Date()

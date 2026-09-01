@@ -12,6 +12,7 @@ import {
   getExperience,
   getExperienceBySlug,
   getExperienceCanonicalUrl,
+  getExperienceMarkdownUrl,
 } from 'app/experience/utils'
 import {
   getExperienceProjects,
@@ -45,6 +46,7 @@ export const generateMetadata = async ({ params }: SlugPageProps) => {
     title,
     description,
     canonical: getExperienceCanonicalUrl(entry),
+    markdownUrl: getExperienceMarkdownUrl(entry),
     type: 'article',
     publishedTime: `${startedAt}-01-01`,
   })

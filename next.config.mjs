@@ -44,6 +44,30 @@ const nextConfig = {
       },
     ];
   },
+  async rewrites() {
+    return [
+      {
+        source: '/about.md',
+        destination: '/md/about',
+      },
+      {
+        source: '/index.md',
+        destination: '/md/index',
+      },
+      {
+        source: '/writing/:slug.md',
+        destination: '/md/writing/:slug',
+      },
+      {
+        source: '/experience/:slug.md',
+        destination: '/md/experience/:slug',
+      },
+      {
+        source: '/:slug.md',
+        destination: '/md/:slug',
+      },
+    ];
+  },
   images: {
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],

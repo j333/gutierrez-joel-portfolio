@@ -31,3 +31,6 @@ export const getExperienceBySlug = (slug: string) =>
 
 export const getExperienceCanonicalUrl = (entry: ExperienceEntry) =>
   `${site.url}/experience/${entry.slug}`
+
+export const getExperienceMarkdownUrl = (entry: ExperienceEntry) =>
+  `${site.url}/experience/${entry.slug}.md`

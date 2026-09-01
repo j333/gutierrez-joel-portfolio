@@ -78,7 +78,7 @@ summary: 'Short description used in listings and Open Graph.'
 | `publishedAt` | Yes      | `YYYY-MM-DD`. Listings show month and year                                                                 |
 | `summary`     | Yes      | Listing subtitle, meta description, and Open Graph                                                         |
 | `image`       | No       | Open Graph image, rooted at `public/`. If omitted, `/og` generates one from the title                      |
-| `medium`      | No       | Canonical URL on Medium. The article page adds a “View on Medium” link, and SEO uses that URL as canonical |
+| `medium`      | No       | Medium URL for a “View on Medium” link. Set Medium’s canonical link to the matching `/writing/<slug>` page on this site |
 
 
 Each article includes JSON-LD (`BlogPosting`). Old `/blog` URLs redirect permanently to `/writing`.

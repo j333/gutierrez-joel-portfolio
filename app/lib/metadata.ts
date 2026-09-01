@@ -5,6 +5,7 @@ type PageMetadataInput = {
   title: string
   description: string
   canonical: string
+  markdownUrl?: string
   type?: 'website' | 'article'
   publishedTime?: string
 }
@@ -13,6 +14,7 @@ export const createPageMetadata = ({
   title,
   description,
   canonical,
+  markdownUrl,
   type = 'website',
   publishedTime,
 }: PageMetadataInput): Metadata => ({
@@ -20,6 +22,7 @@ export const createPageMetadata = ({
   description,
   alternates: {
     canonical,
+    ...(markdownUrl ? { types: { 'text/markdown': markdownUrl } } : {}),
   },
   openGraph: {
     title,
@@ -54,6 +57,7 @@ type CreativeWorkJsonLdInput = {
   description: string
   image: string
   url: string
+  sameAs?: string
 }
 
 export const createCreativeWorkJsonLd = ({
@@ -64,6 +68,7 @@ export const createCreativeWorkJsonLd = ({
   description,
   image,
   url,
+  sameAs,
 }: CreativeWorkJsonLdInput) => ({
   '@context': 'https://schema.org',
   '@type': type,
@@ -73,8 +78,16 @@ export const createCreativeWorkJsonLd = ({
   description,
   image,
   url,
+  ...(sameAs ? { sameAs } : {}),
   author: {
     '@type': 'Person',
     name: site.name,
   },
+})
+
+export const createProfilePageJsonLd = (url: string, mainEntity: object) => ({
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  url,
+  mainEntity,
 })

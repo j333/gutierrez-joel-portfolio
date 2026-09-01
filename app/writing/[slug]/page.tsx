@@ -17,6 +17,7 @@ import type { SlugPageProps } from 'app/lib/params'
 import { writingIndex } from 'app/lib/site'
 import {
   getPostCanonicalUrl,
+  getPostMarkdownUrl,
   getWritingPostBySlug,
   getWritingPosts,
 } from 'app/writing/utils'
@@ -44,6 +45,7 @@ export const generateMetadata = async ({ params }: SlugPageProps) => {
     title,
     description,
     canonical: getPostCanonicalUrl(post),
+    markdownUrl: getPostMarkdownUrl(post),
     type: 'article',
     publishedTime,
   })
@@ -71,6 +73,7 @@ const Writing = async ({ params }: SlugPageProps) => {
             writingIndex.eyebrow
           ),
           url: getPostCanonicalUrl(post),
+          ...(post.metadata.medium ? { sameAs: post.metadata.medium } : {}),
         })}
       />
       <article className={`${textColumnClassName} ${pageSectionClassName}`}>

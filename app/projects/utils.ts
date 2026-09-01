@@ -35,6 +35,9 @@ export const getProjectBySlug = (slug: string) =>
 export const getProjectCanonicalUrl = (project: Project) =>
   `${site.url}/${project.slug}`
 
+export const getProjectMarkdownUrl = (project: Project) =>
+  `${site.url}/${project.slug}.md`
+
 export const getProjectImage = (project: Project): ProjectImage | null => {
   const rawSrc = project.metadata.image
 

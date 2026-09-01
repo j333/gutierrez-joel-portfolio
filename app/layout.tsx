@@ -35,6 +35,9 @@ export const metadata: Metadata = {
   description: site.description,
   alternates: {
     canonical: site.url,
+    types: {
+      'text/markdown': `${site.url}/index.md`,
+    },
   },
   openGraph: {
     title: siteTitle,
@@ -81,6 +84,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
           }}
         />
         <JsonLd data={personJsonLd} />
+        <link rel="describedby" href="/llms.txt" />
       </head>
       <body
         suppressHydrationWarning
