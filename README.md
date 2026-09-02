@@ -1,6 +1,6 @@
 # [gutierrezjoel.com](https://www.gutierrezjoel.com)
 
-This repository is the source for [gutierrezjoel.com](https://www.gutierrezjoel.com), my personal website as a Product Design Manager. It is a small, content-first portfolio: project cases on the home page, an about page, and writing.
+This repository is the source for [gutierrezjoel.com](https://www.gutierrezjoel.com), my personal website as a Product Design Manager. It is a small, content-first portfolio: project cases on the home page, an about page with experience, and writing.
 
 I author the content in MDX. Routing, metadata, theming, and SEO live in the Next.js App Router. I designed and built it in Cursor with Next.js and Tailwind CSS, typeset in IBM Plex, and hosted it on Vercel.
 
@@ -11,16 +11,17 @@ The code is open if you want to learn from it or use it as a starting point. If 
 ## Stack
 
 
-| Layer        | Choice                                             |
-| ------------ | -------------------------------------------------- |
-| Framework    | Next.js 16 (App Router)                            |
-| UI           | React 19, Tailwind CSS v4, IBM Plex Sans and Mono  |
-| Content      | MDX via `next-mdx-remote`                          |
-| Language     | TypeScript                                         |
-| Highlighting | sugar-high                                         |
-| Theming      | Light, dark, and system (stored in `localStorage`) |
-| Tooling      | pnpm, PostCSS                                      |
-| Hosting      | Vercel                                             |
+| Layer        | Choice                                                          |
+| ------------ | --------------------------------------------------------------- |
+| Framework    | Next.js 16 (App Router)                                         |
+| UI           | React 19, Tailwind CSS v4, IBM Plex Sans and Mono               |
+| Content      | MDX via `next-mdx-remote`                                       |
+| Language     | TypeScript                                                      |
+| Highlighting | sugar-high                                                      |
+| Theming      | Light and dark (stored in `localStorage`; first visit follows the system) |
+| Images       | WebP in content folders; `next/image` with AVIF then WebP       |
+| Tooling      | pnpm 11, PostCSS, Sharp (cover and in-article scripts)          |
+| Hosting      | Vercel                                                          |
 
 
 
@@ -39,7 +40,7 @@ pnpm install
 pnpm dev
 ```
 
-The site runs at [http://localhost:3000](http://localhost:3000).
+The site runs at [http://localhost:3000](http://localhost:3000). The dev server binds to `0.0.0.0` so other devices on the same network can load it.
 
 
 | Command               | Purpose                                             |
@@ -55,9 +56,11 @@ The site runs at [http://localhost:3000](http://localhost:3000).
 
 ## Content
 
-Projects and writing are MDX collections. The filename is the slug. A new `.mdx` file updates the matching index, the sitemap, and `llms.txt` automatically. The home page lists every project, sorted by `order`.
+Projects, writing, and experience are MDX collections. The filename is the slug. A new `.mdx` file updates the matching index, the sitemap, `llms.txt`, and the markdown mirrors automatically. The home page lists every project, sorted by `order`.
 
 Every content image on the site is **WebP**. Convert PNG/JPEG sources with the scripts below; do not commit those formats to `public/projects` or `public/writing`. Platform icons (`favicon.ico`, PWA PNGs) are the exception.
+
+HTML pages advertise a `text/markdown` alternate. Append `.md` to a URL (`/jaga.md`, `/writing/liquid-glass.md`, `/about.md`, `/index.md`) for a machine-readable version. [`/llms.txt`](https://www.gutierrezjoel.com/llms.txt) is an index of those files; [`/llms-full.txt`](https://www.gutierrezjoel.com/llms-full.txt) concatenates about, cases, and writing.
 
 ### Images
 
@@ -87,25 +90,27 @@ startedAt: '2022'
 endedAt: '2025'
 order: 1
 image: '/projects/my-slug/cover.webp'
+product: 'Product name'
 summary: 'Short description used in listings and Open Graph.'
+deliverable: 'AI product'
 role: 'Product Design Manager'
-type: 'Full-time'
 industry: 'Marketing / SaaS'
 ---
 ```
 
 
-| Field       | Required | Notes                                                                 |
-| ----------- | -------- | --------------------------------------------------------------------- |
-| `title`     | Yes      | Page title and home card heading                                      |
-| `startedAt` | Yes      | Year (`YYYY`). Listing range and sort fallback                        |
-| `endedAt`   | Yes      | Year (`YYYY`). Listing range and sitemap                              |
-| `order`     | Yes      | Integer. Home grid order; bump the others if this case goes first     |
-| `image`     | Yes      | Cover at `/projects/<slug>/cover.webp` (1920×1080)                    |
-| `summary`   | No       | Card/page subtitle, meta description, and Open Graph                  |
-| `role`      | No       | Metadata grid on the case page                                        |
-| `type`      | No       | e.g. Full-time, Project                                               |
-| `industry`  | No       | Metadata grid on the case page                                        |
+| Field         | Required | Notes                                                              |
+| ------------- | -------- | ------------------------------------------------------------------ |
+| `title`       | Yes      | Page title and home card heading                                   |
+| `startedAt`   | Yes      | Year (`YYYY`). Listing range and sort fallback                     |
+| `endedAt`     | Yes      | Year (`YYYY`). Listing range and sitemap                           |
+| `order`       | Yes      | Integer. Home grid order; bump the others if this case goes first  |
+| `image`       | Yes      | Cover at `/projects/<slug>/cover.webp` (1920×1080)                 |
+| `product`     | Yes      | Brand on the case metadata grid                                    |
+| `deliverable` | Yes      | Deliverable on the case metadata grid and in the meta description  |
+| `summary`     | No       | Card/page subtitle, meta description, and Open Graph               |
+| `role`        | No       | Metadata grid on the case page                                     |
+| `industry`    | No       | Metadata grid on the case page                                     |
 
 
 Each case includes JSON-LD (`CreativeWork`). Copy [jaga.mdx](app/projects/posts/jaga.mdx) or [marketfully.mdx](app/projects/posts/marketfully.mdx) for tone and internal links.
@@ -139,9 +144,9 @@ Each article includes JSON-LD (`BlogPosting`). Old `/blog` URLs redirect permane
 
 ### Experience
 
-Entries live in `app/experience/posts/`. `marketfully.mdx` becomes `/experience/marketfully`. The index is `/experience`. Entries sort by `endedAt`, then `startedAt`, newest first.
+Entries live in `app/experience/posts/`. `marketfully.mdx` becomes `/experience/marketfully`. There is no experience index: `/experience` redirects to `/about`, and About lists every entry (title, summary, year range), sorted by `endedAt`, then `startedAt`, newest first.
 
-Listings show the role in front of the summary when `role` is set, and a year range from `startedAt`–`endedAt`. The entry page shows a metadata grid (role, type, industry, mode, start, end).
+The entry page shows a metadata grid (role, type, industry, mode, start, end). Related client work can be injected from `app/experience/projects.ts` at a `<!-- selected-work -->` marker in the MDX.
 
 Minimum frontmatter:
 
@@ -161,7 +166,7 @@ summary: 'Short description used in listings and Open Graph.'
 | `startedAt` | Yes      | Year (`YYYY`). Used for listing range and sort                                     |
 | `endedAt`   | Yes      | Year (`YYYY`). Used for listing range, sort, and sitemap                           |
 | `summary`   | Yes      | Listing subtitle, meta description, and Open Graph                                 |
-| `role`      | No       | Shown on the entry page and prepended to the listing summary                       |
+| `role`      | No       | Shown on the entry page                                                            |
 | `type`      | No       | e.g. Full-time, Project                                                            |
 | `industry`  | No       | Shown on the entry page                                                            |
 | `workplace` | No       | Shown as Mode (Remote, Hybrid, On-site)                                            |
@@ -170,19 +175,20 @@ summary: 'Short description used in listings and Open Graph.'
 | `image`     | No       | Open Graph image. If omitted, `/og` generates one from the title                   |
 
 
-Each entry includes JSON-LD (`CreativeWork`). Old `/experience/getgloby` URLs redirect to Marketfully. Old Golf Boost and Rehab Boost experience URLs redirect to the Golf Boost project. `/experience/vina-errazuriz` redirects to About.
+Each entry includes JSON-LD (`OrganizationRole`). Old `/experience/getgloby` URLs redirect to Marketfully. Old Golf Boost and Rehab Boost experience URLs redirect to the Golf Boost project. `/experience/vina-errazuriz` redirects to About.
 
 ## Configuration
 
 
-| What                                 | Where                                            |
-| ------------------------------------ | ------------------------------------------------ |
-| Canonical URL                        | `site.url` in `app/lib/site.ts` (SEO, OG, JSON-LD) |
-| Site title and description           | `metadata` in `app/layout.tsx`                   |
-| Home                                 | `app/page.tsx`                                   |
-| Navigation, theme toggle, and resume | `app/components/nav.tsx`                         |
-| Footer                               | `app/components/footer.tsx`                      |
-| Resume PDF                           | `public/Joel_Gutierrez_Resume.pdf`               |
+| What                                 | Where                                              |
+| ------------------------------------ | -------------------------------------------------- |
+| Canonical URL, title, and description | `site` in `app/lib/site.ts` (SEO, OG, JSON-LD)    |
+| About bio, skills, education         | `app/lib/about-data.ts`                            |
+| Home                                 | `app/page.tsx`                                     |
+| Navigation, theme toggle, and resume | `app/components/nav.tsx`                           |
+| Footer                               | `app/components/footer.tsx`                        |
+| Resume PDF                           | `public/Joel_Gutierrez_Resume.pdf`                 |
+| Redirects and `.md` rewrites         | `next.config.mjs`                                  |
 
 
 
@@ -193,7 +199,7 @@ Each entry includes JSON-LD (`CreativeWork`). Old `/experience/getgloby` URLs re
 app/
   page.tsx                    Home (bio + project cards)
   layout.tsx                  Layout, fonts, and global metadata
-  about/page.tsx              About
+  about/page.tsx              About (bio, experience list, skills)
   [slug]/page.tsx             Project case (includes JSON-LD)
   writing/page.tsx            Writing index
   writing/[slug]/page.tsx     Article (includes JSON-LD)
@@ -201,17 +207,25 @@ app/
   writing/utils.ts            Post loading and dates
   projects/posts/             Project MDX
   projects/utils.ts           Project loading and sort
-  experience/page.tsx         Experience index
   experience/[slug]/page.tsx  Experience entry (includes JSON-LD)
   experience/posts/           Experience MDX
   experience/utils.ts         Entry loading and sort
+  experience/projects.ts      Client work listed on some entries
   components/                 Shared UI (nav, theme, MDX, listings)
   lib/site.ts                 Canonical URL, copy, JSON-LD person
-  lib/theme.ts                Light / dark / system theme
+  lib/about-data.ts           About page copy
+  lib/theme.ts                Light / dark theme
+  lib/llms.ts                 Markdown mirrors, llms.txt, llms-full.txt
+  md/[[...path]]/route.ts     Serves `/index.md`, `/about.md`, `/*.md`
+  llms.txt/route.ts
+  llms-full.txt/route.ts
   og/route.tsx                Fallback Open Graph images
   sitemap.ts
   robots.ts
   manifest.ts
+scripts/
+  optimize-cover.mjs
+  optimize-image.mjs
 ```
 
 
@@ -227,16 +241,17 @@ The code is there to learn from or use as a starting point. The writing, experie
 - `app/writing/posts/`
 - `app/projects/posts/`
 - `app/experience/posts/`
+- `app/experience/projects.ts`
+- `app/lib/about-data.ts`
 - `public/writing/`
 - `public/projects/`
 - `public/Joel_Gutierrez_Resume.pdf`
 - Home copy in `app/page.tsx`
-- Site title and description in `app/lib/site.ts`
+- Site title, description, and social links in `app/lib/site.ts`
 
 If you use it, a mention in your site credits is appreciated. Something like:
 
 > Built from [gutierrezjoel.com](https://www.gutierrezjoel.com) by Joel Gutiérrez.
-
 
 
 ## Contributing
@@ -251,4 +266,4 @@ MIT. See [LICENSE](LICENSE).
 
 - [gutierrezjoel.com](https://www.gutierrezjoel.com)
 - [LinkedIn](https://linkedin.com/in/gutierrezjoel)
-
+- [GitHub](https://github.com/j333/gutierrez-joel-portfolio/)
