@@ -15,6 +15,20 @@ export const aboutSkills = [
   'Branding',
 ] as const
 
+export const aboutStack = [
+  'Claude',
+  'Cursor',
+  'FigJam',
+  'Figma',
+  'Linear',
+  'Notion',
+  'PostHog',
+  'Slack',
+] as const
+
+export const aboutStackNote =
+  'These are my current favorites. Over more than a decade I have worked with many others, and I still have knowledge across a broader set of tools.'
+
 export const aboutLanguages = ['English (C1)', 'Spanish (native)'] as const
 
 export const aboutEducation = {

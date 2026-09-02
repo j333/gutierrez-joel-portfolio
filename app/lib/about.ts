@@ -5,6 +5,8 @@ import {
   aboutEducation,
   aboutLanguages,
   aboutSkills,
+  aboutStack,
+  aboutStackNote,
 } from 'app/lib/about-data'
 import { site } from 'app/lib/site'
 
@@ -13,6 +15,8 @@ export {
   aboutEducation,
   aboutLanguages,
   aboutSkills,
+  aboutStack,
+  aboutStackNote,
 } from 'app/lib/about-data'
 
 export const buildAboutMarkdown = () => {
@@ -38,6 +42,12 @@ ${experience}
 ## Capabilities
 
 ${aboutSkills.map((skill) => `- ${skill}`).join('\n')}
+
+## Stack
+
+${aboutStack.map((tool) => `- ${tool}`).join('\n')}
+
+${aboutStackNote}
 
 ## Languages
 

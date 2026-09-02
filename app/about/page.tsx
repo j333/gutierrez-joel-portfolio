@@ -12,6 +12,8 @@ import {
   aboutEducation,
   aboutLanguages,
   aboutSkills,
+  aboutStack,
+  aboutStackNote,
 } from 'app/lib/about-data'
 import { createPageMetadata, createProfilePageJsonLd } from 'app/lib/metadata'
 import { buildPersonEntity } from 'app/lib/person'
@@ -109,6 +111,22 @@ const Page = () => {
                   </li>
                 ))}
               </ul>
+            </AboutSection>
+
+            <AboutSection title="Stack">
+              <ul className="grid grid-cols-2 gap-y-2 sm:grid-cols-3">
+                {aboutStack.map((tool) => (
+                  <li
+                    key={tool}
+                    className="text-sm leading-5 text-neutral-600 dark:text-neutral-400"
+                  >
+                    {tool}
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-4 text-pretty text-xs leading-5 text-neutral-500 dark:text-neutral-400">
+                {aboutStackNote}
+              </p>
             </AboutSection>
 
             <AboutSection title="Languages">
