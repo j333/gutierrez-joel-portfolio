@@ -13,22 +13,29 @@ type ProjectMetaProps = {
 }
 
 export const ProjectMeta = ({ metadata }: ProjectMetaProps) => {
-  const rows = [
+  const rows: MetaItem[] = [
     { label: 'Brand', value: metadata.product },
     { label: 'Deliverable', value: metadata.deliverable },
-    metadata.role ? { label: 'Role', value: metadata.role } : null,
-    metadata.industry ? { label: 'Industry', value: metadata.industry } : null,
-    {
-      label: 'Year',
-      value: (
-        <YearRange
-          start={metadata.startedAt}
-          end={metadata.endedAt}
-          className={metaValueClassName}
-        />
-      ),
-    },
-  ].filter((row): row is MetaItem => Boolean(row))
+  ]
+
+  if (metadata.role) {
+    rows.push({ label: 'Role', value: metadata.role })
+  }
+
+  if (metadata.industry) {
+    rows.push({ label: 'Industry', value: metadata.industry })
+  }
+
+  rows.push({
+    label: 'Year',
+    value: (
+      <YearRange
+        start={metadata.startedAt}
+        end={metadata.endedAt}
+        className={metaValueClassName}
+      />
+    ),
+  })
 
   return (
     <dl className={metaListClassName}>
