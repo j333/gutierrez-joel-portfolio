@@ -1,4 +1,4 @@
-import { MetaRow } from 'app/components/page-layout'
+import { MetaRow, metaListClassName } from 'app/components/page-layout'
 import { formatDate } from 'app/writing/utils'
 
 type WritingMetaProps = {
@@ -7,7 +7,7 @@ type WritingMetaProps = {
 
 export const WritingMeta = ({ publishedAt }: WritingMetaProps) => {
   return (
-    <dl className="grid gap-x-8 gap-y-4 sm:grid-cols-2">
+    <dl className={metaListClassName}>
       <MetaRow label="Published">
         <time dateTime={publishedAt}>{formatDate(publishedAt)}</time>
       </MetaRow>

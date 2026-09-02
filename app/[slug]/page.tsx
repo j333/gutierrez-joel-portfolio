@@ -4,8 +4,8 @@ import { CustomMDX } from 'app/components/mdx'
 import { JsonLd } from 'app/components/json-ld'
 import {
   PageHeader,
+  articleBodyClassName,
   pageSectionClassName,
-  textColumnClassName,
 } from 'app/components/page-layout'
 import { ProjectMeta } from 'app/components/project-meta'
 import {
@@ -84,8 +84,9 @@ const Project = async ({ params }: SlugPageProps) => {
         })}
       />
       <article className={pageSectionClassName}>
-        <PageHeader title={title} description={summary} spacing="hero" />
-        <ProjectMeta metadata={project.metadata} />
+        <PageHeader title={title} description={summary} spacing="hero">
+          <ProjectMeta metadata={project.metadata} />
+        </PageHeader>
         {image ? (
           <div
             className={`relative mb-14 aspect-video w-full overflow-hidden ${imagePlaceholderClassName}`}
@@ -108,7 +109,7 @@ const Project = async ({ params }: SlugPageProps) => {
           />
         )}
         {project.content.trim() ? (
-          <div className={`${textColumnClassName} prose prose-project`}>
+          <div className={`${articleBodyClassName} prose`}>
             <CustomMDX source={project.content} />
           </div>
         ) : null}

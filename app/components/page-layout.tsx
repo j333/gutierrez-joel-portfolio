@@ -1,9 +1,16 @@
 import type { ReactNode } from 'react'
 
 export const textColumnClassName = 'w-full max-w-xl'
+export const articleBodyClassName = `${textColumnClassName} mx-auto`
 
 export const metaLabelClassName =
   'font-mono text-xs font-normal uppercase leading-4 tracking-wider text-neutral-500 dark:text-neutral-400'
+
+export const metaListClassName =
+  'grid w-full [grid-template-columns:repeat(auto-fill,minmax(min(100%,12rem),1fr))] gap-x-8 gap-y-4'
+
+export const metaValueClassName =
+  'whitespace-nowrap text-sm leading-5 text-neutral-800 dark:text-neutral-200'
 
 export const pageSectionClassName = 'mb-16'
 
@@ -50,11 +57,11 @@ type MetaRowProps = {
   children: ReactNode
 }
 
-export const MetaRow = ({ label, children }: MetaRowProps) => (
-  <div className="flex flex-col gap-0.5">
-    <dt className={metaLabelClassName}>{label}</dt>
-    <dd className="text-sm leading-5 text-neutral-800 dark:text-neutral-200">
-      {children}
-    </dd>
-  </div>
-)
+export const MetaRow = ({ label, children }: MetaRowProps) => {
+  return (
+    <div className="flex min-w-0 flex-col gap-0.5">
+      <dt className={`whitespace-nowrap ${metaLabelClassName}`}>{label}</dt>
+      <dd className={metaValueClassName}>{children}</dd>
+    </div>
+  )
+}

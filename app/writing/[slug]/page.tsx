@@ -6,8 +6,8 @@ import { JsonLd } from 'app/components/json-ld'
 import { WritingMeta } from 'app/components/writing-meta'
 import {
   PageHeader,
+  articleBodyClassName,
   pageSectionClassName,
-  textColumnClassName,
 } from 'app/components/page-layout'
 import {
   fullWidthImageSizes,
@@ -114,11 +114,11 @@ const Writing = async ({ params }: SlugPageProps) => {
             className={`mb-14 aspect-video w-full ${imagePlaceholderClassName}`}
           />
         )}
-        <div className={`${textColumnClassName} prose`}>
+        <div className={`${articleBodyClassName} prose`}>
           <CustomMDX source={post.content} />
         </div>
         {post.metadata.medium ? (
-          <div className={`mt-16 ${textColumnClassName}`}>
+          <div className={`mt-16 ${articleBodyClassName}`}>
             <CtaLink
               href={post.metadata.medium}
               aria-label="View on Medium, opens in a new tab"

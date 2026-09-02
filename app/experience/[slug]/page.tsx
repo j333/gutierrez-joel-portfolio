@@ -3,8 +3,8 @@ import { CustomMDX } from 'app/components/mdx'
 import { JsonLd } from 'app/components/json-ld'
 import {
   PageHeader,
+  articleBodyClassName,
   pageSectionClassName,
-  textColumnClassName,
 } from 'app/components/page-layout'
 import { ExperienceMeta } from 'app/components/experience-meta'
 import { ExperienceProjects } from 'app/components/experience-projects'
@@ -73,25 +73,31 @@ const Experience = async ({ params }: SlugPageProps) => {
           url: getExperienceCanonicalUrl(entry),
         })}
       />
-      <article className={`${textColumnClassName} ${pageSectionClassName}`}>
+      <article className={pageSectionClassName}>
         <PageHeader
           title={entry.metadata.title}
           description={entry.metadata.summary}
+          spacing="hero"
         >
           <ExperienceMeta metadata={entry.metadata} />
         </PageHeader>
-        <div className="prose">
-          <CustomMDX source={before} />
+        <div className={articleBodyClassName}>
+          {before.trim() ? (
+            <div className="prose">
+              <CustomMDX source={before} />
+            </div>
+          ) : null}
+          <ExperienceProjects
+            groups={projects}
+            heading={after ? undefined : 'Selected work'}
+            className={before.trim() ? 'mt-16' : undefined}
+          />
+          {after ? (
+            <div className="prose mt-16">
+              <CustomMDX source={after} />
+            </div>
+          ) : null}
         </div>
-        <ExperienceProjects
-          groups={projects}
-          heading={after ? undefined : 'Selected work'}
-        />
-        {after ? (
-          <div className="prose mt-16">
-            <CustomMDX source={after} />
-          </div>
-        ) : null}
       </article>
     </>
   )

@@ -35,11 +35,13 @@ const getYearColumnCh = (groups: ExperienceProjectGroup[]) =>
 type ExperienceProjectsProps = {
   groups: ExperienceProjectGroup[]
   heading?: string
+  className?: string
 }
 
 export const ExperienceProjects = ({
   groups,
   heading,
+  className,
 }: ExperienceProjectsProps) => {
   if (groups.length === 0) {
     return null
@@ -49,7 +51,7 @@ export const ExperienceProjects = ({
   const yearColumnStyle = { width: `${yearColumnCh}ch` }
 
   return (
-    <section className="mt-16" aria-label={heading ?? 'Client work'}>
+    <section className={className} aria-label={heading ?? 'Client work'}>
       {heading ? (
         <h2 className="mb-8 text-xl font-medium tracking-tight text-neutral-900 dark:text-neutral-100">
           {heading}

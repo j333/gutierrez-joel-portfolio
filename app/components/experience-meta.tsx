@@ -1,5 +1,5 @@
 import type { Metadata } from 'app/experience/utils'
-import { MetaRow } from 'app/components/page-layout'
+import { MetaRow, metaListClassName } from 'app/components/page-layout'
 
 const MONTHS = [
   'Jan',
@@ -71,7 +71,7 @@ export const ExperienceMeta = ({ metadata }: ExperienceMetaProps) => {
   }
 
   return (
-    <dl className="grid grid-cols-2 gap-x-8 gap-y-4">
+    <dl className={metaListClassName}>
       {rows.map((row) => (
         <MetaRow key={row.label} label={row.label}>
           {row.value}
