@@ -20,6 +20,7 @@ type ZoomableImageProps = {
   alt: string
   size?: ArticleImageSize
   caption?: string
+  animated?: boolean
   width?: number
   height?: number
 }
@@ -45,6 +46,7 @@ export const ZoomableImage = ({
   alt,
   size = 'column',
   caption,
+  animated = false,
   width,
   height,
 }: ZoomableImageProps) => {
@@ -131,6 +133,7 @@ export const ZoomableImage = ({
   }, [handleClose, isOpen])
 
   const hasDimensions = typeof width === 'number' && typeof height === 'number'
+  const useNativeImage = animated || !hasDimensions
 
   const handleBackdropClick = () => {
     handleClose()
@@ -172,20 +175,22 @@ export const ZoomableImage = ({
         Close
       </button>
       <div className="flex max-h-full max-w-full flex-col items-center">
-        {hasDimensions ? (
+        {useNativeImage ? (
+          <img
+            src={src}
+            alt={alt}
+            width={width}
+            height={height}
+            onClick={handleOverlayImageClick}
+            className={overlayImageClassName}
+          />
+        ) : (
           <Image
             src={src}
             alt={alt}
             width={width}
             height={height}
             sizes="100vw"
-            onClick={handleOverlayImageClick}
-            className={overlayImageClassName}
-          />
-        ) : (
-          <img
-            src={src}
-            alt={alt}
             onClick={handleOverlayImageClick}
             className={overlayImageClassName}
           />
@@ -213,21 +218,23 @@ export const ZoomableImage = ({
         aria-expanded={isOpen}
         onClick={handleOpen}
       >
-        {hasDimensions ? (
+        {useNativeImage ? (
+          <img
+            src={src}
+            alt={alt}
+            width={width}
+            height={height}
+            loading="lazy"
+            decoding="async"
+            className={`m-0 h-auto w-full rounded-none ${imagePlaceholderClassName}`}
+          />
+        ) : (
           <Image
             src={src}
             alt={alt}
             width={width}
             height={height}
             sizes={articleImageSizes[size]}
-            className={`m-0 h-auto w-full rounded-none ${imagePlaceholderClassName}`}
-          />
-        ) : (
-          <img
-            src={src}
-            alt={alt}
-            loading="lazy"
-            decoding="async"
             className={`m-0 h-auto w-full rounded-none ${imagePlaceholderClassName}`}
           />
         )}

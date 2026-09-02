@@ -100,19 +100,23 @@ const getYouTubeId = (src?: string) => {
 
 const parseArticleImage = (rawSrc?: string) => {
   if (!rawSrc) {
-    return { src: '', size: 'column' as ArticleImageSize }
+    return { src: '', size: 'column' as ArticleImageSize, animated: false }
   }
 
   const hashIndex = rawSrc.indexOf('#')
   if (hashIndex === -1) {
-    return { src: rawSrc, size: 'column' as ArticleImageSize }
+    return { src: rawSrc, size: 'column' as ArticleImageSize, animated: false }
   }
 
   const src = rawSrc.slice(0, hashIndex)
-  const hash = rawSrc.slice(hashIndex + 1).toLowerCase()
-  const size: ArticleImageSize = hash === 'wide' ? 'wide' : 'column'
+  const hashParts = rawSrc
+    .slice(hashIndex + 1)
+    .toLowerCase()
+    .split('-')
+  const size: ArticleImageSize = hashParts.includes('wide') ? 'wide' : 'column'
+  const animated = hashParts.includes('animated')
 
-  return { src, size }
+  return { src, size, animated }
 }
 
 type MarkdownImageProps = {
@@ -147,7 +151,7 @@ const MarkdownImage = (props: MarkdownImageProps) => {
     typeof props.title === 'string' && props.title.trim()
       ? props.title
       : undefined
-  const { src, size } = parseArticleImage(props.src)
+  const { src, size, animated } = parseArticleImage(props.src)
   const dimensions = getPublicImageSize(src)
 
   return (
@@ -156,8 +160,9 @@ const MarkdownImage = (props: MarkdownImageProps) => {
       alt={alt}
       size={size}
       caption={caption}
-      width={dimensions?.width}
-      height={dimensions?.height}
+      animated={animated}
+      width={animated ? undefined : dimensions?.width}
+      height={animated ? undefined : dimensions?.height}
     />
   )
 }

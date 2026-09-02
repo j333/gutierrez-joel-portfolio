@@ -16,6 +16,7 @@ export const ProjectMeta = ({ metadata }: ProjectMetaProps) => {
   const rows = [
     { label: 'Brand', value: metadata.product },
     { label: 'Deliverable', value: metadata.deliverable },
+    metadata.role ? { label: 'Role', value: metadata.role } : null,
     metadata.industry ? { label: 'Industry', value: metadata.industry } : null,
     {
       label: 'Year',
