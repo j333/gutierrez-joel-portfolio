@@ -39,11 +39,11 @@ export const PageHeader = ({
 }: PageHeaderProps) => {
   return (
     <header className={pageHeaderSpacingClassName[spacing]}>
-      <h1 className="mb-2 text-2xl font-semibold leading-8 tracking-tighter">
+      <h1 className="mb-2 text-3xl font-normal leading-9 tracking-tighter">
         {title}
       </h1>
       {description ? (
-        <p className="text-base leading-6 text-neutral-600 dark:text-neutral-400">
+        <p className="text-lg leading-7 text-neutral-600 dark:text-neutral-400">
           {description}
         </p>
       ) : null}

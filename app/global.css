@@ -265,23 +265,23 @@ img {
 }
 
 .prose p {
-  @apply my-5 text-neutral-800 dark:text-neutral-200 leading-relaxed;
+  @apply my-5 text-lg text-neutral-800 dark:text-neutral-200 leading-relaxed;
 }
 
 .prose h1 {
-  @apply relative text-4xl font-medium tracking-tight mt-6 mb-2;
+  @apply relative text-4xl font-normal tracking-tight mt-6 mb-2;
 }
 
 .prose h2 {
-  @apply relative text-xl font-medium tracking-tight mt-12 mb-3;
+  @apply relative text-2xl font-normal tracking-tight mt-12 mb-3;
 }
 
 .prose h3 {
-  @apply relative text-lg font-medium tracking-tight mt-8 mb-2;
+  @apply relative text-xl font-normal tracking-tight mt-8 mb-2;
 }
 
 .prose h4 {
-  @apply relative text-base font-medium tracking-tight mt-6 mb-2;
+  @apply relative text-lg font-normal tracking-tight mt-6 mb-2;
 }
 
 .prose h5,
@@ -314,7 +314,7 @@ img {
 }
 
 .prose li {
-  @apply text-neutral-800 dark:text-neutral-200 leading-relaxed;
+  @apply text-lg text-neutral-800 dark:text-neutral-200 leading-relaxed;
 }
 
 .prose > :first-child {

@@ -53,14 +53,14 @@ export const ExperienceProjects = ({
   return (
     <section className={className} aria-label={heading ?? 'Client work'}>
       {heading ? (
-        <h2 className="mb-8 text-xl font-medium tracking-tight text-neutral-900 dark:text-neutral-100">
+        <h2 className="mb-8 text-xl font-normal tracking-tight text-neutral-900 dark:text-neutral-100">
           {heading}
         </h2>
       ) : null}
       <div className="space-y-12">
         {groups.map((group) => (
           <div key={group.name}>
-            <h3 className="mb-4 text-base font-medium tracking-tight text-neutral-900 dark:text-neutral-100">
+            <h3 className="mb-4 text-base font-normal tracking-tight text-neutral-900 dark:text-neutral-100">
               {group.url ? (
                 <a
                   href={group.url}
