@@ -1,6 +1,7 @@
 import './global.css'
 import type { Metadata } from 'next'
 import { IBM_Plex_Mono, IBM_Plex_Sans } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/next'
 import { Navbar } from './components/nav'
 import Footer from './components/footer'
 import { JsonLd } from './components/json-ld'
@@ -108,6 +109,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
           </div>
           <Footer />
         </div>
+        <Analytics />
       </body>
     </html>
   )
