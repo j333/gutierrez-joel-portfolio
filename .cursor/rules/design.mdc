@@ -1,0 +1,118 @@
+---
+description: Visual design system — color, type, layout, components. Match existing UI; do not invent chrome.
+alwaysApply: true
+---
+
+# Gutierrez Joel — design system
+
+Visual reference: `/design` (reads this file).
+
+Spare, editorial portfolio. Craft over decoration. Hierarchy comes from contrast, typography, and whitespace — not shadows, gradients, or filled chrome.
+
+Reuse helpers in `app/components/page-layout.tsx`, `app/components/link-styles.ts`, and existing Tailwind patterns. Do not invent filled buttons, bordered cards, or pill chips.
+
+## Principles
+
+- Light canvas, dark ink (and the inverse in dark mode)
+- Quiet interaction: underline, color shift, focus outline
+- Generous space; content-led layouts
+- Flat UI plus subtle site noise (`site-noise`); no drop shadows
+- Imagery and type carry personality; chrome stays light
+
+## Color
+
+Always pair light and dark. Prefer Tailwind neutrals over one-off hex.
+
+| Role | Light | Dark |
+| --- | --- | --- |
+| Canvas | `bg-white` | `dark:bg-black` |
+| Ink | `text-black` | `dark:text-white` |
+| Body | `text-neutral-800` | `dark:text-neutral-200` |
+| Muted / secondary | `text-neutral-600` or `text-neutral-500` | `dark:text-neutral-400` |
+| Strong heading / card title | `text-neutral-900` | `dark:text-neutral-100` |
+| Borders / dividers | `border-neutral-200` | `dark:border-neutral-800` |
+| Stronger table rules | `border-neutral-300` | `dark:border-neutral-600` |
+| Image placeholder | `bg-neutral-100` (`imagePlaceholderClassName`) | `dark:bg-neutral-900` |
+| Code block surface | `bg-neutral-50` + `border-neutral-200` | `dark:bg-neutral-900` + `dark:border-neutral-900` |
+| Selection | black on white | white on black (see `::selection` / `.dark ::selection`) |
+
+Exceptions (not brand accents):
+
+- Syntax highlight tokens in `app/global.css` (`--sh-*`) — semantic only
+- Do not introduce brand color, gradients, or glows elsewhere
+
+Error red is reserved for invalid/destructive states if forms appear; the site barely uses forms today.
+
+## Typography
+
+Fonts (loaded in `app/layout.tsx`):
+
+- **IBM Plex Sans** — 400, 500, 600 (+ italic). Default body (`font-sans`). No 700.
+- **IBM Plex Mono** — 400. Chrome, meta, dates, tables (`font-mono`).
+
+| Use | Classes / notes |
+| --- | --- |
+| Page title (`PageHeader`) | `text-3xl font-normal leading-9 tracking-tighter` |
+| Prose h1 | `text-4xl font-normal tracking-tight` |
+| Prose h2 | `text-2xl font-normal tracking-tight` |
+| Prose h3 / section | `text-xl font-normal tracking-tight` |
+| Hero / intro (home, about) | `text-xl leading-[1.3] text-neutral-800 dark:text-neutral-200` |
+| Page description | `text-lg leading-7 text-neutral-600 dark:text-neutral-400` |
+| Prose body / list items | `text-lg … leading-relaxed` (`.prose p`, `.prose li`) |
+| Card / list title | `text-base font-medium leading-6` |
+| Supporting copy | `text-base leading-6` or `text-sm leading-5` muted |
+| Meta value | `text-sm leading-5` (`metaValueClassName`) |
+| Chrome / nav / meta label | `font-mono text-xs uppercase leading-4 tracking-wider` |
+| Card meta / year (not always uppercase) | `font-mono text-xs leading-4 text-neutral-500 dark:text-neutral-400` |
+| Footer / fine print | `text-xs leading-5 text-neutral-500 dark:text-neutral-400` |
+
+Weights: page and prose titles stay `font-normal`. Use `font-medium` for card titles and `strong`. Prefer `em` / italic for emphasis in running copy, not bold display weights.
+
+## Layout
+
+- Shell: `max-w-site` (1920px) + `px-4 sm:px-6` (`app/layout.tsx`)
+- Reading column: `textColumnClassName` / `articleBodyClassName` → `max-w-xl` (centered for articles)
+- Home / writing grids: `projectGridClassName` → 1 col, 2 cols from `lg`, `gap-6`
+- Major vertical rhythm: `gap-16`, `pageSectionClassName` (`mb-16`)
+- `PageHeader` spacing: `section` → `mb-8`, `article` → `mb-12`, `hero` → `mb-16`
+- Wide MDX images: `#wide` → `.article-image--wide` (breakout up to ~56rem); see image rule for asset sizes
+
+## Elevation & shape
+
+- No meaningful shadows. Depth = size, placement, contrast, borders sparingly
+- Site noise texture behind content; sticky nav goes solid white/black when scrolled
+- Images: `rounded-none` (global `img` + covers)
+- Interactive chrome / focus targets: `rounded-sm`
+- Code `pre` / inline `code`: `rounded-lg` (exception for code blocks only)
+- Focus: `outline-2` + `outline-offset-2` (or `-4` on cards) + `outline-neutral-900` / `dark:outline-neutral-100`
+
+## Components (use these; do not invent alternatives)
+
+**Nav / chrome links** — `chromeLinkClassName`: mono, uppercase, muted → darker on hover + underline. Theme toggle and Resume sit in the same family.
+
+**Content / prose links** — inherit color, underline, `text-underline-offset` / skip-ink; focus with `currentColor` outline (`.content-link`, `.prose a`).
+
+**CTA text links** — `ctaLinkClassName`: `text-sm`, muted, underline; no filled button.
+
+**Project / writing cards** — full-bleed cover (`aspect-video`, `rounded-none`) + title row + mono meta. Link wrapper `rounded-sm` for focus only. No card border, padding box, or shadow.
+
+**PageHeader / MetaRow** — titles and labeled meta grids; reuse `metaLabelClassName`, `metaListClassName`, `metaValueClassName`.
+
+**Theme toggle** — text/icon control, `rounded-sm`, min touch height on small screens; no colored switch chrome.
+
+**Image overlay** — zoom lightbox: near-opaque white/black scrim; close control uses chrome mono styles.
+
+Do **not** add: solid primary buttons (40px height kits), outlined secondary buttons as default CTAs, pill chips, padded bordered card panels, or decorative icon systems.
+
+## Do's and don'ts
+
+- Do keep the UI black / white / neutral gray in both themes
+- Do use IBM Plex Sans for reading and IBM Plex Mono for chrome and metadata
+- Do preserve the reading column (`max-w-xl`) and spacious section gaps
+- Do prefer text links and underlines over filled controls
+- Do keep images square-cornered and covers edge-to-edge in their frame
+- Don't introduce colorful gradients, glows, or drop shadows
+- Don't load Plex Sans 700 or ornate / condensed display faces
+- Don't crowd the grid or shrink major gaps below the established rhythm
+- Don't invent button/card/chip primitives that fight the existing chrome
+- Don't treat syntax-highlight colors as a general brand palette

@@ -9,7 +9,7 @@ Copy [app/projects/posts/jaga.mdx](app/projects/posts/jaga.mdx) and [app/project
 
 ## Checklist
 
-1. Slug = filename (`my-slug.mdx` → `/my-slug`). Reserved: `about`, `writing`, `experience`, `og`, `md`. English body.
+1. Slug = filename (`my-slug.mdx` → `/my-slug`). Reserved: `about`, `writing`, `experience`, `og`, `md`, `design`. English body.
 2. `order`: integer, lower first. If this case goes on top, increment `order` on the other project MDX files.
 3. Cover: `pnpm optimize-cover -- <input> public/projects/<slug>/cover.webp`. Source must be at least 1920×1080. Chat attachments at 1024px are not a source.
 4. Any extra raster in the body: `pnpm optimize-image -- <input> public/projects/<slug>/<name>.webp --max 1920`. Output is always `.webp`.
