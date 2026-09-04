@@ -14,21 +14,21 @@ export const DESIGN_CHAPTERS: DesignChapter[] = [
     label: 'Color',
     sectionIds: ['palette', 'color'],
     description:
-      'A monochrome scale and the semantic roles that map onto it in light and dark.',
+      'A monochrome scale. Each role has a pair for light and dark.',
   },
   {
     id: 'type',
     label: 'Type',
     sectionIds: ['faces', 'scale', 'weights'],
     description:
-      'IBM Plex Sans for reading; IBM Plex Mono for chrome. One size, one job.',
+      'IBM Plex Sans for reading, IBM Plex Mono for chrome. Each size has one job.',
   },
   {
     id: 'space',
     label: 'Space',
     sectionIds: ['layout', 'spacing', 'elevation-and-shape'],
     description:
-      'Shell width, vertical rhythm, and the flat shapes that keep the interface quiet.',
+      'A wide shell, a focused reading column, and the flat shapes that keep the interface quiet.',
   },
   { id: 'interaction', label: 'Interaction', sectionIds: ['interaction'] },
   {
@@ -36,7 +36,7 @@ export const DESIGN_CHAPTERS: DesignChapter[] = [
     label: 'Components',
     sectionIds: ['components', 'buttons'],
     description:
-      'Text-forward primitives and the three-button kit for non-navigating actions.',
+      'Links do most of the work. Buttons appear only when the action stays on the page.',
   },
   {
     id: 'guardrails',

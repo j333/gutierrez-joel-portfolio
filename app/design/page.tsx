@@ -1,4 +1,5 @@
 import { DesignSystemView } from 'app/components/design-system-view'
+import { applyDesignGuideCopy } from 'app/lib/design-guide'
 import { readDesignRule } from 'app/lib/design-rule'
 import { site } from 'app/lib/site'
 import type { Metadata } from 'next'
@@ -35,7 +36,7 @@ export const metadata: Metadata = {
 }
 
 const Page = () => {
-  const designRule = readDesignRule()
+  const designRule = applyDesignGuideCopy(readDesignRule())
 
   return (
     <DesignSystemView

@@ -362,8 +362,8 @@ const typeSampleText = (use: string) => {
   ) {
     return 'A quiet craft'
   }
-  if (key.includes('section title') && key.includes('h2')) return 'Reading column'
-  if (key.includes('section title')) return 'Section rhythm'
+  if (key.includes('subsection')) return 'Section rhythm'
+  if (key.includes('section title')) return 'Reading column'
   if (key.includes('card') && key.includes('title')) return 'Project title'
   if (key.includes('lead'))
     return 'Spare editorial portfolio. Craft over decoration.'
@@ -440,7 +440,7 @@ const FaceSpecimens = () => (
         </p>
       </div>
       <p className={typeMetaClassName}>
-        400 / 500 / 600 + italic · font-sans · no 700
+        Regular, medium, semibold, and italic
       </p>
       <p className="text-sm leading-5 text-neutral-600 dark:text-neutral-400">
         Reading, titles, and body
@@ -461,7 +461,7 @@ const FaceSpecimens = () => (
           2024 · Writing · Meta
         </p>
       </div>
-      <p className={typeMetaClassName}>400 · font-mono</p>
+      <p className={typeMetaClassName}>Regular</p>
       <p className="text-sm leading-5 text-neutral-600 dark:text-neutral-400">
         Chrome, dates, and tables
       </p>
@@ -489,7 +489,7 @@ const weightSpecimens = [
     weight: 'em',
     className: 'italic font-normal',
     sample: 'emphasis in running copy',
-    note: 'Prefer italic over bold display weights',
+    note: 'Emphasis in running copy, not a heavier display weight',
   },
 ] as const
 
@@ -521,16 +521,16 @@ const WeightSpecimens = () => (
         <p className="text-base font-medium leading-6 text-neutral-800 dark:text-neutral-200">
           Bold
         </p>
-        <p className={typeMetaClassName}>700 · not loaded</p>
+        <p className={typeMetaClassName}>Bold · not part of the system</p>
       </div>
       <p
         className="text-2xl font-normal tracking-tight text-neutral-900 opacity-40 dark:text-neutral-100"
         aria-hidden="true"
       >
-        Do not load Plex Sans 700
+        Bold is not part of the system
       </p>
       <p className="text-sm leading-5 text-neutral-600 dark:text-neutral-400">
-        No ornate or condensed display faces either
+        Ornate or condensed display faces are out too
       </p>
     </li>
   </ul>
@@ -711,16 +711,13 @@ const SpacingSpecimens = ({ table }: { table: DesignTable }) => {
 
 const InteractionSpecimens = ({ table }: { table: DesignTable }) => {
   const stateIndex = headerIndex(table, 'State')
-  const classesIndex = headerIndex(table, 'Classes')
   const useIndex = headerIndex(table, 'Use')
 
   return (
     <ul className="list-none space-y-8 p-0">
       {table.rows.map((row) => {
         const state = row[stateIndex] ?? ''
-        const classesCell = row[classesIndex] ?? ''
         const use = stripMarkdownInline(row[useIndex] ?? '')
-        const classes = extractClassTokens(classesCell)
         const stateKey = state.toLowerCase()
 
         return (
@@ -730,11 +727,6 @@ const InteractionSpecimens = ({ table }: { table: DesignTable }) => {
           >
             <div className="flex flex-col gap-1">
               <p className={metaLabelClassName}>{state}</p>
-              <p className={typeMetaClassName}>
-                {classListLabel(classes) !== '—'
-                  ? classListLabel(classes)
-                  : stripMarkdownInline(classesCell)}
-              </p>
               {use ? (
                 <p className="text-sm leading-5 text-neutral-600 dark:text-neutral-400">
                   {use}
@@ -835,9 +827,6 @@ const ButtonSpecimens = ({ table }: { table: DesignTable }) => {
               </button>
               <div className="flex flex-col gap-1">
                 <p className={metaLabelClassName}>{variant}</p>
-                <p className={typeMetaClassName}>
-                  {helper}
-                </p>
                 {use ? (
                   <p className="max-w-[16rem] text-sm leading-5 text-neutral-600 dark:text-neutral-400">
                     {use}
@@ -853,9 +842,6 @@ const ButtonSpecimens = ({ table }: { table: DesignTable }) => {
         <div className="flex flex-col gap-4 border-t border-neutral-200 pt-10 dark:border-neutral-800">
           <div className="flex flex-col gap-1">
             <p className={metaLabelClassName}>Disabled</p>
-            <p className={typeMetaClassName}>
-              {stripMarkdownInline(disabledRow[helperIndex] ?? '')}
-            </p>
             <p className="text-sm leading-5 text-neutral-600 dark:text-neutral-400">
               {stripMarkdownInline(disabledRow[useIndex] ?? '')}
             </p>
@@ -907,17 +893,17 @@ const LayoutSpecimens = () => (
       <SpecimenLabel>Shell and reading column</SpecimenLabel>
       <div className="border border-neutral-200 px-4 py-6 dark:border-neutral-800 sm:px-6">
         <p className={`mb-4 ${typeMetaClassName}`}>
-          Site shell · max-w-site · px-4 sm:px-6
+          Site shell · wide, modest padding
         </p>
         <div
           className={`${textColumnClassName} border border-neutral-200 px-4 py-6 dark:border-neutral-800`}
         >
           <p className="text-lg leading-relaxed text-neutral-800 dark:text-neutral-200">
-            Reading column sits inside the shell so line length stays
+            The reading column sits inside the shell so line length stays
             comfortable for long copy.
           </p>
           <p className={`mt-2 ${typeMetaClassName}`}>
-            textColumnClassName · max-w-xl
+            Reading column
           </p>
         </div>
       </div>
@@ -936,7 +922,7 @@ const LayoutSpecimens = () => (
         />
       </div>
       <p className={typeMetaClassName}>
-        projectGridClassName · 1 col, 2 cols from lg, gap-6
+        One column, two from large screens
       </p>
     </div>
 
@@ -950,7 +936,7 @@ const LayoutSpecimens = () => (
         </div>
         <div className="border-b border-neutral-200 pb-4 dark:border-neutral-800">
           <p className="text-sm leading-5 text-neutral-600 dark:text-neutral-400">
-            so the page can breathe · gap-16
+            so the page can breathe
           </p>
         </div>
       </div>
@@ -985,21 +971,21 @@ const ShapeSpecimens = () => (
         rounded-lg
       </code>
       <p className="text-sm leading-5 text-neutral-500 dark:text-neutral-400">
-        Slightly softer on code surfaces
+        The only slightly softer surface
       </p>
     </div>
   </div>
 )
 
-const ComponentSpecimens = ({ table }: { table: DesignTable | null }) => (
+const ComponentSpecimens = () => (
   <div className="flex flex-col gap-14">
     <div className="flex flex-col gap-3">
       <SpecimenLabel>Chrome link</SpecimenLabel>
       <a href="#components" className={chromeLinkClassName}>
         Writing
       </a>
-      <p className={typeMetaClassName}>
-        chromeLinkClassName
+      <p className="text-sm leading-5 text-neutral-500 dark:text-neutral-400">
+        Uppercase, mono, muted until hover
       </p>
     </div>
 
@@ -1008,8 +994,8 @@ const ComponentSpecimens = ({ table }: { table: DesignTable | null }) => (
       <a href="#components" className={ctaLinkClassName}>
         View case study
       </a>
-      <p className={typeMetaClassName}>
-        ctaLinkClassName
+      <p className="text-sm leading-5 text-neutral-500 dark:text-neutral-400">
+        Muted and underlined — the default site action
       </p>
     </div>
 
@@ -1021,9 +1007,6 @@ const ComponentSpecimens = ({ table }: { table: DesignTable | null }) => (
           quiet underline
         </a>
         .
-      </p>
-      <p className={typeMetaClassName}>
-        .content-link / .prose a
       </p>
     </div>
 
@@ -1043,8 +1026,8 @@ const ComponentSpecimens = ({ table }: { table: DesignTable | null }) => (
           </dl>
         </div>
       </div>
-      <p className={typeMetaClassName}>
-        metaLabelClassName · typeMetaClassName · metaListClassName · metaValueClassName
+      <p className="text-sm leading-5 text-neutral-500 dark:text-neutral-400">
+        Titles with labeled meta underneath
       </p>
     </div>
 
@@ -1070,7 +1053,7 @@ const ComponentSpecimens = ({ table }: { table: DesignTable | null }) => (
         </a>
       </article>
       <p className="text-sm leading-5 text-neutral-500 dark:text-neutral-400">
-        Full-bleed 16:9 cover, title row, mono meta — no card border or shadow
+        Full-bleed cover, title row, and mono meta — no card border or shadow
       </p>
     </div>
 
@@ -1087,7 +1070,7 @@ const ComponentSpecimens = ({ table }: { table: DesignTable | null }) => (
         </span>
       </span>
       <p className="text-sm leading-5 text-neutral-500 dark:text-neutral-400">
-        Text/icon control, rounded-sm, touch height on small screens
+        Text and icon, a little taller on small screens
       </p>
     </div>
 
@@ -1106,46 +1089,9 @@ const ComponentSpecimens = ({ table }: { table: DesignTable | null }) => (
         </div>
       </div>
       <p className="text-sm leading-5 text-neutral-500 dark:text-neutral-400">
-        Near-opaque white/black scrim; close uses chrome mono styles
+        A near-opaque scrim. Close uses the chrome link style.
       </p>
     </div>
-
-    {table ? (
-      <div className="overflow-x-auto border-t border-neutral-200 pt-10 dark:border-neutral-800">
-        <SpecimenLabel>Reference</SpecimenLabel>
-        <table className="mt-4 w-full min-w-[36rem] border-collapse text-left text-sm leading-5">
-          <thead>
-            <tr className="border-b border-neutral-300 dark:border-neutral-600">
-              {table.headers.map((header) => (
-                <th
-                  key={header}
-                  className={`${metaLabelClassName} py-2 pr-4 font-normal`}
-                >
-                  {header}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {table.rows.map((row) => (
-              <tr
-                key={row.join('-')}
-                className="border-b border-neutral-200 dark:border-neutral-800"
-              >
-                {row.map((cell, index) => (
-                  <td
-                    key={`${row[0]}-${index}`}
-                    className="py-3 pr-4 align-top text-neutral-800 dark:text-neutral-200"
-                  >
-                    {stripMarkdownInline(cell)}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    ) : null}
   </div>
 )
 
@@ -1259,10 +1205,6 @@ const DesignSectionBlock = ({
     'Helper',
     'Classes',
   ])
-  const componentTable = findTableByHeaders(section.tables, [
-    'Primitive',
-    'Helper',
-  ])
 
   const isPrinciples = section.id === 'principles'
   const isDosDonts = section.id === 'dos-and-donts'
@@ -1341,9 +1283,7 @@ const DesignSectionBlock = ({
         <InteractionSpecimens table={interactionTable} />
       ) : null}
       {buttonTable ? <ButtonSpecimens table={buttonTable} /> : null}
-      {isComponents ? (
-        <ComponentSpecimens table={componentTable} />
-      ) : null}
+      {isComponents ? <ComponentSpecimens /> : null}
       {isLayout ? (
         <div className="mt-10">
           <LayoutSpecimens />

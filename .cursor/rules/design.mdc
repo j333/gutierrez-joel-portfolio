@@ -5,7 +5,7 @@ alwaysApply: true
 
 # Gutierrez Joel — design system
 
-Visual reference: `/design` (reads this file).
+Visual reference: `/design` is the human-facing guide (its own copy). This file is the source of tokens and implementation rules.
 
 Spare, editorial portfolio. Craft over decoration. Hierarchy comes from contrast, typography, and whitespace — not shadows, gradients, or chrome noise.
 
