@@ -274,7 +274,7 @@ img {
 }
 
 .prose h1 {
-  @apply relative text-4xl font-normal tracking-tight mt-6 mb-2;
+  @apply relative text-3xl font-normal leading-9 tracking-tighter mt-6 mb-2;
 }
 
 .prose h2 {
