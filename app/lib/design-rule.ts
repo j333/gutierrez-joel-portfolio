@@ -14,8 +14,9 @@ export type DesignTable = {
 export type DesignSection = {
   id: string
   title: string
+  leadMarkdown: string
   bodyMarkdown: string
-  table: DesignTable | null
+  tables: DesignTable[]
 }
 
 export type DesignRule = {
@@ -30,7 +31,7 @@ const slugify = (value: string) =>
     .toLowerCase()
     .trim()
     .replace(/\s+/g, '-')
-    .replace(/&/g, '-and-')
+    .replace(/&/g, '-and')
     .replace(/[^\w\-]+/g, '')
     .replace(/\-\-+/g, '-')
 
@@ -98,6 +99,62 @@ const readDescription = (frontmatter: string) => {
 
 const isTableLine = (line: string) => line.trim().startsWith('|')
 
+const extractTablesAndBody = (contentLines: string[]) => {
+  const tables: DesignTable[] = []
+  const bodyLines: string[] = []
+  let index = 0
+
+  while (index < contentLines.length) {
+    if (!isTableLine(contentLines[index])) {
+      bodyLines.push(contentLines[index])
+      index += 1
+      continue
+    }
+
+    const tableStart = index
+    let tableEnd = tableStart
+    while (tableEnd < contentLines.length && isTableLine(contentLines[tableEnd])) {
+      tableEnd += 1
+    }
+
+    const table = parseTable(contentLines.slice(tableStart, tableEnd))
+    if (table) {
+      tables.push(table)
+    } else {
+      bodyLines.push(...contentLines.slice(tableStart, tableEnd))
+    }
+
+    index = tableEnd
+  }
+
+  return { tables, bodyLines }
+}
+
+const splitLeadAndBody = (markdown: string) => {
+  const trimmed = markdown.trim()
+  if (!trimmed) {
+    return { leadMarkdown: '', bodyMarkdown: '' }
+  }
+
+  const paragraphs = trimmed.split(/\n\n+/)
+  const first = paragraphs[0] ?? ''
+  const isListOnly = first
+    .split('\n')
+    .every((line) => {
+      const value = line.trim()
+      return value === '' || value.startsWith('- ') || value.startsWith('* ')
+    })
+
+  if (isListOnly) {
+    return { leadMarkdown: '', bodyMarkdown: trimmed }
+  }
+
+  return {
+    leadMarkdown: first.trim(),
+    bodyMarkdown: paragraphs.slice(1).join('\n\n').trim(),
+  }
+}
+
 const parseSections = (body: string) => {
   const lines = body.replace(/^\uFEFF?/, '').split('\n')
   let title = 'Design system'
@@ -127,29 +184,17 @@ const parseSections = (body: string) => {
     const titleLine = lines[start]
     const sectionTitle = titleLine.slice(3).trim()
     const contentLines = lines.slice(start + 1, end)
-
-    const tableStart = contentLines.findIndex(isTableLine)
-    let table: DesignTable | null = null
-    let bodyLines = contentLines
-
-    if (tableStart !== -1) {
-      let tableEnd = tableStart
-      while (tableEnd < contentLines.length && isTableLine(contentLines[tableEnd])) {
-        tableEnd += 1
-      }
-
-      table = parseTable(contentLines.slice(tableStart, tableEnd))
-      bodyLines = [
-        ...contentLines.slice(0, tableStart),
-        ...contentLines.slice(tableEnd),
-      ]
-    }
+    const { tables, bodyLines } = extractTablesAndBody(contentLines)
+    const { leadMarkdown, bodyMarkdown } = splitLeadAndBody(
+      bodyLines.join('\n').trim()
+    )
 
     return {
       id: slugify(sectionTitle),
       title: sectionTitle,
-      bodyMarkdown: bodyLines.join('\n').trim(),
-      table,
+      leadMarkdown,
+      bodyMarkdown,
+      tables,
     }
   })
 
@@ -157,7 +202,7 @@ const parseSections = (body: string) => {
 }
 
 const UTILITY_PREFIX =
-  /^(bg-|text-|border-|font-|leading-|tracking-|rounded-|outline-|uppercase|lowercase|italic|not-italic|antialiased|dark:)/
+  /^(bg-|text-|border-|font-|leading-|tracking-|rounded-|outline-|uppercase|lowercase|italic|not-italic|antialiased|inline-flex|items-|justify-|min-h-|px-|py-|gap-|mb-|mt-|pb-|pt-|opacity-|pointer-|transition-|underline|hover:|focus-visible:|dark:|sm:|lg:)/
 
 export const extractClassTokens = (cell: string): string[] => {
   const ticks = [...cell.matchAll(/`([^`]+)`/g)].map((match) => match[1].trim())
@@ -177,6 +222,19 @@ export const extractClassTokens = (cell: string): string[] => {
     return parts.filter((part) => UTILITY_PREFIX.test(part))
   })
 }
+
+export const stripMarkdownInline = (value: string) =>
+  value
+    .replace(/`([^`]+)`/g, '$1')
+    .replace(/\*\*([^*]+)\*\*/g, '$1')
+    .replace(/\*([^*]+)\*/g, '$1')
+
+export const extractListItems = (markdown: string) =>
+  markdown
+    .split('\n')
+    .map((line) => line.trim())
+    .filter((line) => line.startsWith('- ') || line.startsWith('* '))
+    .map((line) => stripMarkdownInline(line.slice(2)))
 
 export const readDesignRule = (): DesignRule => {
   const raw = fs.readFileSync(DESIGN_RULE_PATH, 'utf-8')

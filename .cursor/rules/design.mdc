@@ -1,5 +1,5 @@
 ---
-description: Visual design system — color, type, layout, components. Match existing UI; do not invent chrome.
+description: Visual design system — palette, type, space, interaction, components. Match existing UI; do not invent chrome.
 alwaysApply: true
 ---
 
@@ -7,11 +7,13 @@ alwaysApply: true
 
 Visual reference: `/design` (reads this file).
 
-Spare, editorial portfolio. Craft over decoration. Hierarchy comes from contrast, typography, and whitespace — not shadows, gradients, or filled chrome.
+Spare, editorial portfolio. Craft over decoration. Hierarchy comes from contrast, typography, and whitespace — not shadows, gradients, or chrome noise.
 
-Reuse helpers in `app/components/page-layout.tsx`, `app/components/link-styles.ts`, and existing Tailwind patterns. Do not invent filled buttons, bordered cards, or pill chips.
+Reuse helpers in `app/components/page-layout.tsx`, `app/components/link-styles.ts`, `app/components/button-styles.ts`, and existing Tailwind patterns. Prefer the documented button kit when a control is needed; do not invent bordered cards or pill chips.
 
 ## Principles
+
+Quiet craft. Hierarchy from type, contrast, and space — not decoration.
 
 - Light canvas, dark ink (and the inverse in dark mode)
 - Quiet interaction: underline, color shift, focus outline
@@ -19,9 +21,29 @@ Reuse helpers in `app/components/page-layout.tsx`, `app/components/link-styles.t
 - Flat UI plus subtle site noise (`site-noise`); no drop shadows
 - Imagery and type carry personality; chrome stays light
 
+## Palette
+
+Monochrome only. Step 0 is lightest; 100 is darkest. Use Tailwind `white`, `neutral-*`, and `black` — never `gray-*`, `zinc-*`, `slate-*`, or hues.
+
+| Step | Class | Notes |
+| --- | --- | --- |
+| 0 | `white` | Canvas light; ink in dark |
+| 5 | `neutral-50` | Code surface (light) |
+| 10 | `neutral-100` | Image placeholder (light) |
+| 20 | `neutral-200` | Borders / dividers (light) |
+| 30 | `neutral-300` | Stronger table rules (light) |
+| 40 | `neutral-400` | Muted text (dark) |
+| 50 | `neutral-500` | Meta, footer, muted CTA (light) |
+| 60 | `neutral-600` | Chrome / description (light); strong border (dark) |
+| 70 | `neutral-700` | Quotes / rules (dark) |
+| 80 | `neutral-800` | Body (light); borders (dark) |
+| 90 | `neutral-900` | Titles, focus, placeholder (dark) |
+| 95 | `neutral-950` | Extra Tailwind step; use only if 90 is not enough |
+| 100 | `black` | Ink light; canvas dark |
+
 ## Color
 
-Always pair light and dark. Prefer Tailwind neutrals over one-off hex.
+Semantic roles map onto the palette. Always pair light and dark. Prefer these tokens over one-off hex.
 
 | Role | Light | Dark |
 | --- | --- | --- |
@@ -39,18 +61,18 @@ Always pair light and dark. Prefer Tailwind neutrals over one-off hex.
 Exceptions (not brand accents):
 
 - Syntax highlight tokens in `app/global.css` (`--sh-*`) — semantic only
-- Do not introduce brand color, gradients, or glows elsewhere
-
-Error red is reserved for invalid/destructive states if forms appear; the site barely uses forms today.
+- Invalid / destructive text if forms appear: `text-red-600` / `dark:text-red-400` — never as a brand accent
 
 ## Typography
+
+IBM Plex Sans for reading; IBM Plex Mono for chrome and metadata. Titles stay light.
 
 Fonts (loaded in `app/layout.tsx`):
 
 - **IBM Plex Sans** — 400, 500, 600 (+ italic). Default body (`font-sans`). No 700.
 - **IBM Plex Mono** — 400. Chrome, meta, dates, tables (`font-mono`).
 
-| Use | Classes / notes |
+| Use | Classes |
 | --- | --- |
 | Page title (`PageHeader`) | `text-3xl font-normal leading-9 tracking-tighter` |
 | Prose h1 | `text-4xl font-normal tracking-tight` |
@@ -58,17 +80,19 @@ Fonts (loaded in `app/layout.tsx`):
 | Prose h3 / section | `text-xl font-normal tracking-tight` |
 | Hero / intro (home, about) | `text-xl leading-[1.3] text-neutral-800 dark:text-neutral-200` |
 | Page description | `text-lg leading-7 text-neutral-600 dark:text-neutral-400` |
-| Prose body / list items | `text-lg … leading-relaxed` (`.prose p`, `.prose li`) |
+| Prose body / list items | `text-lg leading-relaxed` |
 | Card / list title | `text-base font-medium leading-6` |
-| Supporting copy | `text-base leading-6` or `text-sm leading-5` muted |
+| Supporting copy | `text-base leading-6` or `text-sm leading-5` |
 | Meta value | `text-sm leading-5` (`metaValueClassName`) |
 | Chrome / nav / meta label | `font-mono text-xs uppercase leading-4 tracking-wider` |
-| Card meta / year (not always uppercase) | `font-mono text-xs leading-4 text-neutral-500 dark:text-neutral-400` |
+| Card meta / year | `font-mono text-xs leading-4 text-neutral-500 dark:text-neutral-400` |
 | Footer / fine print | `text-xs leading-5 text-neutral-500 dark:text-neutral-400` |
 
 Weights: page and prose titles stay `font-normal`. Use `font-medium` for card titles and `strong`. Prefer `em` / italic for emphasis in running copy, not bold display weights.
 
 ## Layout
+
+Wide shell, focused reading column, open vertical rhythm between sections.
 
 - Shell: `max-w-site` (1920px) + `px-4 sm:px-6` (`app/layout.tsx`)
 - Reading column: `textColumnClassName` / `articleBodyClassName` → `max-w-xl` (centered for articles)
@@ -77,42 +101,77 @@ Weights: page and prose titles stay `font-normal`. Use `font-medium` for card ti
 - `PageHeader` spacing: `section` → `mb-8`, `article` → `mb-12`, `hero` → `mb-16`
 - Wide MDX images: `#wide` → `.article-image--wide` (breakout up to ~56rem); see image rule for asset sizes
 
+## Spacing
+
+Use the rhythm the site already uses. Layout is structure; this is the scale.
+
+| Token | Classes | Use |
+| --- | --- | --- |
+| Micro | `gap-0.5` `gap-1` `gap-2` `gap-3` `gap-4` `px-1` `py-1` | Meta stacks, chrome padding |
+| Group | `gap-6` `mb-8` `mt-6` | Header children, section heading, card grids |
+| Section | `mb-12` `mb-14` `mb-16` `gap-16` | `PageHeader` article/hero, `pageSectionClassName`, home sections |
+| Exceptional | `mt-20` `pb-20` | Long styleguide blocks only |
+
 ## Elevation & shape
+
+The interface stays flat. Depth comes from size and placement.
 
 - No meaningful shadows. Depth = size, placement, contrast, borders sparingly
 - Site noise texture behind content; sticky nav goes solid white/black when scrolled
 - Images: `rounded-none` (global `img` + covers)
 - Interactive chrome / focus targets: `rounded-sm`
 - Code `pre` / inline `code`: `rounded-lg` (exception for code blocks only)
-- Focus: `outline-2` + `outline-offset-2` (or `-4` on cards) + `outline-neutral-900` / `dark:outline-neutral-100`
 
-## Components (use these; do not invent alternatives)
+## Interaction
 
-**Nav / chrome links** — `chromeLinkClassName`: mono, uppercase, muted → darker on hover + underline. Theme toggle and Resume sit in the same family.
+Shared states for links, buttons, and chrome. No scale, glow, or drop shadow on hover.
 
-**Content / prose links** — inherit color, underline, `text-underline-offset` / skip-ink; focus with `currentColor` outline (`.content-link`, `.prose a`).
+| State | Classes | Use |
+| --- | --- | --- |
+| Hover | `transition-colors` + color shift and/or `underline` | Quiet feedback only |
+| Focus | `outline-2 outline-offset-2 outline-neutral-900 dark:outline-neutral-100` | Default interactive chrome |
+| Focus (cards) | `outline-2 outline-offset-4 outline-neutral-900 dark:outline-neutral-100` | Project / writing card wrappers |
+| Disabled | `opacity-40 pointer-events-none` | Non-interactive controls; pair with `aria-disabled` or `disabled` |
+| Selection | `::selection` black on white / white on black | Native text selection |
+| Touch | `min-h-11` on small screens | Theme toggle and compact controls; `sm:min-h-0` when desktop can shrink |
 
-**CTA text links** — `ctaLinkClassName`: `text-sm`, muted, underline; no filled button.
+## Components
 
-**Project / writing cards** — full-bleed cover (`aspect-video`, `rounded-none`) + title row + mono meta. Link wrapper `rounded-sm` for focus only. No card border, padding box, or shadow.
+Text-forward links, full-bleed covers, and labeled meta. Prefer helpers over one-off class strings.
 
-**PageHeader / MetaRow** — titles and labeled meta grids; reuse `metaLabelClassName`, `metaListClassName`, `metaValueClassName`.
+| Primitive | Helper | Notes |
+| --- | --- | --- |
+| Chrome link | `chromeLinkClassName` | Mono, uppercase, muted → darker on hover + underline |
+| Content / prose link | `.content-link` / `.prose a` | Inherit color, quiet underline, focus with currentColor |
+| CTA text link | `ctaLinkClassName` | `text-sm`, muted, underline — default site action |
+| Project / writing card | — | Full-bleed `aspect-video` cover, title row, mono meta; no card border or shadow |
+| PageHeader / MetaRow | `metaLabelClassName` `metaListClassName` `metaValueClassName` | Titles and labeled meta grids |
+| Theme toggle | — | Text/icon control, `rounded-sm`, touch height on small screens |
+| Image overlay | — | Near-opaque white/black scrim; close uses chrome mono styles |
 
-**Theme toggle** — text/icon control, `rounded-sm`, min touch height on small screens; no colored switch chrome.
+## Buttons
 
-**Image overlay** — zoom lightbox: near-opaque white/black scrim; close control uses chrome mono styles.
+Link = navigation; button = action that does not navigate. Ghost shares the CTA link family. Do not replace portfolio CTAs with primary. Use only these three variants.
 
-Do **not** add: solid primary buttons (40px height kits), outlined secondary buttons as default CTAs, pill chips, padded bordered card panels, or decorative icon systems.
+| Variant | Helper | Classes | Use |
+| --- | --- | --- |
+| Primary | `buttonPrimaryClassName` | `inline-flex min-h-11 items-center justify-center rounded-sm bg-black px-4 py-2 text-sm leading-5 text-white outline-none transition-colors hover:bg-neutral-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 dark:bg-white dark:text-black dark:hover:bg-neutral-200 dark:focus-visible:outline-neutral-100 sm:min-h-0` | Highest-emphasis action on the page |
+| Secondary | `buttonSecondaryClassName` | `inline-flex min-h-11 items-center justify-center rounded-sm border border-neutral-300 bg-transparent px-4 py-2 text-sm leading-5 text-neutral-800 outline-none transition-colors hover:border-neutral-900 hover:text-neutral-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 dark:border-neutral-600 dark:text-neutral-200 dark:hover:border-neutral-100 dark:hover:text-neutral-100 dark:focus-visible:outline-neutral-100 sm:min-h-0` | Alternative action |
+| Ghost | `buttonGhostClassName` | `inline-flex min-h-11 items-center justify-center rounded-sm px-1 py-2 text-sm leading-5 text-neutral-500 underline underline-offset-4 outline-none transition-colors hover:text-neutral-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100 dark:focus-visible:outline-neutral-100 sm:min-h-0` | Lowest emphasis; same family as CTA link |
+| Disabled | `buttonDisabledClassName` | `opacity-40 pointer-events-none` | Append to any variant; set `disabled` or `aria-disabled` |
 
 ## Do's and don'ts
 
-- Do keep the UI black / white / neutral gray in both themes
+Guardrails that keep the portfolio calm, readable, and consistent across themes.
+
+- Do keep the UI black / white / Neutral gray in both themes
 - Do use IBM Plex Sans for reading and IBM Plex Mono for chrome and metadata
 - Do preserve the reading column (`max-w-xl`) and spacious section gaps
-- Do prefer text links and underlines over filled controls
+- Do prefer text links for navigation; use the button kit only for non-navigating actions
 - Do keep images square-cornered and covers edge-to-edge in their frame
 - Don't introduce colorful gradients, glows, or drop shadows
+- Don't use `gray`, `zinc`, or `slate` color scales, or brand hues for UI chrome
 - Don't load Plex Sans 700 or ornate / condensed display faces
 - Don't crowd the grid or shrink major gaps below the established rhythm
-- Don't invent button/card/chip primitives that fight the existing chrome
+- Don't invent a fourth button variant, bordered card panels, or pill chips
 - Don't treat syntax-highlight colors as a general brand palette
