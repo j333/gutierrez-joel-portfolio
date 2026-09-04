@@ -1,6 +1,8 @@
 import {
   type DesignRule,
+  type DesignSection,
   type DesignTable,
+  slugify,
   stripMarkdownInline,
 } from 'app/lib/design-rule'
 
@@ -98,7 +100,7 @@ const DESIGN_GUIDE_SECTIONS: Record<string, GuideSectionCopy> = {
         })
       ),
   },
-  color: {
+  roles: {
     lead: 'Every role in the interface has a pair: one value for light, one for dark.',
     body: 'Code highlighting uses its own colors. If a form ever needs an error, it uses red — never as a brand color.',
   },
@@ -246,6 +248,42 @@ const DESIGN_GUIDE_SECTIONS: Record<string, GuideSectionCopy> = {
     ],
   },
 }
+
+const componentGuideSection = (
+  title: string,
+  leadMarkdown: string
+): DesignSection => ({
+  id: slugify(title),
+  title,
+  leadMarkdown,
+  bodyMarkdown: '',
+  tables: [],
+})
+
+export const COMPONENT_GUIDE_SECTIONS: DesignSection[] = [
+  componentGuideSection('Chrome link', 'Uppercase, mono, muted until hover.'),
+  componentGuideSection(
+    'CTA link',
+    'Muted and underlined — the default site action.'
+  ),
+  componentGuideSection('Content link', ''),
+  componentGuideSection(
+    'Page header & meta',
+    'Titles with labeled meta underneath.'
+  ),
+  componentGuideSection(
+    'Project / writing card',
+    'Full-bleed cover, title row, and mono meta — no card border or shadow.'
+  ),
+  componentGuideSection(
+    'Theme toggle',
+    'Text and icon, a little taller on small screens.'
+  ),
+  componentGuideSection(
+    'Image overlay',
+    'A near-opaque scrim. Close uses the chrome link style.'
+  ),
+]
 
 export const applyDesignGuideCopy = (rule: DesignRule): DesignRule => ({
   ...rule,

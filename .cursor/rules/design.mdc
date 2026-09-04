@@ -41,7 +41,7 @@ Monochrome only. Step 0 is lightest; 100 is darkest. Use Tailwind `white`, `neut
 | 95 | `neutral-950` | Extra Tailwind step; use only if 90 is not enough |
 | 100 | `black` | Ink light; canvas dark |
 
-## Color
+## Roles
 
 Semantic roles map onto the palette. Always pair light and dark. Prefer these tokens over one-off hex.
 

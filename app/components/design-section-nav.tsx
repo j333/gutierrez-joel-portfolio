@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { metaLabelClassName } from 'app/components/page-layout'
 import {
   DESIGN_CHAPTERS,
+  getDesignNavAnchorIds,
   type DesignChapter,
 } from 'app/lib/design-chapters'
 import { cx } from 'app/lib/cx'
@@ -45,8 +46,6 @@ const scrollToSection = (id: string) => {
 }
 
 export const DesignSectionNav = ({ sections }: DesignSectionNavProps) => {
-  const [activeId, setActiveId] = useState(sections[0]?.id ?? '')
-
   const chapters = useMemo((): NavChapter[] => {
     const byId = new Map(sections.map((section) => [section.id, section]))
 
@@ -58,13 +57,15 @@ export const DesignSectionNav = ({ sections }: DesignSectionNavProps) => {
     })).filter((group) => group.sections.length > 0)
   }, [sections])
 
+  const [activeId, setActiveId] = useState(chapters[0]?.chapter.id ?? '')
+
   useEffect(() => {
     if (sections.length === 0) {
       return
     }
 
-    const sectionIds = sections.map((section) => section.id)
-    const elements = sectionIds
+    const anchorIds = getDesignNavAnchorIds(sections.map((section) => section.id))
+    const elements = anchorIds
       .map((id) => document.getElementById(id))
       .filter((element): element is HTMLElement => element !== null)
 
@@ -95,7 +96,7 @@ export const DesignSectionNav = ({ sections }: DesignSectionNavProps) => {
 
     const syncFromHash = () => {
       const hash = window.location.hash.replace(/^#/, '')
-      if (hash && sectionIds.includes(hash)) {
+      if (hash && anchorIds.includes(hash)) {
         setActiveId(hash)
       }
     }
@@ -133,13 +134,13 @@ export const DesignSectionNav = ({ sections }: DesignSectionNavProps) => {
           const soleSection = chapterSections[0]
 
           if (!hasSubsections && soleSection) {
-            const isActive = soleSection.id === activeId
+            const isActive = chapter.id === activeId
 
             return (
               <li key={chapter.id} className="min-w-0">
                 <a
-                  href={`#${soleSection.id}`}
-                  onClick={(event) => handleNavClick(event, soleSection.id)}
+                  href={`#${chapter.id}`}
+                  onClick={(event) => handleNavClick(event, chapter.id)}
                   className={cx(
                     chapterLinkClassName,
                     isActive
@@ -154,32 +155,27 @@ export const DesignSectionNav = ({ sections }: DesignSectionNavProps) => {
             )
           }
 
-          const firstSection = chapterSections[0]
-          const isChapterActive = chapterSections.some(
-            (section) => section.id === activeId
-          )
+          const isChapterCurrent = chapter.id === activeId
+          const isChapterActive =
+            isChapterCurrent ||
+            chapterSections.some((section) => section.id === activeId)
 
           return (
             <li key={chapter.id} className="min-w-0">
-              {firstSection ? (
-                <a
-                  href={`#${firstSection.id}`}
-                  onClick={(event) => handleNavClick(event, firstSection.id)}
-                  className={cx(
-                    chapterLinkClassName,
-                    'mb-1',
-                    isChapterActive
-                      ? 'text-neutral-900 dark:text-neutral-100'
-                      : 'text-neutral-800 dark:text-neutral-200'
-                  )}
-                >
-                  {chapter.label}
-                </a>
-              ) : (
-                <p className="mb-1 text-sm font-medium leading-5 text-neutral-800 dark:text-neutral-200">
-                  {chapter.label}
-                </p>
-              )}
+              <a
+                href={`#${chapter.id}`}
+                onClick={(event) => handleNavClick(event, chapter.id)}
+                className={cx(
+                  chapterLinkClassName,
+                  'mb-1',
+                  isChapterActive
+                    ? 'text-neutral-900 dark:text-neutral-100'
+                    : 'text-neutral-800 dark:text-neutral-200'
+                )}
+                aria-current={isChapterCurrent ? 'location' : undefined}
+              >
+                {chapter.label}
+              </a>
               <ol className="m-0 flex list-none flex-col gap-0.5 border-l border-neutral-200 py-0.5 pl-3 dark:border-neutral-800">
                 {chapterSections.map((section) => {
                   const isActive = section.id === activeId

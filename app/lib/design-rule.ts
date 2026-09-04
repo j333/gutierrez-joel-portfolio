@@ -26,7 +26,7 @@ export type DesignRule = {
   sections: DesignSection[]
 }
 
-const slugify = (value: string) =>
+export const slugify = (value: string) =>
   value
     .toLowerCase()
     .trim()

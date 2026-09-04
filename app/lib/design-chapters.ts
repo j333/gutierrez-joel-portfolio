@@ -12,7 +12,7 @@ export const DESIGN_CHAPTERS: DesignChapter[] = [
   {
     id: 'color',
     label: 'Color',
-    sectionIds: ['palette', 'color'],
+    sectionIds: ['palette', 'roles'],
     description:
       'A monochrome scale. Each role has a pair for light and dark.',
   },
@@ -34,7 +34,16 @@ export const DESIGN_CHAPTERS: DesignChapter[] = [
   {
     id: 'components',
     label: 'Components',
-    sectionIds: ['components', 'buttons'],
+    sectionIds: [
+      'chrome-link',
+      'cta-link',
+      'content-link',
+      'page-header-and-meta',
+      'project-writing-card',
+      'theme-toggle',
+      'image-overlay',
+      'buttons',
+    ],
     description:
       'Links do most of the work. Buttons appear only when the action stays on the page.',
   },
@@ -48,6 +57,29 @@ export const DESIGN_CHAPTERS: DesignChapter[] = [
 export const getChapterForSectionId = (sectionId: string) =>
   DESIGN_CHAPTERS.find((chapter) => chapter.sectionIds.includes(sectionId)) ??
   null
+
+/** Public hash for a content section. Sole chapters use the chapter title id. */
+export const getSectionAnchorId = (sectionId: string) => {
+  const chapter = getChapterForSectionId(sectionId)
+  if (chapter && chapter.sectionIds.length === 1) {
+    return chapter.id
+  }
+  return sectionId
+}
+
+export const getDesignNavAnchorIds = (sectionIds: string[]) => {
+  const ids = new Set<string>()
+
+  for (const sectionId of sectionIds) {
+    const chapter = getChapterForSectionId(sectionId)
+    if (chapter) {
+      ids.add(chapter.id)
+    }
+    ids.add(getSectionAnchorId(sectionId))
+  }
+
+  return [...ids]
+}
 
 export const isChapterLeadSection = (sectionId: string) => {
   const chapter = getChapterForSectionId(sectionId)

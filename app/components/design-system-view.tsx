@@ -28,7 +28,11 @@ import {
   type DesignSection,
   type DesignTable,
 } from 'app/lib/design-rule'
-import { DESIGN_CHAPTERS } from 'app/lib/design-chapters'
+import {
+  DESIGN_CHAPTERS,
+  getSectionAnchorId,
+} from 'app/lib/design-chapters'
+import { COMPONENT_GUIDE_SECTIONS } from 'app/lib/design-guide'
 import { imagePlaceholderClassName } from 'app/lib/image-sizes'
 import { cx } from 'app/lib/cx'
 
@@ -977,123 +981,86 @@ const ShapeSpecimens = () => (
   </div>
 )
 
-const ComponentSpecimens = () => (
-  <div className="flex flex-col gap-14">
-    <div className="flex flex-col gap-3">
-      <SpecimenLabel>Chrome link</SpecimenLabel>
-      <a href="#components" className={chromeLinkClassName}>
-        Writing
+const ComponentSpecimens = {
+  'chrome-link': (
+    <a href="#chrome-link" className={chromeLinkClassName}>
+      Writing
+    </a>
+  ),
+  'cta-link': (
+    <a href="#cta-link" className={ctaLinkClassName}>
+      View case study
+    </a>
+  ),
+  'content-link': (
+    <p className="text-lg leading-relaxed text-neutral-800 dark:text-neutral-200">
+      Links inside prose keep the surrounding color and use a{' '}
+      <a href="#content-link" className="content-link">
+        quiet underline
       </a>
-      <p className="text-sm leading-5 text-neutral-500 dark:text-neutral-400">
-        Uppercase, mono, muted until hover
+      .
+    </p>
+  ),
+  'page-header-and-meta': (
+    <div>
+      <p className={`mb-2 ${pageTitleClassName}`}>Project title</p>
+      <p className="text-lg leading-relaxed text-neutral-600 dark:text-neutral-400">
+        Short supporting line in the muted description style.
       </p>
-    </div>
-
-    <div className="flex flex-col gap-3">
-      <SpecimenLabel>CTA link</SpecimenLabel>
-      <a href="#components" className={ctaLinkClassName}>
-        View case study
-      </a>
-      <p className="text-sm leading-5 text-neutral-500 dark:text-neutral-400">
-        Muted and underlined — the default site action
-      </p>
-    </div>
-
-    <div className="flex flex-col gap-3">
-      <SpecimenLabel>Content link</SpecimenLabel>
-      <p className="text-lg leading-relaxed text-neutral-800 dark:text-neutral-200">
-        Links inside prose keep the surrounding color and use a{' '}
-        <a href="#components" className="content-link">
-          quiet underline
-        </a>
-        .
-      </p>
-    </div>
-
-    <div className="flex flex-col gap-3">
-      <SpecimenLabel>Page header & meta</SpecimenLabel>
-      <div>
-        <p className={`mb-2 ${pageTitleClassName}`}>
-          Project title
-        </p>
-        <p className="text-lg leading-relaxed text-neutral-600 dark:text-neutral-400">
-          Short supporting line in the muted description style.
-        </p>
-        <div className="mt-6">
-          <dl className={metaListClassName}>
-            <MetaRow label="Brand">Marketfully</MetaRow>
-            <MetaRow label="Role">Product Design Manager</MetaRow>
-          </dl>
-        </div>
+      <div className="mt-6">
+        <dl className={metaListClassName}>
+          <MetaRow label="Brand">Marketfully</MetaRow>
+          <MetaRow label="Role">Product Design Manager</MetaRow>
+        </dl>
       </div>
-      <p className="text-sm leading-5 text-neutral-500 dark:text-neutral-400">
-        Titles with labeled meta underneath
-      </p>
     </div>
-
-    <div className="flex flex-col gap-3">
-      <SpecimenLabel>Project / writing card</SpecimenLabel>
-      <article className="max-w-md min-w-0">
-        <a
-          href="#components"
-          className="group flex flex-col gap-1 rounded-sm text-inherit outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900 dark:focus-visible:outline-neutral-100"
-        >
-          <div
-            className={`aspect-video w-full ${imagePlaceholderClassName}`}
-            aria-hidden="true"
-          />
-          <div className="flex items-baseline justify-between gap-4">
-            <p className="text-base font-medium leading-6 text-neutral-800 group-hover:underline group-focus-visible:underline dark:text-neutral-200">
-              Project title
-            </p>
-            <span className={typeMetaClassName}>
-              2024
-            </span>
-          </div>
-        </a>
-      </article>
-      <p className="text-sm leading-5 text-neutral-500 dark:text-neutral-400">
-        Full-bleed cover, title row, and mono meta — no card border or shadow
-      </p>
-    </div>
-
-    <div className="flex flex-col gap-3">
-      <SpecimenLabel>Theme toggle</SpecimenLabel>
-      <span
-        className="inline-flex min-h-11 w-fit items-center rounded-sm px-1 py-1 outline-none sm:min-h-0"
-        aria-hidden="true"
+  ),
+  'project-writing-card': (
+    <article className="max-w-md min-w-0">
+      <a
+        href="#project-writing-card"
+        className="group flex flex-col gap-1 rounded-sm text-inherit outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900 dark:focus-visible:outline-neutral-100"
       >
-        <SunIcon className="shrink-0 dark:hidden" />
-        <MoonIcon className="hidden shrink-0 dark:inline" />
-        <span className={`${navTextClassName} ml-2 whitespace-nowrap`}>
-          Dark mode
-        </span>
-      </span>
-      <p className="text-sm leading-5 text-neutral-500 dark:text-neutral-400">
-        Text and icon, a little taller on small screens
-      </p>
-    </div>
-
-    <div className="flex flex-col gap-3">
-      <SpecimenLabel>Image overlay</SpecimenLabel>
-      <div className="relative aspect-video w-full max-w-md overflow-hidden">
         <div
-          className={`absolute inset-0 ${imagePlaceholderClassName}`}
+          className={`aspect-video w-full ${imagePlaceholderClassName}`}
           aria-hidden="true"
         />
-        <div
-          className="absolute inset-0 flex items-start justify-end bg-white/95 p-4 dark:bg-black/95"
-          aria-hidden="true"
-        >
-          <span className={chromeLinkClassName}>Close</span>
+        <div className="flex items-baseline justify-between gap-4">
+          <p className="text-base font-medium leading-6 text-neutral-800 group-hover:underline group-focus-visible:underline dark:text-neutral-200">
+            Project title
+          </p>
+          <span className={typeMetaClassName}>2024</span>
         </div>
+      </a>
+    </article>
+  ),
+  'theme-toggle': (
+    <span
+      className="inline-flex min-h-11 w-fit items-center rounded-sm px-1 py-1 outline-none sm:min-h-0"
+      aria-hidden="true"
+    >
+      <SunIcon className="shrink-0 dark:hidden" />
+      <MoonIcon className="hidden shrink-0 dark:inline" />
+      <span className={`${navTextClassName} ml-2 whitespace-nowrap`}>
+        Dark mode
+      </span>
+    </span>
+  ),
+  'image-overlay': (
+    <div className="relative aspect-video w-full max-w-md overflow-hidden">
+      <div
+        className={`absolute inset-0 ${imagePlaceholderClassName}`}
+        aria-hidden="true"
+      />
+      <div
+        className="absolute inset-0 flex items-start justify-end bg-white/95 p-4 dark:bg-black/95"
+        aria-hidden="true"
+      >
+        <span className={chromeLinkClassName}>Close</span>
       </div>
-      <p className="text-sm leading-5 text-neutral-500 dark:text-neutral-400">
-        A near-opaque scrim. Close uses the chrome link style.
-      </p>
     </div>
-  </div>
-)
+  ),
+}
 
 const PrincipleList = ({ items }: { items: string[] }) => (
   <ul
@@ -1180,11 +1147,13 @@ const DesignSectionBlock = ({
   section,
   isFirstInChapter,
   flatTitle,
+  anchorId = section.id,
 }: {
   section: DesignSection
   isFirstInChapter: boolean
   /** When set, this section is the only one in its chapter — render as a sole title. */
   flatTitle?: string
+  anchorId?: string
 }) => {
   const listItems = extractListItems(section.bodyMarkdown)
   const lead = stripMarkdownInline(section.leadMarkdown)
@@ -1212,7 +1181,8 @@ const DesignSectionBlock = ({
   const isWeights = section.id === 'weights'
   const isLayout = section.id === 'layout'
   const isElevation = section.id === 'elevation-and-shape'
-  const isComponents = section.id === 'components'
+  const componentSpecimen =
+    ComponentSpecimens[section.id as keyof typeof ComponentSpecimens]
   const isFlat = Boolean(flatTitle)
 
   const dosDontsItems =
@@ -1226,7 +1196,7 @@ const DesignSectionBlock = ({
 
   return (
     <section
-      id={section.id}
+      id={anchorId}
       className={cx(
         'scroll-mt-24',
         isFlat ? 'pb-0' : 'pb-14',
@@ -1283,7 +1253,7 @@ const DesignSectionBlock = ({
         <InteractionSpecimens table={interactionTable} />
       ) : null}
       {buttonTable ? <ButtonSpecimens table={buttonTable} /> : null}
-      {isComponents ? <ComponentSpecimens /> : null}
+      {componentSpecimen ? componentSpecimen : null}
       {isLayout ? (
         <div className="mt-10">
           <LayoutSpecimens />
@@ -1341,8 +1311,12 @@ export const DesignSystemView = ({
   title = rule.title,
   description = rule.description,
 }: DesignSystemViewProps) => {
+  const sections = [
+    ...rule.sections.filter((section) => section.id !== 'components'),
+    ...COMPONENT_GUIDE_SECTIONS,
+  ]
   const sectionsById = new Map(
-    rule.sections.map((section) => [section.id, section])
+    sections.map((section) => [section.id, section])
   )
   const chapters = DESIGN_CHAPTERS.map((chapter) => ({
     ...chapter,
@@ -1351,7 +1325,7 @@ export const DesignSystemView = ({
       .filter((section): section is DesignSection => section !== undefined),
   })).filter((chapter) => chapter.sections.length > 0)
 
-  const navSections = rule.sections.map((section) => ({
+  const navSections = sections.map((section) => ({
     id: section.id,
     title: section.title,
   }))
@@ -1374,6 +1348,7 @@ export const DesignSystemView = ({
                   section={section}
                   isFirstInChapter
                   flatTitle={chapter.label}
+                  anchorId={getSectionAnchorId(section.id)}
                 />
               )
             }
@@ -1381,7 +1356,10 @@ export const DesignSystemView = ({
             return (
               <div key={chapter.id} className="flex min-w-0 flex-col">
                 <header className="mb-10">
-                  <h2 className={`scroll-mt-24 ${pageTitleClassName} text-neutral-900 dark:text-neutral-100`}>
+                  <h2
+                    id={chapter.id}
+                    className={`scroll-mt-24 ${pageTitleClassName} text-neutral-900 dark:text-neutral-100`}
+                  >
                     {chapter.label}
                   </h2>
                   {chapter.description ? (
