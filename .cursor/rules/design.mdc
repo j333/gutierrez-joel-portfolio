@@ -90,7 +90,7 @@ Interactive states (hover, underline, focus) live on components, not here.
 
 ## Weights
 
-Page and prose titles stay `font-normal`. Use `font-medium` for card titles and `strong`. The site wordmark is the only chrome that uses `font-semibold`. Prefer `em` / italic for emphasis in running copy, not bold display weights. Nav and footer chrome links use Small mono, uppercase. Their `neutral-600` idle color is a component state, not a type style. Section headings (`sectionHeadingClassName`) keep Label metrics with quieter ink (`text-neutral-500` in both themes) so they recede behind the content.
+Page and prose titles stay `font-normal`. Use `font-medium` for card titles and `strong`. The site wordmark is the only chrome that uses `font-semibold`. Prefer `em` / italic for emphasis in running copy, not bold display weights. Nav and footer chrome links use Small mono, uppercase, with `tracking-wider` so the caps can breathe. Their `neutral-600` idle color is a component state, not a type style. Section headings (`sectionHeadingClassName`) keep Label metrics with quieter ink (`text-neutral-500` in both themes) so they recede behind the content.
 
 ## Layout
 
@@ -131,6 +131,7 @@ Shared states for links, buttons, and chrome. No scale, glow, or drop shadow on 
 | State | Classes | Use |
 | --- | --- | --- |
 | Hover | `transition-colors` + color shift and/or `underline` | Quiet feedback only |
+| Current | `aria-[current=page]:text-black dark:aria-[current=page]:text-white` | Nav chrome when the page is open |
 | Focus | `outline-2 outline-offset-2 outline-neutral-900 dark:outline-neutral-100` | Default interactive chrome |
 | Focus (cards) | `outline-2 outline-offset-4 outline-neutral-900 dark:outline-neutral-100` | Project / writing card wrappers |
 | Disabled | `opacity-40 pointer-events-none` | Non-interactive controls; pair with `aria-disabled` or `disabled` |
@@ -143,7 +144,7 @@ Text-forward links, full-bleed covers, and labeled meta. Prefer helpers over one
 
 | Primitive | Helper | Notes |
 | --- | --- | --- |
-| Chrome link | `chromeLinkClassName` | Small mono, uppercase, muted → darker on hover + underline. Nav wordmark adds `font-semibold`. |
+| Chrome link | `chromeLinkClassName` | Small mono, uppercase, `tracking-wider`, muted → darker on hover + underline. Current page (`aria-current="page"`) uses ink. Nav wordmark adds `font-semibold`. |
 | Content / prose link | `.content-link` / `.prose a` | Inherit color, quiet underline, focus with currentColor |
 | CTA text link | `ctaLinkClassName` | `text-sm`, muted, underline — default site action |
 | Project / writing card | — | Full-bleed `aspect-video` cover, title row, mono meta; no card border or shadow |

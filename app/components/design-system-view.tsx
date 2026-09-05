@@ -740,6 +740,16 @@ const InteractionSpecimens = ({ table }: { table: DesignTable }) => {
               </a>
             ) : null}
 
+            {stateKey === 'current' ? (
+              <a
+                href="#interaction"
+                className={chromeLinkClassName}
+                aria-current="page"
+              >
+                Writing
+              </a>
+            ) : null}
+
             {stateKey === 'focus' ? (
               <a
                 href="#interaction"

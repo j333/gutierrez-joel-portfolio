@@ -206,6 +206,7 @@ const DESIGN_GUIDE_SECTIONS: Record<string, GuideSectionCopy> = {
       remapMatchingTable(tables, ['State', 'Use'], (table) =>
         replaceColumnByRow(table, 'State', 'Use', {
           Hover: 'A color shift, an underline, or both',
+          Current: 'Ink on the nav item for the page that is open',
           Focus: 'A clear outline on interactive chrome',
           'Focus (cards)': 'A slightly wider outline on project and writing cards',
           Disabled: 'Faded and still',
@@ -263,7 +264,7 @@ const componentGuideSection = (
 export const COMPONENT_GUIDE_SECTIONS: DesignSection[] = [
   componentGuideSection(
     'Chrome link',
-    'Uppercase, mono, muted until hover.'
+    'Uppercase, mono, muted until hover. Current page uses ink.'
   ),
   componentGuideSection('Content link', ''),
   componentGuideSection(
