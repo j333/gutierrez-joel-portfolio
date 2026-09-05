@@ -60,6 +60,81 @@ export const DesignSectionNav = ({ sections }: DesignSectionNavProps) => {
   const [activeId, setActiveId] = useState(chapters[0]?.chapter.id ?? '')
 
   useEffect(() => {
+    const root = document.documentElement
+    const nav = document.querySelector('.sticky-nav')
+
+    if (!(nav instanceof HTMLElement)) {
+      return
+    }
+
+    let frameId = 0
+    let transitionFrameId = 0
+
+    const updateOffset = () => {
+      const navBottom = Math.max(0, Math.round(nav.getBoundingClientRect().bottom))
+      root.style.setProperty('--sticky-nav-offset', `${navBottom}px`)
+    }
+
+    const handleScroll = () => {
+      if (frameId) {
+        return
+      }
+
+      frameId = window.requestAnimationFrame(() => {
+        frameId = 0
+        updateOffset()
+      })
+    }
+
+    const handleNavTransition = () => {
+      const startedAt = performance.now()
+
+      const tick = (now: number) => {
+        updateOffset()
+
+        if (now - startedAt < 220) {
+          transitionFrameId = window.requestAnimationFrame(tick)
+          return
+        }
+
+        transitionFrameId = 0
+      }
+
+      if (transitionFrameId) {
+        window.cancelAnimationFrame(transitionFrameId)
+      }
+
+      transitionFrameId = window.requestAnimationFrame(tick)
+    }
+
+    const mutationObserver = new MutationObserver(handleNavTransition)
+    mutationObserver.observe(nav, {
+      attributes: true,
+      attributeFilter: ['data-scroll-hidden'],
+    })
+
+    updateOffset()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    window.addEventListener('resize', handleScroll)
+
+    return () => {
+      mutationObserver.disconnect()
+      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('resize', handleScroll)
+
+      if (frameId) {
+        window.cancelAnimationFrame(frameId)
+      }
+
+      if (transitionFrameId) {
+        window.cancelAnimationFrame(transitionFrameId)
+      }
+
+      root.style.removeProperty('--sticky-nav-offset')
+    }
+  }, [])
+
+  useEffect(() => {
     if (sections.length === 0) {
       return
     }
@@ -125,7 +200,7 @@ export const DesignSectionNav = ({ sections }: DesignSectionNavProps) => {
   return (
     <nav
       aria-label="Table of content"
-      className="hidden lg:sticky lg:top-[var(--sticky-chrome,3.25rem)] lg:mb-16 lg:flex lg:max-h-[calc(100dvh-var(--sticky-chrome,3.25rem))] lg:flex-col lg:self-start lg:py-4"
+      className="hidden lg:sticky lg:top-[var(--sticky-nav-offset,3.25rem)] lg:mb-16 lg:flex lg:max-h-[calc(100dvh-var(--sticky-nav-offset,3.25rem))] lg:flex-col lg:self-start lg:py-4"
     >
       <div className="min-h-0 overflow-y-auto overscroll-contain scroll-py-4 lg:flex-1">
         <p className={`${metaLabelClassName} mb-4`}>Table of content</p>

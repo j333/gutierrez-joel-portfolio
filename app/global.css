@@ -69,8 +69,7 @@ html.dark {
 }
 
 .site-noise,
-.sticky-nav[data-away-from-top='true']::before,
-.sticky-page-title::before {
+.sticky-nav[data-away-from-top='true']::before {
   pointer-events: none;
   background-image: url('/bkg-noise.webp');
   background-repeat: repeat;
@@ -81,8 +80,7 @@ html.dark {
 }
 
 html.dark .site-noise,
-html.dark .sticky-nav[data-away-from-top='true']::before,
-html.dark .sticky-page-title::before {
+html.dark .sticky-nav[data-away-from-top='true']::before {
   filter: none;
 }
 
@@ -92,8 +90,7 @@ html.dark .sticky-page-title::before {
   z-index: -1;
 }
 
-.sticky-nav[data-away-from-top='true']::before,
-.sticky-page-title::before {
+.sticky-nav[data-away-from-top='true']::before {
   content: '';
   position: absolute;
   inset: 0;
