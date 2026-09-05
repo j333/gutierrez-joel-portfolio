@@ -22,7 +22,7 @@ const ibmPlexSans = IBM_Plex_Sans({
 
 const ibmPlexMono = IBM_Plex_Mono({
   subsets: ['latin', 'latin-ext'],
-  weight: ['400'],
+  weight: ['400', '600'],
   display: 'swap',
   preload: true,
   variable: '--font-ibm-plex-mono',

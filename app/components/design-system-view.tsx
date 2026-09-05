@@ -743,7 +743,7 @@ const InteractionSpecimens = ({ table }: { table: DesignTable }) => {
             {stateKey === 'focus' ? (
               <a
                 href="#interaction"
-                className="inline-flex rounded-sm px-1 py-1 font-mono text-xs uppercase tracking-wider text-neutral-600 outline outline-2 outline-offset-2 outline-neutral-900 dark:text-neutral-400 dark:outline-neutral-100"
+                className="inline-flex rounded-sm px-1 py-1 font-mono text-xs leading-4 text-neutral-600 outline outline-2 outline-offset-2 outline-neutral-900 dark:text-neutral-400 dark:outline-neutral-100"
               >
                 Focus outline
               </a>
@@ -779,7 +779,7 @@ const InteractionSpecimens = ({ table }: { table: DesignTable }) => {
             {stateKey === 'touch' ? (
               <button
                 type="button"
-                className="inline-flex min-h-11 items-center rounded-sm px-1 py-1 font-mono text-xs uppercase tracking-wider text-neutral-600 outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 dark:text-neutral-400 dark:focus-visible:outline-neutral-100 sm:min-h-0"
+                className="inline-flex min-h-11 items-center rounded-sm px-1 py-1 font-mono text-xs leading-4 text-neutral-600 outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 dark:text-neutral-400 dark:focus-visible:outline-neutral-100 sm:min-h-0"
               >
                 Touch target
               </button>

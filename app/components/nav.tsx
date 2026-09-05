@@ -10,6 +10,8 @@ import { ThemeToggle } from './theme-toggle'
 
 const navLinkClassName = `${chromeLinkClassName} -mx-1 min-h-11 whitespace-nowrap sm:min-h-0`
 
+const wordmarkClassName = `${navLinkClassName} font-semibold`
+
 const navListClassName =
   'flex items-center gap-x-4 min-[400px]:gap-x-6 sm:gap-x-8'
 
@@ -51,11 +53,12 @@ export const Navbar = () => {
             <li className="flex shrink-0 items-center">
               <Link
                 href="/"
-                className={navLinkClassName}
+                className={wordmarkClassName}
+                aria-label="Gutiérrez Joel"
                 aria-current={pathname === '/' ? 'page' : undefined}
               >
-                gutierrez
-                <span className="hidden sm:inline">&nbsp;joel</span>
+                Gutiérrez
+                <span className="hidden sm:inline">&nbsp;Joel</span>
               </Link>
             </li>
             {navItems.map((item) => (

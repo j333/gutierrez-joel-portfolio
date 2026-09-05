@@ -261,7 +261,10 @@ const componentGuideSection = (
 })
 
 export const COMPONENT_GUIDE_SECTIONS: DesignSection[] = [
-  componentGuideSection('Chrome link', 'Uppercase, mono, muted until hover.'),
+  componentGuideSection(
+    'Chrome link',
+    'Uppercase, mono, muted until hover.'
+  ),
   componentGuideSection('Content link', ''),
   componentGuideSection(
     'CTA link',

@@ -68,7 +68,7 @@ Exceptions (not brand accents):
 IBM Plex Sans for reading; IBM Plex Mono for chrome and metadata. Fonts are loaded in `app/layout.tsx`.
 
 - **IBM Plex Sans** — 400, 500, 600 (+ italic). Default body (`font-sans`). No 700.
-- **IBM Plex Mono** — 400. Chrome, meta, dates, tables (`font-mono`).
+- **IBM Plex Mono** — 400, 600. Chrome, meta, dates, tables (`font-mono`). 600 only for the site wordmark.
 
 ## Scale
 
@@ -90,7 +90,7 @@ Interactive states (hover, underline, focus) live on components, not here.
 
 ## Weights
 
-Page and prose titles stay `font-normal`. Use `font-medium` for card titles and `strong`. Prefer `em` / italic for emphasis in running copy, not bold display weights. Nav links reuse Label metrics; their `neutral-600` idle color is a component state, not a type style.
+Page and prose titles stay `font-normal`. Use `font-medium` for card titles and `strong`. The site wordmark is the only chrome that uses `font-semibold`. Prefer `em` / italic for emphasis in running copy, not bold display weights. Nav and footer chrome links use Small mono, uppercase. Their `neutral-600` idle color is a component state, not a type style. Section headings (`sectionHeadingClassName`) keep Label metrics with quieter ink (`text-neutral-500` in both themes) so they recede behind the content.
 
 ## Layout
 
@@ -143,7 +143,7 @@ Text-forward links, full-bleed covers, and labeled meta. Prefer helpers over one
 
 | Primitive | Helper | Notes |
 | --- | --- | --- |
-| Chrome link | `chromeLinkClassName` | Mono, uppercase, muted → darker on hover + underline |
+| Chrome link | `chromeLinkClassName` | Small mono, uppercase, muted → darker on hover + underline. Nav wordmark adds `font-semibold`. |
 | Content / prose link | `.content-link` / `.prose a` | Inherit color, quiet underline, focus with currentColor |
 | CTA text link | `ctaLinkClassName` | `text-sm`, muted, underline — default site action |
 | Project / writing card | — | Full-bleed `aspect-video` cover, title row, mono meta; no card border or shadow |

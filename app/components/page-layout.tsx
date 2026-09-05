@@ -22,7 +22,8 @@ export const pageSectionTitleClassName = 'text-2xl font-normal tracking-tight'
 
 export const pageSectionClassName = 'mb-16'
 
-export const sectionHeadingClassName = `mb-8 ${metaLabelClassName}`
+export const sectionHeadingClassName =
+  'mb-8 font-mono text-xs font-normal uppercase leading-4 tracking-wider text-neutral-500'
 
 type PageHeaderSpacing = 'section' | 'article' | 'hero'
 

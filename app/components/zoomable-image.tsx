@@ -34,7 +34,7 @@ const triggerClassName =
   'm-0 block w-full cursor-zoom-in border-0 bg-transparent p-0 outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 dark:focus-visible:outline-neutral-100'
 
 const closeButtonClassName =
-  'absolute right-3 top-3 rounded-sm px-1 py-1 font-mono text-xs uppercase leading-4 tracking-wider text-neutral-600 outline-none hover:text-neutral-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100 dark:focus-visible:outline-neutral-100'
+  'absolute right-3 top-3 rounded-sm px-1 py-1 font-mono text-xs leading-4 text-neutral-600 outline-none hover:text-neutral-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100 dark:focus-visible:outline-neutral-100'
 
 const articleImageSizes: Record<ArticleImageSize, string> = {
   column: '(max-width: 36rem) calc(100vw - 2rem), 36rem',
