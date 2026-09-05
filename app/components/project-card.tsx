@@ -45,7 +45,7 @@ export const ProjectCard = ({
               sizes={projectCardImageSizes}
               quality={projectImageQuality}
               unoptimized
-              className="h-full w-full rounded-none object-cover"
+              className="h-full w-full rounded-none object-cover motion-safe:transition-transform motion-safe:duration-1000 motion-safe:ease-[cubic-bezier(0.65,0,0.35,1)] motion-safe:group-hover:scale-[1.07] motion-safe:group-focus-visible:scale-[1.07]"
             />
           </div>
         ) : (
@@ -55,7 +55,7 @@ export const ProjectCard = ({
           />
         )}
         <div className="flex items-baseline justify-between gap-4">
-          <Heading className="text-base font-medium leading-6 text-neutral-800 group-hover:underline group-focus-visible:underline dark:text-neutral-200">
+          <Heading className="text-base font-medium leading-6 text-neutral-800 dark:text-neutral-200">
             {title}
           </Heading>
           <span className={typeMetaClassName}>{product}</span>
