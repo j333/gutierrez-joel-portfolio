@@ -262,11 +262,15 @@ const componentGuideSection = (
 
 export const COMPONENT_GUIDE_SECTIONS: DesignSection[] = [
   componentGuideSection('Chrome link', 'Uppercase, mono, muted until hover.'),
+  componentGuideSection('Content link', ''),
   componentGuideSection(
     'CTA link',
     'Muted and underlined — the default site action.'
   ),
-  componentGuideSection('Content link', ''),
+  componentGuideSection(
+    'Image overlay',
+    'A near-opaque scrim. Close uses the chrome link style.'
+  ),
   componentGuideSection(
     'Page header & meta',
     'Titles with labeled meta underneath.'
@@ -278,10 +282,6 @@ export const COMPONENT_GUIDE_SECTIONS: DesignSection[] = [
   componentGuideSection(
     'Theme toggle',
     'Text and icon, a little taller on small screens.'
-  ),
-  componentGuideSection(
-    'Image overlay',
-    'A near-opaque scrim. Close uses the chrome link style.'
   ),
 ]
 

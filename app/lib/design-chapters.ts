@@ -35,14 +35,14 @@ export const DESIGN_CHAPTERS: DesignChapter[] = [
     id: 'components',
     label: 'Components',
     sectionIds: [
+      'buttons',
       'chrome-link',
-      'cta-link',
       'content-link',
+      'cta-link',
+      'image-overlay',
       'page-header-and-meta',
       'project-writing-card',
       'theme-toggle',
-      'image-overlay',
-      'buttons',
     ],
     description:
       'Links do most of the work. Buttons appear only when the action stays on the page.',
