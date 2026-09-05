@@ -18,6 +18,8 @@ export const metaValueClassName =
 export const pageTitleClassName =
   'text-3xl font-normal leading-9 tracking-tighter'
 
+export const pageSectionTitleClassName = 'text-2xl font-normal tracking-tight'
+
 export const pageSectionClassName = 'mb-16'
 
 export const sectionHeadingClassName = `mb-8 ${metaLabelClassName}`

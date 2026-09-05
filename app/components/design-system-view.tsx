@@ -16,6 +16,7 @@ import {
   metaLabelClassName,
   metaListClassName,
   pageSectionClassName,
+  pageSectionTitleClassName,
   pageTitleClassName,
   textColumnClassName,
   typeMetaClassName,
@@ -1200,7 +1201,7 @@ const DesignSectionBlock = ({
     >
       <header className={isFlat ? 'mb-10' : 'mb-8'}>
         {isFlat ? (
-          <h2 className={`${pageTitleClassName} text-neutral-900 dark:text-neutral-100`}>
+          <h2 className={`${pageSectionTitleClassName} text-neutral-900 dark:text-neutral-100`}>
             {flatTitle}
           </h2>
         ) : (
@@ -1355,7 +1356,7 @@ export const DesignSystemView = ({
                 <header className="mb-10">
                   <h2
                     id={chapter.id}
-                    className={`scroll-mt-24 ${pageTitleClassName} text-neutral-900 dark:text-neutral-100`}
+                    className={`scroll-mt-24 ${pageSectionTitleClassName} text-neutral-900 dark:text-neutral-100`}
                   >
                     {chapter.label}
                   </h2>
