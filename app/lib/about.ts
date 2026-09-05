@@ -69,7 +69,7 @@ export const buildHomeMarkdown = () => {
 
 I'm a *product designer* with over a decade of experience in product strategy, design systems, design leadership, and UX.
 
-## Project case studies
+## Projects
 
 These are portfolio case studies, not employers.
 

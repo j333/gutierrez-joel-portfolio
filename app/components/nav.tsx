@@ -8,8 +8,6 @@ import { ThemeToggle } from './theme-toggle'
 
 const navLinkClassName = `${chromeLinkClassName} -mx-1 min-h-11 whitespace-nowrap sm:min-h-0`
 
-const wordmarkClassName = `${navLinkClassName} font-semibold`
-
 const navListClassName = 'flex items-center gap-x-6 sm:gap-x-8'
 
 const navShellClassName =
@@ -18,6 +16,7 @@ const navShellClassName =
 const navClassName = 'pointer-events-auto pb-3'
 
 const navItems = [
+  { href: '/', name: 'Home' },
   { href: '/writing', name: 'Writing' },
   { href: '/about', name: 'About' },
 ]
@@ -47,17 +46,6 @@ export const Navbar = () => {
       >
         <div className="flex w-full items-center justify-between gap-x-6 sm:gap-x-8">
           <ul className={navListClassName}>
-            <li className="flex shrink-0 items-center">
-              <Link
-                href="/"
-                className={wordmarkClassName}
-                aria-label="Gutiérrez Joel"
-                aria-current={pathname === '/' ? 'page' : undefined}
-              >
-                Gutiérrez
-                <span className="hidden sm:inline">&nbsp;Joel</span>
-              </Link>
-            </li>
             {navItems.map((item) => (
               <li key={item.href} className="flex shrink-0 items-center">
                 <Link

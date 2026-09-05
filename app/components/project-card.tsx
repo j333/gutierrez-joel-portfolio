@@ -11,11 +11,17 @@ import {
   type Project,
 } from 'app/projects/utils'
 
+type ProjectHeading = 'h2' | 'h3'
+
 type ProjectCardProps = {
   project: Project
+  heading?: ProjectHeading
 }
 
-export const ProjectCard = ({ project }: ProjectCardProps) => {
+export const ProjectCard = ({
+  project,
+  heading: Heading = 'h2',
+}: ProjectCardProps) => {
   const { title, product } = project.metadata
   const image = getProjectImage(project)
   const href = `/${project.slug}`
@@ -49,9 +55,9 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
           />
         )}
         <div className="flex items-baseline justify-between gap-4">
-          <h2 className="text-base font-medium leading-6 text-neutral-800 group-hover:underline group-focus-visible:underline dark:text-neutral-200">
+          <Heading className="text-base font-medium leading-6 text-neutral-800 group-hover:underline group-focus-visible:underline dark:text-neutral-200">
             {title}
-          </h2>
+          </Heading>
           <span className={typeMetaClassName}>{product}</span>
         </div>
       </Link>

@@ -1,5 +1,9 @@
 import { ProjectCard, projectGridClassName } from 'app/components/project-card'
-import { textColumnClassName } from 'app/components/page-layout'
+import {
+  PageHeader,
+  pageSectionTitleClassName,
+  textColumnClassName,
+} from 'app/components/page-layout'
 import { getProjects } from 'app/projects/utils'
 
 export const dynamic = 'force-static'
@@ -9,19 +13,33 @@ const Page = () => {
 
   return (
     <div className="flex flex-col gap-16">
-      <p
-        className={`${textColumnClassName} text-xl leading-[1.3] text-neutral-800 dark:text-neutral-200`}
-      >
-        I&apos;m a{' '}
-        <em className="font-normal italic">product designer</em> with over a
-        decade of experience in product strategy, design systems, design
-        leadership, and UX.
-      </p>
-      <div className={projectGridClassName} aria-label="Project case studies">
-        {projects.map((project) => (
-          <ProjectCard key={project.slug} project={project} />
-        ))}
+      <div className={textColumnClassName}>
+        <PageHeader
+          title="Gutiérrez Joel"
+          description={
+            <>
+              I&apos;m a{' '}
+              <em className="font-normal italic">product designer</em> with over
+              a decade of experience in product strategy, design systems, design
+              leadership, and UX.
+            </>
+          }
+          spacing="hero"
+        />
       </div>
+      <section aria-labelledby="home-projects-heading">
+        <h2
+          id="home-projects-heading"
+          className={`mb-8 ${pageSectionTitleClassName}`}
+        >
+          Projects
+        </h2>
+        <div className={projectGridClassName}>
+          {projects.map((project) => (
+            <ProjectCard key={project.slug} project={project} heading="h3" />
+          ))}
+        </div>
+      </section>
     </div>
   )
 }
