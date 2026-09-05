@@ -3,12 +3,10 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useScrollNavVisibility } from '../hooks/use-scroll-nav-visibility'
-import { chromeLinkBaseClassName, chromeLinkClassName } from './link-styles'
+import { chromeLinkClassName } from './link-styles'
 import { ThemeToggle } from './theme-toggle'
 
 const navLinkClassName = `${chromeLinkClassName} -mx-1 min-h-11 whitespace-nowrap sm:min-h-0`
-
-const brandLinkClassName = `${chromeLinkBaseClassName} -mx-1 min-h-11 whitespace-nowrap sm:min-h-0`
 
 const navListClassName = 'flex items-center gap-x-6 sm:gap-x-8'
 
@@ -47,7 +45,7 @@ export const Navbar = () => {
         aria-label="Primary"
       >
         <div className="grid w-full grid-cols-1 items-center gap-x-6 sm:grid-cols-2 sm:gap-x-8">
-          <Link href="/" className={`${brandLinkClassName} max-sm:hidden`}>
+          <Link href="/" className={`${navLinkClassName} max-sm:hidden`}>
             Gutiérrez Joel
           </Link>
           <div className="flex min-w-0 items-center justify-between gap-x-6 sm:gap-x-8">
