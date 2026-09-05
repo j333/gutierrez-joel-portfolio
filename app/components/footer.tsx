@@ -24,7 +24,7 @@ const Footer = () => {
             ))}
           </ul>
         </nav>
-        <p className="text-xs leading-5 text-neutral-500 dark:text-neutral-400">
+        <p className="text-sm leading-5 text-neutral-500 dark:text-neutral-400">
           Designed and built in Cursor by yours truly.{' '}
           <a
             href={site.githubUrl}

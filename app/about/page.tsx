@@ -63,10 +63,10 @@ const Page = () => {
           <p className="text-xl leading-[1.3] text-neutral-800 dark:text-neutral-200">
             {aboutBio[0]}
           </p>
-          <p className="text-base leading-6 text-neutral-600 dark:text-neutral-400">
+          <p className="text-lg leading-relaxed text-neutral-600 dark:text-neutral-400">
             {aboutBio[1]}
           </p>
-          <p className="text-base leading-6 text-neutral-600 dark:text-neutral-400">
+          <p className="text-lg leading-relaxed text-neutral-600 dark:text-neutral-400">
             {aboutBio[2]}
           </p>
         </div>
@@ -82,7 +82,7 @@ const Page = () => {
                 <li>
                   <div className="flex min-w-0 flex-col gap-2">
                     <div className="flex flex-col gap-1">
-                      <h3 className="text-base font-medium leading-6 text-neutral-900 dark:text-neutral-100">
+                      <h3 className="text-base font-medium leading-6 text-neutral-800 dark:text-neutral-200">
                         {aboutEducation.degree}
                       </h3>
                       <p className="text-pretty text-sm leading-5 text-neutral-500 dark:text-neutral-400">
@@ -124,7 +124,7 @@ const Page = () => {
                   </li>
                 ))}
               </ul>
-              <p className="mt-4 text-pretty text-xs leading-5 text-neutral-500 dark:text-neutral-400">
+              <p className="mt-4 text-pretty text-sm leading-5 text-neutral-500 dark:text-neutral-400">
                 {aboutStackNote}
               </p>
             </AboutSection>

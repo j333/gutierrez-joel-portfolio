@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { typeMetaClassName } from 'app/components/page-layout'
 import { projectGridClassName } from 'app/components/project-card'
 import {
   imagePlaceholderClassName,
@@ -64,12 +65,12 @@ const WritingCard = ({
           />
         )}
         <div className="flex items-baseline justify-between gap-4">
-          <Heading className="min-w-0 text-base font-medium leading-6 text-neutral-900 group-hover:underline group-focus-visible:underline dark:text-neutral-100">
+          <Heading className="min-w-0 text-base font-medium leading-6 text-neutral-800 group-hover:underline group-focus-visible:underline dark:text-neutral-200">
             {title}
           </Heading>
           <time
             dateTime={publishedAt}
-            className="shrink-0 font-mono text-xs leading-4 text-neutral-500 dark:text-neutral-400"
+            className={`shrink-0 ${typeMetaClassName}`}
           >
             {formatListDate(publishedAt)}
           </time>

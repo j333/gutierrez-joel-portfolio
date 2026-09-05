@@ -1193,7 +1193,7 @@ const DesignSectionBlock = ({
     <section
       id={anchorId}
       className={cx(
-        'scroll-mt-24',
+        'scroll-mt-36 lg:scroll-mt-24',
         isFlat ? 'pb-0' : 'pb-14',
         !isFirstInChapter && !isFlat && 'pt-10'
       )}
@@ -1329,7 +1329,7 @@ export const DesignSystemView = ({
     <div className="flex flex-col">
       <PageHeader title={title} description={description} spacing="article" />
       <IntroMarkdown markdown={rule.introMarkdown} />
-      <div className="mt-16 grid grid-cols-1 gap-10 lg:mt-20 lg:grid-cols-[13rem_minmax(0,1fr)] lg:gap-14 xl:grid-cols-[15rem_minmax(0,1fr)]">
+      <div className="mt-16 flex flex-col gap-10 lg:mt-20 lg:grid lg:grid-cols-[13rem_minmax(0,1fr)] lg:gap-14 xl:grid-cols-[15rem_minmax(0,1fr)]">
         <DesignSectionNav sections={navSections} />
         <div
           className={`flex min-w-0 flex-col gap-16 ${pageSectionClassName} pb-20`}
@@ -1355,7 +1355,7 @@ export const DesignSystemView = ({
                 <header className="mb-10">
                   <h2
                     id={chapter.id}
-                    className={`scroll-mt-24 ${pageTitleClassName} text-neutral-900 dark:text-neutral-100`}
+                    className={`scroll-mt-36 lg:scroll-mt-24 ${pageTitleClassName} text-neutral-900 dark:text-neutral-100`}
                   >
                     {chapter.label}
                   </h2>

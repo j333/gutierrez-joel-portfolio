@@ -124,10 +124,10 @@ export const DesignSectionNav = ({ sections }: DesignSectionNavProps) => {
 
   return (
     <nav
-      aria-label="On this page"
-      className="border-b border-neutral-200 pb-6 dark:border-neutral-800 lg:sticky lg:top-20 lg:self-start lg:border-b-0 lg:pb-0"
+      aria-label="Table of content"
+      className="hidden lg:sticky lg:top-20 lg:block lg:self-start"
     >
-      <p className={`${metaLabelClassName} mb-4`}>On this page</p>
+      <p className={`${metaLabelClassName} mb-4`}>Table of content</p>
       <ol className="m-0 flex list-none flex-col gap-5 p-0">
         {chapters.map(({ chapter, sections: chapterSections }) => {
           const hasSubsections = chapterSections.length > 1

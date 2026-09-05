@@ -1,5 +1,8 @@
 import { YearRange } from 'app/components/year-range'
-import { metaLabelClassName } from 'app/components/page-layout'
+import {
+  metaLabelClassName,
+  typeMetaClassName,
+} from 'app/components/page-layout'
 import type {
   ExperienceProject,
   ExperienceProjectGroup,
@@ -8,8 +11,7 @@ import type {
 const YEAR_HEADER = 'Year'
 const PROJECT_HEADER = 'Project'
 
-const yearCellClassName =
-  'font-mono text-xs leading-4 text-neutral-500 dark:text-neutral-400'
+const yearCellClassName = typeMetaClassName
 
 const headerClassName = `pb-2 ${metaLabelClassName}`
 
@@ -53,14 +55,14 @@ export const ExperienceProjects = ({
   return (
     <section className={className} aria-label={heading ?? 'Client work'}>
       {heading ? (
-        <h2 className="mb-8 text-xl font-normal tracking-tight text-neutral-900 dark:text-neutral-100">
+        <h2 className="mb-8 text-xl font-normal tracking-tight text-neutral-800 dark:text-neutral-200">
           {heading}
         </h2>
       ) : null}
       <div className="space-y-12">
         {groups.map((group) => (
           <div key={group.name}>
-            <h3 className="mb-4 text-base font-normal tracking-tight text-neutral-900 dark:text-neutral-100">
+            <h3 className="mb-4 text-base font-normal tracking-tight text-neutral-800 dark:text-neutral-200">
               {group.url ? (
                 <a
                   href={group.url}

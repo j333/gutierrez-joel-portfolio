@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { typeMetaClassName } from 'app/components/page-layout'
 import {
   imagePlaceholderClassName,
   projectCardImageSizes,
@@ -9,9 +10,6 @@ import {
   projectImageQuality,
   type Project,
 } from 'app/projects/utils'
-
-const cardMetaClassName =
-  'font-mono text-xs leading-4 text-neutral-500 dark:text-neutral-400'
 
 type ProjectCardProps = {
   project: Project
@@ -51,10 +49,10 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
           />
         )}
         <div className="flex items-baseline justify-between gap-4">
-          <h2 className="text-base font-medium leading-6 text-neutral-900 group-hover:underline group-focus-visible:underline dark:text-neutral-100">
+          <h2 className="text-base font-medium leading-6 text-neutral-800 group-hover:underline group-focus-visible:underline dark:text-neutral-200">
             {title}
           </h2>
-          <span className={cardMetaClassName}>{product}</span>
+          <span className={typeMetaClassName}>{product}</span>
         </div>
       </Link>
     </article>

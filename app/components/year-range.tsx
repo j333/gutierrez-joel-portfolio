@@ -1,5 +1,6 @@
-const yearRangeClassName =
-  'font-mono text-xs leading-4 text-neutral-500 dark:text-neutral-400'
+import { typeMetaClassName } from 'app/components/page-layout'
+
+const yearRangeClassName = typeMetaClassName
 
 type YearRangeProps = {
   start: string

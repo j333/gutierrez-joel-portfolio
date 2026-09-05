@@ -39,7 +39,7 @@ export const ContentListItem = ({
       >
         <div className="flex min-w-0 flex-1 flex-col gap-2">
           <div className="flex flex-col gap-1">
-            <Heading className="text-base font-medium leading-6 text-neutral-900 [text-decoration-skip-ink:all] underline-offset-[0.1em] group-hover:underline group-focus-visible:underline dark:text-neutral-100">
+            <Heading className="text-base font-medium leading-6 text-neutral-800 [text-decoration-skip-ink:all] underline-offset-[0.1em] group-hover:underline group-focus-visible:underline dark:text-neutral-200">
               {title}
             </Heading>
             {children}
