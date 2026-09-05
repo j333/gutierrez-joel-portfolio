@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer>
       <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-        <nav aria-label="Social">
+        <nav aria-label="Links">
           <ul className="flex flex-wrap gap-x-6 gap-y-3">
             {socialLinks.map((link) => (
               <li key={link.name}>
@@ -22,6 +22,18 @@ const Footer = () => {
                 </a>
               </li>
             ))}
+            <li>
+              <a
+                className={chromeLinkClassName}
+                rel="noopener noreferrer"
+                target="_blank"
+                href={site.resumePath}
+                aria-label="Resume, opens PDF in a new tab"
+              >
+                Resume
+                <ArrowIcon />
+              </a>
+            </li>
           </ul>
         </nav>
         <p className="text-sm leading-5 text-neutral-500 dark:text-neutral-400">

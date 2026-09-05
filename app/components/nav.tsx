@@ -3,8 +3,6 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useScrollNavVisibility } from '../hooks/use-scroll-nav-visibility'
-import { site } from '../lib/site'
-import { ArrowIcon } from './arrow-icon'
 import { chromeLinkClassName } from './link-styles'
 import { ThemeToggle } from './theme-toggle'
 
@@ -78,20 +76,6 @@ export const Navbar = () => {
           <ul className={navListClassName}>
             <li className="flex shrink-0 items-center">
               <ThemeToggle />
-            </li>
-            <li className="flex shrink-0 items-center">
-              <a
-                href={site.resumePath}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={navLinkClassName}
-                aria-label="Resume, opens PDF in a new tab"
-              >
-                <span className="inline-flex">
-                  Resume
-                  <ArrowIcon />
-                </span>
-              </a>
             </li>
           </ul>
         </div>
