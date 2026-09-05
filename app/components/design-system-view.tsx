@@ -15,6 +15,7 @@ import {
   PageHeader,
   metaLabelClassName,
   metaListClassName,
+  pageSectionClassName,
   pageTitleClassName,
   textColumnClassName,
   typeMetaClassName,
@@ -1336,7 +1337,9 @@ export const DesignSystemView = ({
       <IntroMarkdown markdown={rule.introMarkdown} />
       <div className="mt-16 grid grid-cols-1 gap-10 lg:mt-20 lg:grid-cols-[13rem_minmax(0,1fr)] lg:gap-14 xl:grid-cols-[15rem_minmax(0,1fr)]">
         <DesignSectionNav sections={navSections} />
-        <div className="flex min-w-0 flex-col gap-16">
+        <div
+          className={`flex min-w-0 flex-col gap-16 ${pageSectionClassName} pb-20`}
+        >
           {chapters.map((chapter) => {
             const hasSubsections = chapter.sections.length > 1
 
