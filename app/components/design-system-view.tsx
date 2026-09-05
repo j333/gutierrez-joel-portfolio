@@ -440,16 +440,13 @@ const FaceSpecimens = () => (
         <p className="text-base font-medium leading-6 text-neutral-800 dark:text-neutral-200">
           IBM Plex Sans
         </p>
-        <p className="text-lg leading-relaxed text-neutral-800 dark:text-neutral-200">
-          The quick brown fox jumps over the lazy dog
+        <p className={typeMetaClassName}>
+          Regular, medium, semibold, and italic
+        </p>
+        <p className="text-sm leading-5 text-neutral-600 dark:text-neutral-400">
+          Reading, titles, and body
         </p>
       </div>
-      <p className={typeMetaClassName}>
-        Regular, medium, semibold, and italic
-      </p>
-      <p className="text-sm leading-5 text-neutral-600 dark:text-neutral-400">
-        Reading, titles, and body
-      </p>
     </li>
     <li className="flex min-w-0 flex-col gap-4 border-t border-neutral-200 pt-6 dark:border-neutral-800">
       <p
@@ -462,14 +459,11 @@ const FaceSpecimens = () => (
         <p className="text-base font-medium leading-6 text-neutral-800 dark:text-neutral-200">
           IBM Plex Mono
         </p>
-        <p className="font-mono text-sm leading-5 text-neutral-800 dark:text-neutral-200">
-          2024 · Writing · Meta
+        <p className={typeMetaClassName}>Regular</p>
+        <p className="text-sm leading-5 text-neutral-600 dark:text-neutral-400">
+          Chrome, dates, and tables
         </p>
       </div>
-      <p className={typeMetaClassName}>Regular</p>
-      <p className="text-sm leading-5 text-neutral-600 dark:text-neutral-400">
-        Chrome, dates, and tables
-      </p>
     </li>
   </ul>
 )
