@@ -125,10 +125,11 @@ export const DesignSectionNav = ({ sections }: DesignSectionNavProps) => {
   return (
     <nav
       aria-label="Table of content"
-      className="hidden lg:sticky lg:top-20 lg:block lg:self-start"
+      className="hidden lg:sticky lg:top-20 lg:mb-16 lg:flex lg:max-h-[calc(100dvh-5rem)] lg:flex-col lg:self-start lg:py-4"
     >
-      <p className={`${metaLabelClassName} mb-4`}>Table of content</p>
-      <ol className="m-0 flex list-none flex-col gap-5 p-0">
+      <div className="min-h-0 overflow-y-auto overscroll-contain scroll-py-4 lg:flex-1">
+        <p className={`${metaLabelClassName} mb-4`}>Table of content</p>
+        <ol className="m-0 flex list-none flex-col gap-5 p-0">
         {chapters.map(({ chapter, sections: chapterSections }) => {
           const hasSubsections = chapterSections.length > 1
           const soleSection = chapterSections[0]
@@ -202,7 +203,8 @@ export const DesignSectionNav = ({ sections }: DesignSectionNavProps) => {
             </li>
           )
         })}
-      </ol>
+        </ol>
+      </div>
     </nav>
   )
 }
