@@ -2,6 +2,7 @@ import { ExperiencePosts } from 'app/components/experience'
 import {
   PageHeader,
   pageSectionClassName,
+  pageStackClassName,
   sectionHeadingClassName,
   textColumnClassName,
 } from 'app/components/page-layout'
@@ -35,7 +36,7 @@ type AboutSectionProps = {
 }
 
 const AboutSection = ({ title, children }: AboutSectionProps) => (
-  <section className={pageSectionClassName}>
+  <section>
     <h2 className={sectionHeadingClassName}>{title}</h2>
     {children}
   </section>
@@ -50,16 +51,14 @@ const Page = () => {
           buildPersonEntity()
         )}
       />
-      <div className="w-full">
+      <div className={`w-full ${pageSectionClassName}`}>
         <PageHeader
           title={aboutIndex.title}
           description={aboutIndex.intro}
-          spacing="hero"
+          spacing="section"
         />
 
-        <div
-          className={`${pageSectionClassName} ${textColumnClassName} space-y-4`}
-        >
+        <div className={`${pageSectionClassName} ${textColumnClassName} space-y-4`}>
           <p className="text-xl leading-[1.3] text-neutral-800 dark:text-neutral-200">
             {aboutBio[0]}
           </p>
@@ -71,8 +70,8 @@ const Page = () => {
           </p>
         </div>
 
-        <div className="flex flex-col lg:flex-row lg:gap-16">
-          <div className={textColumnClassName}>
+        <div className="flex flex-col gap-16 lg:flex-row">
+          <div className={`${textColumnClassName} ${pageStackClassName}`}>
             <AboutSection title="Experience">
               <ExperiencePosts heading="h3" />
             </AboutSection>
@@ -99,7 +98,7 @@ const Page = () => {
             </AboutSection>
           </div>
 
-          <div className={textColumnClassName}>
+          <div className={`${textColumnClassName} ${pageStackClassName}`}>
             <AboutSection title="Capabilities">
               <ul className="grid grid-cols-2 gap-y-2 sm:grid-cols-3">
                 {aboutSkills.map((skill) => (

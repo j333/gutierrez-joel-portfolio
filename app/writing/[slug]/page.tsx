@@ -7,6 +7,7 @@ import { WritingMeta } from 'app/components/writing-meta'
 import {
   PageHeader,
   articleBodyClassName,
+  articleCoverClassName,
   pageSectionClassName,
 } from 'app/components/page-layout'
 import {
@@ -86,16 +87,12 @@ const Writing = async ({ params }: SlugPageProps) => {
         })}
       />
       <article className={pageSectionClassName}>
-        <PageHeader
-          title={title}
-          description={summary}
-          spacing="hero"
-        >
+        <PageHeader title={title} description={summary} spacing="article">
           <WritingMeta publishedAt={publishedAt} />
         </PageHeader>
         {image ? (
           <div
-            className={`relative mb-14 aspect-video w-full overflow-hidden ${imagePlaceholderClassName}`}
+            className={`relative overflow-hidden ${articleCoverClassName} ${imagePlaceholderClassName}`}
           >
             <Image
               src={image.src}
@@ -111,7 +108,7 @@ const Writing = async ({ params }: SlugPageProps) => {
         ) : (
           <div
             aria-hidden="true"
-            className={`mb-14 aspect-video w-full ${imagePlaceholderClassName}`}
+            className={`${articleCoverClassName} ${imagePlaceholderClassName}`}
           />
         )}
         <div className={`${articleBodyClassName} prose`}>

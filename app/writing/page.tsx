@@ -1,5 +1,9 @@
 import { WritingPosts } from 'app/components/writing'
-import { PageHeader, textColumnClassName } from 'app/components/page-layout'
+import {
+  PageHeader,
+  pageSectionClassName,
+  textColumnClassName,
+} from 'app/components/page-layout'
 import { createPageMetadata } from 'app/lib/metadata'
 import { site, writingIndex } from 'app/lib/site'
 
@@ -11,12 +15,12 @@ export const metadata = createPageMetadata({
 
 const Page = () => {
   return (
-    <div>
+    <div className={pageSectionClassName}>
       <div className={textColumnClassName}>
         <PageHeader
           title={writingIndex.title}
           description={writingIndex.intro}
-          spacing="hero"
+          spacing="section"
         />
       </div>
       <WritingPosts />

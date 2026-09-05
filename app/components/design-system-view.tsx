@@ -631,13 +631,16 @@ const spacingWidthClassName: Record<string, string> = {
   'gap-2': 'w-2',
   'gap-3': 'w-3',
   'gap-4': 'w-4',
+  'mb-2': 'w-2',
+  'mb-3': 'w-3',
+  'mb-4': 'w-4',
   'px-1': 'w-1',
   'py-1': 'w-1',
   'gap-6': 'w-6',
   'mb-8': 'w-8',
   'mt-6': 'w-6',
+  'space-y-8': 'w-8',
   'mb-12': 'w-12',
-  'mb-14': 'w-14',
   'mb-16': 'w-16',
   'gap-16': 'w-16',
   'mt-20': 'w-20',
@@ -941,12 +944,15 @@ const LayoutSpecimens = () => (
       <div className="flex flex-col gap-16">
         <div className="border-b border-neutral-200 pb-4 dark:border-neutral-800">
           <p className="text-sm leading-5 text-neutral-600 dark:text-neutral-400">
-            Major sections use open vertical space
+            Unrelated blocks share one section gap
           </p>
         </div>
         <div className="border-b border-neutral-200 pb-4 dark:border-neutral-800">
+          <p className="mb-3 text-sm font-medium leading-5 text-neutral-800 dark:text-neutral-200">
+            Heading hugs content
+          </p>
           <p className="text-sm leading-5 text-neutral-600 dark:text-neutral-400">
-            so the page can breathe
+            so proximity reads clearly
           </p>
         </div>
       </div>

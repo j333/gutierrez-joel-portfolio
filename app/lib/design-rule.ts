@@ -202,7 +202,7 @@ const parseSections = (body: string) => {
 }
 
 const UTILITY_PREFIX =
-  /^(bg-|text-|border-|font-|leading-|tracking-|rounded-|outline-|uppercase|lowercase|italic|not-italic|antialiased|inline-flex|items-|justify-|min-h-|px-|py-|gap-|mb-|mt-|pb-|pt-|opacity-|pointer-|transition-|underline|hover:|focus-visible:|dark:|sm:|lg:)/
+  /^(bg-|text-|border-|font-|leading-|tracking-|rounded-|outline-|uppercase|lowercase|italic|not-italic|antialiased|inline-flex|items-|justify-|min-h-|px-|py-|gap-|space-y-|mb-|mt-|pb-|pt-|opacity-|pointer-|transition-|underline|hover:|focus-visible:|dark:|sm:|lg:)/
 
 export const extractClassTokens = (cell: string): string[] => {
   const ticks = [...cell.matchAll(/`([^`]+)`/g)].map((match) => match[1].trim())

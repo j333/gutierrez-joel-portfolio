@@ -68,7 +68,7 @@ Exceptions (not brand accents):
 IBM Plex Sans for reading; IBM Plex Mono for chrome and metadata. Fonts are loaded in `app/layout.tsx`.
 
 - **IBM Plex Sans** — 400, 500, 600 (+ italic). Default body (`font-sans`). No 700.
-- **IBM Plex Mono** — 400, 600. Chrome, meta, dates, tables (`font-mono`). 600 only for the site wordmark.
+- **IBM Plex Mono** — 400, 600. Chrome, meta, dates, tables (`font-mono`).
 
 ## Scale
 
@@ -90,7 +90,7 @@ Interactive states (hover, underline, focus) live on components, not here.
 
 ## Weights
 
-Page and prose titles stay `font-normal`. Use `font-medium` for card titles and `strong`. The site wordmark is the only chrome that uses `font-semibold`. Prefer `em` / italic for emphasis in running copy, not bold display weights. Nav and footer chrome links use Small mono, uppercase, with `tracking-wider` so the caps can breathe. Their `neutral-600` idle color is a component state, not a type style. Section headings (`sectionHeadingClassName`) keep Label metrics with quieter ink (`text-neutral-500` in both themes) so they recede behind the content.
+Page and prose titles stay `font-normal`. Use `font-medium` for card titles and `strong`. Prefer `em` / italic for emphasis in running copy, not bold display weights. Nav and footer chrome links use Label-size mono, uppercase, with `tracking-wider` so the caps can breathe. Their `neutral-600` idle color is a component state, not a type style. Section headings (`sectionHeadingClassName`) keep Label metrics with quieter ink (`text-neutral-500` in both themes) so they recede behind the content.
 
 ## Layout
 
@@ -99,19 +99,21 @@ Wide shell, focused reading column, open vertical rhythm between sections.
 - Shell: `max-w-site` (1920px) + `px-4 sm:px-6` (`app/layout.tsx`)
 - Reading column: `textColumnClassName` / `articleBodyClassName` → `max-w-xl` (centered for articles)
 - Home / writing grids: `projectGridClassName` → 1 col, 2 cols from `lg`, `gap-6`
-- Major vertical rhythm: `gap-16`, `pageSectionClassName` (`mb-16`)
-- `PageHeader` spacing: `section` → `mb-8`, `article` → `mb-12`, `hero` → `mb-16`
+- Major vertical rhythm: `pageStackClassName` (`gap-16`), `pageSectionClassName` (`mb-16`)
+- Section headings hug their content (`mb-3`); unrelated blocks sit a full section apart
+- `PageHeader` spacing: `none` → no margin (parent stack), `section` → `mb-8`, `article` → `mb-12`, `hero` → `mb-16`
+- Article covers: `articleCoverClassName` (`mb-16`)
 - Wide MDX images: `#wide` → `.article-image--wide` (breakout up to ~56rem); see image rule for asset sizes
 
 ## Spacing
 
-Use the rhythm the site already uses. Layout is structure; this is the scale.
+Use the rhythm the site already uses. Layout is structure; this is the scale. One gap per layer — never stack parent `gap` and child margin for the same edge. Headings sit closer to what they introduce than to the previous block.
 
 | Token | Classes | Use |
 | --- | --- | --- |
-| Micro | `gap-0.5` `gap-1` `gap-2` `gap-3` `gap-4` `px-1` `py-1` | Meta stacks, chrome padding |
-| Group | `gap-6` `mb-8` `mt-6` | Header children, section heading, card grids |
-| Section | `mb-12` `mb-14` `mb-16` `gap-16` | `PageHeader` article/hero, `pageSectionClassName`, home sections |
+| Micro | `gap-0.5` `gap-1` `gap-2` `gap-3` `gap-4` `mb-2` `mb-3` `mb-4` `px-1` `py-1` | Meta stacks, heading↔content, chrome padding |
+| Group | `gap-6` `mb-8` `mt-6` `space-y-8` | Header children, card grids, list items |
+| Section | `mb-16` `gap-16` | Page sections and stacks; `mb-12` only for `PageHeader` article |
 | Exceptional | `mt-20` `pb-20` | Long styleguide blocks only |
 
 ## Elevation & shape
@@ -131,7 +133,7 @@ Shared states for links, buttons, and chrome. No scale, glow, or drop shadow on 
 | State | Classes | Use |
 | --- | --- | --- |
 | Hover | `transition-colors` + color shift and/or `underline` | Quiet feedback only |
-| Current | `aria-[current=page]:text-black dark:aria-[current=page]:text-white` | Nav chrome when the page is open |
+| Current | `aria-[current=page]:underline` + hover ink | Nav chrome when the page is open |
 | Focus | `outline-2 outline-offset-2 outline-neutral-900 dark:outline-neutral-100` | Default interactive chrome |
 | Focus (cards) | `outline-2 outline-offset-4 outline-neutral-900 dark:outline-neutral-100` | Project / writing card wrappers |
 | Disabled | `opacity-40 pointer-events-none` | Non-interactive controls; pair with `aria-disabled` or `disabled` |
@@ -144,7 +146,7 @@ Text-forward links, full-bleed covers, and labeled meta. Prefer helpers over one
 
 | Primitive | Helper | Notes |
 | --- | --- | --- |
-| Chrome link | `chromeLinkClassName` | Small mono, uppercase, `tracking-wider`, muted → darker on hover + underline. Current page (`aria-current="page"`) uses ink. Nav wordmark adds `font-semibold`. |
+| Chrome link | `chromeLinkClassName` | Label-size mono, uppercase, `tracking-wider`, muted → darker on hover + underline. Current page (`aria-current="page"`) keeps the hover style. |
 | Content / prose link | `.content-link` / `.prose a` | Inherit color, quiet underline, focus with currentColor |
 | CTA text link | `ctaLinkClassName` | `text-sm`, muted, underline — default site action |
 | Project / writing card | — | Full-bleed `aspect-video` cover, title row, mono meta; no card border or shadow |

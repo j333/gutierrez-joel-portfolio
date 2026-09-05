@@ -1,7 +1,9 @@
 import { ProjectCard, projectGridClassName } from 'app/components/project-card'
 import {
   PageHeader,
+  pageSectionClassName,
   pageSectionTitleClassName,
+  pageStackClassName,
   textColumnClassName,
 } from 'app/components/page-layout'
 import { getProjects } from 'app/projects/utils'
@@ -12,7 +14,7 @@ const Page = () => {
   const projects = getProjects()
 
   return (
-    <div className="flex flex-col gap-16">
+    <div className={`${pageStackClassName} ${pageSectionClassName}`}>
       <div className={textColumnClassName}>
         <PageHeader
           title="Gutiérrez Joel"
@@ -24,13 +26,13 @@ const Page = () => {
               leadership, and UX.
             </>
           }
-          spacing="hero"
+          spacing="none"
         />
       </div>
       <section aria-labelledby="home-projects-heading">
         <h2
           id="home-projects-heading"
-          className={`mb-8 ${pageSectionTitleClassName}`}
+          className={`mb-3 ${pageSectionTitleClassName}`}
         >
           Projects
         </h2>

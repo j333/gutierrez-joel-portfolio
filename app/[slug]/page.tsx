@@ -5,6 +5,7 @@ import { JsonLd } from 'app/components/json-ld'
 import {
   PageHeader,
   articleBodyClassName,
+  articleCoverClassName,
   pageSectionClassName,
 } from 'app/components/page-layout'
 import { ProjectMeta } from 'app/components/project-meta'
@@ -84,12 +85,12 @@ const Project = async ({ params }: SlugPageProps) => {
         })}
       />
       <article className={pageSectionClassName}>
-        <PageHeader title={title} description={summary} spacing="hero">
+        <PageHeader title={title} description={summary} spacing="article">
           <ProjectMeta metadata={project.metadata} />
         </PageHeader>
         {image ? (
           <div
-            className={`relative mb-14 aspect-video w-full overflow-hidden ${imagePlaceholderClassName}`}
+            className={`relative overflow-hidden ${articleCoverClassName} ${imagePlaceholderClassName}`}
           >
             <Image
               src={image.src}
@@ -105,7 +106,7 @@ const Project = async ({ params }: SlugPageProps) => {
         ) : (
           <div
             aria-hidden="true"
-            className={`mb-14 aspect-video w-full ${imagePlaceholderClassName}`}
+            className={`${articleCoverClassName} ${imagePlaceholderClassName}`}
           />
         )}
         {project.content.trim() ? (

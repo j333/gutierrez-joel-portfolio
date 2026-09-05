@@ -22,10 +22,14 @@ export const pageSectionTitleClassName = 'text-2xl font-normal tracking-tight'
 
 export const pageSectionClassName = 'mb-16'
 
-export const sectionHeadingClassName =
-  'mb-8 font-mono text-xs font-normal uppercase leading-4 tracking-wider text-neutral-500'
+export const pageStackClassName = 'flex flex-col gap-16'
 
-type PageHeaderSpacing = 'section' | 'article' | 'hero'
+export const articleCoverClassName = 'mb-16 aspect-video w-full'
+
+export const sectionHeadingClassName =
+  'mb-3 font-mono text-xs font-normal uppercase leading-4 tracking-wider text-neutral-500'
+
+type PageHeaderSpacing = 'none' | 'section' | 'article' | 'hero'
 
 type PageHeaderProps = {
   title: ReactNode
@@ -35,6 +39,7 @@ type PageHeaderProps = {
 }
 
 const pageHeaderSpacingClassName: Record<PageHeaderSpacing, string> = {
+  none: '',
   section: 'mb-8',
   article: 'mb-12',
   hero: 'mb-16',

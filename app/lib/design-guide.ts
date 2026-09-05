@@ -171,21 +171,22 @@ const DESIGN_GUIDE_SECTIONS: Record<string, GuideSectionCopy> = {
       'The site sits in a wide shell with modest side padding',
       'Long reading uses a narrower column so lines stay comfortable',
       'Project and writing cards share a two-column grid on large screens',
-      'Major sections breathe with open vertical space',
+      'Major sections breathe with a single open gap — never stacked margins',
+      'Headings sit close to the content they introduce',
       'Headers tighten or open with the page: compact on indexes, more open on articles and heroes',
       'Wide images can step out of the reading column',
     ],
   },
   spacing: {
-    lead: 'Layout is the structure; this is the scale.',
+    lead: 'Layout is the structure; this is the scale. One gap per layer — headings hug what they introduce.',
     body: '',
     remapTables: (tables) =>
       remapMatchingTable(tables, ['Token', 'Classes', 'Use'], (table) =>
         replaceColumnByRow(table, 'Token', 'Use', {
-          Micro: 'Meta stacks and compact chrome',
-          Group: 'Headers, section headings, and card grids',
-          Section: 'Page headers, page sections, and home blocks',
-          Exceptional: 'Rare, extra-open blocks',
+          Micro: 'Meta stacks, heading to content, and compact chrome',
+          Group: 'Header children, card grids, and list items',
+          Section: 'Unrelated page sections and stacks',
+          Exceptional: 'Rare, extra-open styleguide blocks',
         })
       ),
   },
@@ -206,7 +207,7 @@ const DESIGN_GUIDE_SECTIONS: Record<string, GuideSectionCopy> = {
       remapMatchingTable(tables, ['State', 'Use'], (table) =>
         replaceColumnByRow(table, 'State', 'Use', {
           Hover: 'A color shift, an underline, or both',
-          Current: 'Ink on the nav item for the page that is open',
+          Current: 'The open page keeps the hover style: darker ink and an underline',
           Focus: 'A clear outline on interactive chrome',
           'Focus (cards)': 'A slightly wider outline on project and writing cards',
           Disabled: 'Faded and still',
@@ -264,7 +265,7 @@ const componentGuideSection = (
 export const COMPONENT_GUIDE_SECTIONS: DesignSection[] = [
   componentGuideSection(
     'Chrome link',
-    'Uppercase, mono, muted until hover. Current page uses ink.'
+    'Uppercase, mono, muted until hover. Current page keeps the hover underline.'
   ),
   componentGuideSection('Content link', ''),
   componentGuideSection(
