@@ -19,7 +19,7 @@ export type WritingMetadata = {
 export type WritingPost = MdxEntry<WritingMetadata>
 
 export const getWritingPosts = () =>
-  getMdxData<WritingMetadata>(getMdxDirectory('writing', 'posts')).sort(
+  getMdxData<WritingMetadata>(getMdxDirectory('notes', 'posts')).sort(
     (a, b) =>
       new Date(b.metadata.publishedAt).getTime() -
       new Date(a.metadata.publishedAt).getTime()
@@ -52,10 +52,10 @@ export const getWritingPostImage = (
 }
 
 export const getPostCanonicalUrl = (post: WritingPost) =>
-  `${site.url}/writing/${post.slug}`
+  `${site.url}/notes/${post.slug}`
 
 export const getPostMarkdownUrl = (post: WritingPost) =>
-  `${site.url}/writing/${post.slug}.md`
+  `${site.url}/notes/${post.slug}.md`
 
 export const formatDate = (date: string, includeRelative = false) => {
   const currentDate = new Date()

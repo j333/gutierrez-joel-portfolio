@@ -12,7 +12,7 @@ import {
   getWritingPostImage,
   getWritingPosts,
   type WritingPost,
-} from 'app/writing/utils'
+} from 'app/notes/utils'
 
 type WritingHeading = 'h2' | 'h3'
 
@@ -34,7 +34,7 @@ const WritingCard = ({
 }: WritingCardProps) => {
   const { title, publishedAt } = post.metadata
   const image = getWritingPostImage(post)
-  const href = `/writing/${post.slug}`
+  const href = `/notes/${post.slug}`
 
   return (
     <article className="min-w-0">

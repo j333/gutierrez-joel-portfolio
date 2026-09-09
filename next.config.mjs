@@ -4,12 +4,23 @@ const nextConfig = {
     return [
       {
         source: '/blog',
-        destination: '/writing',
+        destination: '/notes',
         permanent: true,
       },
       {
         source: '/blog/:path*',
-        destination: '/writing/:path*',
+        destination: '/notes/:path*',
+        permanent: true,
+      },
+      {
+        source: '/writing',
+        destination: '/notes',
+        permanent: true,
+      },
+      {
+        // Single segment only so /writing/<slug>/cover.webp stays a static asset.
+        source: '/writing/:slug',
+        destination: '/notes/:slug',
         permanent: true,
       },
       {
@@ -55,8 +66,8 @@ const nextConfig = {
         destination: '/md/index',
       },
       {
-        source: '/writing/:slug.md',
-        destination: '/md/writing/:slug',
+        source: '/notes/:slug.md',
+        destination: '/md/notes/:slug',
       },
       {
         source: '/experience/:slug.md',

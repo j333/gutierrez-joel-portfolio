@@ -56,11 +56,11 @@ The site runs at [http://localhost:3000](http://localhost:3000). The dev server 
 
 ## Content
 
-Projects, writing, and experience are MDX collections. The filename is the slug. A new `.mdx` file updates the matching index, the sitemap, `llms.txt`, and the markdown mirrors automatically. The home page lists every project, sorted by `order`.
+Projects, notes, and experience are MDX collections. The filename is the slug. A new `.mdx` file updates the matching index, the sitemap, `llms.txt`, and the markdown mirrors automatically. The home page lists every project, sorted by `order`.
 
 Every content image on the site is **WebP**. Convert PNG/JPEG sources with the scripts below; do not commit those formats to `public/projects` or `public/writing`. Platform icons (`favicon.ico`, PWA PNGs) are the exception.
 
-HTML pages advertise a `text/markdown` alternate. Append `.md` to a URL (`/jaga.md`, `/writing/liquid-glass.md`, `/about.md`, `/index.md`) for a machine-readable version. [`/llms.txt`](https://www.gutierrezjoel.com/llms.txt) is an index of those files; [`/llms-full.txt`](https://www.gutierrezjoel.com/llms-full.txt) concatenates about, cases, and writing.
+HTML pages advertise a `text/markdown` alternate. Append `.md` to a URL (`/jaga.md`, `/notes/liquid-glass.md`, `/about.md`, `/index.md`) for a machine-readable version. [`/llms.txt`](https://www.gutierrezjoel.com/llms.txt) is an index of those files; [`/llms-full.txt`](https://www.gutierrezjoel.com/llms-full.txt) concatenates about, cases, and notes.
 
 ### Images
 
@@ -79,7 +79,7 @@ In-article photos are also WebP: max **1600px** in the text column, max **1920px
 
 Cases live in `app/projects/posts/`. `jaga.mdx` becomes `/jaga`. They sort by `order` (lower first) on `/`. The page renders the cover from frontmatter; do not repeat it as the first image in the body.
 
-Do not use these slugs: `about`, `writing`, `experience`, `og`, `md`.
+Do not use these slugs: `about`, `notes`, `writing`, `experience`, `og`, `md`.
 
 Minimum frontmatter:
 
@@ -115,9 +115,9 @@ industry: 'Marketing / SaaS'
 
 Each case includes JSON-LD (`CreativeWork`). Copy [jaga.mdx](app/projects/posts/jaga.mdx) or [marketfully.mdx](app/projects/posts/marketfully.mdx) for tone and internal links.
 
-### Writing
+### Notes
 
-Posts live in `app/writing/posts/`. `liquid-glass.mdx` becomes `/writing/liquid-glass`. The index is `/writing`. Posts sort by `publishedAt`, newest first. The page and the writing cards render the cover from frontmatter; do not repeat it as the first `![]()` in the body.
+Posts live in `app/notes/posts/`. `liquid-glass.mdx` becomes `/notes/liquid-glass`. The index is `/notes`. Posts sort by `publishedAt`, newest first. The page and the notes cards render the cover from frontmatter; do not repeat it as the first `![]()` in the body.
 
 Minimum frontmatter:
 
@@ -137,10 +137,10 @@ image: '/writing/my-slug/cover.webp'
 | `publishedAt` | Yes      | `YYYY-MM-DD`. Listings show month and year                                                                 |
 | `summary`     | Yes      | Listing subtitle, meta description, and Open Graph                                                         |
 | `image`       | Yes      | Cover at `/writing/<slug>/cover.webp` (1920×1080)                                                          |
-| `medium`      | No       | Medium URL for a “View on Medium” link. Set Medium’s canonical link to the matching `/writing/<slug>` page |
+| `medium`      | No       | Medium URL for a “View on Medium” link. Set Medium’s canonical link to the matching `/notes/<slug>` page |
 
 
-Each article includes JSON-LD (`BlogPosting`). Old `/blog` URLs redirect permanently to `/writing`. Copy [my-2026-tool-stack.mdx](app/writing/posts/my-2026-tool-stack.mdx) for structure.
+Each article includes JSON-LD (`BlogPosting`). Old `/blog` and `/writing` URLs redirect permanently to `/notes`. Copy [my-2026-tool-stack.mdx](app/notes/posts/my-2026-tool-stack.mdx) for structure.
 
 ### Experience
 
@@ -201,10 +201,10 @@ app/
   layout.tsx                  Layout, fonts, and global metadata
   about/page.tsx              About (bio, experience list, skills)
   [slug]/page.tsx             Project case (includes JSON-LD)
-  writing/page.tsx            Writing index
-  writing/[slug]/page.tsx     Article (includes JSON-LD)
-  writing/posts/              Writing MDX
-  writing/utils.ts            Post loading and dates
+  notes/page.tsx              Notes index
+  notes/[slug]/page.tsx       Article (includes JSON-LD)
+  notes/posts/                Notes MDX
+  notes/utils.ts              Post loading and dates
   projects/posts/             Project MDX
   projects/utils.ts           Project loading and sort
   experience/[slug]/page.tsx  Experience entry (includes JSON-LD)
@@ -238,7 +238,7 @@ The project is set up for Vercel. `site.url` in `app/lib/site.ts` already matche
 
 The code is there to learn from or use as a starting point. The writing, experience, images, resume, and home copy are mine. If you fork the repo, replace:
 
-- `app/writing/posts/`
+- `app/notes/posts/`
 - `app/projects/posts/`
 - `app/experience/posts/`
 - `app/experience/projects.ts`

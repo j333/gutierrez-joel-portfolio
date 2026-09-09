@@ -1,4 +1,4 @@
-import { getWritingPosts } from 'app/writing/utils'
+import { getWritingPosts } from 'app/notes/utils'
 import { getExperience } from 'app/experience/utils'
 import { getProjects } from 'app/projects/utils'
 import { site } from 'app/lib/site'
@@ -7,7 +7,7 @@ export const baseUrl = site.url
 
 const sitemap = async () => {
   const writing = getWritingPosts().map((post) => ({
-    url: `${site.url}/writing/${post.slug}`,
+    url: `${site.url}/notes/${post.slug}`,
     lastModified: post.metadata.publishedAt,
   }))
 
@@ -21,7 +21,7 @@ const sitemap = async () => {
     lastModified: project.metadata.endedAt,
   }))
 
-  const routes = ['', '/about', '/writing'].map((route) => ({
+  const routes = ['', '/about', '/notes'].map((route) => ({
     url: `${site.url}${route}`,
     lastModified: new Date().toISOString().split('T')[0],
   }))

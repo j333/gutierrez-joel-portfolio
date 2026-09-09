@@ -1,5 +1,5 @@
 import { MetaRow, metaListClassName } from 'app/components/page-layout'
-import { formatDate } from 'app/writing/utils'
+import { formatDate } from 'app/notes/utils'
 
 type WritingMetaProps = {
   publishedAt: string

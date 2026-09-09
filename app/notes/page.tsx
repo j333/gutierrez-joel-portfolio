@@ -5,12 +5,12 @@ import {
   textColumnClassName,
 } from 'app/components/page-layout'
 import { createPageMetadata } from 'app/lib/metadata'
-import { site, writingIndex } from 'app/lib/site'
+import { notesIndex, site } from 'app/lib/site'
 
 export const metadata = createPageMetadata({
-  title: writingIndex.title,
-  description: writingIndex.description,
-  canonical: `${site.url}${writingIndex.path}`,
+  title: notesIndex.title,
+  description: notesIndex.description,
+  canonical: `${site.url}${notesIndex.path}`,
 })
 
 const Page = () => {
@@ -18,8 +18,8 @@ const Page = () => {
     <div className={pageSectionClassName}>
       <div className={textColumnClassName}>
         <PageHeader
-          title={writingIndex.title}
-          description={writingIndex.intro}
+          title={notesIndex.title}
+          description={notesIndex.intro}
           spacing="section"
         />
       </div>

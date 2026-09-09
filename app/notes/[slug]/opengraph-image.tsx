@@ -1,9 +1,9 @@
 import { createEntryOgImage, ogContentType, ogImageSize } from '../../og/card'
 import type { SlugPageProps } from 'app/lib/params'
-import { site, writingIndex } from 'app/lib/site'
-import { getWritingPostBySlug } from 'app/writing/utils'
+import { notesIndex, site } from 'app/lib/site'
+import { getWritingPostBySlug } from 'app/notes/utils'
 
-export const alt = `${writingIndex.title} by ${site.name}`
+export const alt = `${notesIndex.title} by ${site.name}`
 export const size = ogImageSize
 export const contentType = ogContentType
 
@@ -12,7 +12,7 @@ const Image = async ({ params }: SlugPageProps) => {
   const post = getWritingPostBySlug(slug)
 
   return createEntryOgImage({
-    eyebrow: writingIndex.eyebrow,
+    eyebrow: notesIndex.eyebrow,
     title: post?.metadata.title,
   })
 }

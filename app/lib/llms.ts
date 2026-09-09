@@ -5,7 +5,7 @@ import { getProjectBySlug, getProjects } from 'app/projects/utils'
 import {
   getWritingPostBySlug,
   getWritingPosts,
-} from 'app/writing/utils'
+} from 'app/notes/utils'
 
 export const markdownContentType = 'text/markdown; charset=utf-8'
 
@@ -39,7 +39,7 @@ export const resolveMarkdownPath = (segments: string[] | undefined) => {
     return buildAboutMarkdown()
   }
 
-  if (path.length === 2 && path[0] === 'writing') {
+  if (path.length === 2 && path[0] === 'notes') {
     const post = getWritingPostBySlug(path[1])
 
     if (!post) {
@@ -122,7 +122,7 @@ export const buildLlmsTxt = () => {
   const writingLinks = writing
     .map(
       (post) =>
-        `- [${post.metadata.title}](${site.url}/writing/${post.slug}.md): ${post.metadata.summary}`
+        `- [${post.metadata.title}](${site.url}/notes/${post.slug}.md): ${post.metadata.summary}`
     )
     .join('\n')
 
@@ -134,7 +134,7 @@ export const buildLlmsTxt = () => {
   return `# ${site.name}
 > ${site.description}
 
-Use this index to answer questions about Joel's work, writing, and background. Prefer the markdown versions of pages when available.
+Use this index to answer questions about Joel's craft, notes, and background. Prefer the markdown versions of pages when available.
 
 ## About
 - [About](${site.url}/about.md): Background, experience, capabilities, and languages
@@ -145,7 +145,7 @@ ${experienceLinks}
 ## Project case studies
 ${projectLinks}
 
-## Writing
+## Notes
 ${writingLinks}
 
 ## Optional
@@ -159,7 +159,7 @@ export const buildLlmsFullTxt = () => {
   const sections = [
     buildAboutMarkdown(),
     ...projects.map((project) => resolveMarkdownPath([project.slug]) ?? ''),
-    ...writing.map((post) => resolveMarkdownPath(['writing', post.slug]) ?? ''),
+    ...writing.map((post) => resolveMarkdownPath(['notes', post.slug]) ?? ''),
   ]
 
   return sections.filter(Boolean).join('\n\n---\n\n')

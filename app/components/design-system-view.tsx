@@ -381,7 +381,7 @@ const typeSampleText = (use: string) => {
   if (key.includes('body'))
     return 'Hierarchy comes from contrast, typography, and whitespace.'
   if (key.includes('small')) return 'Designed and built in Cursor'
-  if (key.includes('label')) return 'Writing'
+  if (key.includes('label')) return 'Notes'
   if (key.includes('meta')) return '2024'
   return 'The quick brown fox jumps over the lazy dog'
 }
@@ -751,7 +751,7 @@ const InteractionSpecimens = ({ table }: { table: DesignTable }) => {
             {stateKey.startsWith('hover (nav') ? (
               <ChromeScrambleLink
                 href="#interaction"
-                text="Writing"
+                text="Notes"
                 className={chromeLinkNavClassName}
               />
             ) : null}
@@ -782,7 +782,7 @@ const InteractionSpecimens = ({ table }: { table: DesignTable }) => {
                 className={chromeLinkClassName}
                 aria-current="page"
               >
-                Writing
+                Notes
               </a>
             ) : null}
 
@@ -956,7 +956,7 @@ const LayoutSpecimens = () => (
     </div>
 
     <div className="flex flex-col gap-3">
-      <SpecimenLabel>Work / writing grid</SpecimenLabel>
+      <SpecimenLabel>Craft / notes grid</SpecimenLabel>
       <div className={projectGridClassName}>
         <div
           className={`aspect-video w-full ${imagePlaceholderClassName}`}
@@ -1029,7 +1029,7 @@ const ShapeSpecimens = () => (
 const ComponentSpecimens = {
   'chrome-link': (
     <a href="#chrome-link" className={chromeLinkClassName}>
-      Writing
+      Notes
     </a>
   ),
   'cta-link': (

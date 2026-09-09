@@ -20,14 +20,14 @@ import {
   getSocialImageUrl,
 } from 'app/lib/metadata'
 import type { SlugPageProps } from 'app/lib/params'
-import { writingIndex } from 'app/lib/site'
+import { notesIndex } from 'app/lib/site'
 import {
   getPostCanonicalUrl,
   getPostMarkdownUrl,
   getWritingPostBySlug,
   getWritingPostImage,
   getWritingPosts,
-} from 'app/writing/utils'
+} from 'app/notes/utils'
 
 export const generateStaticParams = async () =>
   getWritingPosts().map((post) => ({
@@ -80,7 +80,7 @@ const Writing = async ({ params }: SlugPageProps) => {
           image: getSocialImageUrl(
             post.metadata.image,
             post.metadata.title,
-            writingIndex.eyebrow
+            notesIndex.eyebrow
           ),
           url: getPostCanonicalUrl(post),
           ...(post.metadata.medium ? { sameAs: post.metadata.medium } : {}),

@@ -32,20 +32,20 @@ export const experienceIndex = {
 } as const
 
 export const workIndex = {
-  title: 'Work',
+  title: 'Craft',
   description:
     'Selected product design cases from Joel Gutiérrez.',
   intro: 'Selected cases in product design, systems, and strategy.',
   path: '/',
-  eyebrow: 'WORK',
+  eyebrow: 'CRAFT',
 } as const
 
-export const writingIndex = {
-  title: 'Writing',
-  description: 'Writing and notes from Joel Gutiérrez.',
+export const notesIndex = {
+  title: 'Notes',
+  description: 'Notes on design, product, and craft from Joel Gutiérrez.',
   intro: 'Notes on design, product, and the ideas that stick.',
-  path: '/writing',
-  eyebrow: 'WRITING',
+  path: '/notes',
+  eyebrow: 'NOTES',
 } as const
 
 export const aboutIndex = {
