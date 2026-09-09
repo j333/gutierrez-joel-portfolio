@@ -8,6 +8,11 @@ import { ThemeToggle } from './theme-toggle'
 
 const navLinkClassName = `${chromeLinkNavClassName} -mx-1 min-h-11 whitespace-nowrap sm:min-h-0`
 
+// Below a 23rem nav row the full brand no longer fits next to the nav items,
+// so the short mark takes over. Measured with a container query on the row.
+const brandFullClassName = `${navLinkClassName} @max-[23rem]:hidden`
+const brandShortClassName = `${navLinkClassName} @min-[23rem]:hidden`
+
 const navShellClassName =
   'sticky-nav sticky top-0 z-40 -mx-4 w-[calc(100%+2rem)] border-b border-transparent bg-transparent px-4 pt-4 sm:-mx-6 sm:w-[calc(100%+3rem)] sm:px-6 data-[away-from-top=true]:border-neutral-200 data-[away-from-top=true]:bg-white dark:data-[away-from-top=true]:border-neutral-800 dark:data-[away-from-top=true]:bg-black'
 
@@ -42,11 +47,17 @@ export const Navbar = () => {
         id="nav"
         aria-label="Primary"
       >
-        <div className="flex w-full items-center justify-end gap-x-6 sm:justify-between sm:gap-x-8 lg:grid lg:grid-cols-2">
+        <div className="@container flex w-full items-center justify-between gap-x-6 sm:gap-x-8 lg:grid lg:grid-cols-2">
           <ChromeScrambleLink
             href="/"
             text="Gutiérrez Joel"
-            className={`${navLinkClassName} max-sm:hidden`}
+            className={brandFullClassName}
+          />
+          <ChromeScrambleLink
+            href="/"
+            text="Gutz"
+            aria-label="Gutiérrez Joel"
+            className={brandShortClassName}
           />
           <ul className={chromeCtaListClassName}>
             {navItems.map((item) => (
