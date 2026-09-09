@@ -73,7 +73,7 @@ const Page = () => {
           </p>
         </div>
 
-        <div className="grid w-full grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-x-0 2xl:grid-cols-4 2xl:gap-x-6">
+        <div className="grid w-full grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-x-6 2xl:grid-cols-4">
           <div className={`${pageStackClassName} 2xl:contents`}>
             <AboutSection title="Experience">
               <ExperiencePosts heading="h3" />
