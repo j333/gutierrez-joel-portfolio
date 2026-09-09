@@ -35,8 +35,11 @@ type AboutSectionProps = {
   children: ReactNode
 }
 
+const aboutListClassName =
+  'grid grid-cols-2 gap-y-2 sm:grid-cols-3 2xl:grid-cols-1'
+
 const AboutSection = ({ title, children }: AboutSectionProps) => (
-  <section>
+  <section className={textColumnClassName}>
     <h2 className={sectionHeadingClassName}>{title}</h2>
     {children}
   </section>
@@ -70,8 +73,8 @@ const Page = () => {
           </p>
         </div>
 
-        <div className="flex flex-col gap-16 lg:flex-row">
-          <div className={`${textColumnClassName} ${pageStackClassName}`}>
+        <div className="grid w-full grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-x-0 2xl:grid-cols-4 2xl:gap-x-6">
+          <div className={`${pageStackClassName} 2xl:contents`}>
             <AboutSection title="Experience">
               <ExperiencePosts heading="h3" />
             </AboutSection>
@@ -98,9 +101,9 @@ const Page = () => {
             </AboutSection>
           </div>
 
-          <div className={`${textColumnClassName} ${pageStackClassName}`}>
+          <div className={`${pageStackClassName} 2xl:contents`}>
             <AboutSection title="Capabilities">
-              <ul className="grid grid-cols-2 gap-y-2 sm:grid-cols-3">
+              <ul className={aboutListClassName}>
                 {aboutSkills.map((skill) => (
                   <li
                     key={skill}
@@ -112,34 +115,36 @@ const Page = () => {
               </ul>
             </AboutSection>
 
-            <AboutSection title="Stack">
-              <ul className="grid grid-cols-2 gap-y-2 sm:grid-cols-3">
-                {aboutStack.map((tool) => (
-                  <li
-                    key={tool}
-                    className="text-sm leading-5 text-neutral-600 dark:text-neutral-400"
-                  >
-                    {tool}
-                  </li>
-                ))}
-              </ul>
-              <p className="mt-4 text-pretty text-sm leading-5 text-neutral-500 dark:text-neutral-400">
-                {aboutStackNote}
-              </p>
-            </AboutSection>
+            <div className={`${pageStackClassName} ${textColumnClassName}`}>
+              <AboutSection title="Stack">
+                <ul className={aboutListClassName}>
+                  {aboutStack.map((tool) => (
+                    <li
+                      key={tool}
+                      className="text-sm leading-5 text-neutral-600 dark:text-neutral-400"
+                    >
+                      {tool}
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-4 text-pretty text-xs leading-4 text-neutral-500 dark:text-neutral-400">
+                  {aboutStackNote}
+                </p>
+              </AboutSection>
 
-            <AboutSection title="Languages">
-              <ul className="grid grid-cols-2 gap-y-2 sm:grid-cols-3">
-                {aboutLanguages.map((language) => (
-                  <li
-                    key={language}
-                    className="text-sm leading-5 text-neutral-600 dark:text-neutral-400"
-                  >
-                    {language}
-                  </li>
-                ))}
-              </ul>
-            </AboutSection>
+              <AboutSection title="Languages">
+                <ul className={aboutListClassName}>
+                  {aboutLanguages.map((language) => (
+                    <li
+                      key={language}
+                      className="text-sm leading-5 text-neutral-600 dark:text-neutral-400"
+                    >
+                      {language}
+                    </li>
+                  ))}
+                </ul>
+              </AboutSection>
+            </div>
           </div>
         </div>
       </div>

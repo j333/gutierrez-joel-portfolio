@@ -1,12 +1,12 @@
 'use client'
 
-import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useScrollNavVisibility } from '../hooks/use-scroll-nav-visibility'
-import { chromeLinkClassName } from './link-styles'
+import { ChromeScrambleLink } from './chrome-scramble-link'
+import { chromeLinkNavClassName } from './link-styles'
 import { ThemeToggle } from './theme-toggle'
 
-const navLinkClassName = `${chromeLinkClassName} -mx-1 min-h-11 whitespace-nowrap sm:min-h-0`
+const navLinkClassName = `${chromeLinkNavClassName} -mx-1 min-h-11 whitespace-nowrap sm:min-h-0`
 
 const navListClassName = 'flex items-center gap-x-6 sm:gap-x-8'
 
@@ -45,22 +45,23 @@ export const Navbar = () => {
         aria-label="Primary"
       >
         <div className="grid w-full grid-cols-1 items-center gap-x-6 sm:grid-cols-2 sm:gap-x-8">
-          <Link href="/" className={`${navLinkClassName} max-sm:hidden`}>
-            Gutiérrez Joel
-          </Link>
+          <ChromeScrambleLink
+            href="/"
+            text="Gutiérrez Joel"
+            className={`${navLinkClassName} max-sm:hidden`}
+          />
           <div className="flex min-w-0 items-center justify-between gap-x-6 sm:gap-x-8">
             <ul className={navListClassName}>
               {navItems.map((item) => (
                 <li key={item.href} className="flex shrink-0 items-center">
-                  <Link
+                  <ChromeScrambleLink
                     href={item.href}
+                    text={item.name}
                     className={navLinkClassName}
                     aria-current={
                       isCurrentPath(pathname, item.href) ? 'page' : undefined
                     }
-                  >
-                    {item.name}
-                  </Link>
+                  />
                 </li>
               ))}
             </ul>

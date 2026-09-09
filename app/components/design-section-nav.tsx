@@ -24,10 +24,10 @@ type NavChapter = {
 }
 
 const chapterLinkClassName =
-  'inline-flex min-h-11 w-fit items-center rounded-sm py-1 text-sm font-medium leading-5 outline-none transition-colors hover:underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 sm:min-h-0 dark:focus-visible:outline-neutral-100'
+  'inline-flex min-h-11 w-fit items-center rounded-sm py-1 text-sm font-medium leading-5 outline-none transition-colors hover:text-black hover:underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 sm:min-h-0 dark:hover:text-white dark:focus-visible:outline-neutral-100'
 
 const subsectionLinkClassName =
-  'inline-flex min-h-11 w-fit items-center rounded-sm py-1 text-sm leading-5 outline-none transition-colors hover:text-neutral-900 hover:underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 sm:min-h-0 dark:hover:text-neutral-100 dark:focus-visible:outline-neutral-100'
+  'inline-flex min-h-11 w-fit items-center rounded-sm py-1 text-sm leading-5 outline-none transition-colors hover:text-black hover:underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 sm:min-h-0 dark:hover:text-white dark:focus-visible:outline-neutral-100'
 
 const scrollToSection = (id: string) => {
   const element = document.getElementById(id)

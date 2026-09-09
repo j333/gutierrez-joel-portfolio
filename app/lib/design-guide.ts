@@ -72,7 +72,7 @@ const DESIGN_GUIDE_SECTIONS: Record<string, GuideSectionCopy> = {
     lead: 'Quiet craft. Hierarchy from type, contrast, and space — not decoration.',
     items: [
       'Light canvas, dark ink (and the inverse in dark mode)',
-      'Quiet interaction: underline, color shift, focus outline',
+      'Quiet interaction: hover uses pure black in light and pure white in dark. Nav and footer also scramble. Card titles take that ink; the rest of the card stays put.',
       'Generous space; content-led layouts',
       'Flat UI plus a subtle paper grain; no drop shadows',
       'Imagery and type carry personality; chrome stays light',
@@ -102,7 +102,7 @@ const DESIGN_GUIDE_SECTIONS: Record<string, GuideSectionCopy> = {
   },
   roles: {
     lead: 'Every role in the interface has a pair: one value for light, one for dark.',
-    body: 'Code highlighting uses its own colors. If a form ever needs an error, it uses red — never as a brand color.',
+    body: 'Hover uses pure black in light and pure white in dark. Code highlighting uses its own colors. If a form ever needs an error, it uses red — never as a brand color.',
   },
   faces: {
     lead: 'IBM Plex Sans for reading; IBM Plex Mono for chrome and metadata.',
@@ -168,7 +168,7 @@ const DESIGN_GUIDE_SECTIONS: Record<string, GuideSectionCopy> = {
   layout: {
     lead: 'A wide shell, a focused reading column, and open space between sections.',
     items: [
-      'The site sits in a wide shell with modest side padding',
+      'The site spans the viewport with modest side padding',
       'Long reading uses a narrower column so lines stay comfortable',
       'Project and writing cards share a two-column grid on large screens',
       'Major sections breathe with a single open gap — never stacked margins',
@@ -206,7 +206,9 @@ const DESIGN_GUIDE_SECTIONS: Record<string, GuideSectionCopy> = {
     remapTables: (tables) =>
       remapMatchingTable(tables, ['State', 'Use'], (table) =>
         replaceColumnByRow(table, 'State', 'Use', {
-          Hover: 'A color shift, an underline, or both',
+          Hover: 'Text goes to pure black in light, pure white in dark',
+          'Hover (nav / footer)': 'Letters scramble through / 0 _ x and go black or white',
+          'Hover (cards)': 'Only the title goes black or white — summary, dates, and fill stay',
           Current: 'The open page keeps the hover style: darker ink and an underline',
           Focus: 'A clear outline on interactive chrome',
           'Focus (cards)': 'A slightly wider outline on project and writing cards',
@@ -265,12 +267,12 @@ const componentGuideSection = (
 export const COMPONENT_GUIDE_SECTIONS: DesignSection[] = [
   componentGuideSection(
     'Chrome link',
-    'Uppercase, mono, muted until hover. Current page keeps the hover underline.'
+    'Uppercase, mono, muted until hover. Nav and footer scramble letters and go black or white. Current page uses darker ink without an idle scramble.'
   ),
   componentGuideSection('Content link', ''),
   componentGuideSection(
     'CTA link',
-    'Muted and underlined — the default site action.'
+    'Muted and underlined — hover goes black in light, white in dark.'
   ),
   componentGuideSection(
     'Image overlay',
@@ -282,7 +284,7 @@ export const COMPONENT_GUIDE_SECTIONS: DesignSection[] = [
   ),
   componentGuideSection(
     'Project / writing card',
-    'Full-bleed cover, title row, and mono meta — no card border or shadow.'
+    'Full-bleed cover and a quiet caption row. Project cards use Meta for title and product so the image leads. Writing cards keep a Card / list title and a mono date. Hover turns the title black or white.'
   ),
   componentGuideSection(
     'Theme toggle',

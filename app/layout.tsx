@@ -93,7 +93,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
         className="relative isolate min-h-dvh w-full antialiased"
       >
         <div aria-hidden="true" className="site-noise" />
-        <div className="mx-auto flex min-h-dvh w-full max-w-site flex-col gap-2 px-4 pb-4 sm:px-6">
+        <div className="flex min-h-dvh w-full flex-col gap-2 px-4 pb-4 sm:px-6">
           <a href="#main-content" className={`skip-link ${chromeLinkClassName}`}>
             Skip to main content
           </a>

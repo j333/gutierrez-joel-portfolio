@@ -16,14 +16,14 @@ Reuse helpers in `app/components/page-layout.tsx`, `app/components/link-styles.t
 Quiet craft. Hierarchy from type, contrast, and space — not decoration.
 
 - Light canvas, dark ink (and the inverse in dark mode)
-- Quiet interaction: underline, color shift, focus outline
+- Quiet interaction: hover uses pure black in light and pure white in dark. Nav and footer also scramble. Card titles take that ink; the rest of the card stays put.
 - Generous space; content-led layouts
 - Flat UI plus subtle site noise (`site-noise`); no drop shadows
 - Imagery and type carry personality; chrome stays light
 
 ## Palette
 
-Monochrome only. Step 0 is lightest; 100 is darkest. Use Tailwind `white`, `neutral-*`, and `black` — never `gray-*`, `zinc-*`, `slate-*`, or hues.
+Monochrome only. Step 0 is lightest; 100 is darkest. Use Tailwind `white`, `neutral-*`, and `black` — never `gray-*`, `zinc-*`, `slate-*`, or hues. Hover uses the extremes: `black` in light, `white` in dark.
 
 | Step | Class | Notes |
 | --- | --- | --- |
@@ -57,6 +57,7 @@ Semantic roles map onto the palette. Always pair light and dark. Prefer these to
 | Image placeholder | `bg-neutral-100` (`imagePlaceholderClassName`) | `dark:bg-neutral-900` |
 | Code block surface | `bg-neutral-50` + `border-neutral-200` | `dark:bg-neutral-900` + `dark:border-neutral-900` |
 | Selection | black on white | white on black (see `::selection` / `.dark ::selection`) |
+| Hover | `text-black` | `dark:text-white` |
 
 Exceptions (not brand accents):
 
@@ -96,9 +97,9 @@ Page and prose titles stay `font-normal`. Use `font-medium` for card titles and 
 
 Wide shell, focused reading column, open vertical rhythm between sections.
 
-- Shell: `max-w-site` (1920px) + `px-4 sm:px-6` (`app/layout.tsx`)
+- Shell: full viewport width + `px-4 sm:px-6` (`app/layout.tsx`)
 - Reading column: `textColumnClassName` / `articleBodyClassName` → `max-w-xl` (centered for articles)
-- Home / writing grids: `projectGridClassName` → 1 col, 2 cols from `lg`, `gap-6`
+- Home / writing grids: `projectGridClassName` → 1 col, 2 cols from `lg`, `gap-x-6 gap-y-8`
 - Major vertical rhythm: `pageStackClassName` (`gap-16`), `pageSectionClassName` (`mb-16`)
 - Section headings hug their content (`mb-3`); unrelated blocks sit a full section apart
 - `PageHeader` spacing: `none` → no margin (parent stack), `section` → `mb-8`, `article` → `mb-12`, `hero` → `mb-16`
@@ -132,8 +133,10 @@ Shared states for links, buttons, and chrome. No scale, glow, or drop shadow on 
 
 | State | Classes | Use |
 | --- | --- | --- |
-| Hover | `transition-colors` + color shift and/or `underline` | Quiet feedback only |
-| Current | `aria-[current=page]:underline` + hover ink | Nav chrome when the page is open |
+| Hover | `hover:text-black` / `dark:hover:text-white` | Pure black in light, pure white in dark — links, chrome, and card titles |
+| Hover (nav / footer) | Scramble glyphs (`/`, `0`, `_`, `x`) + black / white hover | Chrome links in the nav and footer |
+| Hover (cards) | `cardTitleClassName` — title to black or white; summary, meta, and fill stay | Project, writing, and experience cards |
+| Current | hover ink, no underline | Nav chrome when the page is open |
 | Focus | `outline-2 outline-offset-2 outline-neutral-900 dark:outline-neutral-100` | Default interactive chrome |
 | Focus (cards) | `outline-2 outline-offset-4 outline-neutral-900 dark:outline-neutral-100` | Project / writing card wrappers |
 | Disabled | `opacity-40 pointer-events-none` | Non-interactive controls; pair with `aria-disabled` or `disabled` |
@@ -146,10 +149,13 @@ Text-forward links, full-bleed covers, and labeled meta. Prefer helpers over one
 
 | Primitive | Helper | Notes |
 | --- | --- | --- |
-| Chrome link | `chromeLinkClassName` | Label-size mono, uppercase, `tracking-wider`, muted → darker on hover + underline. Current page (`aria-current="page"`) keeps the hover style. |
-| Content / prose link | `.content-link` / `.prose a` | Inherit color, quiet underline, focus with currentColor |
-| CTA text link | `ctaLinkClassName` | `text-sm`, muted, underline — default site action |
-| Project / writing card | — | Full-bleed `aspect-video` cover, title row, mono meta; no card border or shadow |
+| Chrome link | `chromeLinkClassName` | Label-size mono, uppercase, `tracking-wider`, muted → black / white on hover + underline. Current page (`aria-current="page"`) uses hover ink without an idle underline. |
+| Chrome link (nav / footer) | `ChromeScrambleLink` | Same type as chrome link. Hover scrambles letters through `/`, `0`, `_`, and `x`, and goes black in light / white in dark. |
+| Card title | `cardTitleClassName` | Card / list title. Hover turns the title black or white; nothing else on the card changes color. |
+| Content / prose link | `.content-link` / `.prose a` | Inherit color, quiet underline; hover black / white |
+| CTA text link | `ctaLinkClassName` | `text-sm`, muted, underline — hover black / white |
+| Project card | — | Full-bleed `aspect-video` cover; title and product both use Meta so the image leads. Hover crop-zooms the cover and turns the title black / white — do not underline the title |
+| Writing card | — | Full-bleed `aspect-video` cover, Card / list title, mono date; title goes black / white on hover; no card border or shadow |
 | PageHeader / MetaRow | `metaLabelClassName` `metaListClassName` `metaValueClassName` `typeMetaClassName` | Titles and labeled meta grids; `typeMetaClassName` for year / product |
 | Theme toggle | — | Text/icon control, `rounded-sm`, touch height on small screens |
 | Image overlay | — | Near-opaque white/black scrim; close uses chrome mono styles |
@@ -161,8 +167,8 @@ Link = navigation; button = action that does not navigate. Ghost shares the CTA 
 | Variant | Helper | Classes | Use |
 | --- | --- | --- |
 | Primary | `buttonPrimaryClassName` | `inline-flex min-h-11 items-center justify-center rounded-sm bg-black px-4 py-2 text-sm leading-5 text-white outline-none transition-colors hover:bg-neutral-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 dark:bg-white dark:text-black dark:hover:bg-neutral-200 dark:focus-visible:outline-neutral-100 sm:min-h-0` | Highest-emphasis action on the page |
-| Secondary | `buttonSecondaryClassName` | `inline-flex min-h-11 items-center justify-center rounded-sm border border-neutral-300 bg-transparent px-4 py-2 text-sm leading-5 text-neutral-800 outline-none transition-colors hover:border-neutral-900 hover:text-neutral-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 dark:border-neutral-600 dark:text-neutral-200 dark:hover:border-neutral-100 dark:hover:text-neutral-100 dark:focus-visible:outline-neutral-100 sm:min-h-0` | Alternative action |
-| Ghost | `buttonGhostClassName` | `inline-flex min-h-11 items-center justify-center rounded-sm px-1 py-2 text-sm leading-5 text-neutral-500 underline underline-offset-4 outline-none transition-colors hover:text-neutral-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100 dark:focus-visible:outline-neutral-100 sm:min-h-0` | Lowest emphasis; same family as CTA link |
+| Secondary | `buttonSecondaryClassName` | `inline-flex min-h-11 items-center justify-center rounded-sm border border-neutral-300 bg-transparent px-4 py-2 text-sm leading-5 text-neutral-800 outline-none transition-colors hover:border-black hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 dark:border-neutral-600 dark:text-neutral-200 dark:hover:border-white dark:hover:text-white dark:focus-visible:outline-neutral-100 sm:min-h-0` | Alternative action |
+| Ghost | `buttonGhostClassName` | `inline-flex min-h-11 items-center justify-center rounded-sm px-1 py-2 text-sm leading-5 text-neutral-500 underline underline-offset-4 outline-none transition-colors hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 dark:text-neutral-400 dark:hover:text-white dark:focus-visible:outline-neutral-100 sm:min-h-0` | Lowest emphasis; same family as CTA link |
 | Disabled | `buttonDisabledClassName` | `opacity-40 pointer-events-none` | Append to any variant; set `disabled` or `aria-disabled` |
 
 ## Do's and don'ts

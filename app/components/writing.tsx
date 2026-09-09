@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { typeMetaClassName } from 'app/components/page-layout'
+import { cardTitleClassName } from 'app/components/link-styles'
 import { projectGridClassName } from 'app/components/project-card'
 import {
   imagePlaceholderClassName,
@@ -40,7 +41,7 @@ const WritingCard = ({
     <article className="min-w-0">
       <Link
         href={href}
-        className="group flex flex-col gap-1 rounded-sm text-inherit outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900 dark:focus-visible:outline-neutral-100"
+        className="group flex flex-col gap-3 rounded-sm text-inherit outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900 dark:focus-visible:outline-neutral-100"
       >
         {image ? (
           <div
@@ -65,7 +66,7 @@ const WritingCard = ({
           />
         )}
         <div className="flex items-baseline justify-between gap-4">
-          <Heading className="min-w-0 text-base font-medium leading-6 text-neutral-800 group-hover:underline group-focus-visible:underline dark:text-neutral-200">
+          <Heading className={`min-w-0 ${cardTitleClassName}`}>
             {title}
           </Heading>
           <time

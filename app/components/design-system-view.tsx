@@ -1,6 +1,9 @@
 import { DesignSectionNav } from 'app/components/design-section-nav'
+import { ChromeScrambleLink } from 'app/components/chrome-scramble-link'
 import {
+  cardTitleClassName,
   chromeLinkClassName,
+  chromeLinkNavClassName,
   ctaLinkClassName,
   navTextClassName,
 } from 'app/components/link-styles'
@@ -21,6 +24,7 @@ import {
   textColumnClassName,
   typeMetaClassName,
 } from 'app/components/page-layout'
+import { projectGridClassName } from 'app/components/project-card'
 import { MoonIcon, SunIcon } from 'app/components/theme-icons'
 import {
   extractClassTokens,
@@ -743,6 +747,20 @@ const InteractionSpecimens = ({ table }: { table: DesignTable }) => {
               </a>
             ) : null}
 
+            {stateKey.startsWith('hover (nav') ? (
+              <ChromeScrambleLink
+                href="#interaction"
+                text="Writing"
+                className={chromeLinkNavClassName}
+              />
+            ) : null}
+
+            {stateKey.startsWith('hover (cards)') ? (
+              <a href="#interaction" className="group inline-flex">
+                <span className={cardTitleClassName}>Marketfully</span>
+              </a>
+            ) : null}
+
             {stateKey === 'current' ? (
               <a
                 href="#interaction"
@@ -924,7 +942,7 @@ const LayoutSpecimens = () => (
 
     <div className="flex flex-col gap-3">
       <SpecimenLabel>Home / writing grid</SpecimenLabel>
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+      <div className={projectGridClassName}>
         <div
           className={`aspect-video w-full ${imagePlaceholderClassName}`}
           aria-hidden="true"
@@ -1038,7 +1056,7 @@ const ComponentSpecimens = {
           aria-hidden="true"
         />
         <div className="flex items-baseline justify-between gap-4">
-          <p className="text-base font-medium leading-6 text-neutral-800 group-hover:underline group-focus-visible:underline dark:text-neutral-200">
+          <p className={cardTitleClassName}>
             Project title
           </p>
           <span className={typeMetaClassName}>2024</span>

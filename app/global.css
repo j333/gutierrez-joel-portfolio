@@ -11,7 +11,6 @@
     sans-serif;
   --font-family-mono: var(--font-ibm-plex-mono), ui-monospace, SFMono-Regular,
     Menlo, Monaco, Consolas, monospace;
-  --max-width-site: 1920px;
 }
 
 ::selection {
@@ -189,6 +188,16 @@ img {
   text-decoration: underline;
   text-decoration-skip-ink: all;
   text-underline-offset: 0.1em;
+}
+
+.content-link:hover,
+.prose a:not(.anchor):hover {
+  color: #000000;
+}
+
+html.dark .content-link:hover,
+html.dark .prose a:not(.anchor):hover {
+  color: #ffffff;
 }
 
 .content-link:focus-visible,

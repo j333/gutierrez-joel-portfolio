@@ -29,10 +29,13 @@ const Page = () => {
           spacing="none"
         />
       </div>
-      <section aria-labelledby="home-projects-heading">
+      <section
+        aria-labelledby="home-projects-heading"
+        className="flex flex-col gap-8"
+      >
         <h2
           id="home-projects-heading"
-          className={`mb-3 ${pageSectionTitleClassName}`}
+          className={pageSectionTitleClassName}
         >
           Projects
         </h2>
