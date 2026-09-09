@@ -1,14 +1,17 @@
 import { ArrowIcon } from './arrow-icon'
 import { ChromeScrambleLink } from './chrome-scramble-link'
-import { chromeCtaListClassName, chromeLinkNavClassName } from './link-styles'
+import { chromeLinkNavClassName } from './link-styles'
 import { site, socialLinks } from 'app/lib/site'
+
+const footerCtaListClassName =
+  'flex min-w-0 flex-wrap items-center gap-x-6 gap-y-2 sm:gap-x-8 lg:grid lg:grid-cols-4'
 
 const Footer = () => {
   return (
     <footer>
-      <div className="flex w-full flex-wrap items-center justify-between gap-x-8 gap-y-6 lg:grid lg:grid-cols-2 lg:items-center">
-        <nav aria-label="Links" className="shrink-0">
-          <ul className={chromeCtaListClassName}>
+      <div className="flex w-full min-w-0 flex-col gap-y-6 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-x-8 lg:grid lg:grid-cols-2 lg:items-center">
+        <nav aria-label="Links" className="min-w-0 max-w-full">
+          <ul className={footerCtaListClassName}>
             {socialLinks.map((link) => (
               <li key={link.name} className="flex min-w-0 items-center">
                 <ChromeScrambleLink
@@ -26,7 +29,7 @@ const Footer = () => {
             ))}
           </ul>
         </nav>
-        <p className="whitespace-nowrap text-xs leading-4 text-neutral-500 lg:justify-self-end lg:text-right dark:text-neutral-400">
+        <p className="max-w-full text-xs leading-4 text-neutral-500 sm:whitespace-nowrap lg:justify-self-end lg:text-right dark:text-neutral-400">
           Designed and built by yours truly.{' '}
           <a
             href={site.githubUrl}
