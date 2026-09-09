@@ -1,5 +1,6 @@
 import { DesignSectionNav } from 'app/components/design-section-nav'
 import { ChromeScrambleLink } from 'app/components/chrome-scramble-link'
+import { GlitchCover } from 'app/components/glitch-cover'
 import {
   cardTitleClassName,
   chromeLinkClassName,
@@ -758,6 +759,20 @@ const InteractionSpecimens = ({ table }: { table: DesignTable }) => {
             {stateKey.startsWith('hover (cards)') ? (
               <a href="#interaction" className="group inline-flex">
                 <span className={cardTitleClassName}>Marketfully</span>
+              </a>
+            ) : null}
+
+            {stateKey.startsWith('hover (covers)') ||
+            stateKey.startsWith('hover (project') ? (
+              <a href="#interaction" className="group block max-w-sm">
+                <GlitchCover
+                  src="/projects/marketfully/cover.webp"
+                  alt=""
+                  width={1920}
+                  height={1080}
+                  sizes="(max-width: 1023px) 100vw, 24rem"
+                  quality={100}
+                />
               </a>
             ) : null}
 

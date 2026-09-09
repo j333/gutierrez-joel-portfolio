@@ -16,7 +16,7 @@ Reuse helpers in `app/components/page-layout.tsx`, `app/components/link-styles.t
 Quiet craft. Hierarchy from type, contrast, and space — not decoration.
 
 - Light canvas, dark ink (and the inverse in dark mode)
-- Quiet interaction: hover uses pure black in light and pure white in dark. Nav and footer also scramble. Card titles take that ink; the rest of the card stays put.
+- Quiet interaction: hover uses pure black in light and pure white in dark. Nav and footer also scramble. Card titles take that ink. Project and writing covers flash a brief glitch; summary and meta stay put.
 - Generous space; content-led layouts
 - Flat UI plus subtle site noise (`site-noise`); no drop shadows
 - Imagery and type carry personality; chrome stays light
@@ -136,6 +136,7 @@ Shared states for links, buttons, and chrome. No scale, glow, or drop shadow on 
 | Hover | `hover:text-black` / `dark:hover:text-white` | Pure black in light, pure white in dark — links, chrome, and card titles |
 | Hover (nav / footer) | Scramble glyphs (`/`, `0`, `_`, `x`) + black / white hover | Chrome links in the nav and footer |
 | Hover (cards) | `cardTitleClassName` — title to black or white; summary, meta, and fill stay | Project, writing, and experience cards |
+| Hover (covers) | Brief slice + RGB glitch (`GlitchCover`) | Project and writing card covers; no zoom |
 | Current | hover ink, no underline | Nav chrome when the page is open |
 | Focus | `outline-2 outline-offset-2 outline-neutral-900 dark:outline-neutral-100` | Default interactive chrome |
 | Focus (cards) | `outline-2 outline-offset-4 outline-neutral-900 dark:outline-neutral-100` | Project / writing card wrappers |
@@ -154,8 +155,8 @@ Text-forward links, full-bleed covers, and labeled meta. Prefer helpers over one
 | Card title | `cardTitleClassName` | Card / list title. Hover turns the title black or white; nothing else on the card changes color. |
 | Content / prose link | `.content-link` / `.prose a` | Inherit color, quiet underline; hover black / white |
 | CTA text link | `ctaLinkClassName` | `text-sm`, muted, underline — hover black / white |
-| Project card | — | Full-bleed `aspect-video` cover; title and product both use Meta so the image leads. Hover crop-zooms the cover and turns the title black / white — do not underline the title |
-| Writing card | — | Full-bleed `aspect-video` cover, Card / list title, mono date; title goes black / white on hover; no card border or shadow |
+| Project card | — | Full-bleed `aspect-video` cover; title and product both use Meta so the image leads. Hover flashes a brief glitch on the cover and turns the title black / white — do not underline the title |
+| Writing card | — | Full-bleed `aspect-video` cover, Card / list title, mono date; hover flashes a brief glitch on the cover and turns the title black / white; no card border or shadow |
 | PageHeader / MetaRow | `metaLabelClassName` `metaListClassName` `metaValueClassName` `typeMetaClassName` | Titles and labeled meta grids; `typeMetaClassName` for year / product |
 | Theme toggle | — | Text/icon control, `rounded-sm`, touch height on small screens |
 | Image overlay | — | Near-opaque white/black scrim; close uses chrome mono styles |
