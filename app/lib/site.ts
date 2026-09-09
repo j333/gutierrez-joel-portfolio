@@ -41,9 +41,10 @@ export const writingIndex = {
 
 export const aboutIndex = {
   title: 'About',
+  heading: 'Gutiérrez Joel',
   description:
-    'Product designer with over a decade of experience in product strategy, design systems, design leadership, and UX.',
-  intro: 'Background, experience, and how I work.',
+    'Product designer with a background in development and business, working at the intersection of design, product, and development.',
+  intro: 'Product Designer',
   path: '/about',
   eyebrow: 'ABOUT',
 } as const

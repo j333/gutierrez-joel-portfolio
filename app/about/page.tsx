@@ -56,13 +56,13 @@ const Page = () => {
       />
       <div className={`w-full ${pageSectionClassName}`}>
         <PageHeader
-          title={aboutIndex.title}
+          title={aboutIndex.heading}
           description={aboutIndex.intro}
           spacing="section"
         />
 
         <div className={`${pageSectionClassName} ${textColumnClassName} space-y-4`}>
-          <p className="text-lg leading-[1.3] text-neutral-800 dark:text-neutral-200">
+          <p className="text-lg leading-relaxed text-neutral-800 dark:text-neutral-200">
             {aboutBio[0]}
           </p>
           <p className="text-base leading-relaxed text-neutral-600 dark:text-neutral-400">
