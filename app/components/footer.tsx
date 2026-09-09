@@ -1,14 +1,14 @@
 import { ArrowIcon } from './arrow-icon'
 import { ChromeScrambleLink } from './chrome-scramble-link'
-import { chromeLinkNavClassName } from './link-styles'
+import { chromeCtaListClassName, chromeLinkNavClassName } from './link-styles'
 import { site, socialLinks } from 'app/lib/site'
 
 const Footer = () => {
   return (
     <footer>
-      <div className="grid w-full grid-cols-1 items-center gap-x-6 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
-        <nav aria-label="Links">
-          <ul className="grid min-w-0 grid-cols-4 items-center gap-x-6 sm:gap-x-8">
+      <div className="flex w-full flex-wrap items-center justify-between gap-x-8 gap-y-6 lg:grid lg:grid-cols-2 lg:items-center">
+        <nav aria-label="Links" className="shrink-0">
+          <ul className={chromeCtaListClassName}>
             {socialLinks.map((link) => (
               <li key={link.name} className="flex min-w-0 items-center">
                 <ChromeScrambleLink
@@ -26,7 +26,7 @@ const Footer = () => {
             ))}
           </ul>
         </nav>
-        <p className="text-xs leading-4 text-neutral-500 sm:text-right dark:text-neutral-400">
+        <p className="whitespace-nowrap text-xs leading-4 text-neutral-500 lg:justify-self-end lg:text-right dark:text-neutral-400">
           Designed and built by yours truly.{' '}
           <a
             href={site.githubUrl}

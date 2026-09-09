@@ -12,6 +12,9 @@ export const chromeLinkClassName = `${chromeLinkBaseClassName} uppercase trackin
 export const chromeLinkNavClassName =
   `${chromeLinkSharedClassName} uppercase tracking-wider transition-colors hover:text-black aria-[current=page]:hover:text-black dark:hover:text-white dark:aria-[current=page]:hover:text-white`
 
+export const chromeCtaListClassName =
+  'flex min-w-0 flex-wrap items-center gap-x-6 gap-y-2 sm:flex-nowrap sm:gap-x-8 lg:grid lg:grid-cols-4'
+
 export const cardTitleClassName =
   `text-sm font-medium leading-5 text-neutral-800 dark:text-neutral-200 ${groupHoverTextClassName}`
 
