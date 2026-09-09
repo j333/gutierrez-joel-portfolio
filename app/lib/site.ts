@@ -31,6 +31,15 @@ export const experienceIndex = {
   eyebrow: 'EXPERIENCE',
 } as const
 
+export const workIndex = {
+  title: 'Work',
+  description:
+    'Selected product design cases from Joel Gutiérrez.',
+  intro: 'Selected cases in product design, systems, and strategy.',
+  path: '/',
+  eyebrow: 'WORK',
+} as const
+
 export const writingIndex = {
   title: 'Writing',
   description: 'Writing and notes from Joel Gutiérrez.',

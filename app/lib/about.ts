@@ -8,7 +8,7 @@ import {
   aboutStack,
   aboutStackNote,
 } from 'app/lib/about-data'
-import { site } from 'app/lib/site'
+import { site, workIndex } from 'app/lib/site'
 
 export {
   aboutBio,
@@ -63,11 +63,11 @@ export const buildHomeMarkdown = () => {
     )
     .join('\n')
 
-  return `# ${site.name}
+  return `# ${workIndex.title}
 
-> ${site.description}
+> ${workIndex.description}
 
-I'm a *product designer* with over a decade of experience in product strategy, design systems, design leadership, and UX.
+${workIndex.intro}
 
 ## Projects
 

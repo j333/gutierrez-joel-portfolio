@@ -17,7 +17,7 @@ const navShellClassName =
 const navClassName = 'pointer-events-auto pb-3'
 
 const navItems = [
-  { href: '/', name: 'Home' },
+  { href: '/', name: 'Work' },
   { href: '/writing', name: 'Writing' },
   { href: '/about', name: 'About' },
 ]

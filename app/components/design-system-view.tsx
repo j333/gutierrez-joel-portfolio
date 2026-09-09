@@ -956,7 +956,7 @@ const LayoutSpecimens = () => (
     </div>
 
     <div className="flex flex-col gap-3">
-      <SpecimenLabel>Home / writing grid</SpecimenLabel>
+      <SpecimenLabel>Work / writing grid</SpecimenLabel>
       <div className={projectGridClassName}>
         <div
           className={`aspect-video w-full ${imagePlaceholderClassName}`}
