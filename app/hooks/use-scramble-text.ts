@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef } from 'react'
 
-const SCRAMBLE_GLYPHS = ['/', '0', '_', 'x'] as const
+const SCRAMBLE_GLYPHS = ['/', '0', '-', 'x'] as const
 
 type UseScrambleTextOptions = {
   scramble?: number
@@ -22,7 +22,7 @@ const canScramble = () => {
 
 export const useScrambleText = (
   text: string,
-  { scramble = 3 }: UseScrambleTextOptions = {}
+  { scramble = 1 }: UseScrambleTextOptions = {}
 ) => {
   const nodeRef = useRef<HTMLElement | null>(null)
   const frameRef = useRef(0)

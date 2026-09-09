@@ -15,7 +15,6 @@ const Footer = () => {
                   href={link.url}
                   text={link.name}
                   className={chromeLinkNavClassName}
-                  scramble={9}
                   external
                   rel="noopener noreferrer"
                   target="_blank"

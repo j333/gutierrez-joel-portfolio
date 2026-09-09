@@ -17,7 +17,7 @@ export const ChromeScrambleLink = ({
   href,
   text,
   className,
-  scramble = 3,
+  scramble = 5,
   external = false,
   children,
   ...rest
