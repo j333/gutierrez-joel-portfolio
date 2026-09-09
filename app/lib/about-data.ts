@@ -1,7 +1,7 @@
 export const aboutBio = [
-  'I am a (digital) product designer with a strong background in development and business. I work at the intersection of design, product, and development. Over the past 12 years, I’ve teamed up across several industries and platforms, driven to solve problems pragmatically, efficiently, and collaboratively.',
-  'To unplug, I enjoy cycling, playing basket, or spending time in the mountains with family and friends. During my work breaks, I usually play the guitar or hit the heavy bag. I am based in Mendoza, Argentina.',
-  "I'm obsessed with building efficient solutions to complex problems. I enjoy digging deep into product processes and strategy, always ensuring every decision drives business impact.",
+  'I am a (digital) product designer with a background in development and business. I think I work at the intersection of design, product, and development.',
+  "When I'm not at my computer, you'll find me biking, playing basketball, or hanging out with family and friends. I live in Mendoza, a city near Argentina's Andes Mountains.",
+  "Today, I’m exploring all the new developments in AI and technology that appear every day and never stop surprising me.",
 ] as const
 
 export const aboutSkills = [
