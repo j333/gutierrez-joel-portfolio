@@ -55,7 +55,7 @@ export const ExperienceProjects = ({
   return (
     <section className={className} aria-label={heading ?? 'Client work'}>
       {heading ? (
-        <h2 className="mb-3 text-xl font-normal tracking-tight text-neutral-800 dark:text-neutral-200">
+        <h2 className="mb-3 text-lg font-normal tracking-tight text-neutral-800 dark:text-neutral-200">
           {heading}
         </h2>
       ) : null}

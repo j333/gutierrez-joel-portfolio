@@ -57,7 +57,7 @@ const SpecimenLabel = ({ children }: { children: string }) => (
 
 const SectionLead = ({ children }: { children: string }) => (
   <p
-    className={`${textColumnClassName} mt-4 text-lg leading-relaxed text-neutral-600 dark:text-neutral-400 sm:mt-5`}
+    className={`${textColumnClassName} mt-4 text-base leading-relaxed text-neutral-600 dark:text-neutral-400 sm:mt-5`}
   >
     {children}
   </p>
@@ -420,7 +420,7 @@ const TypeGroupHeading = ({
   description?: string
 }) => (
   <div className="mb-6">
-    <h4 className="text-lg font-normal tracking-tight text-neutral-900 dark:text-neutral-100">
+    <h4 className="text-base font-normal tracking-tight text-neutral-900 dark:text-neutral-100">
       {title}
     </h4>
     {description ? (
@@ -512,7 +512,7 @@ const WeightSpecimens = () => (
           <p className={typeMetaClassName}>{specimen.weight}</p>
         </div>
         <p
-          className={`text-2xl tracking-tight text-neutral-900 dark:text-neutral-100 ${specimen.className}`}
+          className={`text-xl tracking-tight text-neutral-900 dark:text-neutral-100 ${specimen.className}`}
         >
           {specimen.sample}
         </p>
@@ -529,7 +529,7 @@ const WeightSpecimens = () => (
         <p className={typeMetaClassName}>Bold · not part of the system</p>
       </div>
       <p
-        className="text-2xl font-normal tracking-tight text-neutral-900 opacity-40 dark:text-neutral-100"
+        className="text-xl font-normal tracking-tight text-neutral-900 opacity-40 dark:text-neutral-100"
         aria-hidden="true"
       >
         Bold is not part of the system
@@ -817,7 +817,7 @@ const InteractionSpecimens = ({ table }: { table: DesignTable }) => {
             ) : null}
 
             {stateKey === 'selection' ? (
-              <p className="text-lg leading-relaxed text-neutral-800 dark:text-neutral-200">
+              <p className="text-base leading-relaxed text-neutral-800 dark:text-neutral-200">
                 Select this sample text to see the inverted selection colors.
               </p>
             ) : null}
@@ -944,7 +944,7 @@ const LayoutSpecimens = () => (
         <div
           className={`${textColumnClassName} border border-neutral-200 px-4 py-6 dark:border-neutral-800`}
         >
-          <p className="text-lg leading-relaxed text-neutral-800 dark:text-neutral-200">
+          <p className="text-base leading-relaxed text-neutral-800 dark:text-neutral-200">
             The reading column sits inside the shell so line length stays
             comfortable for long copy.
           </p>
@@ -1038,7 +1038,7 @@ const ComponentSpecimens = {
     </a>
   ),
   'content-link': (
-    <p className="text-lg leading-relaxed text-neutral-800 dark:text-neutral-200">
+    <p className="text-base leading-relaxed text-neutral-800 dark:text-neutral-200">
       Links inside prose keep the surrounding color and use a{' '}
       <a href="#content-link" className="content-link">
         quiet underline
@@ -1049,7 +1049,7 @@ const ComponentSpecimens = {
   'page-header-and-meta': (
     <div>
       <p className={`mb-2 ${pageTitleClassName}`}>Project title</p>
-      <p className="text-lg leading-relaxed text-neutral-600 dark:text-neutral-400">
+      <p className="text-base leading-relaxed text-neutral-600 dark:text-neutral-400">
         Short supporting line in the muted description style.
       </p>
       <div className="mt-6">
@@ -1109,7 +1109,7 @@ const ComponentSpecimens = {
 
 const PrincipleList = ({ items }: { items: string[] }) => (
   <ul
-    className={`${textColumnClassName} list-disc space-y-2 pl-6 text-lg leading-relaxed text-neutral-800 dark:text-neutral-200`}
+    className={`${textColumnClassName} list-disc space-y-2 pl-6 text-base leading-relaxed text-neutral-800 dark:text-neutral-200`}
   >
     {items.map((item) => (
       <li key={item}>{item}</li>
@@ -1128,7 +1128,7 @@ const DosAndDontsList = ({ items }: { items: string[] }) => {
     <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
       <div className="flex flex-col gap-4">
         <SpecimenLabel>Do</SpecimenLabel>
-        <ul className="list-disc space-y-3 pl-6 text-lg leading-relaxed text-neutral-800 dark:text-neutral-200">
+        <ul className="list-disc space-y-3 pl-6 text-base leading-relaxed text-neutral-800 dark:text-neutral-200">
           {dos.map((item) => (
             <li key={item}>{item.replace(/^do\s+/i, '')}</li>
           ))}
@@ -1136,7 +1136,7 @@ const DosAndDontsList = ({ items }: { items: string[] }) => {
       </div>
       <div className="flex flex-col gap-4">
         <SpecimenLabel>Don&apos;t</SpecimenLabel>
-        <ul className="list-disc space-y-3 pl-6 text-lg leading-relaxed text-neutral-800 dark:text-neutral-200">
+        <ul className="list-disc space-y-3 pl-6 text-base leading-relaxed text-neutral-800 dark:text-neutral-200">
           {donts.map((item) => (
             <li key={item}>{item.replace(/^don'?t\s+/i, '')}</li>
           ))}
@@ -1144,7 +1144,7 @@ const DosAndDontsList = ({ items }: { items: string[] }) => {
       </div>
       {other.length > 0 ? (
         <div className="flex flex-col gap-4 lg:col-span-2">
-          <ul className="list-disc space-y-3 pl-6 text-lg leading-relaxed text-neutral-800 dark:text-neutral-200">
+          <ul className="list-disc space-y-3 pl-6 text-base leading-relaxed text-neutral-800 dark:text-neutral-200">
             {other.map((item) => (
               <li key={item}>{item}</li>
             ))}
@@ -1178,7 +1178,7 @@ const BodyMarkdown = ({ markdown }: { markdown: string }) => {
       {proseBlocks.map((block) => (
         <p
           key={block}
-          className={`${textColumnClassName} text-lg leading-relaxed text-neutral-800 dark:text-neutral-200`}
+          className={`${textColumnClassName} text-base leading-relaxed text-neutral-800 dark:text-neutral-200`}
         >
           {stripMarkdownInline(block.replace(/\n/g, ' '))}
         </p>
@@ -1254,7 +1254,7 @@ const DesignSectionBlock = ({
             {flatTitle}
           </h2>
         ) : (
-          <h3 className="text-xl font-normal tracking-tight text-neutral-900 dark:text-neutral-100">
+          <h3 className="text-base font-normal tracking-tight text-neutral-900 dark:text-neutral-100">
             {section.title}
           </h3>
         )}
@@ -1340,8 +1340,8 @@ const IntroMarkdown = ({ markdown }: { markdown: string }) => {
           key={block}
           className={
             index === 0
-              ? 'text-xl leading-[1.3] text-neutral-800 dark:text-neutral-200'
-              : 'text-lg leading-relaxed text-neutral-600 dark:text-neutral-400'
+              ? 'text-lg leading-[1.3] text-neutral-800 dark:text-neutral-200'
+              : 'text-base leading-relaxed text-neutral-600 dark:text-neutral-400'
           }
         >
           {stripMarkdownInline(block.replace(/\n/g, ' '))}
@@ -1411,7 +1411,7 @@ export const DesignSystemView = ({
                   </h2>
                   {chapter.description ? (
                     <p
-                      className={`${textColumnClassName} mt-4 text-lg leading-relaxed text-neutral-600 dark:text-neutral-400`}
+                      className={`${textColumnClassName} mt-4 text-base leading-relaxed text-neutral-600 dark:text-neutral-400`}
                     >
                       {chapter.description}
                     </p>

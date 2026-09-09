@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { GlitchCover } from 'app/components/glitch-cover'
 import { typeMetaClassName } from 'app/components/page-layout'
-import { groupHoverTextClassName } from 'app/components/link-styles'
+import { cardTitleClassName } from 'app/components/link-styles'
 import {
   imagePlaceholderClassName,
   projectCardImageSizes,
@@ -49,14 +49,11 @@ export const ProjectCard = ({
             className={`aspect-video w-full ${imagePlaceholderClassName}`}
           />
         )}
-        <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
-          <Heading className={`${typeMetaClassName} ${groupHoverTextClassName}`}>
+        <div className="flex items-baseline justify-between gap-4">
+          <Heading className={`min-w-0 ${cardTitleClassName}`}>
             {title}
           </Heading>
-          <span aria-hidden="true" className={typeMetaClassName}>
-            ·
-          </span>
-          <span className={typeMetaClassName}>{product}</span>
+          <span className={`shrink-0 ${typeMetaClassName}`}>{product}</span>
         </div>
       </Link>
     </article>

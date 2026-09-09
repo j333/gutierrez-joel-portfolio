@@ -7,7 +7,6 @@ import {
   imagePlaceholderClassName,
   projectCardImageSizes,
 } from 'app/lib/image-sizes'
-import { preventWidow } from 'app/lib/text'
 import {
   formatListDate,
   getWritingPostImage,
@@ -33,7 +32,7 @@ const WritingCard = ({
   heading: Heading = 'h2',
   priority = false,
 }: WritingCardProps) => {
-  const { title, publishedAt, summary } = post.metadata
+  const { title, publishedAt } = post.metadata
   const image = getWritingPostImage(post)
   const href = `/writing/${post.slug}`
 
@@ -70,11 +69,6 @@ const WritingCard = ({
             {formatListDate(publishedAt)}
           </time>
         </div>
-        {summary ? (
-          <p className="text-pretty text-sm leading-5 text-neutral-500 dark:text-neutral-400">
-            {preventWidow(summary)}
-          </p>
-        ) : null}
       </Link>
     </article>
   )

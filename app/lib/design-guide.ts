@@ -109,7 +109,7 @@ const DESIGN_GUIDE_SECTIONS: Record<string, GuideSectionCopy> = {
     body: '',
   },
   scale: {
-    lead: 'One size, one job. Color shifts the voice — body, secondary, or muted — without inventing a new style. Titles stay light.',
+    lead: 'One size, one job. Color, weight, and casing shift the voice — without inventing a new style. Titles stay light.',
     body: '',
     remapTables: (tables) =>
       remapMatchingTable(tables, ['Use', 'Classes'], (table) => {
@@ -122,8 +122,6 @@ const DESIGN_GUIDE_SECTIONS: Record<string, GuideSectionCopy> = {
         const useLabels: Record<string, string> = {
           'Section title (prose h2)': 'Section title',
           'Section title (prose h3 / page)': 'Subsection title',
-          'Label (`metaLabelClassName`)': 'Label',
-          'Meta (`typeMetaClassName`)': 'Meta',
         }
 
         return {
@@ -146,7 +144,13 @@ const DESIGN_GUIDE_SECTIONS: Record<string, GuideSectionCopy> = {
 
             if (useKey.toLowerCase().startsWith('small')) {
               copy[classesIndex] =
-                `${classesPart ?? classesCell} — body ink for meta values; secondary for compact lists`
+                `${classesPart ?? classesCell} — medium and body ink for card titles; muted for compact lists; body ink for meta values`
+              return copy
+            }
+
+            if (useKey.toLowerCase().startsWith('meta')) {
+              copy[classesIndex] =
+                `${classesPart ?? classesCell} — uppercase and tracking for labels`
               return copy
             }
 
@@ -285,7 +289,7 @@ export const COMPONENT_GUIDE_SECTIONS: DesignSection[] = [
   ),
   componentGuideSection(
     'Project / writing card',
-    'Full-bleed cover and a quiet caption row. Project cards use Meta for title and product so the image leads. Writing cards keep a Card / list title and a mono date. Hover turns the title black or white. Covers flash a brief glitch.'
+    'Full-bleed cover and a quiet caption row. Project and writing cards share a Small title with medium weight on the left and Meta on the right — brand on projects, date on writing. Hover turns the title black or white. Covers flash a brief glitch.'
   ),
   componentGuideSection(
     'Theme toggle',

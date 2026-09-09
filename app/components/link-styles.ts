@@ -13,7 +13,7 @@ export const chromeLinkNavClassName =
   `${chromeLinkSharedClassName} uppercase tracking-wider transition-colors hover:text-black aria-[current=page]:hover:text-black dark:hover:text-white dark:aria-[current=page]:hover:text-white`
 
 export const cardTitleClassName =
-  `text-base font-medium leading-6 text-neutral-800 dark:text-neutral-200 ${groupHoverTextClassName}`
+  `text-sm font-medium leading-5 text-neutral-800 dark:text-neutral-200 ${groupHoverTextClassName}`
 
 export const navTextClassName =
   'font-mono text-xs uppercase leading-4 tracking-wider text-neutral-600 group-hover:text-black dark:text-neutral-400 dark:group-hover:text-white'

@@ -73,25 +73,23 @@ IBM Plex Sans for reading; IBM Plex Mono for chrome and metadata. Fonts are load
 
 ## Scale
 
-One size, one job. Color is a modifier (body / secondary / muted), not a new type style. Titles stay light.
+One size, one job. Color, weight, and casing shift the voice — not a new type style. Titles stay light.
 
 Interactive states (hover, underline, focus) live on components, not here.
 
 | Use | Classes |
 | --- | --- |
-| Title | `text-3xl font-normal leading-9 tracking-tighter` — `PageHeader` and prose h1 |
-| Section title (prose h2) | `text-2xl font-normal tracking-tight` |
-| Section title (prose h3 / page) | `text-xl font-normal tracking-tight` |
-| Card / list title | `text-base font-medium leading-6 text-neutral-800 dark:text-neutral-200` |
-| Lead | `text-xl leading-[1.3] text-neutral-800 dark:text-neutral-200` |
-| Body | `text-lg leading-relaxed text-neutral-800 dark:text-neutral-200` — secondary ink for page description |
-| Small | `text-sm leading-5 text-neutral-500 dark:text-neutral-400` — body ink for meta values (`metaValueClassName`); secondary for compact lists |
-| Label (`metaLabelClassName`) | `font-mono text-xs uppercase leading-4 tracking-wider text-neutral-500 dark:text-neutral-400` |
-| Meta (`typeMetaClassName`) | `font-mono text-xs leading-4 text-neutral-500 dark:text-neutral-400` |
+| Title | `text-xl font-normal leading-7 tracking-tight` — `PageHeader` and prose h1 |
+| Section title (prose h2) | `text-lg font-normal tracking-tight` |
+| Section title (prose h3 / page) | `text-base font-normal tracking-tight` |
+| Lead | `text-lg leading-[1.3] text-neutral-800 dark:text-neutral-200` |
+| Body | `text-base leading-relaxed text-neutral-800 dark:text-neutral-200` — secondary ink for page description |
+| Small | `text-sm leading-5 text-neutral-500 dark:text-neutral-400` — summaries, lists. Card titles add `font-medium` and body ink (`cardTitleClassName`); meta values use body ink (`metaValueClassName`) |
+| Meta | `font-mono text-xs leading-4 text-neutral-500 dark:text-neutral-400` — dates, years, project captions, nav, and footer. Labels add `uppercase tracking-wider` (`metaLabelClassName`) |
 
 ## Weights
 
-Page and prose titles stay `font-normal`. Use `font-medium` for card titles and `strong`. Prefer `em` / italic for emphasis in running copy, not bold display weights. Nav and footer chrome links use Label-size mono, uppercase, with `tracking-wider` so the caps can breathe. Their `neutral-600` idle color is a component state, not a type style. Section headings (`sectionHeadingClassName`) keep Label metrics with quieter ink (`text-neutral-500` in both themes) so they recede behind the content.
+Page and prose titles stay `font-normal`. Use `font-medium` for card titles and `strong`. Prefer `em` / italic for emphasis in running copy, not bold display weights. Nav and footer chrome links use Meta-size mono, uppercase, with `tracking-wider` so the caps can breathe. Their `neutral-600` idle color is a component state, not a type style. Section headings (`sectionHeadingClassName`) keep Meta metrics with quieter ink (`text-neutral-500` in both themes) so they recede behind the content.
 
 ## Layout
 
@@ -150,13 +148,13 @@ Text-forward links, full-bleed covers, and labeled meta. Prefer helpers over one
 
 | Primitive | Helper | Notes |
 | --- | --- | --- |
-| Chrome link | `chromeLinkClassName` | Label-size mono, uppercase, `tracking-wider`, muted → black / white on hover + underline. Current page (`aria-current="page"`) uses hover ink without an idle underline. |
+| Chrome link | `chromeLinkClassName` | Mono, uppercase, `tracking-wider`, muted → black / white on hover + underline. Current page (`aria-current="page"`) uses hover ink without an idle underline. |
 | Chrome link (nav / footer) | `ChromeScrambleLink` | Same type as chrome link. Hover scrambles letters through `/`, `0`, `_`, and `x`, and goes black in light / white in dark. |
-| Card title | `cardTitleClassName` | Card / list title. Hover turns the title black or white; nothing else on the card changes color. |
+| Card title | `cardTitleClassName` | Small size, `font-medium`, body ink. Hover turns the title black or white; nothing else on the card changes color. |
 | Content / prose link | `.content-link` / `.prose a` | Inherit color, quiet underline; hover black / white |
 | CTA text link | `ctaLinkClassName` | `text-sm`, muted, underline — hover black / white |
-| Project card | — | Full-bleed `aspect-video` cover; title and product both use Meta so the image leads. Hover flashes a brief glitch on the cover and turns the title black / white — do not underline the title |
-| Writing card | — | Full-bleed `aspect-video` cover, Card / list title, mono date; hover flashes a brief glitch on the cover and turns the title black / white; no card border or shadow |
+| Project card | — | Full-bleed `aspect-video` cover, Small title with medium weight, Meta brand; hover flashes a brief glitch on the cover and turns the title black / white — do not underline the title |
+| Writing card | — | Full-bleed `aspect-video` cover, Small title with medium weight, Meta date; hover flashes a brief glitch on the cover and turns the title black / white; no card border or shadow |
 | PageHeader / MetaRow | `metaLabelClassName` `metaListClassName` `metaValueClassName` `typeMetaClassName` | Titles and labeled meta grids; `typeMetaClassName` for year / product |
 | Theme toggle | — | Text/icon control, `rounded-sm`, touch height on small screens |
 | Image overlay | — | Near-opaque white/black scrim; close uses chrome mono styles |

@@ -27,7 +27,7 @@ const Footer = () => {
             ))}
           </ul>
         </nav>
-        <p className="text-xs leading-4 text-neutral-500 dark:text-neutral-400">
+        <p className="text-xs leading-4 text-neutral-500 sm:text-right dark:text-neutral-400">
           Designed and built by yours truly.{' '}
           <a
             href={site.githubUrl}

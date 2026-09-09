@@ -16,9 +16,9 @@ export const metaValueClassName =
   'whitespace-nowrap text-sm leading-5 text-neutral-800 dark:text-neutral-200'
 
 export const pageTitleClassName =
-  'text-3xl font-normal leading-9 tracking-tighter'
+  'text-xl font-normal leading-7 tracking-tight'
 
-export const pageSectionTitleClassName = 'text-2xl font-normal tracking-tight'
+export const pageSectionTitleClassName = 'text-lg font-normal tracking-tight'
 
 export const pageSectionClassName = 'mb-16'
 
@@ -57,7 +57,7 @@ export const PageHeader = ({
         {title}
       </h1>
       {description ? (
-        <p className="text-lg leading-relaxed text-neutral-600 dark:text-neutral-400">
+        <p className="text-base leading-relaxed text-neutral-600 dark:text-neutral-400">
           {description}
         </p>
       ) : null}
