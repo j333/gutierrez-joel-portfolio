@@ -62,15 +62,18 @@ const Page = () => {
         />
 
         <div className={`${pageSectionClassName} ${textColumnClassName} space-y-4`}>
-          <p className="text-lg leading-relaxed text-neutral-800 dark:text-neutral-200">
-            {aboutBio[0]}
-          </p>
-          <p className="text-base leading-relaxed text-neutral-600 dark:text-neutral-400">
-            {aboutBio[1]}
-          </p>
-          <p className="text-base leading-relaxed text-neutral-600 dark:text-neutral-400">
-            {aboutBio[2]}
-          </p>
+          {aboutBio.map((paragraph, index) => (
+            <p
+              key={paragraph}
+              className={
+                index === 0
+                  ? 'text-lg leading-relaxed text-neutral-800 dark:text-neutral-200'
+                  : 'text-base leading-relaxed text-neutral-600 dark:text-neutral-400'
+              }
+            >
+              {paragraph}
+            </p>
+          ))}
         </div>
 
         <div className="grid w-full grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-x-6 2xl:grid-cols-4">

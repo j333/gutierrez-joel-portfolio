@@ -1,7 +1,6 @@
 export const aboutBio = [
-  'I am a (digital) product designer with a background in development and business. I think I work at the intersection of design, product, and development.',
-  "When I'm not at my computer, you'll find me biking, playing basketball, or hanging out with family and friends. I live in Mendoza, a city near Argentina's Andes Mountains.",
-  "Today, I’m exploring all the new developments in AI and technology that appear every day and never stop surprising me.",
+  'I lead product design for AI and B2B SaaS. I joined GetGloby as the first product hire, built the design practice and system, and took the platform from MVP to a product that was acquired. I then ran a small design and AI team at Marketfully. I still design. I also hire, set standards, and ship with engineering.',
+  "When I'm not at my computer, you'll find me biking, playing basketball, or hanging out with family and friends. I live in Mendoza, a city near Argentina's Andes Mountains. I am open to hybrid work in Buenos Aires or Santiago, and to remote work across the Americas.",
 ] as const
 
 export const aboutSkills = [

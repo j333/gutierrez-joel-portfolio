@@ -29,6 +29,8 @@ export const buildAboutMarkdown = () => {
 
   return `# About
 
+${site.jobTitle}
+
 ${aboutBio.join('\n\n')}
 
 ## Experience
