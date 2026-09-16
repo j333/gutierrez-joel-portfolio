@@ -4,13 +4,13 @@ import {
   pageSectionClassName,
   textColumnClassName,
 } from 'app/components/page-layout'
-import { getProjects } from 'app/projects/utils'
+import { getListedProjects } from 'app/projects/utils'
 import { workIndex } from 'app/lib/site'
 
 export const dynamic = 'force-static'
 
 const Page = () => {
-  const projects = getProjects()
+  const projects = getListedProjects()
 
   return (
     <div className={pageSectionClassName}>

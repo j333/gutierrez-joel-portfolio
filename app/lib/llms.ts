@@ -1,7 +1,11 @@
 import { buildAboutMarkdown, buildHomeMarkdown } from 'app/lib/about'
 import { site, socialLinks } from 'app/lib/site'
 import { getExperience, getExperienceBySlug } from 'app/experience/utils'
-import { getProjectBySlug, getProjects } from 'app/projects/utils'
+import {
+  getListedProjects,
+  getProjectBySlug,
+  getProjects,
+} from 'app/projects/utils'
 import {
   getWritingPostBySlug,
   getWritingPosts,
@@ -101,7 +105,7 @@ export const resolveMarkdownPath = (segments: string[] | undefined) => {
 }
 
 export const buildLlmsTxt = () => {
-  const projects = getProjects()
+  const projects = getListedProjects()
   const experience = getExperience()
   const writing = getWritingPosts()
 

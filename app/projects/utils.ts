@@ -14,6 +14,7 @@ export type ProjectMetadata = {
   role?: string
   type?: string
   industry?: string
+  listed?: string
 }
 
 export const getProjectCaseStudyDescription = (project: Project) =>
@@ -33,6 +34,11 @@ export const getProjects = () =>
   getMdxData<ProjectMetadata>(getMdxDirectory('projects', 'posts')).sort(
     (a, b) => a.metadata.order - b.metadata.order
   )
+
+export const isListedProject = (project: Project) =>
+  project.metadata.listed !== 'false'
+
+export const getListedProjects = () => getProjects().filter(isListedProject)
 
 export const getProjectBySlug = (slug: string) =>
   getProjects().find((project) => project.slug === slug)

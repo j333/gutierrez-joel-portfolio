@@ -1,5 +1,5 @@
 import { getExperience } from 'app/experience/utils'
-import { getProjects } from 'app/projects/utils'
+import { getListedProjects } from 'app/projects/utils'
 import {
   aboutBio,
   aboutEducation,
@@ -56,7 +56,7 @@ ${aboutLanguages.map((language) => `- ${language}`).join('\n')}
 }
 
 export const buildHomeMarkdown = () => {
-  const caseStudies = getProjects()
+  const caseStudies = getListedProjects()
     .map(
       (project) =>
         `- **${project.metadata.title}** (${project.metadata.product}): ${project.metadata.summary ?? project.metadata.title}`

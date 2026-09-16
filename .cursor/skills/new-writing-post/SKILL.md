@@ -5,7 +5,7 @@ description: Publish a new notes article as MDX with a 1920×1080 WebP cover. Us
 
 # New writing post
 
-Copy [app/notes/posts/my-2026-tool-stack.mdx](app/notes/posts/my-2026-tool-stack.mdx) for tone, headings, captions, and `#wide` in-body images. Read [`.cursor/rules/optimized-images.mdc`](.cursor/rules/optimized-images.mdc). Do not edit `/notes`, the sitemap, or `app/page.tsx` — `getWritingPosts()` picks up the file.
+Copy [app/notes/posts/my-2026-tool-stack.mdx](app/notes/posts/my-2026-tool-stack.mdx) for tone, headings, captions, and `#wide` in-body images. Read [`.cursor/rules/optimized-images.mdc`](.cursor/rules/optimized-images.mdc). Do not edit `/notes`, the sitemap, or `app/page.tsx`. `getWritingPosts()` picks up the file. Never use an em dash (—) in published copy. Prefer commas, periods, colons, or parentheses.
 
 ## Checklist
 

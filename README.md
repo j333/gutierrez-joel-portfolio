@@ -56,7 +56,7 @@ The site runs at [http://localhost:3000](http://localhost:3000). The dev server 
 
 ## Content
 
-Projects, notes, and experience are MDX collections. The filename is the slug. A new `.mdx` file updates the matching index, the sitemap, `llms.txt`, and the markdown mirrors automatically. The home page lists every project, sorted by `order`.
+Projects, notes, and experience are MDX collections. The filename is the slug. A new `.mdx` file updates the matching index, the sitemap, `llms.txt`, and the markdown mirrors automatically. The home page lists projects with `listed` not set to `false`, sorted by `order`.
 
 Every content image on the site is **WebP**. Convert PNG/JPEG sources with the scripts below; do not commit those formats to `public/projects` or `public/writing`. Platform icons (`favicon.ico`, PWA PNGs) are the exception.
 
@@ -77,7 +77,7 @@ In-article photos are also WebP: max **1600px** in the text column, max **1920px
 
 ### Projects
 
-Cases live in `app/projects/posts/`. `jaga.mdx` becomes `/jaga`. They sort by `order` (lower first) on `/`. The page renders the cover from frontmatter; do not repeat it as the first image in the body.
+Cases live in `app/projects/posts/`. `jaga.mdx` becomes `/jaga`. They sort by `order` (lower first) on `/`. Set `listed: false` to keep a case off home, the sitemap, `llms.txt`, and JSON-LD work examples; the page still exists at its slug. The page renders the cover from frontmatter; do not repeat it as the first image in the body.
 
 Do not use these slugs: `about`, `notes`, `writing`, `experience`, `og`, `md`.
 
@@ -111,6 +111,7 @@ industry: 'Marketing / SaaS'
 | `summary`     | No       | Card/page subtitle, meta description, and Open Graph               |
 | `role`        | No       | Metadata grid on the case page                                     |
 | `industry`    | No       | Metadata grid on the case page                                     |
+| `listed`      | No       | `false` hides the case from home and other listings. Omit to list  |
 
 
 Each case includes JSON-LD (`CreativeWork`). Copy [jaga.mdx](app/projects/posts/jaga.mdx) or [marketfully.mdx](app/projects/posts/marketfully.mdx) for tone and internal links.

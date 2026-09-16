@@ -1,7 +1,7 @@
 import { getExperience } from 'app/experience/utils'
 import {
+  getListedProjects,
   getProjectCaseStudyDescription,
-  getProjects,
 } from 'app/projects/utils'
 import { aboutEducation, aboutLanguages, aboutSkills } from './about-data'
 import { sameAs, site } from './site'
@@ -29,7 +29,7 @@ export const buildPersonEntity = () => ({
     '@type': 'Organization',
     name: entry.metadata.title,
   })),
-  workExample: getProjects().map((project) => ({
+  workExample: getListedProjects().map((project) => ({
     '@type': 'CreativeWork',
     name: project.metadata.title,
     url: `${site.url}/${project.slug}`,
