@@ -9,5 +9,10 @@ if (isProduction && posthogKey && posthogHost) {
     api_host: posthogHost,
     defaults: '2026-05-30',
     person_profiles: 'identified_only',
+    loaded: (client) => {
+      if (window.location.hostname === 'localhost') {
+        client.opt_out_capturing()
+      }
+    },
   })
 }
