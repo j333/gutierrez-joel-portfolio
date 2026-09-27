@@ -111,10 +111,14 @@ img {
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .theme-toggle:hover .theme-toggle-label,
-  .theme-toggle:focus-visible .theme-toggle-label {
-    opacity: 1;
-    visibility: visible;
+  /* Below lg the Craft / Notes / About cluster is packed; the label would
+     cover About. Only reveal it once the nav uses the 4-column grid. */
+  @media (min-width: 64rem) {
+    .theme-toggle:hover .theme-toggle-label,
+    .theme-toggle:focus-visible .theme-toggle-label {
+      opacity: 1;
+      visibility: visible;
+    }
   }
 }
 
