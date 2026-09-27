@@ -13,6 +13,14 @@ if (isProduction && posthogKey && posthogHost) {
       if (window.location.hostname === 'localhost') {
         client.opt_out_capturing()
       }
+
+      if (localStorage.getItem('joel_owner') === 'true') {
+        client.stopSessionRecording()
+      }
     },
   })
+
+  if (localStorage.getItem('joel_owner') === 'true') {
+    posthog.stopSessionRecording()
+  }
 }
