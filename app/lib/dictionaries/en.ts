@@ -72,6 +72,7 @@ export const en = {
       'These are my current favorites, and my broader stack of tool knowledge.',
     languageList: ['English (C1)', 'Spanish (native)'],
     degree: 'Graphic Design',
+    portraitAlt: 'Portrait of Joel Gutiérrez',
   },
   experience: {
     title: 'Experience',

@@ -8,11 +8,16 @@ import {
 } from 'app/components/page-layout'
 import { YearRange } from 'app/components/year-range'
 import { JsonLd } from 'app/components/json-ld'
+import { fullWidthImageSizes } from 'app/lib/image-sizes'
 import { getDictionary, getLocale } from 'app/lib/i18n'
 import { localePath } from 'app/lib/locale'
 import { createPageMetadata, createProfilePageJsonLd } from 'app/lib/metadata'
+import { getPublicImageSize } from 'app/lib/public-image'
 import { site } from 'app/lib/site'
+import Image from 'next/image'
 import type { ReactNode } from 'react'
+
+const portraitSrc = '/about/gutierrez-joel.webp'
 
 export const dynamic = 'force-static'
 
@@ -47,6 +52,7 @@ const AboutSection = ({ title, children }: AboutSectionProps) => (
 const Page = async () => {
   const locale = await getLocale()
   const copy = await getDictionary()
+  const portrait = getPublicImageSize(portraitSrc)
 
   return (
     <>
@@ -76,6 +82,17 @@ const Page = async () => {
             </p>
           ))}
         </div>
+
+        {portrait ? (
+          <Image
+            src={portraitSrc}
+            alt={copy.about.portraitAlt}
+            width={portrait.width}
+            height={portrait.height}
+            sizes={fullWidthImageSizes}
+            className={`${pageSectionClassName} h-auto w-full rounded-none`}
+          />
+        ) : null}
 
         <div className="grid w-full grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-x-6 2xl:grid-cols-4">
           <div className={`${pageStackClassName} 2xl:contents`}>

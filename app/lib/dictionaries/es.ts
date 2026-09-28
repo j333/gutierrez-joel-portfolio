@@ -74,6 +74,7 @@ export const es: Dictionary = {
       'Estas son mis favoritas actualmente, siendo mi stack de conocimiento de herramientas más amplio.',
     languageList: ['Inglés (C1)', 'Español (nativo)'],
     degree: 'Diseño gráfico',
+    portraitAlt: 'Retrato de Joel Gutiérrez',
   },
   experience: {
     title: 'Experiencia',
