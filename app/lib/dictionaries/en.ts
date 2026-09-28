@@ -52,7 +52,7 @@ export const en = {
     languages: 'Languages',
     bio: [
       "I'm Joel, a product designer working at the intersection of design, development, and business.",
-      'I taught myself starting at 15, building websites while I studied electronics in high school, where I also built automation systems. I later studied design in college, which gave me a more strategic, practical way of looking at problems and how to solve them.',
+      'I taught myself starting at 15, building websites while I studied electronics specialized in automation in high school. I later studied design in college, which gave me a more strategic, practical way of looking at problems and how to solve them.',
       "These days I'm exploring and building personal projects around what AI makes possible.",
       'In my previous role at Marketfully, I led a design team and was part of the strategy group developing AI-powered solutions.',
       "I enjoy building solutions that stay aligned with business, product, and development. I've been fortunate to work on many projects for well-known brands, alongside teams from different parts of the world. That range lets me shape a solution around the problem, what's possible, and the goals.",
