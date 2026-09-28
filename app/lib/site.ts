@@ -1,16 +1,23 @@
 export const site = {
   name: 'Joel Gutiérrez',
-  jobTitle: 'Product Design Manager',
   url: 'https://www.gutierrezjoel.com',
   host: 'gutierrezjoel.com',
-  description:
-    'Product designer with over a decade of experience in product strategy, design systems, design leadership, and UX.',
-  locale: 'en_US',
   githubUrl: 'https://github.com/j333/gutierrez-joel-portfolio/',
   resumePath: '/Joel_Gutierrez_Resume.pdf',
+  school: 'Universidad Nacional de Cuyo',
+  educationStart: '2008',
+  educationEnd: '2013',
+  stack: [
+    'Claude',
+    'Cursor',
+    'FigJam',
+    'Figma',
+    'Linear',
+    'Notion',
+    'PostHog',
+    'Slack',
+  ],
 } as const
-
-export const siteTitle = `${site.name} | ${site.jobTitle}`
 
 export const socialLinks = [
   { name: 'LinkedIn', url: 'https://linkedin.com/in/gutierrezjoel' },

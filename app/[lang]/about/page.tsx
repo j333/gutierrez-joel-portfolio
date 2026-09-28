@@ -8,27 +8,26 @@ import {
 } from 'app/components/page-layout'
 import { YearRange } from 'app/components/year-range'
 import { JsonLd } from 'app/components/json-ld'
-import {
-  aboutBio,
-  aboutEducation,
-  aboutLanguages,
-  aboutSkills,
-  aboutStack,
-  aboutStackNote,
-} from 'app/lib/about-data'
+import { getDictionary, getLocale } from 'app/lib/i18n'
+import { localePath } from 'app/lib/locale'
 import { createPageMetadata, createProfilePageJsonLd } from 'app/lib/metadata'
-import { buildPersonEntity } from 'app/lib/person'
-import { aboutIndex, site } from 'app/lib/site'
+import { site } from 'app/lib/site'
 import type { ReactNode } from 'react'
 
 export const dynamic = 'force-static'
 
-export const metadata = createPageMetadata({
-  title: aboutIndex.title,
-  description: aboutIndex.description,
-  canonical: `${site.url}${aboutIndex.path}`,
-  markdownUrl: `${site.url}/about.md`,
-})
+export const generateMetadata = async () => {
+  const locale = await getLocale()
+  const copy = await getDictionary()
+
+  return createPageMetadata({
+    locale,
+    path: '/about',
+    title: copy.about.title,
+    description: copy.about.description,
+    markdownPath: '/about',
+  })
+}
 
 type AboutSectionProps = {
   title: string
@@ -45,55 +44,60 @@ const AboutSection = ({ title, children }: AboutSectionProps) => (
   </section>
 )
 
-const Page = () => {
+const Page = async () => {
+  const locale = await getLocale()
+  const copy = await getDictionary()
+
   return (
     <>
       <JsonLd
         data={createProfilePageJsonLd(
-          `${site.url}${aboutIndex.path}`,
-          buildPersonEntity()
+          `${site.url}${localePath(locale, '/about')}`
         )}
       />
       <div className={`w-full ${pageSectionClassName}`}>
         <PageHeader
-          title={aboutIndex.heading}
-          description={aboutIndex.intro}
+          title={copy.about.heading}
+          description={copy.about.intro}
           spacing="section"
         />
 
         <div className={`${pageSectionClassName} ${textColumnClassName} space-y-4`}>
-          <p className="text-lg leading-relaxed text-neutral-800 dark:text-neutral-200">
-            {aboutBio[0]}
-          </p>
-          <p className="text-base leading-relaxed text-neutral-600 dark:text-neutral-400">
-            {aboutBio[1]}
-          </p>
-          <p className="text-base leading-relaxed text-neutral-600 dark:text-neutral-400">
-            {aboutBio[2]}
-          </p>
+          {copy.about.bio.map((paragraph, index) => (
+            <p
+              key={paragraph}
+              className={
+                index === 0
+                  ? 'text-lg leading-relaxed text-neutral-800 dark:text-neutral-200'
+                  : 'text-base leading-relaxed text-neutral-600 dark:text-neutral-400'
+              }
+            >
+              {paragraph}
+            </p>
+          ))}
         </div>
 
         <div className="grid w-full grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-x-6 2xl:grid-cols-4">
           <div className={`${pageStackClassName} 2xl:contents`}>
-            <AboutSection title="Experience">
+            <AboutSection title={copy.about.experience}>
               <ExperiencePosts heading="h3" />
             </AboutSection>
 
-            <AboutSection title="Education">
+            <AboutSection title={copy.about.education}>
               <ul className="space-y-8">
                 <li>
                   <div className="flex min-w-0 flex-col gap-2">
                     <div className="flex flex-col gap-1">
                       <h3 className="text-base font-medium leading-6 text-neutral-800 dark:text-neutral-200">
-                        {aboutEducation.degree}
+                        {copy.about.degree}
                       </h3>
                       <p className="text-pretty text-sm leading-5 text-neutral-500 dark:text-neutral-400">
-                        {aboutEducation.school}
+                        {site.school}
                       </p>
                     </div>
                     <YearRange
-                      start={aboutEducation.start}
-                      end={aboutEducation.end}
+                      start={site.educationStart}
+                      end={site.educationEnd}
                     />
                   </div>
                 </li>
@@ -102,9 +106,9 @@ const Page = () => {
           </div>
 
           <div className={`${pageStackClassName} 2xl:contents`}>
-            <AboutSection title="Capabilities">
+            <AboutSection title={copy.about.capabilities}>
               <ul className={aboutListClassName}>
-                {aboutSkills.map((skill) => (
+                {copy.about.skills.map((skill) => (
                   <li
                     key={skill}
                     className="text-sm leading-5 text-neutral-600 dark:text-neutral-400"
@@ -116,9 +120,9 @@ const Page = () => {
             </AboutSection>
 
             <div className={`${pageStackClassName} ${textColumnClassName}`}>
-              <AboutSection title="Stack">
+              <AboutSection title={copy.about.stack}>
                 <ul className={aboutListClassName}>
-                  {aboutStack.map((tool) => (
+                  {site.stack.map((tool) => (
                     <li
                       key={tool}
                       className="text-sm leading-5 text-neutral-600 dark:text-neutral-400"
@@ -128,13 +132,13 @@ const Page = () => {
                   ))}
                 </ul>
                 <p className="mt-4 text-pretty text-xs leading-4 text-neutral-500 dark:text-neutral-400">
-                  {aboutStackNote}
+                  {copy.about.stackNote}
                 </p>
               </AboutSection>
 
-              <AboutSection title="Languages">
+              <AboutSection title={copy.about.languages}>
                 <ul className={aboutListClassName}>
-                  {aboutLanguages.map((language) => (
+                  {copy.about.languageList.map((language) => (
                     <li
                       key={language}
                       className="text-sm leading-5 text-neutral-600 dark:text-neutral-400"

@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import { MetaRow, metaListClassName, metaValueClassName } from 'app/components/page-layout'
 import { YearRange } from 'app/components/year-range'
+import { getDictionary } from 'app/lib/i18n'
 import type { ProjectMetadata } from 'app/projects/utils'
 
 type MetaItem = {
@@ -12,22 +13,23 @@ type ProjectMetaProps = {
   metadata: ProjectMetadata
 }
 
-export const ProjectMeta = ({ metadata }: ProjectMetaProps) => {
+export const ProjectMeta = async ({ metadata }: ProjectMetaProps) => {
+  const copy = await getDictionary()
   const rows: MetaItem[] = [
-    { label: 'Brand', value: metadata.product },
-    { label: 'Deliverable', value: metadata.deliverable },
+    { label: copy.meta.brand, value: metadata.product },
+    { label: copy.meta.deliverable, value: metadata.deliverable },
   ]
 
   if (metadata.role) {
-    rows.push({ label: 'Role', value: metadata.role })
+    rows.push({ label: copy.meta.role, value: metadata.role })
   }
 
   if (metadata.industry) {
-    rows.push({ label: 'Industry', value: metadata.industry })
+    rows.push({ label: copy.meta.industry, value: metadata.industry })
   }
 
   rows.push({
-    label: 'Year',
+    label: copy.meta.year,
     value: (
       <YearRange
         start={metadata.startedAt}

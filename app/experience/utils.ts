@@ -1,3 +1,4 @@
+import { localePath, type Locale } from 'app/lib/locale'
 import { getMdxData, getMdxDirectory, type MdxEntry } from 'app/lib/mdx'
 import { site } from 'app/lib/site'
 
@@ -17,20 +18,26 @@ export type Metadata = {
 
 export type ExperienceEntry = MdxEntry<Metadata>
 
-export const getExperience = () =>
-  getMdxData<Metadata>(getMdxDirectory('experience', 'posts')).sort((a, b) => {
-    if (a.metadata.endedAt !== b.metadata.endedAt) {
-      return b.metadata.endedAt.localeCompare(a.metadata.endedAt)
+export const getExperience = (locale: Locale) =>
+  getMdxData<Metadata>(getMdxDirectory('experience', 'posts', locale)).sort(
+    (a, b) => {
+      if (a.metadata.endedAt !== b.metadata.endedAt) {
+        return b.metadata.endedAt.localeCompare(a.metadata.endedAt)
+      }
+
+      return b.metadata.startedAt.localeCompare(a.metadata.startedAt)
     }
+  )
 
-    return b.metadata.startedAt.localeCompare(a.metadata.startedAt)
-  })
+export const getExperienceBySlug = (slug: string, locale: Locale) =>
+  getExperience(locale).find((entry) => entry.slug === slug)
 
-export const getExperienceBySlug = (slug: string) =>
-  getExperience().find((entry) => entry.slug === slug)
+export const getExperienceCanonicalUrl = (
+  entry: ExperienceEntry,
+  locale: Locale
+) => `${site.url}${localePath(locale, `/experience/${entry.slug}`)}`
 
-export const getExperienceCanonicalUrl = (entry: ExperienceEntry) =>
-  `${site.url}/experience/${entry.slug}`
-
-export const getExperienceMarkdownUrl = (entry: ExperienceEntry) =>
-  `${site.url}/experience/${entry.slug}.md`
+export const getExperienceMarkdownUrl = (
+  entry: ExperienceEntry,
+  locale: Locale
+) => `${site.url}${localePath(locale, `/experience/${entry.slug}`)}.md`

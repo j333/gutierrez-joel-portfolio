@@ -6,6 +6,8 @@ import {
   imagePlaceholderClassName,
   projectCardImageSizes,
 } from 'app/lib/image-sizes'
+import { getLocale } from 'app/lib/i18n'
+import { localePath } from 'app/lib/locale'
 import {
   getProjectImage,
   projectImageQuality,
@@ -19,13 +21,14 @@ type ProjectCardProps = {
   heading?: ProjectHeading
 }
 
-export const ProjectCard = ({
+export const ProjectCard = async ({
   project,
   heading: Heading = 'h2',
 }: ProjectCardProps) => {
+  const locale = await getLocale()
   const { title, product } = project.metadata
   const image = getProjectImage(project)
-  const href = `/${project.slug}`
+  const href = localePath(locale, `/${project.slug}`)
   const coverAlt = `${title} — ${product}`
 
   return (

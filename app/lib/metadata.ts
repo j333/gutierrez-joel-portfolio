@@ -1,27 +1,50 @@
 import type { Metadata } from 'next'
+import { locales, localePath, ogLocales, type Locale } from 'app/lib/locale'
+import { toIsoDate } from 'app/lib/iso-date'
+import { personId } from 'app/lib/person'
 import { site } from './site'
 
 type PageMetadataInput = {
+  locale: Locale
+  path: string
   title: string
   description: string
-  canonical: string
-  markdownUrl?: string
+  markdownPath?: string
   type?: 'website' | 'article'
   publishedTime?: string
 }
 
+export const languageAlternates = (path: string) => {
+  const languages = Object.fromEntries(
+    locales.map((locale) => [locale, `${site.url}${localePath(locale, path)}`])
+  )
+
+  return {
+    ...languages,
+    'x-default': `${site.url}${localePath('en', path)}`,
+  }
+}
+
 export const createPageMetadata = ({
+  locale,
+  path,
   title,
   description,
-  canonical,
-  markdownUrl,
+  markdownPath,
   type = 'website',
   publishedTime,
-}: PageMetadataInput): Metadata => ({
+}: PageMetadataInput): Metadata => {
+  const canonical = `${site.url}${localePath(locale, path)}`
+  const markdownUrl = markdownPath
+    ? `${site.url}${localePath(locale, markdownPath)}.md`
+    : undefined
+
+  return {
   title,
   description,
   alternates: {
     canonical,
+    languages: languageAlternates(path),
     ...(markdownUrl ? { types: { 'text/markdown': markdownUrl } } : {}),
   },
   openGraph: {
@@ -29,7 +52,10 @@ export const createPageMetadata = ({
     description,
     url: canonical,
     siteName: site.name,
-    locale: site.locale,
+    locale: ogLocales[locale],
+    alternateLocale: locales
+      .filter((item) => item !== locale)
+      .map((item) => ogLocales[item]),
     type,
     ...(publishedTime ? { publishedTime } : {}),
   },
@@ -38,7 +64,8 @@ export const createPageMetadata = ({
     title,
     description,
   },
-})
+  }
+}
 
 export const getSocialImageUrl = (
   image: string | undefined,
@@ -57,6 +84,7 @@ type CreativeWorkJsonLdInput = {
   description: string
   image: string
   url: string
+  inLanguage: string
   sameAs?: string
 }
 
@@ -68,24 +96,32 @@ export const createCreativeWorkJsonLd = ({
   description,
   image,
   url,
+  inLanguage,
   sameAs,
 }: CreativeWorkJsonLdInput) => ({
   '@context': 'https://schema.org',
   '@type': type,
   name: headline,
   headline,
-  datePublished,
-  dateModified,
+  datePublished: toIsoDate(datePublished, 'start'),
+  dateModified: toIsoDate(dateModified, 'end'),
   description,
   image,
   url,
+  inLanguage,
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': url,
+  },
   ...(sameAs ? { sameAs } : {}),
   author: {
     '@type': 'Person',
+    '@id': personId,
     name: site.name,
   },
   creator: {
     '@type': 'Person',
+    '@id': personId,
     name: site.name,
   },
 })
@@ -110,8 +146,8 @@ export const createEmploymentJsonLd = ({
   '@context': 'https://schema.org',
   '@type': 'OrganizationRole',
   ...(roleName ? { roleName } : {}),
-  startDate: `${startDate}-01-01`,
-  endDate: `${endDate}-12-31`,
+  startDate: toIsoDate(startDate, 'start'),
+  endDate: toIsoDate(endDate, 'end'),
   description,
   url,
   memberOf: {
@@ -120,14 +156,17 @@ export const createEmploymentJsonLd = ({
   },
   member: {
     '@type': 'Person',
+    '@id': personId,
     name: site.name,
     url: site.url,
   },
 })
 
-export const createProfilePageJsonLd = (url: string, mainEntity: object) => ({
+export const createProfilePageJsonLd = (url: string) => ({
   '@context': 'https://schema.org',
   '@type': 'ProfilePage',
   url,
-  mainEntity,
+  mainEntity: {
+    '@id': personId,
+  },
 })

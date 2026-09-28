@@ -1,80 +1,67 @@
 import { getExperience } from 'app/experience/utils'
+import { dictionaries } from 'app/lib/i18n'
+import { localePath, type Locale } from 'app/lib/locale'
 import { getListedProjects } from 'app/projects/utils'
-import {
-  aboutBio,
-  aboutEducation,
-  aboutLanguages,
-  aboutSkills,
-  aboutStack,
-  aboutStackNote,
-} from 'app/lib/about-data'
-import { site, workIndex } from 'app/lib/site'
+import { site } from 'app/lib/site'
 
-export {
-  aboutBio,
-  aboutEducation,
-  aboutLanguages,
-  aboutSkills,
-  aboutStack,
-  aboutStackNote,
-} from 'app/lib/about-data'
-
-export const buildAboutMarkdown = () => {
-  const experience = getExperience()
+export const buildAboutMarkdown = (locale: Locale) => {
+  const copy = dictionaries[locale]
+  const experience = getExperience(locale)
     .map(
       (entry) =>
         `- **${entry.metadata.title}** (${entry.metadata.startedAt}–${entry.metadata.endedAt}): ${entry.metadata.summary}`
     )
     .join('\n')
 
-  return `# About
+  return `# ${copy.markdown.aboutTitle}
 
-${aboutBio.join('\n\n')}
+${copy.about.bio.join('\n\n')}
 
-## Experience
+## ${copy.about.experience}
 
 ${experience}
 
-## Education
+## ${copy.about.education}
 
-- **${aboutEducation.degree}**, ${aboutEducation.school} (${aboutEducation.start}–${aboutEducation.end})
+- **${copy.about.degree}**, ${site.school} (${site.educationStart}–${site.educationEnd})
 
-## Capabilities
+## ${copy.markdown.capabilities}
 
-${aboutSkills.map((skill) => `- ${skill}`).join('\n')}
+${copy.about.skills.map((skill) => `- ${skill}`).join('\n')}
 
-## Stack
+## ${copy.about.stack}
 
-${aboutStack.map((tool) => `- ${tool}`).join('\n')}
+${site.stack.map((tool) => `- ${tool}`).join('\n')}
 
-${aboutStackNote}
+${copy.about.stackNote}
 
-## Languages
+## ${copy.markdown.languages}
 
-${aboutLanguages.map((language) => `- ${language}`).join('\n')}
+${copy.about.languageList.map((language) => `- ${language}`).join('\n')}
 `
 }
 
-export const buildHomeMarkdown = () => {
-  const caseStudies = getListedProjects()
+export const buildHomeMarkdown = (locale: Locale) => {
+  const copy = dictionaries[locale]
+  const caseStudies = getListedProjects(locale)
     .map(
       (project) =>
         `- **${project.metadata.title}** (${project.metadata.product}): ${project.metadata.summary ?? project.metadata.title}`
     )
     .join('\n')
 
-  return `# ${workIndex.title}
+  return `# ${copy.home.title}
 
-> ${workIndex.description}
+> ${copy.home.description}
 
-${workIndex.intro}
+${copy.home.intro}
 
-## Projects
+## ${copy.markdown.projects}
 
-These are portfolio case studies, not employers.
+${copy.projects.homeNote}
 
 ${caseStudies}
 
-For employment history, see [/about.md](${site.url}/about.md).
+${copy.projects.employmentNote} [${copy.about.title}](${site.url}${localePath(locale, '/about')}.md).
 `
 }

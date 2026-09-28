@@ -4,20 +4,22 @@ import {
   pageSectionClassName,
   textColumnClassName,
 } from 'app/components/page-layout'
+import { getDictionary, getLocale } from 'app/lib/i18n'
 import { getListedProjects } from 'app/projects/utils'
-import { workIndex } from 'app/lib/site'
 
 export const dynamic = 'force-static'
 
-const Page = () => {
-  const projects = getListedProjects()
+const Page = async () => {
+  const locale = await getLocale()
+  const copy = await getDictionary()
+  const projects = getListedProjects(locale)
 
   return (
     <div className={pageSectionClassName}>
       <div className={textColumnClassName}>
         <PageHeader
-          title={workIndex.title}
-          description={workIndex.intro}
+          title={copy.home.title}
+          description={copy.home.intro}
           spacing="section"
         />
       </div>

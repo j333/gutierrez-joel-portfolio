@@ -1,4 +1,5 @@
 import { getMdxData, getMdxDirectory, type MdxEntry } from 'app/lib/mdx'
+import { localePath, type Locale } from 'app/lib/locale'
 import { getPublicImageSize } from 'app/lib/public-image'
 import { site } from 'app/lib/site'
 
@@ -30,24 +31,25 @@ export type ProjectImage = {
 
 export const projectImageQuality = 100
 
-export const getProjects = () =>
-  getMdxData<ProjectMetadata>(getMdxDirectory('projects', 'posts')).sort(
-    (a, b) => a.metadata.order - b.metadata.order
-  )
+export const getProjects = (locale: Locale) =>
+  getMdxData<ProjectMetadata>(
+    getMdxDirectory('projects', 'posts', locale)
+  ).sort((a, b) => a.metadata.order - b.metadata.order)
 
 export const isListedProject = (project: Project) =>
   project.metadata.listed !== 'false'
 
-export const getListedProjects = () => getProjects().filter(isListedProject)
+export const getListedProjects = (locale: Locale) =>
+  getProjects(locale).filter(isListedProject)
 
-export const getProjectBySlug = (slug: string) =>
-  getProjects().find((project) => project.slug === slug)
+export const getProjectBySlug = (slug: string, locale: Locale) =>
+  getProjects(locale).find((project) => project.slug === slug)
 
-export const getProjectCanonicalUrl = (project: Project) =>
-  `${site.url}/${project.slug}`
+export const getProjectCanonicalUrl = (project: Project, locale: Locale) =>
+  `${site.url}${localePath(locale, `/${project.slug}`)}`
 
-export const getProjectMarkdownUrl = (project: Project) =>
-  `${site.url}/${project.slug}.md`
+export const getProjectMarkdownUrl = (project: Project, locale: Locale) =>
+  `${site.url}${localePath(locale, `/${project.slug}`)}.md`
 
 export const getProjectImage = (project: Project): ProjectImage | null => {
   const rawSrc = project.metadata.image

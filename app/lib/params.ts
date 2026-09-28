@@ -1,3 +1,3 @@
 export type SlugPageProps = {
-  params: Promise<{ slug: string }>
+  params: Promise<{ lang: string; slug: string }>
 }

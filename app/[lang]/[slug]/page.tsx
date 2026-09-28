@@ -19,25 +19,33 @@ import {
   getSocialImageUrl,
 } from 'app/lib/metadata'
 import type { SlugPageProps } from 'app/lib/params'
-import { projectsIndex } from 'app/lib/site'
+import { getDictionary } from 'app/lib/i18n'
+import { isLocale, locales } from 'app/lib/locale'
 import {
   getProjectBySlug,
   getProjectCanonicalUrl,
   getProjectCaseStudyDescription,
   getProjectImage,
-  getProjectMarkdownUrl,
   getProjects,
   projectImageQuality,
 } from 'app/projects/utils'
 
 export const generateStaticParams = async () =>
-  getProjects().map((project) => ({
-    slug: project.slug,
-  }))
+  locales.flatMap((lang) =>
+    getProjects('en').map((project) => ({
+      lang,
+      slug: project.slug,
+    }))
+  )
 
 export const generateMetadata = async ({ params }: SlugPageProps) => {
-  const { slug } = await params
-  const project = getProjectBySlug(slug)
+  const { lang, slug } = await params
+
+  if (!isLocale(lang)) {
+    return
+  }
+
+  const project = getProjectBySlug(slug, lang)
 
   if (!project) {
     return
@@ -46,18 +54,25 @@ export const generateMetadata = async ({ params }: SlugPageProps) => {
   const description = getProjectCaseStudyDescription(project)
 
   return createPageMetadata({
+    locale: lang,
+    path: `/${project.slug}`,
     title: project.metadata.title,
     description,
-    canonical: getProjectCanonicalUrl(project),
-    markdownUrl: getProjectMarkdownUrl(project),
+    markdownPath: `/${project.slug}`,
     type: 'article',
     publishedTime: `${project.metadata.startedAt}-01-01`,
   })
 }
 
 const Project = async ({ params }: SlugPageProps) => {
-  const { slug } = await params
-  const project = getProjectBySlug(slug)
+  const { lang, slug } = await params
+
+  if (!isLocale(lang)) {
+    notFound()
+  }
+
+  const copy = await getDictionary()
+  const project = getProjectBySlug(slug, lang)
 
   if (!project) {
     notFound()
@@ -79,9 +94,10 @@ const Project = async ({ params }: SlugPageProps) => {
           image: getSocialImageUrl(
             project.metadata.image,
             title,
-            projectsIndex.eyebrow
+            copy.projects.eyebrow
           ),
-          url: getProjectCanonicalUrl(project),
+          url: getProjectCanonicalUrl(project, lang),
+          inLanguage: lang,
         })}
       />
       <article className={pageSectionClassName}>
@@ -94,7 +110,7 @@ const Project = async ({ params }: SlugPageProps) => {
           >
             <Image
               src={image.src}
-              alt=""
+              alt={title}
               fill
               sizes={fullWidthImageSizes}
               quality={projectImageQuality}

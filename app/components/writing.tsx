@@ -7,6 +7,8 @@ import {
   imagePlaceholderClassName,
   projectCardImageSizes,
 } from 'app/lib/image-sizes'
+import { getLocale } from 'app/lib/i18n'
+import { localePath } from 'app/lib/locale'
 import {
   formatListDate,
   getWritingPostImage,
@@ -31,10 +33,11 @@ const WritingCard = ({
   post,
   heading: Heading = 'h2',
   priority = false,
-}: WritingCardProps) => {
+  locale,
+}: WritingCardProps & { locale: Awaited<ReturnType<typeof getLocale>> }) => {
   const { title, publishedAt } = post.metadata
   const image = getWritingPostImage(post)
-  const href = `/notes/${post.slug}`
+  const href = localePath(locale, `/notes/${post.slug}`)
 
   return (
     <article className="min-w-0">
@@ -45,7 +48,7 @@ const WritingCard = ({
         {image ? (
           <GlitchCover
             src={image.src}
-            alt=""
+            alt={title}
             width={image.width}
             height={image.height}
             sizes={projectCardImageSizes}
@@ -66,7 +69,7 @@ const WritingCard = ({
             dateTime={publishedAt}
             className={`shrink-0 ${typeMetaClassName}`}
           >
-            {formatListDate(publishedAt)}
+            {formatListDate(publishedAt, locale)}
           </time>
         </div>
       </Link>
@@ -74,8 +77,12 @@ const WritingCard = ({
   )
 }
 
-export const WritingPosts = ({ limit, heading = 'h2' }: WritingPostsProps) => {
-  const posts = getWritingPosts()
+export const WritingPosts = async ({
+  limit,
+  heading = 'h2',
+}: WritingPostsProps) => {
+  const locale = await getLocale()
+  const posts = getWritingPosts(locale)
   const visiblePosts = limit ? posts.slice(0, limit) : posts
 
   return (
@@ -86,6 +93,7 @@ export const WritingPosts = ({ limit, heading = 'h2' }: WritingPostsProps) => {
           post={post}
           heading={heading}
           priority={index === 0}
+          locale={locale}
         />
       ))}
     </div>

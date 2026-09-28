@@ -1,81 +1,26 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  async redirects() {
-    return [
-      {
-        source: '/blog',
-        destination: '/notes',
-        permanent: true,
-      },
-      {
-        source: '/blog/:path*',
-        destination: '/notes/:path*',
-        permanent: true,
-      },
-      {
-        source: '/writing',
-        destination: '/notes',
-        permanent: true,
-      },
-      {
-        // Single segment only so /writing/<slug>/cover.webp stays a static asset.
-        source: '/writing/:slug',
-        destination: '/notes/:slug',
-        permanent: true,
-      },
-      {
-        source: '/experience',
-        destination: '/about',
-        permanent: true,
-      },
-      {
-        source: '/experience/getgloby',
-        destination: '/experience/marketfully',
-        permanent: true,
-      },
-      {
-        source: '/rehab-boost',
-        destination: '/golf-boost',
-        permanent: true,
-      },
-      {
-        source: '/experience/golf-boost',
-        destination: '/golf-boost',
-        permanent: true,
-      },
-      {
-        source: '/experience/rehab-boost',
-        destination: '/golf-boost',
-        permanent: true,
-      },
-      {
-        source: '/experience/vina-errazuriz',
-        destination: '/about',
-        permanent: true,
-      },
-    ];
-  },
   async rewrites() {
     return [
       {
-        source: '/about.md',
-        destination: '/md/about',
+        source: '/:lang(en|es)/about.md',
+        destination: '/md/:lang/about',
       },
       {
-        source: '/index.md',
-        destination: '/md/index',
+        source: '/:lang(en|es)/index.md',
+        destination: '/md/:lang/index',
       },
       {
-        source: '/notes/:slug.md',
-        destination: '/md/notes/:slug',
+        source: '/:lang(en|es)/notes/:slug.md',
+        destination: '/md/:lang/notes/:slug',
       },
       {
-        source: '/experience/:slug.md',
-        destination: '/md/experience/:slug',
+        source: '/:lang(en|es)/experience/:slug.md',
+        destination: '/md/:lang/experience/:slug',
       },
       {
-        source: '/:slug.md',
-        destination: '/md/:slug',
+        source: '/:lang(en|es)/:slug.md',
+        destination: '/md/:lang/:slug',
       },
     ];
   },

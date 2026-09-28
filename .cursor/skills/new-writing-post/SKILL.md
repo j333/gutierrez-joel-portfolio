@@ -9,10 +9,10 @@ Copy [app/notes/posts/my-2026-tool-stack.mdx](app/notes/posts/my-2026-tool-stack
 
 ## Checklist
 
-1. Slug = filename (`my-slug.mdx` → `/notes/my-slug`). English body.
+1. Slug = filename (`my-slug.mdx` → `/en/notes/my-slug` and `/es/notes/my-slug`). Write both `app/notes/posts/en/<slug>.mdx` and `app/notes/posts/es/<slug>.mdx`. Same slug, same image paths. Spanish body matches the English piece. No em dash in either.
 2. Cover: `pnpm optimize-cover -- <input> public/writing/<slug>/cover.webp`. Source must be at least 1920×1080. Chat attachments at 1024px are not a source.
 3. Every other raster image: `pnpm optimize-image -- <input> public/writing/<slug>/<name>.webp --max 1600` (column) or `--max 1920` (screenshot / `#wide`). Output is always `.webp`.
-4. Write `app/notes/posts/<slug>.mdx` with the template below. Do not put the cover in the markdown body.
+4. Write `app/notes/posts/en/<slug>.mdx` and `app/notes/posts/es/<slug>.mdx` with the template below. Do not put the cover in the markdown body.
 5. Frontmatter and `![]()` paths are `.webp` only.
 
 ```mdx
