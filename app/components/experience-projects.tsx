@@ -3,13 +3,11 @@ import {
   metaLabelClassName,
   typeMetaClassName,
 } from 'app/components/page-layout'
+import { getDictionary } from 'app/lib/i18n'
 import type {
   ExperienceProject,
   ExperienceProjectGroup,
 } from 'app/experience/projects'
-
-const YEAR_HEADER = 'Year'
-const PROJECT_HEADER = 'Project'
 
 const yearCellClassName = typeMetaClassName
 
@@ -24,9 +22,9 @@ const projectKey = (project: ExperienceProject) =>
 const formatYearRange = (start: string, end: string) =>
   start === end ? end : `${start}-${end}`
 
-const getYearColumnCh = (groups: ExperienceProjectGroup[]) =>
+const getYearColumnCh = (yearLabel: string, groups: ExperienceProjectGroup[]) =>
   Math.max(
-    YEAR_HEADER.length,
+    yearLabel.length,
     ...groups.flatMap((group) =>
       group.projects.map((project) =>
         formatYearRange(project.startedAt, project.endedAt).length
@@ -40,20 +38,22 @@ type ExperienceProjectsProps = {
   className?: string
 }
 
-export const ExperienceProjects = ({
+export const ExperienceProjects = async ({
   groups,
   heading,
   className,
 }: ExperienceProjectsProps) => {
+  const copy = await getDictionary()
+
   if (groups.length === 0) {
     return null
   }
 
-  const yearColumnCh = getYearColumnCh(groups)
+  const yearColumnCh = getYearColumnCh(copy.meta.year, groups)
   const yearColumnStyle = { width: `${yearColumnCh}ch` }
 
   return (
-    <section className={className} aria-label={heading ?? 'Client work'}>
+    <section className={className} aria-label={heading ?? copy.experience.clientWork}>
       {heading ? (
         <h2 className="mb-3 text-lg font-normal tracking-tight text-neutral-800 dark:text-neutral-200">
           {heading}
@@ -69,7 +69,7 @@ export const ExperienceProjects = ({
                   className="content-link w-fit"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={`${group.name}, opens in a new tab`}
+                  aria-label={`${group.name}${copy.footer.externalSuffix}`}
                 >
                   {group.name}
                 </a>
@@ -84,12 +84,12 @@ export const ExperienceProjects = ({
               </colgroup>
               <thead>
                 <tr className="border-b border-neutral-300 dark:border-neutral-600">
-                  <th className={`${headerClassName} pr-4`}>{PROJECT_HEADER}</th>
+                  <th className={`${headerClassName} pr-4`}>{copy.experience.project}</th>
                   <th
                     className={`${headerClassName} text-right`}
                     style={yearColumnStyle}
                   >
-                    {YEAR_HEADER}
+                    {copy.meta.year}
                   </th>
                 </tr>
               </thead>

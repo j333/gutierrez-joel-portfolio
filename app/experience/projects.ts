@@ -1,3 +1,5 @@
+import type { Locale } from 'app/lib/locale'
+
 export type ExperienceProject = {
   name: string
   role: string
@@ -343,7 +345,85 @@ const experienceProjects: Record<string, ExperienceProject[]> = {
   'centric-digital': centricDigitalProjects,
 }
 
-const sortProjects = (projects: ExperienceProject[]) =>
+const esNames: Record<string, string> = {
+  'Website 2021 Redesign and Shopify Migration':
+    'Rediseño del sitio 2021 y migración a Shopify',
+  'Website Redesign and Shopify Migration':
+    'Rediseño del sitio y migración a Shopify',
+  'Webflow Migration': 'Migración a Webflow',
+  'Dashboard Design and Data Analysis':
+    'Diseño de dashboard y análisis de datos',
+  'Pink Bra Dashboard': 'Dashboard Pink Bra',
+  'Web App Platform': 'Plataforma de aplicación web',
+  'Website Redesign': 'Rediseño del sitio',
+  'International Code-a-thons': 'Code-a-thons internacionales',
+  'Institutional Website 2018': 'Sitio institucional 2018',
+  Branding: 'Identidad de marca',
+  'Web App Design and Product Management':
+    'Diseño de aplicación web y gestión de producto',
+  'Branding Redesign': 'Rediseño de marca',
+  'Industry Reports': 'Informes de industria',
+  Website: 'Sitio web',
+  'Mobile Apps Dashboard': 'Dashboard de aplicaciones móviles',
+  'Various Design': 'Diseño diverso',
+  'Institutional Website 2017 Redesign':
+    'Rediseño del sitio institucional 2017',
+  'Institutional Website 2016': 'Sitio institucional 2016',
+  'Trends Dashboard': 'Dashboard de tendencias',
+  Analytics: 'Analítica',
+  'Last the Night Website': 'Sitio Last the Night',
+  'TNT Website': 'Sitio TNT',
+  'PDH Executive Visualization Dashboard':
+    'Dashboard ejecutivo de visualización PDH',
+  'Active Care EWS (Japanese)': 'Active Care EWS (japonés)',
+  'Joining KP Early Engagement': 'Incorporación temprana a KP',
+  'CDS Progress Update': 'Actualización de progreso CDS',
+  'Institutional Website': 'Sitio institucional',
+  'Website 2014 Redesign': 'Rediseño del sitio 2014',
+  Experiences: 'Experiencias',
+  'HEP Website': 'Sitio HEP',
+  'Find Doctors and Locations': 'Buscar médicos y ubicaciones',
+}
+
+const esRoles: Record<string, string> = {
+  'Senior Product Designer': 'Diseñador de producto senior',
+  'Lead Product Designer': 'Diseñador de producto lead',
+  'UX/UI Designer': 'Diseñador UX/UI',
+  'Brand Designer': 'Diseñador de marca',
+  'Junior UX/UI Designer': 'Diseñador UX/UI junior',
+  'Junior Frontend Developer': 'Desarrollador frontend junior',
+}
+
+const esIndustries: Record<string, string> = {
+  Music: 'Música',
+  Healthcare: 'Salud',
+  Art: 'Arte',
+  Recruitment: 'Reclutamiento',
+  Apparel: 'Indumentaria',
+  'Digital Solutions': 'Soluciones digitales',
+  Cosmetics: 'Cosmética',
+  Education: 'Educación',
+  Insurance: 'Seguros',
+  'Social Media': 'Redes sociales',
+  'Market Research': 'Investigación de mercado',
+  Nonprofit: 'Organización sin fines de lucro',
+  'Human Resources': 'Recursos humanos',
+}
+
+const localizeProject = (project: ExperienceProject, locale: Locale) => {
+  if (locale === 'en') {
+    return project
+  }
+
+  return {
+    ...project,
+    name: esNames[project.name] ?? project.name,
+    role: esRoles[project.role] ?? project.role,
+    industry: esIndustries[project.industry] ?? project.industry,
+  }
+}
+
+const sortProjects = (projects: ExperienceProject[], locale: Locale) =>
   [...projects].sort((a, b) => {
     const byEnd = b.endedAt.localeCompare(a.endedAt)
 
@@ -357,11 +437,12 @@ const sortProjects = (projects: ExperienceProject[]) =>
       return byStart
     }
 
-    return a.name.localeCompare(b.name, 'en')
+    return a.name.localeCompare(b.name, locale)
   })
 
 const groupExperienceProjects = (
-  projects: ExperienceProject[]
+  projects: ExperienceProject[],
+  locale: Locale
 ): ExperienceProjectGroup[] => {
   const groups = new Map<string, ExperienceProject[]>()
 
@@ -385,20 +466,23 @@ const groupExperienceProjects = (
         name,
         industry: industries.join(', '),
         url: brandUrls[name],
-        projects: sortProjects(items),
+        projects: sortProjects(items, locale),
       }
     })
-    .sort((a, b) => a.name.localeCompare(b.name, 'en'))
+    .sort((a, b) => a.name.localeCompare(b.name, locale))
 }
 
-export const getExperienceProjects = (slug: string) => {
+export const getExperienceProjects = (slug: string, locale: Locale) => {
   const projects = experienceProjects[slug]
 
   if (!projects?.length) {
     return []
   }
 
-  return groupExperienceProjects(projects)
+  return groupExperienceProjects(
+    projects.map((project) => localizeProject(project, locale)),
+    locale
+  )
 }
 
 export const SELECTED_WORK_MARKER = '<!-- selected-work -->'

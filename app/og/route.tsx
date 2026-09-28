@@ -1,8 +1,9 @@
 import { createOgImage } from './card'
+import { dictionaries } from 'app/lib/i18n'
 import { site } from 'app/lib/site'
 
 const DEFAULT_TITLE = site.name
-const DEFAULT_SUBTITLE = site.jobTitle
+const DEFAULT_SUBTITLE = dictionaries.en.jobTitle
 const MAX_TITLE_LENGTH = 120
 const MAX_SUBTITLE_LENGTH = 160
 const MAX_EYEBROW_LENGTH = 40

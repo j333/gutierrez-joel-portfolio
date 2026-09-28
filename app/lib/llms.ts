@@ -1,4 +1,5 @@
 import { buildAboutMarkdown, buildHomeMarkdown } from 'app/lib/about'
+import { locales, localePath, isLocale, type Locale } from 'app/lib/locale'
 import { site, socialLinks } from 'app/lib/site'
 import { getExperience, getExperienceBySlug } from 'app/experience/utils'
 import {
@@ -34,17 +35,24 @@ const formatMdxEntryMarkdown = (
 
 export const resolveMarkdownPath = (segments: string[] | undefined) => {
   const path = segments ?? []
+  const locale = path[0]
 
-  if (path.length === 0 || (path.length === 1 && path[0] === 'index')) {
-    return buildHomeMarkdown()
+  if (!isLocale(locale)) {
+    return null
   }
 
-  if (path.length === 1 && path[0] === 'about') {
-    return buildAboutMarkdown()
+  const rest = path.slice(1)
+
+  if (rest.length === 0 || (rest.length === 1 && rest[0] === 'index')) {
+    return buildHomeMarkdown(locale)
   }
 
-  if (path.length === 2 && path[0] === 'notes') {
-    const post = getWritingPostBySlug(path[1])
+  if (rest.length === 1 && rest[0] === 'about') {
+    return buildAboutMarkdown(locale)
+  }
+
+  if (rest.length === 2 && rest[0] === 'notes') {
+    const post = getWritingPostBySlug(rest[1], locale)
 
     if (!post) {
       return null
@@ -61,8 +69,8 @@ export const resolveMarkdownPath = (segments: string[] | undefined) => {
     )
   }
 
-  if (path.length === 2 && path[0] === 'experience') {
-    const entry = getExperienceBySlug(path[1])
+  if (rest.length === 2 && rest[0] === 'experience') {
+    const entry = getExperienceBySlug(rest[1], locale)
 
     if (!entry) {
       return null
@@ -80,8 +88,8 @@ export const resolveMarkdownPath = (segments: string[] | undefined) => {
     )
   }
 
-  if (path.length === 1) {
-    const project = getProjectBySlug(path[0])
+  if (rest.length === 1) {
+    const project = getProjectBySlug(rest[0], locale)
 
     if (!project) {
       return null
@@ -94,7 +102,9 @@ export const resolveMarkdownPath = (segments: string[] | undefined) => {
         deliverable: project.metadata.deliverable,
         startedAt: project.metadata.startedAt,
         endedAt: project.metadata.endedAt,
-        ...(project.metadata.summary ? { summary: project.metadata.summary } : {}),
+        ...(project.metadata.summary
+          ? { summary: project.metadata.summary }
+          : {}),
         ...(project.metadata.role ? { role: project.metadata.role } : {}),
       },
       project.content
@@ -104,53 +114,68 @@ export const resolveMarkdownPath = (segments: string[] | undefined) => {
   return null
 }
 
-export const buildLlmsTxt = () => {
-  const projects = getListedProjects()
-  const experience = getExperience()
-  const writing = getWritingPosts()
-
-  const projectLinks = projects
+const sectionLinks = (locale: Locale) => {
+  const projects = getListedProjects(locale)
     .map(
       (project) =>
-        `- [${project.metadata.title}](${site.url}/${project.slug}.md) (${project.metadata.product}): ${project.metadata.summary ?? project.metadata.title}`
+        `- [${project.metadata.title}](${site.url}${localePath(locale, `/${project.slug}`)}.md) (${project.metadata.product}): ${project.metadata.summary ?? project.metadata.title}`
     )
     .join('\n')
 
-  const experienceLinks = experience
+  const experience = getExperience(locale)
     .map(
       (entry) =>
-        `- [${entry.metadata.title}](${site.url}/experience/${entry.slug}.md) (${entry.metadata.startedAt}–${entry.metadata.endedAt}): ${entry.metadata.summary}`
+        `- [${entry.metadata.title}](${site.url}${localePath(locale, `/experience/${entry.slug}`)}.md) (${entry.metadata.startedAt}–${entry.metadata.endedAt}): ${entry.metadata.summary}`
     )
     .join('\n')
 
-  const writingLinks = writing
+  const writing = getWritingPosts(locale)
     .map(
       (post) =>
-        `- [${post.metadata.title}](${site.url}/notes/${post.slug}.md): ${post.metadata.summary}`
+        `- [${post.metadata.title}](${site.url}${localePath(locale, `/notes/${post.slug}`)}.md): ${post.metadata.summary}`
     )
     .join('\n')
 
+  return { projects, experience, writing }
+}
+
+export const buildLlmsTxt = () => {
+  const english = sectionLinks('en')
+  const spanish = sectionLinks('es')
   const optionalLinks = [
     `- [Resume PDF](${site.url}${site.resumePath})`,
     ...socialLinks.map((link) => `- [${link.name}](${link.url})`),
   ].join('\n')
 
   return `# ${site.name}
-> ${site.description}
+
+English lives at /en. Spanish lives at /es. El español está en /es.
 
 Use this index to answer questions about Joel's craft, notes, and background. Prefer the markdown versions of pages when available.
 
-## About
-- [About](${site.url}/about.md): Background, experience, capabilities, and languages
+## English
+- [About](${site.url}/en/about.md): Background, experience, capabilities, and languages
 
-## Experience
-${experienceLinks}
+### Experience
+${english.experience}
 
-## Project case studies
-${projectLinks}
+### Project case studies
+${english.projects}
 
-## Notes
-${writingLinks}
+### Notes
+${english.writing}
+
+## Español
+- [Sobre mí](${site.url}/es/about.md): Trayectoria, experiencia, capacidades e idiomas
+
+### Experiencia
+${spanish.experience}
+
+### Proyectos
+${spanish.projects}
+
+### Artículos
+${spanish.writing}
 
 ## Optional
 ${optionalLinks}
@@ -158,13 +183,20 @@ ${optionalLinks}
 }
 
 export const buildLlmsFullTxt = () => {
-  const projects = getProjects()
-  const writing = getWritingPosts()
-  const sections = [
-    buildAboutMarkdown(),
-    ...projects.map((project) => resolveMarkdownPath([project.slug]) ?? ''),
-    ...writing.map((post) => resolveMarkdownPath(['notes', post.slug]) ?? ''),
-  ]
+  const sections = locales.flatMap((locale) => {
+    const projects = getProjects(locale)
+    const writing = getWritingPosts(locale)
+
+    return [
+      buildAboutMarkdown(locale),
+      ...projects.map(
+        (project) => resolveMarkdownPath([locale, project.slug]) ?? ''
+      ),
+      ...writing.map(
+        (post) => resolveMarkdownPath([locale, 'notes', post.slug]) ?? ''
+      ),
+    ]
+  })
 
   return sections.filter(Boolean).join('\n\n---\n\n')
 }

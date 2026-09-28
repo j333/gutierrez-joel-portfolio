@@ -1,3 +1,5 @@
+import { dictionaries } from 'app/lib/i18n'
+import { localePath, type Locale } from 'app/lib/locale'
 import { getMdxData, getMdxDirectory, type MdxEntry } from 'app/lib/mdx'
 import { getPublicImageSize } from 'app/lib/public-image'
 import { site } from 'app/lib/site'
@@ -18,15 +20,15 @@ export type WritingMetadata = {
 
 export type WritingPost = MdxEntry<WritingMetadata>
 
-export const getWritingPosts = () =>
-  getMdxData<WritingMetadata>(getMdxDirectory('notes', 'posts')).sort(
+export const getWritingPosts = (locale: Locale) =>
+  getMdxData<WritingMetadata>(getMdxDirectory('notes', 'posts', locale)).sort(
     (a, b) =>
       new Date(b.metadata.publishedAt).getTime() -
       new Date(a.metadata.publishedAt).getTime()
   )
 
-export const getWritingPostBySlug = (slug: string) =>
-  getWritingPosts().find((post) => post.slug === slug)
+export const getWritingPostBySlug = (slug: string, locale: Locale) =>
+  getWritingPosts(locale).find((post) => post.slug === slug)
 
 export const getWritingPostImage = (
   post: WritingPost
@@ -51,32 +53,49 @@ export const getWritingPostImage = (
   }
 }
 
-export const getPostCanonicalUrl = (post: WritingPost) =>
-  `${site.url}/notes/${post.slug}`
+export const getPostCanonicalUrl = (post: WritingPost, locale: Locale) =>
+  `${site.url}${localePath(locale, `/notes/${post.slug}`)}`
 
-export const getPostMarkdownUrl = (post: WritingPost) =>
-  `${site.url}/notes/${post.slug}.md`
+export const getPostMarkdownUrl = (post: WritingPost, locale: Locale) =>
+  `${site.url}${localePath(locale, `/notes/${post.slug}`)}.md`
 
-export const formatDate = (date: string, includeRelative = false) => {
+const relativePhrase = (
+  locale: Locale,
+  count: number,
+  singular: 'year' | 'month' | 'day',
+  plural: 'years' | 'months' | 'days'
+) => {
+  const copy = dictionaries[locale].relative
+  const template = count === 1 ? copy[singular] : copy[plural]
+
+  return template.replace('{n}', String(count))
+}
+
+export const formatDate = (
+  date: string,
+  locale: Locale,
+  includeRelative = false
+) => {
   const currentDate = new Date()
   const value = date.includes('T') ? date : `${date}T00:00:00`
   const targetDate = new Date(value)
+  const copy = dictionaries[locale]
 
   const yearsAgo = currentDate.getFullYear() - targetDate.getFullYear()
   const monthsAgo = currentDate.getMonth() - targetDate.getMonth()
   const daysAgo = currentDate.getDate() - targetDate.getDate()
 
-  let formattedDate = 'Today'
+  let formattedDate = copy.relative.today
 
   if (yearsAgo > 0) {
-    formattedDate = `${yearsAgo}y ago`
+    formattedDate = relativePhrase(locale, yearsAgo, 'year', 'years')
   } else if (monthsAgo > 0) {
-    formattedDate = `${monthsAgo}mo ago`
+    formattedDate = relativePhrase(locale, monthsAgo, 'month', 'months')
   } else if (daysAgo > 0) {
-    formattedDate = `${daysAgo}d ago`
+    formattedDate = relativePhrase(locale, daysAgo, 'day', 'days')
   }
 
-  const fullDate = targetDate.toLocaleString('en-us', {
+  const fullDate = targetDate.toLocaleString(copy.dateLocale, {
     month: 'long',
     day: 'numeric',
     year: 'numeric',
@@ -89,10 +108,10 @@ export const formatDate = (date: string, includeRelative = false) => {
   return `${fullDate} (${formattedDate})`
 }
 
-export const formatListDate = (date: string) => {
+export const formatListDate = (date: string, locale: Locale) => {
   const value = date.includes('T') ? date : `${date}T00:00:00`
 
-  return new Date(value).toLocaleString('en-US', {
+  return new Date(value).toLocaleString(dictionaries[locale].dateLocale, {
     month: 'short',
     year: 'numeric',
   })

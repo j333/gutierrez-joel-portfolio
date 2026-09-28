@@ -3,6 +3,9 @@ import type { MDXRemoteProps } from 'next-mdx-remote/rsc'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { highlight } from 'sugar-high'
 import React from 'react'
+import type { Dictionary } from 'app/lib/dictionaries/en'
+import { getDictionary, getLocale } from 'app/lib/i18n'
+import { localePath, type Locale } from 'app/lib/locale'
 import { getPublicImageSize } from 'app/lib/public-image'
 import { site } from 'app/lib/site'
 import {
@@ -39,12 +42,18 @@ const Table = ({ data }: { data: TableData }) => {
 
 type CustomLinkProps = {
   href?: string
+  locale: Locale
   children?: React.ReactNode
 } & Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>
 
-const CustomLink = ({ href = '', children, ...props }: CustomLinkProps) => {
+const CustomLink = ({
+  href = '',
+  locale,
+  children,
+  ...props
+}: CustomLinkProps) => {
   if (href.startsWith('/')) {
-    return <Link href={href}>{children}</Link>
+    return <Link href={localePath(locale, href)}>{children}</Link>
   }
 
   if (href.startsWith('#')) {
@@ -62,10 +71,10 @@ const CustomLink = ({ href = '', children, ...props }: CustomLinkProps) => {
   )
 }
 
-const DEFAULT_IMAGE_ALT = `${site.name}, ${site.jobTitle}`
+const defaultImageAlt = (copy: Dictionary) => `${site.name}, ${copy.jobTitle}`
 
-const descriptiveAlt = (alt?: string) =>
-  typeof alt === 'string' && alt.trim() ? alt : DEFAULT_IMAGE_ALT
+const descriptiveAlt = (copy: Dictionary, alt?: string) =>
+  typeof alt === 'string' && alt.trim() ? alt : defaultImageAlt(copy)
 
 const getYouTubeId = (src?: string) => {
   if (!src) {
@@ -125,11 +134,14 @@ type MarkdownImageProps = {
   title?: string
 }
 
-const MarkdownImage = (props: MarkdownImageProps) => {
+const MarkdownImage = ({
+  copy,
+  ...props
+}: MarkdownImageProps & { copy: Dictionary }) => {
   const youtubeId = getYouTubeId(props.src)
 
   if (youtubeId) {
-    const title = descriptiveAlt(props.alt)
+    const title = descriptiveAlt(copy, props.alt)
 
     return (
       <div className="my-8 aspect-video overflow-hidden rounded-xl">
@@ -146,7 +158,7 @@ const MarkdownImage = (props: MarkdownImageProps) => {
     )
   }
 
-  const alt = descriptiveAlt(props.alt)
+  const alt = descriptiveAlt(copy, props.alt)
   const caption =
     typeof props.title === 'string' && props.title.trim()
       ? props.title
@@ -163,6 +175,10 @@ const MarkdownImage = (props: MarkdownImageProps) => {
       animated={animated}
       width={animated ? undefined : dimensions?.width}
       height={animated ? undefined : dimensions?.height}
+      closeLabel={copy.image.closeLabel}
+      closeText={copy.image.close}
+      viewOriginalLabel={`${copy.image.viewOriginal}${alt}`}
+      escapeLabel={copy.image.escape}
     />
   )
 }
@@ -174,10 +190,12 @@ const Paragraph = ({
   const meaningfulChildren = React.Children.toArray(children).filter((child) =>
     typeof child === 'string' ? child.trim() !== '' : true
   )
+  const onlyChild = meaningfulChildren[0]
   const isStandaloneImage =
     meaningfulChildren.length === 1 &&
-    React.isValidElement(meaningfulChildren[0]) &&
-    meaningfulChildren[0].type === MarkdownImage
+    React.isValidElement(onlyChild) &&
+    typeof onlyChild.type === 'function' &&
+    'isMarkdownImage' in onlyChild.type
 
   if (isStandaloneImage) {
     return meaningfulChildren[0]
@@ -232,7 +250,7 @@ const headingText = (children: React.ReactNode): string => {
 const headingLabel = (children: React.ReactNode) =>
   headingText(children) || 'this section'
 
-const createHeading = (level: number) => {
+const createHeading = (level: number, copy: Dictionary) => {
   const Heading = ({ children }: { children?: React.ReactNode }) => {
     const label = headingLabel(children)
     const slug = slugify(label)
@@ -244,7 +262,7 @@ const createHeading = (level: number) => {
           href: `#${slug}`,
           key: `link-${slug}`,
           className: 'anchor',
-          'aria-label': `Permalink to ${label}`,
+          'aria-label': `${copy.image.permalink}${label}`,
         }),
       ],
       children
@@ -256,21 +274,14 @@ const createHeading = (level: number) => {
   return Heading
 }
 
-const components = {
-  h1: createHeading(2),
-  h2: createHeading(2),
-  h3: createHeading(3),
-  h4: createHeading(4),
-  h5: createHeading(5),
-  h6: createHeading(6),
-  p: Paragraph,
-  img: MarkdownImage,
-  a: CustomLink,
-  code: Code,
-  Table,
-}
+export const CustomMDX = async (props: MDXRemoteProps) => {
+  const locale = await getLocale()
+  const copy = await getDictionary()
+  const ArticleImage = (imageProps: MarkdownImageProps) => (
+    <MarkdownImage {...imageProps} copy={copy} />
+  )
+  ArticleImage.isMarkdownImage = true
 
-export const CustomMDX = (props: MDXRemoteProps) => {
   return (
     <MDXRemote
       {...props}
@@ -279,7 +290,20 @@ export const CustomMDX = (props: MDXRemoteProps) => {
           format: 'md',
         },
       }}
-      components={{ ...components, ...(props.components || {}) }}
+      components={{
+        h1: createHeading(2, copy),
+        h2: createHeading(2, copy),
+        h3: createHeading(3, copy),
+        h4: createHeading(4, copy),
+        h5: createHeading(5, copy),
+        h6: createHeading(6, copy),
+        p: Paragraph,
+        img: ArticleImage,
+        a: (linkProps) => <CustomLink {...linkProps} locale={locale} />,
+        code: Code,
+        Table,
+        ...(props.components || {}),
+      }}
     />
   )
 }

@@ -20,23 +20,31 @@ import {
   getSocialImageUrl,
 } from 'app/lib/metadata'
 import type { SlugPageProps } from 'app/lib/params'
-import { notesIndex } from 'app/lib/site'
+import { getDictionary } from 'app/lib/i18n'
+import { isLocale, locales } from 'app/lib/locale'
 import {
   getPostCanonicalUrl,
-  getPostMarkdownUrl,
   getWritingPostBySlug,
   getWritingPostImage,
   getWritingPosts,
 } from 'app/notes/utils'
 
 export const generateStaticParams = async () =>
-  getWritingPosts().map((post) => ({
-    slug: post.slug,
-  }))
+  locales.flatMap((lang) =>
+    getWritingPosts('en').map((post) => ({
+      lang,
+      slug: post.slug,
+    }))
+  )
 
 export const generateMetadata = async ({ params }: SlugPageProps) => {
-  const { slug } = await params
-  const post = getWritingPostBySlug(slug)
+  const { lang, slug } = await params
+
+  if (!isLocale(lang)) {
+    return
+  }
+
+  const post = getWritingPostBySlug(slug, lang)
 
   if (!post) {
     return
@@ -49,18 +57,25 @@ export const generateMetadata = async ({ params }: SlugPageProps) => {
   } = post.metadata
 
   return createPageMetadata({
+    locale: lang,
+    path: `/notes/${post.slug}`,
     title,
     description,
-    canonical: getPostCanonicalUrl(post),
-    markdownUrl: getPostMarkdownUrl(post),
+    markdownPath: `/notes/${post.slug}`,
     type: 'article',
     publishedTime,
   })
 }
 
 const Writing = async ({ params }: SlugPageProps) => {
-  const { slug } = await params
-  const post = getWritingPostBySlug(slug)
+  const { lang, slug } = await params
+
+  if (!isLocale(lang)) {
+    notFound()
+  }
+
+  const copy = await getDictionary()
+  const post = getWritingPostBySlug(slug, lang)
 
   if (!post) {
     notFound()
@@ -80,9 +95,9 @@ const Writing = async ({ params }: SlugPageProps) => {
           image: getSocialImageUrl(
             post.metadata.image,
             post.metadata.title,
-            notesIndex.eyebrow
+            copy.notes.eyebrow
           ),
-          url: getPostCanonicalUrl(post),
+          url: getPostCanonicalUrl(post, lang),
           ...(post.metadata.medium ? { sameAs: post.metadata.medium } : {}),
         })}
       />
@@ -118,9 +133,9 @@ const Writing = async ({ params }: SlugPageProps) => {
           <div className={`mt-16 ${articleBodyClassName}`}>
             <CtaLink
               href={post.metadata.medium}
-              aria-label="View on Medium, opens in a new tab"
+              aria-label={copy.notes.mediumLabel}
             >
-              View on Medium
+              {copy.notes.medium}
             </CtaLink>
           </div>
         ) : null}

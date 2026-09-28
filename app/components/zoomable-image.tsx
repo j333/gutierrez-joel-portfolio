@@ -23,6 +23,10 @@ type ZoomableImageProps = {
   animated?: boolean
   width?: number
   height?: number
+  closeLabel?: string
+  closeText?: string
+  viewOriginalLabel?: string
+  escapeLabel?: string
 }
 
 const figureClassName: Record<ArticleImageSize, string> = {
@@ -49,6 +53,10 @@ export const ZoomableImage = ({
   animated = false,
   width,
   height,
+  closeLabel,
+  closeText,
+  viewOriginalLabel,
+  escapeLabel,
 }: ZoomableImageProps) => {
   const labelId = useId()
   const captionId = useId()
@@ -161,18 +169,19 @@ export const ZoomableImage = ({
       onClick={handleBackdropClick}
     >
       <span id={labelId} className="sr-only">
-        {alt}. Press Escape to close.
+        {alt}
+        {escapeLabel ?? '. Press Escape to close.'}
       </span>
       <button
         type="button"
         className={closeButtonClassName}
-        aria-label="Close image"
+        aria-label={closeLabel ?? 'Close image'}
         onClick={(event) => {
           event.stopPropagation()
           handleClose()
         }}
       >
-        Close
+        {closeText ?? 'Close'}
       </button>
       <div className="flex max-h-full max-w-full flex-col items-center">
         {useNativeImage ? (
@@ -213,7 +222,7 @@ export const ZoomableImage = ({
         ref={triggerRef}
         type="button"
         className={triggerClassName}
-        aria-label={`View original size: ${alt}`}
+        aria-label={viewOriginalLabel ?? `View original size: ${alt}`}
         aria-haspopup="dialog"
         aria-expanded={isOpen}
         onClick={handleOpen}

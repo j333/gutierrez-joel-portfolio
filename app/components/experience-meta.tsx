@@ -1,22 +1,11 @@
 import type { Metadata } from 'app/experience/utils'
 import { MetaRow, metaListClassName } from 'app/components/page-layout'
+import { getDictionary } from 'app/lib/i18n'
 
-const MONTHS = [
-  'Jan',
-  'Feb',
-  'Mar',
-  'Apr',
-  'May',
-  'Jun',
-  'Jul',
-  'Aug',
-  'Sep',
-  'Oct',
-  'Nov',
-  'Dec',
-] as const
-
-const formatExperienceDate = (value?: string) => {
+const formatExperienceDate = (
+  months: readonly string[],
+  value?: string
+) => {
   if (!value) {
     return null
   }
@@ -37,7 +26,7 @@ const formatExperienceDate = (value?: string) => {
     return year
   }
 
-  return `${MONTHS[monthIndex]} ${year}`
+  return `${months[monthIndex]} ${year}`
 }
 
 type MetaItem = {
@@ -49,21 +38,29 @@ type ExperienceMetaProps = {
   metadata: Metadata
 }
 
-export const ExperienceMeta = ({ metadata }: ExperienceMetaProps) => {
-  const joined = formatExperienceDate(metadata.startedOn ?? metadata.startedAt)
+export const ExperienceMeta = async ({ metadata }: ExperienceMetaProps) => {
+  const copy = await getDictionary()
+  const joined = formatExperienceDate(
+    copy.months,
+    metadata.startedOn ?? metadata.startedAt
+  )
   const left = metadata.endedOn
-    ? formatExperienceDate(metadata.endedOn)
+    ? formatExperienceDate(copy.months, metadata.endedOn)
     : metadata.endedAt
-      ? formatExperienceDate(metadata.endedAt)
-      : 'Present'
+      ? formatExperienceDate(copy.months, metadata.endedAt)
+      : copy.meta.present
 
   const rows = [
-    metadata.role ? { label: 'Role', value: metadata.role } : null,
-    metadata.type ? { label: 'Type', value: metadata.type } : null,
-    metadata.industry ? { label: 'Industry', value: metadata.industry } : null,
-    metadata.workplace ? { label: 'Mode', value: metadata.workplace } : null,
-    joined ? { label: 'Start', value: joined } : null,
-    left ? { label: 'End', value: left } : null,
+    metadata.role ? { label: copy.meta.role, value: metadata.role } : null,
+    metadata.type ? { label: copy.meta.type, value: metadata.type } : null,
+    metadata.industry
+      ? { label: copy.meta.industry, value: metadata.industry }
+      : null,
+    metadata.workplace
+      ? { label: copy.meta.mode, value: metadata.workplace }
+      : null,
+    joined ? { label: copy.meta.start, value: joined } : null,
+    left ? { label: copy.meta.end, value: left } : null,
   ].filter((row): row is MetaItem => Boolean(row))
 
   if (rows.length === 0) {

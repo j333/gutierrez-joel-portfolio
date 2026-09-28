@@ -4,6 +4,8 @@ import {
 } from 'app/components/content-list-item'
 import { YearRange } from 'app/components/year-range'
 import { getExperience } from 'app/experience/utils'
+import { getLocale } from 'app/lib/i18n'
+import { localePath } from 'app/lib/locale'
 import { preventWidow } from 'app/lib/text'
 
 type ExperiencePostsProps = {
@@ -11,11 +13,12 @@ type ExperiencePostsProps = {
   heading?: 'h2' | 'h3'
 }
 
-export const ExperiencePosts = ({
+export const ExperiencePosts = async ({
   limit,
   heading = 'h2',
 }: ExperiencePostsProps) => {
-  const entries = getExperience()
+  const locale = await getLocale()
+  const entries = getExperience(locale)
   const visibleEntries = limit ? entries.slice(0, limit) : entries
 
   return (
@@ -23,7 +26,7 @@ export const ExperiencePosts = ({
       {visibleEntries.map((entry) => (
         <li key={entry.slug}>
           <ContentListItem
-            href={`/experience/${entry.slug}`}
+            href={localePath(locale, `/experience/${entry.slug}`)}
             title={entry.metadata.title}
             heading={heading}
             aside={

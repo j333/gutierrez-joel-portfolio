@@ -1,27 +1,48 @@
 import type { Metadata } from 'next'
+import { locales, localePath, ogLocales, type Locale } from 'app/lib/locale'
 import { site } from './site'
 
 type PageMetadataInput = {
+  locale: Locale
+  path: string
   title: string
   description: string
-  canonical: string
-  markdownUrl?: string
+  markdownPath?: string
   type?: 'website' | 'article'
   publishedTime?: string
 }
 
+export const languageAlternates = (path: string) => {
+  const languages = Object.fromEntries(
+    locales.map((locale) => [locale, `${site.url}${localePath(locale, path)}`])
+  )
+
+  return {
+    ...languages,
+    'x-default': `${site.url}${localePath('en', path)}`,
+  }
+}
+
 export const createPageMetadata = ({
+  locale,
+  path,
   title,
   description,
-  canonical,
-  markdownUrl,
+  markdownPath,
   type = 'website',
   publishedTime,
-}: PageMetadataInput): Metadata => ({
+}: PageMetadataInput): Metadata => {
+  const canonical = `${site.url}${localePath(locale, path)}`
+  const markdownUrl = markdownPath
+    ? `${site.url}${localePath(locale, markdownPath)}.md`
+    : undefined
+
+  return {
   title,
   description,
   alternates: {
     canonical,
+    languages: languageAlternates(path),
     ...(markdownUrl ? { types: { 'text/markdown': markdownUrl } } : {}),
   },
   openGraph: {
@@ -29,7 +50,10 @@ export const createPageMetadata = ({
     description,
     url: canonical,
     siteName: site.name,
-    locale: site.locale,
+    locale: ogLocales[locale],
+    alternateLocale: locales
+      .filter((item) => item !== locale)
+      .map((item) => ogLocales[item]),
     type,
     ...(publishedTime ? { publishedTime } : {}),
   },
@@ -38,7 +62,8 @@ export const createPageMetadata = ({
     title,
     description,
   },
-})
+  }
+}
 
 export const getSocialImageUrl = (
   image: string | undefined,

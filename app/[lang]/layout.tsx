@@ -1,15 +1,18 @@
-import './global.css'
+import '../global.css'
 import type { Metadata } from 'next'
 import { IBM_Plex_Mono, IBM_Plex_Sans } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
-import { Navbar } from './components/nav'
-import Footer from './components/footer'
-import { JsonLd } from './components/json-ld'
-import { chromeLinkClassName } from './components/link-styles'
-import { cx } from './lib/cx'
-import { buildPersonJsonLd } from './lib/person'
-import { site, siteTitle } from './lib/site'
-import { themeInitScript } from './lib/theme'
+import { Navbar } from 'app/components/nav'
+import Footer from 'app/components/footer'
+import { JsonLd } from 'app/components/json-ld'
+import { chromeLinkClassName } from 'app/components/link-styles'
+import { cx } from 'app/lib/cx'
+import { getDictionary, getLocale } from 'app/lib/i18n'
+import { locales } from 'app/lib/locale'
+import { createPageMetadata } from 'app/lib/metadata'
+import { buildPersonJsonLd } from 'app/lib/person'
+import { site } from 'app/lib/site'
+import { themeInitScript } from 'app/lib/theme'
 
 const ibmPlexSans = IBM_Plex_Sans({
   subsets: ['latin', 'latin-ext'],
@@ -28,49 +31,56 @@ const ibmPlexMono = IBM_Plex_Mono({
   variable: '--font-ibm-plex-mono',
 })
 
-export const metadata: Metadata = {
-  metadataBase: new URL(site.url),
-  title: {
-    default: siteTitle,
-    template: `%s | ${site.name}`,
-  },
-  description: site.description,
-  alternates: {
-    canonical: site.url,
-    types: {
-      'text/markdown': `${site.url}/index.md`,
+export const dynamicParams = false
+
+export const generateStaticParams = () =>
+  locales.map((lang) => ({
+    lang,
+  }))
+
+export const generateMetadata = async (): Promise<Metadata> => {
+  const locale = await getLocale()
+  const copy = await getDictionary()
+  const title = `${site.name} | ${copy.jobTitle}`
+  const page = createPageMetadata({
+    locale,
+    path: '/',
+    title,
+    description: copy.description,
+    markdownPath: '/index',
+  })
+
+  return {
+    metadataBase: new URL(site.url),
+    title: {
+      default: title,
+      template: `%s | ${site.name}`,
     },
-  },
-  openGraph: {
-    title: siteTitle,
-    description: site.description,
-    url: site.url,
-    siteName: site.name,
-    locale: site.locale,
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: siteTitle,
-    description: site.description,
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+    description: page.description,
+    alternates: page.alternates,
+    openGraph: page.openGraph,
+    twitter: page.twitter,
+    robots: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
     },
-  },
+  }
 }
 
-const RootLayout = ({ children }: { children: React.ReactNode }) => {
+const RootLayout = async ({ children }: { children: React.ReactNode }) => {
+  const locale = await getLocale()
+  const copy = await getDictionary()
+
   return (
     <html
-      lang="en"
+      lang={locale}
       suppressHydrationWarning
       className={cx(
         'font-sans text-black bg-white dark:text-white dark:bg-black',
@@ -85,7 +95,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
             __html: themeInitScript,
           }}
         />
-        <JsonLd data={buildPersonJsonLd()} />
+        <JsonLd data={buildPersonJsonLd(locale)} />
         <link rel="describedby" href="/llms.txt" />
       </head>
       <body
@@ -95,10 +105,22 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
         <div aria-hidden="true" className="site-noise" />
         <div className="flex min-h-dvh w-full flex-col gap-2 px-4 pb-[max(2.5rem,calc(1rem+env(safe-area-inset-bottom)))] sm:px-6 sm:pb-[max(1.5rem,calc(1rem+env(safe-area-inset-bottom)))]">
           <a href="#main-content" className={`skip-link ${chromeLinkClassName}`}>
-            Skip to main content
+            {copy.skip}
           </a>
           <div className="flex min-h-0 min-w-0 flex-1 flex-col">
-            <Navbar />
+            <Navbar
+              locale={locale}
+              copy={{
+                primary: copy.nav.primary,
+                craft: copy.nav.craft,
+                notes: copy.nav.notes,
+                about: copy.nav.about,
+                brand: copy.nav.brand,
+                menu: copy.nav.menu,
+                close: copy.nav.close,
+                theme: copy.theme,
+              }}
+            />
             <main
               id="main-content"
               tabIndex={-1}

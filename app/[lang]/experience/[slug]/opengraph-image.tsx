@@ -1,18 +1,21 @@
 import { getExperienceBySlug } from 'app/experience/utils'
-import { createEntryOgImage, ogContentType, ogImageSize } from '../../og/card'
+import { createEntryOgImage, ogContentType, ogImageSize } from '../../../og/card'
 import type { SlugPageProps } from 'app/lib/params'
-import { experienceIndex, site } from 'app/lib/site'
+import { dictionaries } from 'app/lib/i18n'
+import { isLocale } from 'app/lib/locale'
+import { site } from 'app/lib/site'
 
-export const alt = `${experienceIndex.title} by ${site.name}`
+export const alt = `Experience by ${site.name}`
 export const size = ogImageSize
 export const contentType = ogContentType
 
 const Image = async ({ params }: SlugPageProps) => {
-  const { slug } = await params
-  const entry = getExperienceBySlug(slug)
+  const { lang, slug } = await params
+  const locale = isLocale(lang) ? lang : 'en'
+  const entry = getExperienceBySlug(slug, locale)
 
   return createEntryOgImage({
-    eyebrow: experienceIndex.eyebrow,
+    eyebrow: dictionaries[locale].experience.eyebrow,
     title: entry?.metadata.title,
   })
 }

@@ -12,7 +12,6 @@ import {
   getExperience,
   getExperienceBySlug,
   getExperienceCanonicalUrl,
-  getExperienceMarkdownUrl,
 } from 'app/experience/utils'
 import {
   getExperienceProjects,
@@ -22,16 +21,26 @@ import {
   createEmploymentJsonLd,
   createPageMetadata,
 } from 'app/lib/metadata'
+import { getDictionary } from 'app/lib/i18n'
+import { isLocale, locales } from 'app/lib/locale'
 import type { SlugPageProps } from 'app/lib/params'
 
 export const generateStaticParams = async () =>
-  getExperience().map((entry) => ({
-    slug: entry.slug,
-  }))
+  locales.flatMap((lang) =>
+    getExperience('en').map((entry) => ({
+      lang,
+      slug: entry.slug,
+    }))
+  )
 
 export const generateMetadata = async ({ params }: SlugPageProps) => {
-  const { slug } = await params
-  const entry = getExperienceBySlug(slug)
+  const { lang, slug } = await params
+
+  if (!isLocale(lang)) {
+    return
+  }
+
+  const entry = getExperienceBySlug(slug, lang)
 
   if (!entry) {
     return
@@ -41,24 +50,31 @@ export const generateMetadata = async ({ params }: SlugPageProps) => {
   const description = role ? `${role}. ${summary}` : summary
 
   return createPageMetadata({
+    locale: lang,
+    path: `/experience/${entry.slug}`,
     title,
     description,
-    canonical: getExperienceCanonicalUrl(entry),
-    markdownUrl: getExperienceMarkdownUrl(entry),
+    markdownPath: `/experience/${entry.slug}`,
     type: 'article',
     publishedTime: `${startedAt}-01-01`,
   })
 }
 
 const Experience = async ({ params }: SlugPageProps) => {
-  const { slug } = await params
-  const entry = getExperienceBySlug(slug)
+  const { lang, slug } = await params
+
+  if (!isLocale(lang)) {
+    notFound()
+  }
+
+  const copy = await getDictionary()
+  const entry = getExperienceBySlug(slug, lang)
 
   if (!entry) {
     notFound()
   }
 
-  const projects = getExperienceProjects(entry.slug)
+  const projects = getExperienceProjects(entry.slug, lang)
   const { before, after } = splitSelectedWork(entry.content)
 
   return (
@@ -70,7 +86,7 @@ const Experience = async ({ params }: SlugPageProps) => {
           startDate: entry.metadata.startedAt,
           endDate: entry.metadata.endedAt,
           description: entry.metadata.summary,
-          url: getExperienceCanonicalUrl(entry),
+          url: getExperienceCanonicalUrl(entry, lang),
         })}
       />
       <article className={pageSectionClassName}>
@@ -89,7 +105,7 @@ const Experience = async ({ params }: SlugPageProps) => {
           ) : null}
           <ExperienceProjects
             groups={projects}
-            heading={after ? undefined : 'Selected work'}
+            heading={after ? undefined : copy.experience.selectedWork}
             className={before.trim() ? 'mt-16' : undefined}
           />
           {after ? (

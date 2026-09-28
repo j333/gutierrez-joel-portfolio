@@ -1,18 +1,21 @@
-import { createEntryOgImage, ogContentType, ogImageSize } from '../../og/card'
+import { createEntryOgImage, ogContentType, ogImageSize } from '../../../og/card'
 import type { SlugPageProps } from 'app/lib/params'
-import { notesIndex, site } from 'app/lib/site'
+import { dictionaries } from 'app/lib/i18n'
+import { isLocale } from 'app/lib/locale'
+import { site } from 'app/lib/site'
 import { getWritingPostBySlug } from 'app/notes/utils'
 
-export const alt = `${notesIndex.title} by ${site.name}`
+export const alt = `Notes by ${site.name}`
 export const size = ogImageSize
 export const contentType = ogContentType
 
 const Image = async ({ params }: SlugPageProps) => {
-  const { slug } = await params
-  const post = getWritingPostBySlug(slug)
+  const { lang, slug } = await params
+  const locale = isLocale(lang) ? lang : 'en'
+  const post = getWritingPostBySlug(slug, locale)
 
   return createEntryOgImage({
-    eyebrow: notesIndex.eyebrow,
+    eyebrow: dictionaries[locale].notes.eyebrow,
     title: post?.metadata.title,
   })
 }

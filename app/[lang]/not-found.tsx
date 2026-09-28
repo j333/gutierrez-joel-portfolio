@@ -1,15 +1,20 @@
 import { CtaLink } from 'app/components/cta-link'
 import { PageHeader, textColumnClassName } from 'app/components/page-layout'
+import { getDictionary, getLocale } from 'app/lib/i18n'
+import { localePath } from 'app/lib/locale'
 
-const NotFound = () => {
+const NotFound = async () => {
+  const locale = await getLocale()
+  const copy = await getDictionary()
+
   return (
     <div className={textColumnClassName}>
       <PageHeader
-        title="404 - Page Not Found"
-        description="The page you are looking for does not exist."
+        title={copy.notFound.title}
+        description={copy.notFound.description}
         spacing="section"
       >
-        <CtaLink href="/">Back to home</CtaLink>
+        <CtaLink href={localePath(locale, '/')}>{copy.notFound.home}</CtaLink>
       </PageHeader>
     </div>
   )
