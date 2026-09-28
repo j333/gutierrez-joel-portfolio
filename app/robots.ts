@@ -5,6 +5,7 @@ const robots = () => {
     rules: [
       {
         userAgent: '*',
+        allow: '/',
       },
     ],
     sitemap: `${site.url}/sitemap.xml`,

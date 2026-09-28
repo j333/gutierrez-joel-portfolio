@@ -98,6 +98,7 @@ const Writing = async ({ params }: SlugPageProps) => {
             copy.notes.eyebrow
           ),
           url: getPostCanonicalUrl(post, lang),
+          inLanguage: lang,
           ...(post.metadata.medium ? { sameAs: post.metadata.medium } : {}),
         })}
       />
@@ -111,7 +112,7 @@ const Writing = async ({ params }: SlugPageProps) => {
           >
             <Image
               src={image.src}
-              alt=""
+              alt={title}
               fill
               sizes={fullWidthImageSizes}
               quality={100}

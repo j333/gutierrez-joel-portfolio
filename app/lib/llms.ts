@@ -19,6 +19,7 @@ export const markdownResponse = (body: string) =>
     headers: {
       'Content-Type': markdownContentType,
       'Cache-Control': 'public, max-age=3600, stale-while-revalidate=86400',
+      'X-Robots-Tag': 'noindex',
     },
   })
 

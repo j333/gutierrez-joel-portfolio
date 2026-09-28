@@ -48,7 +48,7 @@ const WritingCard = ({
         {image ? (
           <GlitchCover
             src={image.src}
-            alt=""
+            alt={title}
             width={image.width}
             height={image.height}
             sizes={projectCardImageSizes}

@@ -97,6 +97,7 @@ const Project = async ({ params }: SlugPageProps) => {
             copy.projects.eyebrow
           ),
           url: getProjectCanonicalUrl(project, lang),
+          inLanguage: lang,
         })}
       />
       <article className={pageSectionClassName}>
@@ -109,7 +110,7 @@ const Project = async ({ params }: SlugPageProps) => {
           >
             <Image
               src={image.src}
-              alt=""
+              alt={title}
               fill
               sizes={fullWidthImageSizes}
               quality={projectImageQuality}

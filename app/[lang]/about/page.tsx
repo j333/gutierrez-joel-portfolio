@@ -11,7 +11,6 @@ import { JsonLd } from 'app/components/json-ld'
 import { getDictionary, getLocale } from 'app/lib/i18n'
 import { localePath } from 'app/lib/locale'
 import { createPageMetadata, createProfilePageJsonLd } from 'app/lib/metadata'
-import { buildPersonEntity } from 'app/lib/person'
 import { site } from 'app/lib/site'
 import type { ReactNode } from 'react'
 
@@ -53,8 +52,7 @@ const Page = async () => {
     <>
       <JsonLd
         data={createProfilePageJsonLd(
-          `${site.url}${localePath(locale, '/about')}`,
-          buildPersonEntity(locale)
+          `${site.url}${localePath(locale, '/about')}`
         )}
       />
       <div className={`w-full ${pageSectionClassName}`}>

@@ -7,11 +7,15 @@ import {
 } from 'app/projects/utils'
 import { sameAs, site } from './site'
 
+export const personId = `${site.url}/#person`
+
 export const buildPersonEntity = (locale: Locale) => {
   const copy = dictionaries[locale]
+  const currentRole = getExperience(locale)[0]
 
   return {
     '@type': 'Person',
+    '@id': personId,
     name: site.name,
     jobTitle: copy.jobTitle,
     url: `${site.url}${localePath(locale, '/')}`,
@@ -32,10 +36,14 @@ export const buildPersonEntity = (locale: Locale) => {
       '@type': 'CollegeOrUniversity',
       name: site.school,
     },
-    worksFor: getExperience(locale).map((entry) => ({
-      '@type': 'Organization',
-      name: entry.metadata.title,
-    })),
+    ...(currentRole
+      ? {
+          worksFor: {
+            '@type': 'Organization',
+            name: currentRole.metadata.title,
+          },
+        }
+      : {}),
     workExample: getListedProjects(locale).map((project) => ({
       '@type': 'CreativeWork',
       name: project.metadata.title,

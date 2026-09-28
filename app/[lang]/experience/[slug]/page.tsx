@@ -17,6 +17,7 @@ import {
   getExperienceProjects,
   splitSelectedWork,
 } from 'app/experience/projects'
+import { toIsoDate } from 'app/lib/iso-date'
 import {
   createEmploymentJsonLd,
   createPageMetadata,
@@ -56,7 +57,10 @@ export const generateMetadata = async ({ params }: SlugPageProps) => {
     description,
     markdownPath: `/experience/${entry.slug}`,
     type: 'article',
-    publishedTime: `${startedAt}-01-01`,
+    publishedTime: toIsoDate(
+      entry.metadata.startedOn ?? startedAt,
+      'start'
+    ),
   })
 }
 
@@ -83,8 +87,8 @@ const Experience = async ({ params }: SlugPageProps) => {
         data={createEmploymentJsonLd({
           organizationName: entry.metadata.title,
           roleName: entry.metadata.role,
-          startDate: entry.metadata.startedAt,
-          endDate: entry.metadata.endedAt,
+          startDate: entry.metadata.startedOn ?? entry.metadata.startedAt,
+          endDate: entry.metadata.endedOn ?? entry.metadata.endedAt,
           description: entry.metadata.summary,
           url: getExperienceCanonicalUrl(entry, lang),
         })}
