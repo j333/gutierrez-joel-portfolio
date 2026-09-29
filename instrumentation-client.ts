@@ -7,6 +7,7 @@ const isProduction = process.env.NEXT_PUBLIC_VERCEL_ENV === 'production'
 if (isProduction && posthogKey && posthogHost) {
   posthog.init(posthogKey, {
     api_host: posthogHost,
+    ui_host: 'https://us.posthog.com',
     defaults: '2026-05-30',
     person_profiles: 'identified_only',
     loaded: (client) => {
