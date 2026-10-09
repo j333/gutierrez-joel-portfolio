@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import type { ComponentProps, MouseEvent } from 'react'
+import { captureOutboundClick } from 'app/lib/capture'
 import { cx } from 'app/lib/cx'
 import { useScrambleText } from 'app/hooks/use-scramble-text'
 import { ctaLinkClassName } from './link-styles'
@@ -42,6 +43,7 @@ export const HomeActionLink = ({
   className,
   external,
   onMouseEnter,
+  onClick,
   ...props
 }: HomeActionLinkProps) => {
   const { ref, replay } = useScrambleText(children, { scramble: 5 })
@@ -51,6 +53,11 @@ export const HomeActionLink = ({
   const handleMouseEnter = (event: MouseEvent<HTMLAnchorElement>) => {
     onMouseEnter?.(event)
     replay()
+  }
+
+  const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    onClick?.(event)
+    captureOutboundClick(href)
   }
 
   const content = (
@@ -69,6 +76,7 @@ export const HomeActionLink = ({
         target="_blank"
         rel="noopener noreferrer"
         onMouseEnter={handleMouseEnter}
+        onClick={handleClick}
       >
         {content}
       </a>

@@ -11,17 +11,20 @@ if (isProduction && posthogKey && posthogHost) {
     defaults: '2026-05-30',
     person_profiles: 'identified_only',
     loaded: (client) => {
-      if (window.location.hostname === 'localhost') {
+      const isOwner = localStorage.getItem('joel_owner') === 'true'
+
+      if (window.location.hostname === 'localhost' || isOwner) {
         client.opt_out_capturing()
       }
 
-      if (localStorage.getItem('joel_owner') === 'true') {
+      if (isOwner) {
         client.stopSessionRecording()
       }
     },
   })
 
   if (localStorage.getItem('joel_owner') === 'true') {
+    posthog.opt_out_capturing()
     posthog.stopSessionRecording()
   }
 }

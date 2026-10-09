@@ -1,7 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import type { ComponentProps, ReactNode } from 'react'
+import type { ComponentProps, MouseEvent, ReactNode } from 'react'
+import { captureOutboundClick } from 'app/lib/capture'
 import { useScrambleText } from '../hooks/use-scramble-text'
 
 type ChromeScrambleLinkProps = {
@@ -20,9 +21,15 @@ export const ChromeScrambleLink = ({
   scramble = 5,
   external = false,
   children,
+  onClick,
   ...rest
 }: ChromeScrambleLinkProps) => {
   const { ref, replay } = useScrambleText(text, { scramble })
+
+  const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    onClick?.(event)
+    captureOutboundClick(href)
+  }
 
   const content = (
     <>
@@ -37,6 +44,7 @@ export const ChromeScrambleLink = ({
         href={href}
         className={className}
         {...rest}
+        onClick={handleClick}
         onMouseEnter={replay}
       >
         {content}

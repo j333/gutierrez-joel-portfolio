@@ -1,5 +1,5 @@
-import Link from 'next/link'
 import { GlitchCover } from 'app/components/glitch-cover'
+import { ProjectCaseLink } from 'app/components/project-case-link'
 import { typeMetaClassName } from 'app/components/page-layout'
 import { cardTitleClassName } from 'app/components/link-styles'
 import {
@@ -33,8 +33,9 @@ export const ProjectCard = async ({
 
   return (
     <article className="min-w-0">
-      <Link
+      <ProjectCaseLink
         href={href}
+        slug={project.slug}
         className="group flex flex-col gap-3 rounded-sm text-inherit outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900 dark:focus-visible:outline-neutral-100"
       >
         {image ? (
@@ -58,7 +59,7 @@ export const ProjectCard = async ({
           </Heading>
           <span className={`shrink-0 ${typeMetaClassName}`}>{product}</span>
         </div>
-      </Link>
+      </ProjectCaseLink>
     </article>
   )
 }
