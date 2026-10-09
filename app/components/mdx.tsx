@@ -8,6 +8,8 @@ import { getDictionary, getLocale } from 'app/lib/i18n'
 import { localePath, type Locale } from 'app/lib/locale'
 import { getPublicImageSize } from 'app/lib/public-image'
 import { site } from 'app/lib/site'
+import { slugify } from 'app/lib/slugify'
+import { metaLabelClassName } from 'app/components/page-layout'
 import {
   ZoomableImage,
   type ArticleImageSize,
@@ -212,16 +214,6 @@ const Code = ({
   return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />
 }
 
-const slugify = (value: string) =>
-  value
-    .toString()
-    .toLowerCase()
-    .trim()
-    .replace(/\s+/g, '-')
-    .replace(/&/g, '-and-')
-    .replace(/[^\w\-]+/g, '')
-    .replace(/\-\-+/g, '-')
-
 type HeadingChildProps = {
   children?: React.ReactNode
 }
@@ -256,7 +248,7 @@ const createHeading = (level: number, copy: Dictionary) => {
     const slug = slugify(label)
     return React.createElement(
       `h${level}`,
-      { id: slug },
+      { id: slug, className: 'scroll-mt-24' },
       [
         React.createElement('a', {
           href: `#${slug}`,
@@ -282,12 +274,104 @@ export const CustomMDX = async (props: MDXRemoteProps) => {
   )
   ArticleImage.isMarkdownImage = true
 
+  const Fact = ({
+    title,
+    children,
+  }: {
+    title: string
+    children?: React.ReactNode
+  }) => (
+    <div className="case-block flex min-w-0 flex-col gap-1">
+      <p className="case-fact-title">{title}</p>
+      <div>{children}</div>
+    </div>
+  )
+
+  const Facts = ({ children }: { children?: React.ReactNode }) => (
+    <div className="not-prose my-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {children}
+    </div>
+  )
+
+  type FlowProps = {
+    src: string
+    alt: string
+    title: string
+    children?: React.ReactNode
+  }
+
+  const Flows = ({ children }: { children?: React.ReactNode }) => {
+    const flows = React.Children.toArray(children).filter(
+      (child): child is React.ReactElement<FlowProps> =>
+        React.isValidElement<FlowProps>(child) &&
+        typeof child.props.src === 'string'
+    )
+    const columnsClassName =
+      flows.length === 2 ? 'sm:grid-cols-2' : 'sm:grid-cols-2 lg:grid-cols-3'
+
+    // Every image in the group shares the widest ratio, so nothing stretches and
+    // taller screenshots only lose a sliver at the bottom.
+    const sharedAspectRatio = flows.reduce<number | undefined>((widest, flow) => {
+      const dimensions = getPublicImageSize(flow.props.src)
+      if (!dimensions) {
+        return widest
+      }
+
+      const ratio = dimensions.width / dimensions.height
+      return widest === undefined || ratio > widest ? ratio : widest
+    }, undefined)
+
+    return (
+      <div
+        className={`case-flows article-image article-image--wide my-10 grid grid-cols-1 gap-x-6 gap-y-10 ${columnsClassName}`}
+        style={
+          sharedAspectRatio
+            ? ({ '--flow-aspect': sharedAspectRatio } as React.CSSProperties)
+            : undefined
+        }
+      >
+        {children}
+      </div>
+    )
+  }
+
+  const Flow = ({ src, alt, title, children }: FlowProps) => {
+    const dimensions = getPublicImageSize(src)
+
+    return (
+      <figure className="case-flow my-0 flex min-w-0 flex-col gap-3">
+        <div className="relative aspect-[var(--flow-aspect,16/9)] overflow-hidden">
+          <ZoomableImage
+            src={src}
+            alt={alt}
+            size="embedded"
+            cover
+            width={dimensions?.width}
+            height={dimensions?.height}
+            closeLabel={copy.image.closeLabel}
+            closeText={copy.image.close}
+            viewOriginalLabel={`${copy.image.viewOriginal}${alt}`}
+            escapeLabel={copy.image.escape}
+          />
+        </div>
+        <figcaption className="case-block flex min-w-0 flex-col gap-1">
+          <p className="case-fact-title">{title}</p>
+          <div>{children}</div>
+        </figcaption>
+      </figure>
+    )
+  }
+
+  const Label = ({ children }: { children?: React.ReactNode }) => (
+    <p className={`case-label ${metaLabelClassName}`}>{children}</p>
+  )
+
   return (
     <MDXRemote
       {...props}
       options={{
         mdxOptions: {
-          format: 'md',
+          format: 'mdx',
         },
       }}
       components={{
@@ -302,6 +386,11 @@ export const CustomMDX = async (props: MDXRemoteProps) => {
         a: (linkProps) => <CustomLink {...linkProps} locale={locale} />,
         code: Code,
         Table,
+        Fact,
+        Facts,
+        Flows,
+        Flow,
+        Label,
         ...(props.components || {}),
       }}
     />

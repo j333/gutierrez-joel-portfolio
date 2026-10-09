@@ -13,7 +13,7 @@ import { createPortal } from 'react-dom'
 import { cx } from 'app/lib/cx'
 import { imagePlaceholderClassName } from 'app/lib/image-sizes'
 
-export type ArticleImageSize = 'column' | 'wide'
+export type ArticleImageSize = 'column' | 'wide' | 'embedded'
 
 type ZoomableImageProps = {
   src: string
@@ -21,6 +21,8 @@ type ZoomableImageProps = {
   size?: ArticleImageSize
   caption?: string
   animated?: boolean
+  /** Fill a positioned parent box and crop from the top instead of using the image's own height. */
+  cover?: boolean
   width?: number
   height?: number
   closeLabel?: string
@@ -32,6 +34,7 @@ type ZoomableImageProps = {
 const figureClassName: Record<ArticleImageSize, string> = {
   column: 'article-image my-8',
   wide: 'article-image article-image--wide my-8',
+  embedded: 'm-0 min-w-0',
 }
 
 const triggerClassName =
@@ -43,6 +46,8 @@ const closeButtonClassName =
 const articleImageSizes: Record<ArticleImageSize, string> = {
   column: '(max-width: 36rem) calc(100vw - 2rem), 36rem',
   wide: '(max-width: 58rem) calc(100vw - 2rem), 56rem',
+  embedded:
+    '(max-width: 639px) calc(100vw - 2rem), (max-width: 1023px) calc(50vw - 2.25rem), 18rem',
 }
 
 export const ZoomableImage = ({
@@ -51,6 +56,7 @@ export const ZoomableImage = ({
   size = 'column',
   caption,
   animated = false,
+  cover = false,
   width,
   height,
   closeLabel,
@@ -216,12 +222,21 @@ export const ZoomableImage = ({
     </div>
   ) : null
 
+  const Frame = size === 'embedded' ? 'div' : 'figure'
+  // Percentage heights do not resolve inside <button>, so the cover variant
+  // pins the image to the button box instead.
+  const inlineImageClassName = cx(
+    'm-0 w-full rounded-none',
+    cover ? 'absolute inset-0 h-full object-cover object-top' : 'h-auto',
+    imagePlaceholderClassName
+  )
+
   return (
-    <figure className={figureClassName[size]}>
+    <Frame className={cx(figureClassName[size], cover && 'absolute inset-0')}>
       <button
         ref={triggerRef}
         type="button"
-        className={triggerClassName}
+        className={cx(triggerClassName, cover && 'relative h-full')}
         aria-label={viewOriginalLabel ?? `View original size: ${alt}`}
         aria-haspopup="dialog"
         aria-expanded={isOpen}
@@ -235,7 +250,7 @@ export const ZoomableImage = ({
             height={height}
             loading="lazy"
             decoding="async"
-            className={`m-0 h-auto w-full rounded-none ${imagePlaceholderClassName}`}
+            className={inlineImageClassName}
           />
         ) : (
           <Image
@@ -244,16 +259,16 @@ export const ZoomableImage = ({
             width={width}
             height={height}
             sizes={articleImageSizes[size]}
-            className={`m-0 h-auto w-full rounded-none ${imagePlaceholderClassName}`}
+            className={inlineImageClassName}
           />
         )}
       </button>
-      {caption ? (
+      {caption && size !== 'embedded' ? (
         <figcaption className="mt-2 text-center text-sm leading-6 text-neutral-500 dark:text-neutral-400">
           {caption}
         </figcaption>
       ) : null}
       {isOpen ? createPortal(overlay, document.body) : null}
-    </figure>
+    </Frame>
   )
 }

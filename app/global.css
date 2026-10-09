@@ -224,6 +224,10 @@ html.dark .prose a:not(.anchor):hover {
   @apply m-0 h-auto w-full rounded-none;
 }
 
+.prose .case-flow img {
+  @apply h-full;
+}
+
 .prose p:has(img) {
   @apply my-8;
 }
@@ -316,6 +320,18 @@ html.dark .prose a:not(.anchor):hover {
 
 .prose > :first-child {
   margin-top: 0 !important;
+}
+
+.prose .case-block p {
+  @apply my-0 text-sm leading-5 text-neutral-500 dark:text-neutral-400;
+}
+
+.prose .case-block p.case-fact-title {
+  @apply font-medium text-neutral-800 dark:text-neutral-200;
+}
+
+.prose p.case-label {
+  @apply mt-10 mb-3;
 }
 
 pre::-webkit-scrollbar {

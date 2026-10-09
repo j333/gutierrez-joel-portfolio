@@ -13,9 +13,19 @@ Copy [app/projects/posts/en/jaga.mdx](app/projects/posts/en/jaga.mdx) and [app/p
 2. `order`: integer, lower first. If this case goes on top, increment `order` on the other project MDX files. Skip bumping others when `listed: false`.
 3. Cover: `pnpm optimize-cover -- <input> public/projects/<slug>/cover.webp`. Source must be at least 1920×1080. Chat attachments at 1024px are not a source.
 4. Any extra raster in the body: `pnpm optimize-image -- <input> public/projects/<slug>/<name>.webp --max 1920`. Output is always `.webp`.
-5. Write `app/projects/posts/en/<slug>.mdx` and `app/projects/posts/es/<slug>.mdx` with the template below. Do not repeat the cover as the first `![]()`. The page already renders `image`. Internal links stay unprefixed (`/getgloby`); the site adds `/en` or `/es`.
-6. Link related cases (`/getgloby`, `/marketfully`, `/jaga`) when the story connects.
+5. Write `app/projects/posts/en/<slug>.mdx` and `app/projects/posts/es/<slug>.mdx` with the template below. Do not repeat the cover as the first `![]()`. The page already renders `image`. Internal links stay unprefixed (`/getgloby`); the site adds `/en` or `/es`. `##` headings become the sticky index (needs 3 or more). Keep those headings as plain text. Use `###` for Problem and Opportunity so they stay in the column and out of the index.
+6. Link related cases (`/getgloby`, `/marketfully`, `/jaga`) when the story connects. Do not put markdown links inside `Fact` or `Flow`. JSX children are not parsed as markdown.
 7. Optional: `listed: false` to keep the case off home and other listings. Omit the field to list it.
+8. Stand-in art, until a real export exists: `pnpm placeholder-image -- public/projects/<slug>/<name>.webp --label "Scene name" --size 1920x1080`. Use `1200x1500` for a phone flow. Replace the file later. Do not change the MDX path.
+
+## Case shape
+
+Order: question (`##`) and three `Fact`s, then `### Problem` and `### Opportunity`, then solution (`##`) with `Label` and two to four `Flow`s, then process (`##`), a trade-off (`##` plus a blockquote), and `## What I learned` with two `Fact`s. Write the same headings, in Spanish, in `es`.
+
+- `Facts` / `Fact`: a 3-column grid. `title` is the short label. The child is one line.
+- `Flows` / `Flow`: a column grid that breaks out of the reading column. Each `Flow` is an image with title and one line below it. Two flows make two columns; three or more make three. Always wrap `Flow`s in `Flows`. `src`, `alt`, and `title` are required.
+- `Label`: a mono eyebrow above a group of flows.
+- Wide images stay `![](/projects/<slug>/<name>.webp#wide "Caption")`.
 
 ```mdx
 ---
@@ -32,7 +42,48 @@ type: 'Full-time'
 industry: 'Marketing / SaaS'
 ---
 
-Opening paragraph.
+## Question that defines the case?
 
-## Section
+One or two sentences.
+
+<Facts>
+  <Fact title="Focus">One line.</Fact>
+  <Fact title="Constraint">One line.</Fact>
+  <Fact title="Outcome">One line.</Fact>
+</Facts>
+
+### Problem: short claim.
+
+Paragraph.
+
+![Alt](/projects/my-slug/problem.webp#wide "Caption.")
+
+### Opportunity: short claim.
+
+<Facts>
+  <Fact title="Reason">One line.</Fact>
+  <Fact title="Reason">One line.</Fact>
+  <Fact title="Reason">One line.</Fact>
+</Facts>
+
+## What we built.
+
+<Label>Core flows</Label>
+
+<Flows>
+  <Flow src="/projects/my-slug/flow-1.webp" alt="Descriptive alt" title="Flow name">One line.</Flow>
+  <Flow src="/projects/my-slug/flow-2.webp" alt="Descriptive alt" title="Flow name">One line.</Flow>
+  <Flow src="/projects/my-slug/flow-3.webp" alt="Descriptive alt" title="Flow name">One line.</Flow>
+</Flows>
+
+## What we were willing to trade
+
+> The decision, in one sentence.
+
+## What I learned
+
+<Facts>
+  <Fact title="Lesson">One line.</Fact>
+  <Fact title="Lesson">One line.</Fact>
+</Facts>
 ```
