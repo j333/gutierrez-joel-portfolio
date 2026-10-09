@@ -26,6 +26,113 @@ export const en = {
     home: 'Back to home',
   },
   home: {
+    title: 'Home',
+    description:
+      'I develop products at the intersection of design, development, and business.',
+    eyebrow: 'PRODUCT DESIGNER',
+    headline:
+      'I develop products at the intersection of design, development, and business.',
+    nowLabel: 'NOW',
+    now: 'Exploring and building personal projects around the new possibilities of AI.',
+    intro:
+      'Over twelve years shaping SaaS and AI products and brands. Previously led the design team at Marketfully.',
+    viewCraft: 'VIEW CRAFT',
+    getInTouch: 'GET IN TOUCH',
+    workedWith: {
+      label: 'Brands',
+      years: '2014 — 2026',
+    },
+    selectedWork: {
+      title: 'Selected work',
+      subtitle: 'Three cases across AI, localization, and brand.',
+      allCases: 'ALL CASES',
+      cases: {
+        marketfully: {
+          title: 'AI marketing platform — from MVP to acquisition',
+          meta: 'MARKETFULLY · 2022–2026',
+        },
+        jaga: {
+          title: 'Product identity for transcreation',
+          meta: 'JAGA',
+        },
+        getgloby: {
+          title: 'Localization SaaS platform',
+          meta: 'GETGLOBY',
+        },
+      },
+    },
+    aboutTeaser: {
+      lead:
+        'AI multiplies the options and the pace of work. My role is to collaborate and make decisions that solve real problems, so they can be developed as a team, against specific goals.',
+      body: "I've designed across industries such as insurance, healthcare, retail, food, education, and marketing. The product changed with the problem: dashboards, landing pages, web apps, and iOS apps, always next to product and engineering. When I'm not between screens, notebooks, and pens, I'm in the mountains of Mendoza on my motorcycle or bike.",
+      more: 'MORE ABOUT ME',
+      title: 'About',
+      previously: 'PREVIOUSLY',
+      roles: [
+        {
+          company: 'Marketfully',
+          slug: 'marketfully',
+          role: 'Design lead, product strategy, AI workflows',
+          years: '2022–2026',
+        },
+        {
+          company: "Dickey's Barbecue",
+          slug: 'dickeys-barbecue',
+          role: 'Digital product design',
+          years: '2021',
+        },
+        {
+          company: 'Centric Digital',
+          slug: 'centric-digital',
+          role: 'Product, design, and branding for agency clients',
+          years: '2014–2021',
+        },
+        {
+          company: 'VSPT Wine Group',
+          slug: 'vspt-wine-group',
+          role: 'Marketing and design leadership',
+          years: '2013–2014',
+        },
+      ],
+    },
+    kindWords: {
+      title: 'Kind words',
+      subtitle: 'What managers, teammates, and clients say about working with me.',
+      allOnLinkedIn: 'ALL ON LINKEDIN',
+      featured: {
+        name: 'Rob Lyons',
+        role: 'Chief Product & Technology Officer, Marketfully',
+        quote:
+          '“He designed with users rather than at them. He set up a lightweight deployment environment so prototypes reached our operations teams in days instead of waiting on a release, then ran a feedback loop that actually closed. He thought like an owner. Sharp on product, straight with his manager, generous with his team.”',
+      },
+      quotes: [
+        {
+          name: 'Asher Feldman',
+          role: 'Head of Data, TodayTix Group · ex-Centric Digital',
+          quote:
+            '“Someone I could trust to take an idea I had and make it richer, simpler, and better than I ever could. Working with Joel has undoubtedly made me a better strategist.”',
+        },
+        {
+          name: 'Adriel Zarate',
+          role: 'Senior Software Engineer',
+          quote:
+            '“He is the best designer I have ever worked with, not only for his phenomenal aesthetic for the UI, but because he knows how to translate requirements to the technical team.”',
+        },
+        {
+          name: 'Ainhoa Lizarralde',
+          role: 'International Head of SEO',
+          quote:
+            '“Incredibly smart, thoughtful, and always brings a strong product perspective to the table. I really appreciated his ability to understand complex challenges and turn them into practical solutions.”',
+        },
+      ],
+    },
+    notesTeaser: {
+      title: 'Notes',
+      subtitle: 'Writing on design, product, and the ideas that stick.',
+      allNotes: 'ALL NOTES',
+    },
+  },
+  craft: {
     title: 'Craft',
     description: 'Selected product design cases from Joel Gutiérrez.',
     intro: 'Selected cases in product design, systems, and strategy.',
@@ -52,11 +159,8 @@ export const en = {
     languages: 'Languages',
     bio: [
       "I'm Joel, a product designer working at the intersection of design, development, and business.",
-      'I taught myself starting at 15, building websites while I studied electronics specialized in automation in high school. I later studied design in college, which gave me a more strategic, practical way of looking at problems and how to solve them.',
-      "These days I'm exploring and building personal projects around what AI makes possible.",
-      'In my previous role at Marketfully, I led a design team and was part of the strategy group developing AI-powered solutions.',
-      "I enjoy building solutions that stay aligned with business, product, and development. I've been fortunate to work on many projects for well-known brands, alongside teams from different parts of the world. That range lets me shape a solution around the problem, what's possible, and the goals.",
-      "When I'm not working between screens, notebooks, and pens, I like to unplug and get lost in the mountains on my motorcycle or bike, with family and friends or on my own, in the landscape Mendoza gives me. That's where I live.",
+      'I taught myself at 15, building websites while I studied electronics. Design school later gave me a more strategic way of looking at problems.',
+      "These days I'm building personal projects around what AI makes possible. When I'm not between screens, I get lost in the mountains around Mendoza, where I live.",
     ],
     skills: [
       'Product Design',

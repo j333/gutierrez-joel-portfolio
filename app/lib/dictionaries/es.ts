@@ -28,6 +28,114 @@ export const es: Dictionary = {
     home: 'Volver al inicio',
   },
   home: {
+    title: 'Inicio',
+    description:
+      'Desarrollo productos en la intersección entre diseño, desarrollo y negocio.',
+    eyebrow: 'PRODUCT DESIGNER',
+    headline:
+      'Desarrollo productos en la intersección entre diseño, desarrollo y negocio.',
+    nowLabel: 'AHORA',
+    now: 'Explorando y construyendo proyectos personales alrededor de las nuevas posibilidades de AI.',
+    intro:
+      'Más de doce años dando forma a productos y marcas de SaaS e IA. Antes lideré el equipo de diseño en Marketfully.',
+    viewCraft: 'VER PROYECTOS',
+    getInTouch: 'ESCRIBIME',
+    workedWith: {
+      label: 'Marcas',
+      years: '2014 — 2026',
+    },
+    selectedWork: {
+      title: 'Trabajo seleccionado',
+      subtitle: 'Tres casos entre IA, localización y marca.',
+      allCases: 'TODOS LOS CASOS',
+      cases: {
+        marketfully: {
+          title: 'Plataforma de marketing con IA — del MVP a la adquisición',
+          meta: 'MARKETFULLY · 2022–2026',
+        },
+        jaga: {
+          title: 'Identidad de producto para transcreación',
+          meta: 'JAGA',
+        },
+        getgloby: {
+          title: 'Plataforma SaaS de localización',
+          meta: 'GETGLOBY',
+        },
+      },
+    },
+    aboutTeaser: {
+      lead:
+        'La IA multiplica las opciones y la velocidad de trabajo. Mi tarea se centra en colaborar y tomar decisiones para solucionar problemas reales, para ser desarrolladas en equipo, bajo objetivos específicos.',
+      body: 'Diseñé en industrias distintas, como seguros, salud, retail, gastronomía, educación y marketing. El producto cambiaba con el problema: dashboards, landings, web apps y apps de iOS, siempre al lado de producto e ingeniería. Cuando no estoy entre pantallas, cuadernos y fibras, estoy en la montaña de Mendoza en moto o bici.',
+      more: 'MÁS SOBRE MÍ',
+      title: 'Sobre mí',
+      previously: 'ANTES',
+      roles: [
+        {
+          company: 'Marketfully',
+          slug: 'marketfully',
+          role: 'Liderazgo de diseño, estrategia de producto, flujos con IA',
+          years: '2022–2026',
+        },
+        {
+          company: "Dickey's Barbecue",
+          slug: 'dickeys-barbecue',
+          role: 'Diseño de producto digital',
+          years: '2021',
+        },
+        {
+          company: 'Centric Digital',
+          slug: 'centric-digital',
+          role: 'Producto, diseño y branding para clientes de agencia',
+          years: '2014–2021',
+        },
+        {
+          company: 'VSPT Wine Group',
+          slug: 'vspt-wine-group',
+          role: 'Liderazgo de marketing y diseño',
+          years: '2013–2014',
+        },
+      ],
+    },
+    kindWords: {
+      title: 'Palabras amables',
+      subtitle:
+        'Lo que dicen managers, compañeros y clientes sobre trabajar conmigo.',
+      allOnLinkedIn: 'TODO EN LINKEDIN',
+      featured: {
+        name: 'Rob Lyons',
+        role: 'Chief Product & Technology Officer, Marketfully',
+        quote:
+          '“Diseñaba con los usuarios, no hacia ellos. Armó un entorno liviano de deployment para que los prototipos llegaran a operaciones en días en lugar de esperar un release, y cerró un loop de feedback de verdad. Pensaba como dueño. Agudo en producto, directo con su manager, generoso con su equipo.”',
+      },
+      quotes: [
+        {
+          name: 'Asher Feldman',
+          role: 'Head of Data, TodayTix Group · ex-Centric Digital',
+          quote:
+            '“Alguien en quien podía confiar para tomar una idea mía y hacerla más rica, más simple y mejor de lo que yo hubiera podido. Trabajar con Joel me hizo sin duda un mejor estratega.”',
+        },
+        {
+          name: 'Adriel Zarate',
+          role: 'Senior Software Engineer',
+          quote:
+            '“Es el mejor diseñador con el que trabajé, no solo por su estética fenomenal para la UI, sino porque sabe traducir requisitos al equipo técnico.”',
+        },
+        {
+          name: 'Ainhoa Lizarralde',
+          role: 'International Head of SEO',
+          quote:
+            '“Increíblemente inteligente, considerado, y siempre aporta una mirada fuerte de producto. Aprecié mucho su capacidad para entender desafíos complejos y convertirlos en soluciones prácticas.”',
+        },
+      ],
+    },
+    notesTeaser: {
+      title: 'Artículos',
+      subtitle: 'Escritura sobre diseño, producto y las ideas que quedan.',
+      allNotes: 'TODOS LOS ARTÍCULOS',
+    },
+  },
+  craft: {
     title: 'Proyectos',
     description: 'Casos seleccionados de diseño de producto de Joel Gutiérrez.',
     intro: 'Casos seleccionados de diseño de producto, sistemas y estrategia.',
@@ -54,11 +162,8 @@ export const es: Dictionary = {
     languages: 'Idiomas',
     bio: [
       'Soy Joel, product designer entre las intersecciones de diseño, desarrollo y negocio.',
-      'Comencé de manera autodidacta a los 15 años, creando sitios web mientras estudiaba electrónica especializada en automatizaciones en la secundaria. Luego estudié diseño en la universidad, lo que me permitió tener una visión más estratégica y funcional enfocada en solucionar problemas.',
-      'Actualmente me encuentro explorando y desarrollando proyectos de manera personal con las posibilidades de la AI.',
-      'En mi anterior posición, estuve a cargo de un equipo de diseño y formé parte del equipo estratégico para desarrollar soluciones potenciadas por IA en Marketfully.',
-      'Disfruto creando soluciones alineadas con negocio, producto y desarrollo. En mi carrera tuve la suerte de conocer y trabajar en muchos proyectos para importantes marcas, con equipos de diferentes partes del mundo, lo que me permite adaptar soluciones según el problema, las posibilidades y los objetivos.',
-      'Cuando no estoy trabajando entre pantallas, cuadernos y fibras, me gusta desconectarme y perderme en la montaña con mi moto o bicicleta, compartiendo tiempo con mi familia, amigos o solo con la naturaleza que me regala Mendoza, donde vivo.',
+      'Comencé de manera autodidacta a los 15, creando sitios web mientras estudiaba electrónica. Diseño en la universidad me dio después una forma más estratégica de mirar los problemas.',
+      'Hoy desarrollo proyectos personales con lo que hace posible la IA. Cuando no estoy entre pantallas, me pierdo en la montaña de Mendoza, donde vivo.',
     ],
     skills: [
       'Diseño de producto',

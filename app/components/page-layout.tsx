@@ -26,8 +26,10 @@ export const pageStackClassName = 'flex flex-col gap-16'
 
 export const articleCoverClassName = 'mb-16 aspect-video w-full'
 
-export const sectionHeadingClassName =
-  'mb-3 font-mono text-xs font-normal uppercase leading-4 tracking-wider text-neutral-500'
+export const sectionTitleClassName =
+  'font-mono text-xs font-normal uppercase leading-4 tracking-wider text-neutral-500'
+
+export const sectionHeadingClassName = `mb-3 ${sectionTitleClassName}`
 
 type PageHeaderSpacing = 'none' | 'section' | 'article' | 'hero'
 

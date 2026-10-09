@@ -28,8 +28,6 @@ export type ThemeToggleCopy = {
 const themeToggleClassName =
   'theme-toggle group relative inline-flex min-h-11 cursor-pointer items-center rounded-sm border-0 bg-transparent -mx-1 px-1 py-1 outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 sm:min-h-0 dark:focus-visible:outline-neutral-100'
 
-const themeLabelClassName = `${navTextClassName} theme-toggle-label whitespace-nowrap`
-
 const themeToggleIconClassName = 'shrink-0'
 
 type ThemeToggleProps = {
@@ -99,7 +97,6 @@ export const ThemeToggle = ({ copy, showLabel = false }: ThemeToggleProps) => {
             : copy.switchToLight
           : copy.toggle
       }
-      aria-describedby={!showLabel && mounted ? 'theme-tooltip' : undefined}
     >
       <span className="sr-only">
         {mounted
@@ -110,11 +107,6 @@ export const ThemeToggle = ({ copy, showLabel = false }: ThemeToggleProps) => {
       </span>
       {showLabel && mounted ? (
         <span>{theme === 'light' ? copy.lightShort : copy.darkShort}</span>
-      ) : null}
-      {!showLabel && mounted ? (
-        <span id="theme-tooltip" role="tooltip" className={themeLabelClassName}>
-          {theme === 'light' ? copy.lightShort : copy.darkShort}
-        </span>
       ) : null}
       <SunIcon className={`${themeToggleIconClassName} dark:hidden`} />
       <MoonIcon className={`${themeToggleIconClassName} hidden dark:inline`} />

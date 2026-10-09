@@ -1,6 +1,9 @@
 export const arrowIconClassName =
   'ml-1 size-2.5 shrink-0 self-start translate-y-[2px]'
 
+export const rowArrowClassName =
+  'size-2.5 shrink-0 rotate-45 text-neutral-500 transition-colors group-hover:text-black group-focus-visible:text-black dark:text-neutral-400 dark:group-hover:text-white dark:group-focus-visible:text-white'
+
 export const ArrowIcon = ({ className }: { className?: string }) => {
   return (
     <svg

@@ -86,10 +86,13 @@ Interactive states (hover, underline, focus) live on components, not here.
 | Body | `text-base leading-relaxed text-neutral-800 dark:text-neutral-200` — secondary ink for page description |
 | Small | `text-sm leading-5 text-neutral-500 dark:text-neutral-400` — summaries, lists. Card titles add `font-medium` and body ink (`cardTitleClassName`); meta values use body ink (`metaValueClassName`) |
 | Meta | `font-mono text-xs leading-4 text-neutral-500 dark:text-neutral-400` — dates, years, project captions, nav, and footer. Labels add `uppercase tracking-wider` (`metaLabelClassName`) |
+| Home section title | `font-mono text-xs font-normal uppercase leading-4 tracking-wider text-neutral-500` — `sectionTitleClassName`. One short name for every home block below the hero |
 
 ## Weights
 
 Page and prose titles stay `font-normal`. Use `font-medium` for card titles and `strong`. Prefer `em` / italic for emphasis in running copy, not bold display weights. Nav and footer chrome links use Meta-size mono, uppercase, with `tracking-wider` so the caps can breathe. Their `neutral-600` idle color is a component state, not a type style. Section headings (`sectionHeadingClassName`) keep Meta metrics with quieter ink (`text-neutral-500` in both themes) so they recede behind the content.
+
+Home section titles use that same voice (`sectionTitleClassName`), once per block below the hero. The words are a noun phrase of one to three words — Brands, Selected work, About, Kind words, Notes, Contact. A sentence, a question, or a year range is body or adjacent meta, not the title. The hero headline stays the page title.
 
 ## Layout
 
@@ -152,22 +155,24 @@ Text-forward links, full-bleed covers, and labeled meta. Prefer helpers over one
 | Chrome link (nav / footer) | `ChromeScrambleLink` | Same type as chrome link. Hover scrambles letters through `/`, `0`, `_`, and `x`, and goes black in light / white in dark. |
 | Card title | `cardTitleClassName` | Small size, `font-medium`, body ink. Hover turns the title black or white; nothing else on the card changes color. |
 | Content / prose link | `.content-link` / `.prose a` | Inherit color, quiet underline; hover black / white |
-| CTA text link | `ctaLinkClassName` | `text-sm`, muted, underline — hover black / white |
+| CTA text link | `ctaLinkClassName` | Mono, uppercase, ink with a bottom rule. Hover scrambles glyphs the same way as nav, and turns the ink black or white. The up-right arrow is only for links that leave the site. |
+| In-site row link | `ArrowIcon` + `rowArrowClassName` | Same arrow, rotated to point right, trailing the row. Home previously roles and note previews. The title scrambles like a CTA; role, year, and date stay put. Ink follows the title on hover. |
 | Project card | — | Full-bleed `aspect-video` cover, Small title with medium weight, Meta brand; hover flashes a brief glitch on the cover and turns the title black / white — do not underline the title |
 | Writing card | — | Full-bleed `aspect-video` cover, Small title with medium weight, Meta date; hover flashes a brief glitch on the cover and turns the title black / white; no card border or shadow |
 | PageHeader / MetaRow | `metaLabelClassName` `metaListClassName` `metaValueClassName` `typeMetaClassName` | Titles and labeled meta grids; `typeMetaClassName` for year / product |
+| Home section title | `sectionTitleClassName` | Quiet mono label on every home section below the hero. Short noun phrase. Supporting copy stays secondary body; the action stays a CTA link |
 | Theme toggle | — | Text/icon control, `rounded-sm`, touch height on small screens |
 | Image overlay | — | Near-opaque white/black scrim; close uses chrome mono styles |
 
 ## Buttons
 
-Link = navigation; button = action that does not navigate. Ghost shares the CTA link family. Do not replace portfolio CTAs with primary. Use only these three variants.
+Link = navigation; button = action that does not navigate. Portfolio CTAs use the CTA text link, not a button. Use only these three button variants.
 
 | Variant | Helper | Classes | Use |
 | --- | --- | --- |
 | Primary | `buttonPrimaryClassName` | `inline-flex min-h-11 items-center justify-center rounded-sm bg-black px-4 py-2 text-sm leading-5 text-white outline-none transition-colors hover:bg-neutral-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 dark:bg-white dark:text-black dark:hover:bg-neutral-200 dark:focus-visible:outline-neutral-100 sm:min-h-0` | Highest-emphasis action on the page |
 | Secondary | `buttonSecondaryClassName` | `inline-flex min-h-11 items-center justify-center rounded-sm border border-neutral-300 bg-transparent px-4 py-2 text-sm leading-5 text-neutral-800 outline-none transition-colors hover:border-black hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 dark:border-neutral-600 dark:text-neutral-200 dark:hover:border-white dark:hover:text-white dark:focus-visible:outline-neutral-100 sm:min-h-0` | Alternative action |
-| Ghost | `buttonGhostClassName` | `inline-flex min-h-11 items-center justify-center rounded-sm px-1 py-2 text-sm leading-5 text-neutral-500 underline underline-offset-4 outline-none transition-colors hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 dark:text-neutral-400 dark:hover:text-white dark:focus-visible:outline-neutral-100 sm:min-h-0` | Lowest emphasis; same family as CTA link |
+| Ghost | `buttonGhostClassName` | `inline-flex min-h-11 items-center justify-center rounded-sm px-1 py-2 text-sm leading-5 text-neutral-500 underline underline-offset-4 outline-none transition-colors hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 dark:text-neutral-400 dark:hover:text-white dark:focus-visible:outline-neutral-100 sm:min-h-0` | Lowest-emphasis action |
 | Disabled | `buttonDisabledClassName` | `opacity-40 pointer-events-none` | Append to any variant; set `disabled` or `aria-disabled` |
 
 ## Do's and don'ts
@@ -184,4 +189,5 @@ Guardrails that keep the portfolio calm, readable, and consistent across themes.
 - Don't load Plex Sans 700 or ornate / condensed display faces
 - Don't crowd the grid or shrink major gaps below the established rhythm
 - Don't invent a fourth button variant, bordered card panels, or pill chips
+- Don't set a home section title in Title, Lead, or a display size
 - Don't treat syntax-highlight colors as a general brand palette
