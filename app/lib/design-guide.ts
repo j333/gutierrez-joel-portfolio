@@ -167,7 +167,7 @@ const DESIGN_GUIDE_SECTIONS: Record<string, GuideSectionCopy> = {
   },
   weights: {
     lead: 'Titles stay regular. Card titles and strong use medium. In running copy, italic does the work — not a heavier display weight.',
-    body: '',
+    body: 'A home section title is a short name: one to three words, a noun phrase. It uses the quiet section-heading voice. The hero headline is the page title. A sentence, a question, or a year stays in the body.',
   },
   layout: {
     lead: 'A wide shell, a focused reading column, and open space between sections.',
@@ -253,6 +253,7 @@ const DESIGN_GUIDE_SECTIONS: Record<string, GuideSectionCopy> = {
       "Don't load a bold display weight or ornate, condensed faces",
       "Don't crowd the grid or shrink the major gaps",
       "Don't add a fourth button, bordered card panels, or pill chips",
+      "Don't set a home section title in a reading size or a display size",
       "Don't treat code-highlight colors as brand color",
     ],
   },

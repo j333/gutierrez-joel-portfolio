@@ -1,3 +1,4 @@
+import { CtaLink } from 'app/components/cta-link'
 import { DesignSectionNav } from 'app/components/design-section-nav'
 import { ChromeScrambleLink } from 'app/components/chrome-scramble-link'
 import { GlitchCover } from 'app/components/glitch-cover'
@@ -5,7 +6,6 @@ import {
   cardTitleClassName,
   chromeLinkClassName,
   chromeLinkNavClassName,
-  ctaLinkClassName,
   navTextClassName,
 } from 'app/components/link-styles'
 import {
@@ -374,6 +374,7 @@ const typeSampleText = (use: string) => {
     return 'A quiet craft'
   }
   if (key.includes('subsection')) return 'Section rhythm'
+  if (key.includes('home section')) return 'Selected work'
   if (key.includes('section title')) return 'Reading column'
   if (key.includes('card') && key.includes('title')) return 'Project title'
   if (key.includes('lead'))
@@ -388,6 +389,9 @@ const typeSampleText = (use: string) => {
 
 const typeGroupForUse = (use: string) => {
   const key = cleanTypeUse(use).toLowerCase()
+  if (key.includes('home section')) {
+    return 'Chrome'
+  }
   if (key.includes('title')) {
     return 'Titles'
   }
@@ -743,9 +747,7 @@ const InteractionSpecimens = ({ table }: { table: DesignTable }) => {
             </div>
 
             {stateKey === 'hover' ? (
-              <a href="#interaction" className={ctaLinkClassName}>
-                Hover me
-              </a>
+              <CtaLink href="#interaction">Hover me</CtaLink>
             ) : null}
 
             {stateKey.startsWith('hover (nav') ? (
@@ -1033,9 +1035,7 @@ const ComponentSpecimens = {
     </a>
   ),
   'cta-link': (
-    <a href="#cta-link" className={ctaLinkClassName}>
-      View case study
-    </a>
+    <CtaLink href="#cta-link">View case study</CtaLink>
   ),
   'content-link': (
     <p className="text-base leading-relaxed text-neutral-800 dark:text-neutral-200">

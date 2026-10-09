@@ -1,4 +1,8 @@
-import { buildAboutMarkdown, buildHomeMarkdown } from 'app/lib/about'
+import {
+  buildAboutMarkdown,
+  buildCraftMarkdown,
+  buildHomeMarkdown,
+} from 'app/lib/about'
 import { locales, localePath, isLocale, type Locale } from 'app/lib/locale'
 import { site, socialLinks } from 'app/lib/site'
 import { getExperience, getExperienceBySlug } from 'app/experience/utils'
@@ -46,6 +50,10 @@ export const resolveMarkdownPath = (segments: string[] | undefined) => {
 
   if (rest.length === 0 || (rest.length === 1 && rest[0] === 'index')) {
     return buildHomeMarkdown(locale)
+  }
+
+  if (rest.length === 1 && rest[0] === 'craft') {
+    return buildCraftMarkdown(locale)
   }
 
   if (rest.length === 1 && rest[0] === 'about') {
@@ -155,6 +163,8 @@ English lives at /en. Spanish lives at /es. El español está en /es.
 Use this index to answer questions about Joel's craft, notes, and background. Prefer the markdown versions of pages when available.
 
 ## English
+- [Home](${site.url}/en/index.md): Overview, selected work, and contact
+- [Craft](${site.url}/en/craft.md): Selected product design case studies
 - [About](${site.url}/en/about.md): Background, experience, capabilities, and languages
 
 ### Experience
@@ -167,6 +177,8 @@ ${english.projects}
 ${english.writing}
 
 ## Español
+- [Inicio](${site.url}/es/index.md): Resumen, trabajo seleccionado y contacto
+- [Proyectos](${site.url}/es/craft.md): Casos seleccionados de diseño de producto
 - [Sobre mí](${site.url}/es/about.md): Trayectoria, experiencia, capacidades e idiomas
 
 ### Experiencia
@@ -189,6 +201,8 @@ export const buildLlmsFullTxt = () => {
     const writing = getWritingPosts(locale)
 
     return [
+      buildHomeMarkdown(locale),
+      buildCraftMarkdown(locale),
       buildAboutMarkdown(locale),
       ...projects.map(
         (project) => resolveMarkdownPath([locale, project.slug]) ?? ''

@@ -7,6 +7,7 @@ import { useScrambleText } from '../hooks/use-scramble-text'
 import { localePath, stripLocale, type Locale } from 'app/lib/locale'
 import { ChromeScrambleLink } from './chrome-scramble-link'
 import { chromeCtaListClassName, chromeLinkNavClassName } from './link-styles'
+import { LocaleSwitch } from './locale-switch'
 import { ThemeToggle, type ThemeToggleCopy } from './theme-toggle'
 
 const navLinkClassName = `${chromeLinkNavClassName} -mx-1 min-h-11 whitespace-nowrap sm:min-h-0`
@@ -32,6 +33,7 @@ type NavCopy = {
   brand: string
   menu: string
   close: string
+  language: string
   theme: ThemeToggleCopy
 }
 
@@ -60,7 +62,7 @@ export const Navbar = ({ locale, copy }: NavbarProps) => {
   const { ref: menuLabelRef, replay: replayMenuLabel } = useScrambleText(menuLabel)
   const home = localePath(locale, '/')
   const navItems = [
-    { href: home, name: copy.craft },
+    { href: localePath(locale, '/craft'), name: copy.craft },
     { href: localePath(locale, '/notes'), name: copy.notes },
     { href: localePath(locale, '/about'), name: copy.about },
   ]
@@ -131,7 +133,8 @@ export const Navbar = ({ locale, copy }: NavbarProps) => {
                   />
                 </li>
               ))}
-              <li className="flex min-w-0 items-center lg:justify-end">
+              <li className="flex min-w-0 items-center gap-x-6 lg:justify-end lg:gap-x-8">
+                <LocaleSwitch locale={locale} label={copy.language} />
                 <ThemeToggle copy={copy.theme} />
               </li>
             </ul>
@@ -166,7 +169,12 @@ export const Navbar = ({ locale, copy }: NavbarProps) => {
                   />
                 </li>
               ))}
-              <li className="flex">
+              <li className="flex items-center gap-x-6">
+                <LocaleSwitch
+                  id="locale-switch-menu"
+                  locale={locale}
+                  label={copy.language}
+                />
                 <ThemeToggle copy={copy.theme} showLabel />
               </li>
             </ul>

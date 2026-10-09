@@ -54,7 +54,50 @@ export const buildHomeMarkdown = (locale: Locale) => {
 
 > ${copy.home.description}
 
+${copy.home.eyebrow}
+
+${copy.home.headline}
+
 ${copy.home.intro}
+
+${copy.home.nowLabel}: ${copy.home.now}
+
+## ${copy.home.selectedWork.title}
+
+${copy.home.selectedWork.subtitle}
+
+${caseStudies}
+
+## ${copy.home.aboutTeaser.previously}
+
+${copy.home.aboutTeaser.roles
+  .map((role) => `- **${role.company}** (${role.years}): ${role.role}`)
+  .join('\n')}
+
+${copy.projects.employmentNote} [${copy.about.title}](${site.url}${localePath(locale, '/about')}.md).
+
+## ${copy.craft.title}
+
+${copy.projects.homeNote}
+
+[${copy.craft.title}](${site.url}${localePath(locale, '/craft')}.md)
+`
+}
+
+export const buildCraftMarkdown = (locale: Locale) => {
+  const copy = dictionaries[locale]
+  const caseStudies = getListedProjects(locale)
+    .map(
+      (project) =>
+        `- **${project.metadata.title}** (${project.metadata.product}): ${project.metadata.summary ?? project.metadata.title}`
+    )
+    .join('\n')
+
+  return `# ${copy.craft.title}
+
+> ${copy.craft.description}
+
+${copy.craft.intro}
 
 ## ${copy.markdown.projects}
 

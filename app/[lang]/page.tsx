@@ -1,10 +1,6 @@
-import { ProjectCard, projectGridClassName } from 'app/components/project-card'
-import {
-  PageHeader,
-  pageSectionClassName,
-  textColumnClassName,
-} from 'app/components/page-layout'
+import { HomeLanding } from 'app/components/home-landing'
 import { getDictionary, getLocale } from 'app/lib/i18n'
+import { getWritingPosts } from 'app/notes/utils'
 import { getListedProjects } from 'app/projects/utils'
 
 export const dynamic = 'force-static'
@@ -13,22 +9,15 @@ const Page = async () => {
   const locale = await getLocale()
   const copy = await getDictionary()
   const projects = getListedProjects(locale)
+  const notes = getWritingPosts(locale)
 
   return (
-    <div className={pageSectionClassName}>
-      <div className={textColumnClassName}>
-        <PageHeader
-          title={copy.home.title}
-          description={copy.home.intro}
-          spacing="section"
-        />
-      </div>
-      <div className={projectGridClassName}>
-        {projects.map((project) => (
-          <ProjectCard key={project.slug} project={project} heading="h2" />
-        ))}
-      </div>
-    </div>
+    <HomeLanding
+      locale={locale}
+      copy={copy}
+      projects={projects}
+      notes={notes}
+    />
   )
 }
 

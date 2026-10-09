@@ -11,6 +11,10 @@ const nextConfig = {
         destination: '/md/:lang/index',
       },
       {
+        source: '/:lang(en|es)/craft.md',
+        destination: '/md/:lang/craft',
+      },
+      {
         source: '/:lang(en|es)/notes/:slug.md',
         destination: '/md/:lang/notes/:slug',
       },

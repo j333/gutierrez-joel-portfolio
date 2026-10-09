@@ -1,45 +1,14 @@
-import Link from 'next/link'
-import type { ReactNode } from 'react'
-import { cx } from 'app/lib/cx'
-import { ctaLinkClassName } from './link-styles'
+'use client'
+
+import type { ComponentProps } from 'react'
+import { HomeActionLink } from './home-action-link'
 
 type CtaLinkProps = {
   href: string
-  children: ReactNode
+  children: string
   className?: string
-  'aria-label'?: string
-}
+} & Omit<ComponentProps<'a'>, 'href' | 'children' | 'className'>
 
-const isExternalHref = (href: string) =>
-  href.startsWith('http://') ||
-  href.startsWith('https://') ||
-  href.startsWith('mailto:')
-
-export const CtaLink = ({
-  children,
-  className,
-  href,
-  ...props
-}: CtaLinkProps) => {
-  const classNames = cx(ctaLinkClassName, className)
-
-  if (isExternalHref(href)) {
-    return (
-      <a
-        href={href}
-        className={classNames}
-        target="_blank"
-        rel="noopener noreferrer"
-        {...props}
-      >
-        {children}
-      </a>
-    )
-  }
-
-  return (
-    <Link href={href} className={classNames} {...props}>
-      {children}
-    </Link>
-  )
-}
+export const CtaLink = ({ children, ...props }: CtaLinkProps) => (
+  <HomeActionLink {...props}>{children}</HomeActionLink>
+)

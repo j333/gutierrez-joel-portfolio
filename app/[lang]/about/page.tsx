@@ -101,22 +101,21 @@ const Page = async () => {
             </AboutSection>
 
             <AboutSection title={copy.about.education}>
-              <ul className="space-y-8">
-                <li>
-                  <div className="flex min-w-0 flex-col gap-2">
-                    <div className="flex flex-col gap-1">
-                      <h3 className="text-base font-medium leading-6 text-neutral-800 dark:text-neutral-200">
-                        {copy.about.degree}
-                      </h3>
-                      <p className="text-pretty text-sm leading-5 text-neutral-500 dark:text-neutral-400">
-                        {site.school}
-                      </p>
-                    </div>
-                    <YearRange
-                      start={site.educationStart}
-                      end={site.educationEnd}
-                    />
+              <ul className="flex w-full flex-col">
+                <li className="flex w-full items-start justify-between gap-3 py-3">
+                  <div className="flex min-w-0 flex-col gap-1">
+                    <h3 className="text-sm font-medium leading-5 text-neutral-800 dark:text-neutral-200">
+                      {copy.about.degree}
+                    </h3>
+                    <p className="text-pretty text-sm leading-5 text-neutral-500 dark:text-neutral-400">
+                      {site.school}
+                    </p>
                   </div>
+                  <YearRange
+                    start={site.educationStart}
+                    end={site.educationEnd}
+                    className="shrink-0 pt-0.5 font-mono text-xs leading-4 text-neutral-500 dark:text-neutral-400"
+                  />
                 </li>
               </ul>
             </AboutSection>

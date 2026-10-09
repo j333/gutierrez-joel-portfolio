@@ -4,6 +4,7 @@ export const site = {
   host: 'gutierrezjoel.com',
   githubUrl: 'https://github.com/j333/gutierrez-joel-portfolio/',
   resumePath: '/Joel_Gutierrez_Resume.pdf',
+  email: 'joelg333@gmail.com',
   school: 'Universidad Nacional de Cuyo',
   educationStart: '2008',
   educationEnd: '2013',
@@ -43,7 +44,7 @@ export const workIndex = {
   description:
     'Selected product design cases from Joel Gutiérrez.',
   intro: 'Selected cases in product design, systems, and strategy.',
-  path: '/',
+  path: '/craft',
   eyebrow: 'CRAFT',
 } as const
 

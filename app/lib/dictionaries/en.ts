@@ -26,6 +26,119 @@ export const en = {
     home: 'Back to home',
   },
   home: {
+    title: 'Home',
+    description:
+      'I develop products at the intersection of design, development, and business.',
+    eyebrow: 'PRODUCT DESIGNER',
+    headline:
+      'I develop products at the intersection of design, development, and business.',
+    nowLabel: 'NOW',
+    now: 'Exploring and building personal projects around the new possibilities of AI.',
+    intro:
+      'Over twelve years shaping SaaS and AI products and brands. Previously led the design team at Marketfully.',
+    viewCraft: 'VIEW CRAFT',
+    getInTouch: 'GET IN TOUCH',
+    workedWith: {
+      label: 'Brands',
+      years: '2014 — 2026',
+      andMore: 'AND MORE',
+    },
+    selectedWork: {
+      title: 'Selected work',
+      subtitle: 'Three cases across AI, localization, and brand.',
+      allCases: 'ALL CASES',
+      cases: {
+        marketfully: {
+          title: 'AI marketing platform — from MVP to acquisition',
+          meta: 'MARKETFULLY · 2022–2026',
+        },
+        jaga: {
+          title: 'Product identity for transcreation',
+          meta: 'JAGA',
+        },
+        getgloby: {
+          title: 'Localization SaaS platform',
+          meta: 'GETGLOBY',
+        },
+      },
+    },
+    aboutTeaser: {
+      lead:
+        'AI multiplies the options and the pace of work. My role is to collaborate and make decisions that solve real problems, so they can be developed as a team, against specific goals.',
+      body: "I've designed across industries such as insurance, healthcare, retail, food, education, and marketing. The product changed with the problem: dashboards, landing pages, web apps, and iOS apps, always next to product and engineering. When I'm not between screens, notebooks, and pens, I'm in the mountains of Mendoza on my motorcycle or bike.",
+      more: 'MORE ABOUT ME',
+      title: 'About',
+      previously: 'PREVIOUSLY',
+      roles: [
+        {
+          company: 'Marketfully',
+          slug: 'marketfully',
+          role: 'Design lead, product strategy, AI workflows',
+          years: '2022–2026',
+        },
+        {
+          company: "Dickey's Barbecue",
+          slug: 'dickeys-barbecue',
+          role: 'Digital product design',
+          years: '2021',
+        },
+        {
+          company: 'Centric Digital',
+          slug: 'centric-digital',
+          role: 'Product, design, and branding for agency clients',
+          years: '2014–2021',
+        },
+        {
+          company: 'VSPT Wine Group',
+          slug: 'vspt-wine-group',
+          role: 'Marketing and design leadership',
+          years: '2013–2014',
+        },
+      ],
+    },
+    kindWords: {
+      title: 'Kind words',
+      subtitle: 'What managers, teammates, and clients say about working with me.',
+      allOnLinkedIn: 'ALL ON LINKEDIN',
+      featured: {
+        name: 'Rob Lyons',
+        role: 'Chief Product & Technology Officer, Marketfully',
+        quote:
+          '“He designed with users rather than at them. He set up a lightweight deployment environment so prototypes reached our operations teams in days instead of waiting on a release, then ran a feedback loop that actually closed. He thought like an owner. Sharp on product, straight with his manager, generous with his team. Hire him.”',
+      },
+      quotes: [
+        {
+          name: 'Asher Feldman',
+          role: 'Head of Data, TodayTix Group · ex-Centric Digital',
+          quote:
+            '“Someone I could trust to take an idea I had and make it richer, simpler, and better than I ever could. Working with Joel has undoubtedly made me a better strategist.”',
+        },
+        {
+          name: 'Adriel Zarate',
+          role: 'Senior Software Engineer',
+          quote:
+            '“He is the best designer I have ever worked with, not only for his phenomenal aesthetic for the UI, but because he knows how to translate requirements to the technical team.”',
+        },
+        {
+          name: 'Ainhoa Lizarralde',
+          role: 'International Head of SEO',
+          quote:
+            '“Incredibly smart, thoughtful, and always brings a strong product perspective to the table. I really appreciated his ability to understand complex challenges and turn them into practical solutions.”',
+        },
+      ],
+    },
+    notesTeaser: {
+      title: 'Notes',
+      subtitle: 'Writing on design, product, and the ideas that stick.',
+      allNotes: 'ALL NOTES',
+    },
+    contact: {
+      label: 'Contact',
+      headline:
+        'Building something where design, product, and engineering need to pull in the same direction?',
+    },
+  },
+  craft: {
     title: 'Craft',
     description: 'Selected product design cases from Joel Gutiérrez.',
     intro: 'Selected cases in product design, systems, and strategy.',

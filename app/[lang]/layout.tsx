@@ -46,7 +46,7 @@ export const generateMetadata = async (): Promise<Metadata> => {
     locale,
     path: '/',
     title,
-    description: copy.description,
+    description: copy.home.description,
     markdownPath: '/index',
   })
 
@@ -118,6 +118,7 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
                 brand: copy.nav.brand,
                 menu: copy.nav.menu,
                 close: copy.nav.close,
+                language: copy.footer.language,
                 theme: copy.theme,
               }}
             />

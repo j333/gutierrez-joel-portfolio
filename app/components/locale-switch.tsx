@@ -22,13 +22,18 @@ const localeSelectClassName = `${chromeLinkSharedClassName} min-h-11 cursor-poin
 type LocaleSwitchProps = {
   locale: Locale
   label: string
+  id?: string
 }
 
 const rememberLocale = (locale: Locale) => {
   document.cookie = `${localeCookieName}=${locale}; Path=/; Max-Age=${localeCookieMaxAge}; SameSite=Lax`
 }
 
-export const LocaleSwitch = ({ locale, label }: LocaleSwitchProps) => {
+export const LocaleSwitch = ({
+  locale,
+  label,
+  id = 'locale-switch',
+}: LocaleSwitchProps) => {
   const pathname = usePathname() ?? localePath(locale, '/')
   const router = useRouter()
   const barePath = stripLocale(pathname)
@@ -46,11 +51,11 @@ export const LocaleSwitch = ({ locale, label }: LocaleSwitchProps) => {
 
   return (
     <div className="relative -mx-1 inline-flex w-fit items-center justify-self-start">
-      <label className="sr-only" htmlFor="locale-switch">
+      <label className="sr-only" htmlFor={id}>
         {label}
       </label>
       <select
-        id="locale-switch"
+        id={id}
         className={localeSelectClassName}
         value={locale}
         onChange={handleChange}

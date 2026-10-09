@@ -50,11 +50,12 @@ const sitemap = async () =>
     )
     const routeLastModified: Record<string, string | undefined> = {
       '/': newestContent,
+      '/craft': newestContent,
       '/about': newestContent,
       '/notes': newestNote,
     }
 
-    const routes = ['/', '/about', '/notes'].map((route) => ({
+    const routes = ['/', '/craft', '/about', '/notes'].map((route) => ({
       url: `${site.url}${localePath(locale, route)}`,
       ...(routeLastModified[route]
         ? { lastModified: routeLastModified[route] }
