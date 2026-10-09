@@ -1,6 +1,6 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowIcon, rowArrowClassName } from 'app/components/arrow-icon'
+import { BrandLogos } from 'app/components/brand-logos'
 import { HomeActionLink } from 'app/components/home-action-link'
 import { ScrambleTitle } from 'app/components/scramble-title'
 import { GlitchCover } from 'app/components/glitch-cover'
@@ -9,11 +9,13 @@ import {
   sectionTitleClassName,
 } from 'app/components/page-layout'
 import {
-  homeBrands,
   homeFeaturedCaseSlugs,
   type HomeFeaturedCaseSlug,
 } from 'app/lib/home-data'
-import { projectCardImageSizes } from 'app/lib/image-sizes'
+import {
+  imagePlaceholderClassName,
+  projectCardImageSizes,
+} from 'app/lib/image-sizes'
 import type { Dictionary } from 'app/lib/dictionaries/en'
 import { localePath, type Locale } from 'app/lib/locale'
 import { site, socialLinks } from 'app/lib/site'
@@ -22,7 +24,7 @@ import {
   projectImageQuality,
   type Project,
 } from 'app/projects/utils'
-import type { WritingPost } from 'app/notes/utils'
+import { getWritingPostImage, type WritingPost } from 'app/notes/utils'
 
 type HomeLandingProps = {
   locale: Locale
@@ -135,33 +137,11 @@ export const HomeLanding = ({
         </div>
       </section>
 
-      <section className="flex w-full flex-col gap-6 pt-28">
-        <div className="flex w-full items-center justify-between gap-4">
-          <h2 className={sectionTitleClassName}>{copy.home.workedWith.label}</h2>
-          <p className={sectionLabelClassName}>{copy.home.workedWith.years}</p>
-        </div>
-        <ul className="grid w-full grid-cols-2 border-t border-l border-neutral-200 dark:border-neutral-800 sm:grid-cols-4">
-          {homeBrands.map((brand) => (
-            <li
-              key={brand.name}
-              className="flex h-24 items-center justify-center border-r border-b border-neutral-200 px-4 dark:border-neutral-800"
-            >
-              <Image
-                src={brand.src}
-                alt={brand.name}
-                width={brand.width}
-                height={brand.height}
-                className="h-auto max-h-12 w-auto max-w-[170px] object-contain dark:invert"
-              />
-            </li>
-          ))}
-          <li className="flex h-24 items-center justify-center border-r border-b border-neutral-200 dark:border-neutral-800">
-            <span className={sectionLabelClassName}>
-              {copy.home.workedWith.andMore}
-            </span>
-          </li>
-        </ul>
-      </section>
+      <BrandLogos
+        label={copy.home.workedWith.label}
+        years={copy.home.workedWith.years}
+        className="pt-28"
+      />
 
       <section className="flex w-full flex-col gap-8 pt-[120px]">
         <SectionHeader
@@ -331,53 +311,58 @@ export const HomeLanding = ({
         </div>
       </section>
 
-      <section className="flex w-full flex-col gap-8 pt-[120px]">
+      <section className="flex w-full flex-col gap-8 pt-[120px] pb-[120px]">
         <SectionHeader
           title={copy.home.notesTeaser.title}
           subtitle={copy.home.notesTeaser.subtitle}
           href={notesHref}
           linkLabel={copy.home.notesTeaser.allNotes}
         />
-        <ul className="flex w-full flex-col">
-          {previewNotes.map((post, index) => (
-            <li key={post.slug}>
-              <Link
-                href={localePath(locale, `/notes/${post.slug}`)}
-                className={`group flex w-full items-center justify-between gap-4 border-neutral-200 py-5 outline-none transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 dark:border-neutral-800 dark:focus-visible:outline-neutral-100 ${
-                  index === 0 ? 'border-t' : 'border-t border-b'
-                }`}
-              >
-                <ScrambleTitle
-                  text={post.metadata.title}
-                  className="min-w-0 text-base font-medium leading-6 text-neutral-800 transition-colors group-hover:text-black dark:text-neutral-200 dark:group-hover:text-white"
-                />
-                <span className="flex shrink-0 items-center gap-3">
-                  <span className="hidden font-mono text-xs uppercase leading-4 tracking-wider text-neutral-500 sm:inline dark:text-neutral-400">
-                    {formatHomeNoteDate(
-                      post.metadata.publishedAt,
-                      locale,
-                      copy.months
-                    )}
-                  </span>
-                  <ArrowIcon className={rowArrowClassName} />
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </section>
+        <div className="grid w-full grid-cols-1 gap-6 lg:grid-cols-2">
+          {previewNotes.map((post) => {
+            const image = getWritingPostImage(post)
 
-      <section className="flex w-full flex-col items-center gap-6 pt-[160px] pb-[120px] text-center">
-        <h2 className={sectionTitleClassName}>{copy.home.contact.label}</h2>
-        <p className="max-w-[45rem] text-lg leading-[1.3] text-neutral-800 dark:text-neutral-200">
-          {copy.home.contact.headline}
-        </p>
-        <a
-          href={contactHref}
-          className="rounded-sm text-lg leading-relaxed text-neutral-800 outline-none transition-opacity hover:opacity-70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 dark:text-neutral-200 dark:focus-visible:outline-neutral-100"
-        >
-          {site.email}
-        </a>
+            return (
+              <article key={post.slug} className="min-w-0">
+                <Link
+                  href={localePath(locale, `/notes/${post.slug}`)}
+                  className="group flex flex-col gap-3 rounded-sm text-inherit outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900 dark:focus-visible:outline-neutral-100"
+                >
+                  {image ? (
+                    <GlitchCover
+                      src={image.src}
+                      alt={post.metadata.title}
+                      width={image.width}
+                      height={image.height}
+                      sizes={projectCardImageSizes}
+                      quality={projectImageQuality}
+                    />
+                  ) : (
+                    <div
+                      aria-hidden="true"
+                      className={`aspect-video w-full ${imagePlaceholderClassName}`}
+                    />
+                  )}
+                  <div className="flex w-full flex-col gap-1 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+                    <h3 className="text-sm font-medium leading-5 text-neutral-800 transition-colors group-hover:text-black dark:text-neutral-200 dark:group-hover:text-white">
+                      {post.metadata.title}
+                    </h3>
+                    <time
+                      dateTime={post.metadata.publishedAt}
+                      className="shrink-0 font-mono text-xs uppercase leading-4 tracking-wider text-neutral-500 dark:text-neutral-400"
+                    >
+                      {formatHomeNoteDate(
+                        post.metadata.publishedAt,
+                        locale,
+                        copy.months
+                      )}
+                    </time>
+                  </div>
+                </Link>
+              </article>
+            )
+          })}
+        </div>
       </section>
     </div>
   )

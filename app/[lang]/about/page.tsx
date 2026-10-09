@@ -1,3 +1,4 @@
+import { BrandLogos } from 'app/components/brand-logos'
 import { ExperiencePosts } from 'app/components/experience'
 import {
   PageHeader,
@@ -83,17 +84,6 @@ const Page = async () => {
           ))}
         </div>
 
-        {portrait ? (
-          <Image
-            src={portraitSrc}
-            alt={copy.about.portraitAlt}
-            width={portrait.width}
-            height={portrait.height}
-            sizes={fullWidthImageSizes}
-            className={`${pageSectionClassName} h-auto w-full rounded-none`}
-          />
-        ) : null}
-
         <div className="grid w-full grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-x-6 2xl:grid-cols-4">
           <div className={`${pageStackClassName} 2xl:contents`}>
             <AboutSection title={copy.about.experience}>
@@ -167,6 +157,23 @@ const Page = async () => {
             </div>
           </div>
         </div>
+
+        <BrandLogos
+          label={copy.home.workedWith.label}
+          years={copy.home.workedWith.years}
+          className={`mt-16 ${pageSectionClassName}`}
+        />
+
+        {portrait ? (
+          <Image
+            src={portraitSrc}
+            alt={copy.about.portraitAlt}
+            width={portrait.width}
+            height={portrait.height}
+            sizes={fullWidthImageSizes}
+            className={`${pageSectionClassName} h-auto w-full rounded-none`}
+          />
+        ) : null}
       </div>
     </>
   )

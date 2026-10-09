@@ -41,6 +41,12 @@ export const homeBrands = [
     width: 245,
     height: 88,
   },
+  {
+    name: 'J.D. Power',
+    src: '/brands/jd-power.png',
+    width: 260,
+    height: 39,
+  },
 ] as const
 
 export const homeFeaturedCaseSlugs = [

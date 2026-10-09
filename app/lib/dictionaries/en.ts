@@ -41,7 +41,6 @@ export const en = {
     workedWith: {
       label: 'Brands',
       years: '2014 — 2026',
-      andMore: 'AND MORE',
     },
     selectedWork: {
       title: 'Selected work',
@@ -104,7 +103,7 @@ export const en = {
         name: 'Rob Lyons',
         role: 'Chief Product & Technology Officer, Marketfully',
         quote:
-          '“He designed with users rather than at them. He set up a lightweight deployment environment so prototypes reached our operations teams in days instead of waiting on a release, then ran a feedback loop that actually closed. He thought like an owner. Sharp on product, straight with his manager, generous with his team. Hire him.”',
+          '“He designed with users rather than at them. He set up a lightweight deployment environment so prototypes reached our operations teams in days instead of waiting on a release, then ran a feedback loop that actually closed. He thought like an owner. Sharp on product, straight with his manager, generous with his team.”',
       },
       quotes: [
         {
@@ -131,11 +130,6 @@ export const en = {
       title: 'Notes',
       subtitle: 'Writing on design, product, and the ideas that stick.',
       allNotes: 'ALL NOTES',
-    },
-    contact: {
-      label: 'Contact',
-      headline:
-        'Building something where design, product, and engineering need to pull in the same direction?',
     },
   },
   craft: {
@@ -165,11 +159,8 @@ export const en = {
     languages: 'Languages',
     bio: [
       "I'm Joel, a product designer working at the intersection of design, development, and business.",
-      'I taught myself starting at 15, building websites while I studied electronics specialized in automation in high school. I later studied design in college, which gave me a more strategic, practical way of looking at problems and how to solve them.',
-      "These days I'm exploring and building personal projects around what AI makes possible.",
-      'In my previous role at Marketfully, I led a design team and was part of the strategy group developing AI-powered solutions.',
-      "I enjoy building solutions that stay aligned with business, product, and development. I've been fortunate to work on many projects for well-known brands, alongside teams from different parts of the world. That range lets me shape a solution around the problem, what's possible, and the goals.",
-      "When I'm not working between screens, notebooks, and pens, I like to unplug and get lost in the mountains on my motorcycle or bike, with family and friends or on my own, in the landscape Mendoza gives me. That's where I live.",
+      'I taught myself at 15, building websites while I studied electronics. Design school later gave me a more strategic way of looking at problems.',
+      "These days I'm building personal projects around what AI makes possible. When I'm not between screens, I get lost in the mountains around Mendoza, where I live.",
     ],
     skills: [
       'Product Design',

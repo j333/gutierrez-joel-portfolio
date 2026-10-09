@@ -43,7 +43,6 @@ export const es: Dictionary = {
     workedWith: {
       label: 'Marcas',
       years: '2014 — 2026',
-      andMore: 'Y MÁS',
     },
     selectedWork: {
       title: 'Trabajo seleccionado',
@@ -107,7 +106,7 @@ export const es: Dictionary = {
         name: 'Rob Lyons',
         role: 'Chief Product & Technology Officer, Marketfully',
         quote:
-          '“Diseñaba con los usuarios, no hacia ellos. Armó un entorno liviano de deployment para que los prototipos llegaran a operaciones en días en lugar de esperar un release, y cerró un loop de feedback de verdad. Pensaba como dueño. Agudo en producto, directo con su manager, generoso con su equipo. Contrátenlo.”',
+          '“Diseñaba con los usuarios, no hacia ellos. Armó un entorno liviano de deployment para que los prototipos llegaran a operaciones en días en lugar de esperar un release, y cerró un loop de feedback de verdad. Pensaba como dueño. Agudo en producto, directo con su manager, generoso con su equipo.”',
       },
       quotes: [
         {
@@ -134,11 +133,6 @@ export const es: Dictionary = {
       title: 'Artículos',
       subtitle: 'Escritura sobre diseño, producto y las ideas que quedan.',
       allNotes: 'TODOS LOS ARTÍCULOS',
-    },
-    contact: {
-      label: 'Contacto',
-      headline:
-        '¿Estás construyendo algo donde diseño, producto e ingeniería tienen que ir en la misma dirección?',
     },
   },
   craft: {
@@ -168,11 +162,8 @@ export const es: Dictionary = {
     languages: 'Idiomas',
     bio: [
       'Soy Joel, product designer entre las intersecciones de diseño, desarrollo y negocio.',
-      'Comencé de manera autodidacta a los 15 años, creando sitios web mientras estudiaba electrónica especializada en automatizaciones en la secundaria. Luego estudié diseño en la universidad, lo que me permitió tener una visión más estratégica y funcional enfocada en solucionar problemas.',
-      'Actualmente me encuentro explorando y desarrollando proyectos de manera personal con las posibilidades de la AI.',
-      'En mi anterior posición, estuve a cargo de un equipo de diseño y formé parte del equipo estratégico para desarrollar soluciones potenciadas por IA en Marketfully.',
-      'Disfruto creando soluciones alineadas con negocio, producto y desarrollo. En mi carrera tuve la suerte de conocer y trabajar en muchos proyectos para importantes marcas, con equipos de diferentes partes del mundo, lo que me permite adaptar soluciones según el problema, las posibilidades y los objetivos.',
-      'Cuando no estoy trabajando entre pantallas, cuadernos y fibras, me gusta desconectarme y perderme en la montaña con mi moto o bicicleta, compartiendo tiempo con mi familia, amigos o solo con la naturaleza que me regala Mendoza, donde vivo.',
+      'Comencé de manera autodidacta a los 15, creando sitios web mientras estudiaba electrónica. Diseño en la universidad me dio después una forma más estratégica de mirar los problemas.',
+      'Hoy desarrollo proyectos personales con lo que hace posible la IA. Cuando no estoy entre pantallas, me pierdo en la montaña de Mendoza, donde vivo.',
     ],
     skills: [
       'Diseño de producto',
