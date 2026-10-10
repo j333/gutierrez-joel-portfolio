@@ -1,6 +1,7 @@
 import { mkdir } from 'node:fs/promises'
 import { dirname, extname, resolve } from 'node:path'
 import sharp from 'sharp'
+import { ignoreLocalImage } from './local-only-images.mjs'
 
 const usage = () => {
   console.error(
@@ -96,5 +97,7 @@ await mkdir(dirname(output), { recursive: true })
 await sharp(Buffer.from(isPhone ? phone : landscape))
   .webp({ quality: 80 })
   .toFile(output)
+
+await ignoreLocalImage(output)
 
 console.log(`${width}x${height} ${isPhone ? 'phone' : 'wide'} ${output}`)

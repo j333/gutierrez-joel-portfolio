@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
+import { ArticleToc } from 'app/components/article-toc'
 import { CustomMDX } from 'app/components/mdx'
 import { CtaLink } from 'app/components/cta-link'
 import { JsonLd } from 'app/components/json-ld'
@@ -22,6 +23,7 @@ import {
 import type { SlugPageProps } from 'app/lib/params'
 import { getDictionary } from 'app/lib/i18n'
 import { isLocale, locales } from 'app/lib/locale'
+import { getHeadings } from 'app/lib/toc'
 import {
   getPostCanonicalUrl,
   getWritingPostBySlug,
@@ -82,6 +84,7 @@ const Writing = async ({ params }: SlugPageProps) => {
   }
 
   const image = getWritingPostImage(post)
+  const headings = getHeadings(post.content)
   const { title, publishedAt, summary } = post.metadata
 
   return (
@@ -127,8 +130,17 @@ const Writing = async ({ params }: SlugPageProps) => {
             className={`${articleCoverClassName} ${imagePlaceholderClassName}`}
           />
         )}
-        <div className={`${articleBodyClassName} prose`}>
-          <CustomMDX source={post.content} />
+        <div className="relative">
+          {headings.length >= 3 ? (
+            <aside className="hidden lg:absolute lg:left-0 lg:top-0 lg:block lg:h-full lg:w-44">
+              <div className="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto pr-4">
+                <ArticleToc headings={headings} label={copy.notes.toc} />
+              </div>
+            </aside>
+          ) : null}
+          <div className={`${articleBodyClassName} prose`}>
+            <CustomMDX source={post.content} />
+          </div>
         </div>
         {post.metadata.medium ? (
           <div className={`mt-16 ${articleBodyClassName}`}>

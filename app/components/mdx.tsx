@@ -6,7 +6,7 @@ import React from 'react'
 import type { Dictionary } from 'app/lib/dictionaries/en'
 import { getDictionary, getLocale } from 'app/lib/i18n'
 import { localePath, type Locale } from 'app/lib/locale'
-import { getPublicImageSize } from 'app/lib/public-image'
+import { getPublicImageSize, hasPublicImage } from 'app/lib/public-image'
 import { site } from 'app/lib/site'
 import { slugify } from 'app/lib/slugify'
 import { metaLabelClassName } from 'app/components/page-layout'
@@ -160,12 +160,17 @@ const MarkdownImage = ({
     )
   }
 
+  const { src, size, animated } = parseArticleImage(props.src)
+
+  if (!hasPublicImage(src)) {
+    return null
+  }
+
   const alt = descriptiveAlt(copy, props.alt)
   const caption =
     typeof props.title === 'string' && props.title.trim()
       ? props.title
       : undefined
-  const { src, size, animated } = parseArticleImage(props.src)
   const dimensions = getPublicImageSize(src)
 
   return (
@@ -246,18 +251,17 @@ const createHeading = (level: number, copy: Dictionary) => {
   const Heading = ({ children }: { children?: React.ReactNode }) => {
     const label = headingLabel(children)
     const slug = slugify(label)
-    return React.createElement(
-      `h${level}`,
-      { id: slug, className: 'scroll-mt-24' },
-      [
-        React.createElement('a', {
-          href: `#${slug}`,
-          key: `link-${slug}`,
-          className: 'anchor',
-          'aria-label': `${copy.image.permalink}${label}`,
-        }),
-      ],
-      children
+    const Tag = `h${level}` as 'h1'
+
+    return (
+      <Tag id={slug} className="scroll-mt-24">
+        <a href={`#${slug}`} className="heading-link">
+          {children}
+          <span className="anchor" aria-hidden="true">
+            #
+          </span>
+        </a>
+      </Tag>
     )
   }
 
@@ -336,24 +340,27 @@ export const CustomMDX = async (props: MDXRemoteProps) => {
   }
 
   const Flow = ({ src, alt, title, children }: FlowProps) => {
-    const dimensions = getPublicImageSize(src)
+    const imageReady = hasPublicImage(src)
+    const dimensions = imageReady ? getPublicImageSize(src) : null
 
     return (
       <figure className="case-flow my-0 flex min-w-0 flex-col gap-3">
-        <div className="relative aspect-[var(--flow-aspect,16/9)] overflow-hidden">
-          <ZoomableImage
-            src={src}
-            alt={alt}
-            size="embedded"
-            cover
-            width={dimensions?.width}
-            height={dimensions?.height}
-            closeLabel={copy.image.closeLabel}
-            closeText={copy.image.close}
-            viewOriginalLabel={`${copy.image.viewOriginal}${alt}`}
-            escapeLabel={copy.image.escape}
-          />
-        </div>
+        {imageReady ? (
+          <div className="relative aspect-[var(--flow-aspect,16/9)] overflow-hidden">
+            <ZoomableImage
+              src={src}
+              alt={alt}
+              size="embedded"
+              cover
+              width={dimensions?.width}
+              height={dimensions?.height}
+              closeLabel={copy.image.closeLabel}
+              closeText={copy.image.close}
+              viewOriginalLabel={`${copy.image.viewOriginal}${alt}`}
+              escapeLabel={copy.image.escape}
+            />
+          </div>
+        ) : null}
         <figcaption className="case-block flex min-w-0 flex-col gap-1">
           <p className="case-fact-title">{title}</p>
           <div>{children}</div>

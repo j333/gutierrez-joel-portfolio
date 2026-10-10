@@ -99,13 +99,13 @@ export const en = {
       title: 'Kind words',
       subtitle: 'What managers, teammates, and clients say about working with me.',
       allOnLinkedIn: 'ALL ON LINKEDIN',
-      featured: {
-        name: 'Rob Lyons',
-        role: 'Chief Product & Technology Officer, Marketfully',
-        quote:
-          '“He designed with users rather than at them. He set up a lightweight deployment environment so prototypes reached our operations teams in days instead of waiting on a release, then ran a feedback loop that actually closed. He thought like an owner. Sharp on product, straight with his manager, generous with his team.”',
-      },
       quotes: [
+        {
+          name: 'Rob Lyons',
+          role: 'Chief Product & Technology Officer, Marketfully',
+          quote:
+            '“He designed with users rather than at them. He set up a lightweight deployment environment so prototypes reached our operations teams in days instead of waiting on a release, then ran a feedback loop that actually closed. He thought like an owner. Sharp on product, straight with his manager, generous with his team.”',
+        },
         {
           name: 'Asher Feldman',
           role: 'Head of Data, TodayTix Group · ex-Centric Digital',
@@ -123,6 +123,18 @@ export const en = {
           role: 'International Head of SEO',
           quote:
             '“Incredibly smart, thoughtful, and always brings a strong product perspective to the table. I really appreciated his ability to understand complex challenges and turn them into practical solutions.”',
+        },
+        {
+          name: 'Juan Fusoni',
+          role: 'Entrepreneur & Angel Investor, GetGloby',
+          quote:
+            '“From day one he shaped the product and the systems that let us scale. He turns complexity into structure, and he built the product function from the ground up.”',
+        },
+        {
+          name: 'Cinthia Morabito',
+          role: 'Head of Marketing, Viña Errázuriz',
+          quote:
+            '“I have worked with him since the start of his career, and I still do, because he is responsible and curious. His work is always strong, functionally and aesthetically.”',
         },
       ],
     },
@@ -145,6 +157,7 @@ export const en = {
     eyebrow: 'NOTES',
     medium: 'View on Medium',
     mediumLabel: 'View on Medium, opens in a new tab',
+    toc: 'On this page',
   },
   about: {
     title: 'About',
@@ -190,6 +203,7 @@ export const en = {
     eyebrow: 'PROJECT',
     homeNote: 'These are portfolio case studies, not employers.',
     employmentNote: 'For employment history, see',
+    toc: 'On this page',
   },
   meta: {
     brand: 'Brand',

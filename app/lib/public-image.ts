@@ -51,14 +51,24 @@ const getWebpSize = (buffer: Buffer): PublicImageSize | null => {
   return null
 }
 
-export const getPublicImageSize = (src: string): PublicImageSize | null => {
+const publicImagePath = (src: string) => {
   if (!src.startsWith('/') || src.includes('..')) {
     return null
   }
 
-  const filePath = path.join(process.cwd(), 'public', src)
+  return path.join(process.cwd(), 'public', src)
+}
 
-  if (!fs.existsSync(filePath)) {
+export const hasPublicImage = (src: string) => {
+  const filePath = publicImagePath(src)
+
+  return filePath !== null && fs.existsSync(filePath)
+}
+
+export const getPublicImageSize = (src: string): PublicImageSize | null => {
+  const filePath = publicImagePath(src)
+
+  if (!filePath || !fs.existsSync(filePath)) {
     return null
   }
 

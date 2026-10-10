@@ -102,13 +102,13 @@ export const es: Dictionary = {
       subtitle:
         'Lo que dicen managers, compañeros y clientes sobre trabajar conmigo.',
       allOnLinkedIn: 'TODO EN LINKEDIN',
-      featured: {
-        name: 'Rob Lyons',
-        role: 'Chief Product & Technology Officer, Marketfully',
-        quote:
-          '“Diseñaba con los usuarios, no hacia ellos. Armó un entorno liviano de deployment para que los prototipos llegaran a operaciones en días en lugar de esperar un release, y cerró un loop de feedback de verdad. Pensaba como dueño. Agudo en producto, directo con su manager, generoso con su equipo.”',
-      },
       quotes: [
+        {
+          name: 'Rob Lyons',
+          role: 'Chief Product & Technology Officer, Marketfully',
+          quote:
+            '“Diseñaba con los usuarios, no hacia ellos. Armó un entorno liviano de deployment para que los prototipos llegaran a operaciones en días en lugar de esperar un release, y cerró un loop de feedback de verdad. Pensaba como dueño. Agudo en producto, directo con su manager, generoso con su equipo.”',
+        },
         {
           name: 'Asher Feldman',
           role: 'Head of Data, TodayTix Group · ex-Centric Digital',
@@ -126,6 +126,18 @@ export const es: Dictionary = {
           role: 'International Head of SEO',
           quote:
             '“Increíblemente inteligente, considerado, y siempre aporta una mirada fuerte de producto. Aprecié mucho su capacidad para entender desafíos complejos y convertirlos en soluciones prácticas.”',
+        },
+        {
+          name: 'Juan Fusoni',
+          role: 'Entrepreneur & Angel Investor, GetGloby',
+          quote:
+            '“Desde el primer día dio forma al producto y a los sistemas que nos permitieron escalar. Convierte la complejidad en estructura, y armó la función de producto desde cero.”',
+        },
+        {
+          name: 'Cinthia Morabito',
+          role: 'Head of Marketing, Viña Errázuriz',
+          quote:
+            '“Trabajo con él desde el inicio de su carrera, y sigo haciéndolo, porque es responsable y curioso. Su trabajo siempre es sólido, en lo funcional y en lo estético.”',
         },
       ],
     },
@@ -148,6 +160,7 @@ export const es: Dictionary = {
     eyebrow: 'ARTÍCULOS',
     medium: 'Ver en Medium',
     mediumLabel: 'Ver en Medium, se abre en una pestaña nueva',
+    toc: 'En esta página',
   },
   about: {
     title: 'Sobre mí',
@@ -193,6 +206,7 @@ export const es: Dictionary = {
     eyebrow: 'PROYECTO',
     homeNote: 'Estos son casos del portfolio, no empleadores.',
     employmentNote: 'Para la trayectoria laboral, ver',
+    toc: 'En esta página',
   },
   meta: {
     brand: 'Marca',

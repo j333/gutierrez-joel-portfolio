@@ -16,7 +16,7 @@ Copy [app/projects/posts/en/jaga.mdx](app/projects/posts/en/jaga.mdx) and [app/p
 5. Write `app/projects/posts/en/<slug>.mdx` and `app/projects/posts/es/<slug>.mdx` with the template below. Do not repeat the cover as the first `![]()`. The page already renders `image`. Internal links stay unprefixed (`/getgloby`); the site adds `/en` or `/es`. `##` headings become the sticky index (needs 3 or more). Keep those headings as plain text. Use `###` for Problem and Opportunity so they stay in the column and out of the index.
 6. Link related cases (`/getgloby`, `/marketfully`, `/jaga`) when the story connects. Do not put markdown links inside `Fact` or `Flow`. JSX children are not parsed as markdown.
 7. Optional: `listed: false` to keep the case off home and other listings. Omit the field to list it.
-8. Stand-in art, until a real export exists: `pnpm placeholder-image -- public/projects/<slug>/<name>.webp --label "Scene name" --size 1920x1080`. Use `1200x1500` for a phone flow. Replace the file later. Do not change the MDX path.
+8. Stand-in art, until a real export exists: `pnpm placeholder-image -- public/projects/<slug>/<name>.webp --label "Scene name" --size 1920x1080`. Use `1200x1500` for a phone flow. The script gitignores that file, so it shows in `next dev` and stays off deploys. The case still renders the caption text without the image. Replace it later with `pnpm optimize-image` or `pnpm optimize-cover` at the same path. That removes the ignore so the real file can ship. Do not change the MDX path.
 
 ## Case shape
 

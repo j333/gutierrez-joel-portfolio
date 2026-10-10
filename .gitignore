@@ -37,3 +37,23 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local-only project placeholders
+/public/projects/getgloby/after-acquisition.webp
+/public/projects/getgloby/brand-voice.webp
+/public/projects/getgloby/mvp.webp
+/public/projects/getgloby/translation-flow.webp
+/public/projects/golf-boost/analysis.webp
+/public/projects/golf-boost/paywall.webp
+/public/projects/golf-boost/swing-capture.webp
+/public/projects/jaga/before-after.webp
+/public/projects/jaga/in-product.webp
+/public/projects/jaga/sales-deck.webp
+/public/projects/kove-800x-rally/graphics-exploration.webp
+/public/projects/kove-800x-rally/photomontage.webp
+/public/projects/marketfully/brief-flow.webp
+/public/projects/marketfully/design-system.webp
+/public/projects/marketfully/stack.webp
+/public/projects/marketfully/team.webp
+/public/projects/marketfully/workspace.webp
+# end local-only project placeholders

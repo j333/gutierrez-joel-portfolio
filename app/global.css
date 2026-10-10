@@ -70,7 +70,8 @@ html.dark {
 }
 
 .site-noise,
-.sticky-nav[data-away-from-top='true']::before {
+.sticky-nav[data-away-from-top='true']::before,
+.nav-sheet::before {
   pointer-events: none;
   background-image: url('/bkg-noise.webp');
   background-repeat: repeat;
@@ -81,7 +82,8 @@ html.dark {
 }
 
 html.dark .site-noise,
-html.dark .sticky-nav[data-away-from-top='true']::before {
+html.dark .sticky-nav[data-away-from-top='true']::before,
+html.dark .nav-sheet::before {
   filter: none;
 }
 
@@ -91,10 +93,19 @@ html.dark .sticky-nav[data-away-from-top='true']::before {
   z-index: -1;
 }
 
-.sticky-nav[data-away-from-top='true']::before {
+.sticky-nav[data-away-from-top='true']::before,
+.nav-sheet::before {
   content: '';
   position: absolute;
   inset: 0;
+}
+
+.nav-sheet {
+  position: relative;
+}
+
+.nav-sheet::before {
+  z-index: -1;
 }
 
 img {
@@ -151,22 +162,31 @@ img {
   white-space: nowrap;
 }
 
-.prose .anchor {
-  @apply absolute invisible no-underline;
-
-  left: -1em;
-  width: 1em;
-  cursor: pointer;
+.prose a.heading-link {
+  @apply cursor-pointer rounded-sm text-inherit no-underline outline-none;
 }
 
-.anchor:hover,
-.prose .anchor:focus,
-.prose .anchor:focus-visible {
-  @apply visible;
+.prose a.heading-link:focus-visible {
+  @apply outline-2 outline-offset-2 outline-neutral-900 dark:outline-neutral-100;
+}
+
+.prose .anchor {
+  @apply absolute ml-[0.3em] select-none text-neutral-500 opacity-0 transition-opacity duration-200 ease-out motion-reduce:transition-none dark:text-neutral-400;
+}
+
+.prose :is(h1, h2, h3, h4, h5, h6):hover .anchor,
+.prose a.heading-link:focus-visible .anchor {
+  @apply opacity-100;
+}
+
+@media (hover: none) {
+  .prose .anchor {
+    @apply opacity-100;
+  }
 }
 
 .content-link,
-.prose a:not(.anchor) {
+.prose a:not(.heading-link) {
   color: inherit;
   text-decoration: underline;
   text-decoration-skip-ink: all;
@@ -174,28 +194,19 @@ img {
 }
 
 .content-link:hover,
-.prose a:not(.anchor):hover {
+.prose a:not(.heading-link):hover {
   color: #000000;
 }
 
 html.dark .content-link:hover,
-html.dark .prose a:not(.anchor):hover {
+html.dark .prose a:not(.heading-link):hover {
   color: #ffffff;
 }
 
 .content-link:focus-visible,
-.prose a:not(.anchor):focus-visible {
+.prose a:not(.heading-link):focus-visible {
   outline: 2px solid currentColor;
   outline-offset: 2px;
-}
-
-.prose .anchor:after {
-  @apply text-neutral-300 dark:text-neutral-700;
-  content: '#';
-}
-
-.prose *:hover > .anchor {
-  @apply visible;
 }
 
 .prose pre {

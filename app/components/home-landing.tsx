@@ -107,7 +107,7 @@ export const HomeLanding = ({
 
   return (
     <div className="flex w-full flex-col">
-      <section className="flex w-full flex-col gap-10 pt-16 md:pt-28">
+      <section className="flex w-full flex-col gap-10">
         <div className="flex w-full flex-col gap-4">
           <p className={sectionLabelClassName}>{copy.home.eyebrow}</p>
           <div className="flex w-full flex-col gap-8 lg:flex-row lg:gap-6">
@@ -279,20 +279,7 @@ export const HomeLanding = ({
           linkLabel={copy.home.kindWords.allOnLinkedIn}
           external
         />
-        <figure className="flex w-full flex-col gap-6 border-t border-neutral-200 pt-8 pb-10 dark:border-neutral-800 lg:flex-row lg:gap-6">
-          <figcaption className="flex w-full max-w-[272px] flex-col gap-1 pt-1.5">
-            <cite className="not-italic text-base font-medium leading-6 text-neutral-800 dark:text-neutral-200">
-              {copy.home.kindWords.featured.name}
-            </cite>
-            <p className="text-sm leading-relaxed text-neutral-500 dark:text-neutral-400">
-              {copy.home.kindWords.featured.role}
-            </p>
-          </figcaption>
-          <blockquote className="min-w-0 max-w-[55ch] flex-1 text-pretty text-[1.375rem] font-normal leading-[1.45] tracking-[-0.025em] text-black dark:text-white">
-            {copy.home.kindWords.featured.quote}
-          </blockquote>
-        </figure>
-        <div className="grid w-full grid-cols-1 gap-12 border-t border-neutral-200 pt-6 dark:border-neutral-800 lg:grid-cols-3 lg:gap-6">
+        <div className="grid w-full grid-cols-1 gap-12 border-t border-neutral-200 pt-8 dark:border-neutral-800 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-6 lg:gap-y-12">
           {copy.home.kindWords.quotes.map((item) => (
             <figure key={item.name} className="flex min-w-0 flex-col gap-5">
               <figcaption className="flex flex-col gap-0.5">

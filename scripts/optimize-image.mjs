@@ -1,6 +1,7 @@
 import { mkdir } from 'node:fs/promises'
 import { dirname, extname, resolve } from 'node:path'
 import sharp from 'sharp'
+import { trackLocalImage } from './local-only-images.mjs'
 
 const DEFAULT_MAX = 1600
 
@@ -54,6 +55,8 @@ await sharp(input)
   })
   .webp({ quality: 90 })
   .toFile(output)
+
+await trackLocalImage(output)
 
 const result = await sharp(output).metadata()
 console.log(

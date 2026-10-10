@@ -1,6 +1,7 @@
 import { mkdir } from 'node:fs/promises'
 import { dirname, extname, resolve } from 'node:path'
 import sharp from 'sharp'
+import { trackLocalImage } from './local-only-images.mjs'
 
 const COVER_WIDTH = 1920
 const COVER_HEIGHT = 1080
@@ -47,5 +48,7 @@ await sharp(input)
   })
   .webp({ quality: 90 })
   .toFile(output)
+
+await trackLocalImage(output)
 
 console.log(`wrote ${outputArg} (${COVER_WIDTH}×${COVER_HEIGHT} WebP)`)
