@@ -12,67 +12,116 @@ type: 'Tiempo completo'
 industry: 'Marketing / SaaS'
 ---
 
-## ¿Cómo se mantiene el marketing con IA dentro del brief?
+## ¿Cómo crea un solo equipo contenido de marca para cada mercado?
 
-Después de [GetGloby](/getgloby), diseñé Marketfully.ai: el mismo trabajo de localización y transcreación, ahora en un producto junto con creación de contenido para marcas globales y agencias.
-
-<Facts>
-  <Fact title="El brief">Idioma, ubicación, tono, audiencia, tema, objetivo y keywords seguían pegados a lo que viniera después.</Fact>
-  <Fact title="El workspace">Las organizaciones tenían equipos, así una empresa podía correr marketing sin partir la marca entre herramientas.</Fact>
-  <Fact title="El circuito">Los asistentes iteraban el trabajo. Los servicios de expertos entraban cuando una persona tenía que tomar el asset.</Fact>
-</Facts>
-
-### Problema: el trabajo generado se iba de la marca.
-
-Los especialistas de marketing necesitaban un brief que pudieran moldear, con IA en el circuito, y después convertirlo en assets que no se desviaran. El problema de diseño era mantener el trabajo generado dentro de la marca y atado a ese brief.
-
-![Un brief que sostiene idioma, tono, audiencia y keywords por encima de los assets que produce](/projects/marketfully/stack.webp#wide "El brief se quedó como fuente de verdad de todo lo que se generaba después.")
-
-### Oportunidad: un producto para marcas y las agencias que las atienden.
-
-Marcas y agencias estaban en la misma estructura. El brief se podía redactar con asistencia, ajustar por especialistas y después convertir en contenido. La generación y edición de imágenes vivían en el mismo circuito. El asset seguía atado al brief de cualquier modo.
+Después de la adquisición de [GetGloby](/getgloby), lideré el diseño de producto en Marketfully: una web app para equipos de marketing que crean contenido para audiencias globales. Traducción, transcreación y creación de contenido en un producto, con la IA escribiendo el primer borrador y personas decidiendo qué se publicaba.
 
 <Facts>
-  <Fact title="Un lenguaje">La definición de producto y la experiencia del cliente necesitaban un lenguaje entre assets, traducción y marcas de agencia.</Fact>
-  <Fact title="Flujos de IA">El marketing generado, los flujos de traducción y las necesidades cotidianas tenían que encontrarse en el mismo producto.</Fact>
-  <Fact title="La práctica">Definí estructuras de equipo, stacks de tecnología y roadmaps de producto, y gestioné el desarrollo en parte.</Fact>
+  <Fact title="La investigación">Personas, el comité de compra y el hallazgo que cambió el producto: lo humano no se podía sacar.</Fact>
+  <Fact title="Los conceptos">Arquitectura, flujos y un stack de agentes dibujados antes de cada release.</Fact>
+  <Fact title="La plataforma">Workspace, marca y un circuito de la oportunidad a cada mercado, con una persona al mando en cada paso.</Fact>
 </Facts>
 
-## Un workspace compartido para marcas y agencias
+### Problema: el contenido global era lento, inconsistente y fácil de errar.
 
-El producto era un entorno de trabajo compartido. Las organizaciones tenían equipos, así una empresa podía correr marketing, o cualquier otro grupo que sumara, sin partir la marca entre herramientas.
+Los equipos que producían para varios mercados hacían malabares con briefs, borradores, traductores y revisores en distintas herramientas. Cada pase perdía contexto, así la marca sonaba distinta en cada idioma y se colaban errores. Las herramientas genéricas de IA hacían el borrador más rápido sin hacerlo más seguro: escribían desde cero, sin marca, sin audiencia y sin un brief que las sostuviera.
+
+### Oportunidad: una plataforma, de la idea a cada mercado.
+
+Si la marca vivía en el producto y cada brief la llevaba consigo, un solo equipo podía ir de una idea a un asset terminado en cada mercado sin perder el hilo. La IA podía redactar, las personas podían decidir y los expertos nativos podían entrar solo donde un modelo se quedaba corto.
+
+<Facts>
+  <Fact title="Contexto compartido">Marca, audiencia y glosario viajaban con cada brief y con cada asset que salía de él.</Fact>
+  <Fact title="Primer borrador con IA">La generación le daba al equipo algo para moldear, no algo para aceptar.</Fact>
+  <Fact title="Persona al mando">Revisores y expertos nativos entraban donde no había que confiar en un modelo.</Fact>
+</Facts>
+
+## Lo que esperábamos de la IA y lo que encontramos
+
+La apuesta inicial, tanto de quienes compraban como nuestra, era la automatización total: una plataforma que tomara una marca y produjera cada asset para cada mercado sin nadie en el medio. Pasamos los primeros meses poniendo esa apuesta a prueba. Mapeamos los problemas que los equipos tenían de verdad, corrimos los modelos contra briefs reales y estudiamos casos en los que el contenido generado ya se había publicado.
+
+El hallazgo fue consistente. La generación le sacaba horas a la mayoría de los pasos, y muchos ya corrían solos. Pero cada pieza que llegaba a un mercado sin una persona guiando la producción y chequeando cada cambio volvía mal: fuera de tono, fuera de marca o directamente incorrecta. Lo humano no era un plan B para cuando el modelo fallaba. Era la parte del sistema que hacía que el resto valiera la pena.
+
+![Diagrama de concepto de IA agéntica con un circuito entre la persona al mando, la IA agéntica y el contexto o entorno, alimentado por datos internos de marca y canales externos, competidores, industria y tendencias](/projects/marketfully/agentic-loop.webp#wide "El circuito que dibujamos después de ese hallazgo: la persona dirige, el agente trabaja desde los datos de marca y el contexto externo con una cadencia definida, y nada se publica sin feedback.")
+
+La investigación también nos dijo quién compraba. En cada compra había tres personas: el champion que traía el producto, el economic buyer que lo pagaba y el operational gatekeeper que tenía que convivir con él. Documentamos a cada uno, con las señales de compra y el stack tecnológico alrededor, y diseñamos para los tres a la vez.
+
+![Tablero de investigación con fichas de persona para el champion, el economic buyer y el operational gatekeeper, más señales de compra y stack tecnológico](/projects/marketfully/personas.webp#wide "Personas y comité de compra: el champion, el economic buyer y el operational gatekeeper, con señales de compra y stack tecnológico.")
+
+## Conceptos: la plataforma, dibujada antes de cada release
+
+Con el circuito definido, los tableros de conceptos dibujaron la plataforma antes de que ingeniería la construyera. La arquitectura v2.0 puso organización, workspace, marcas y contenido en una sola jerarquía, con la base de conocimiento (marca, voz y tono, glosarios, personas de audiencia, guías de estilo) debajo de cada generación.
+
+![Tablero de arquitectura de la plataforma con la jerarquía de organización, workspace, marcas y contenido, cinco zonas funcionales y un mapa de la base de conocimiento](/projects/marketfully/workspace.webp#wide "Arquitectura v2.0: organización, workspace, marcas y contenido en una sola jerarquía, con la base de conocimiento debajo de cada generación.")
+
+Los tableros de flujos llevaron cada camino de oportunidades a brief de campaña y editor. El mapa conceptual mostraba la siguiente capa: una capa de API y MCP, un harness de agentes con tools, skills y subagentes, y un brand brain debajo de la interfaz.
+
+<Label>Conceptos</Label>
+
+<Flows>
+  <Flow src="/projects/marketfully/brief-flow.webp" alt="Tablero de conceptos con flujos de onboarding y campaña, wireframes de oportunidades a brief de campaña y asset en el editor, y los pasos para encontrar oportunidades" title="Flujos y wireframes">Las oportunidades se vuelven un brief de campaña, el brief se vuelve un asset y el asset se abre en el editor.</Flow>
+  <Flow src="/projects/marketfully/stack.webp" alt="Mapa conceptual de Marketfully con capas de API y MCP, harness de agentes, UI/UX y brand brain, junto a un plugin de Claude y el árbol de vistas" title="Mapa conceptual">API y MCP, un harness de agentes, la interfaz y un brand brain, para que todo lo generado se mantenga en el brief.</Flow>
+</Flows>
+
+## Un sistema de diseño y un equipo para construirlo
+
+Armé el sistema de diseño sobre el que se construyó el producto. Partía de una paleta de colores, seguía con tokens semánticos para texto, iconos, superficies y bordes, nombrados por rol, no por color, y esos tokens se convertían en componentes. Los componentes se aplicaban en plantillas distintas, consistentes en toda la plataforma e intuitivas para quien las usaba, así un borde crítico o una etiqueta atenuada significaban lo mismo en cada pantalla. La interfaz se mantuvo silenciosa a propósito. Las marcas adentro tenían que ser lo más fuerte de la página.
+
+![Archivo de tokens del sistema de diseño con colores descriptivos para texto, iconos, superficies, tintes y bordes, agrupados por default, primario, crítico, interactivo y estado](/projects/marketfully/design-system.webp#wide "Tokens: colores descriptivos para texto, iconos, superficies y bordes, nombrados por rol para que cada pantalla se lea igual.")
+
+Armé y lideré el equipo de diseño de producto: un Product Designer, un AI Solution Designer y una UX Researcher que reportaban a mí. Juntos nos hicimos cargo de cómo se veía el producto, cómo se comportaba y cómo aprendíamos de quienes lo compraban y lo usaban. También armé el equipo de IA que convirtió esos diseños en features basadas en agentes, trabajando junto a producto, ingeniería y QA en cada release.
+
+![Slide de contribuidores de un release con desarrollo, diseño de producto, product management y QA, junto a una grilla de videollamada del equipo](/projects/marketfully/team.webp#wide "Un release, un equipo: desarrollo, diseño de producto, product management y QA.")
+
+## Lo que se publicó: un workspace que sostiene al equipo y a la marca
+
+Las organizaciones tenían workspaces y equipos. Los admins creaban equipos, le daban a cada miembro un rol como account manager o member y decidían qué equipos y usuarios llegaban a cada workspace. Una empresa podía correr marketing, ventas y recursos humanos en paralelo sin partir la marca entre herramientas.
+
+<Label>Workspace y marca</Label>
+
+<Flows>
+  <Flow src="/projects/marketfully/organizations.webp" alt="Panel de administración con la lista de organizaciones, su admin, miembros, workspaces y plan" title="Organizaciones">Cada cliente o empresa en un solo panel, con su admin, miembros, workspaces y plan.</Flow>
+  <Flow src="/projects/marketfully/teams.webp" alt="Página de una organización con equipos, miembros y sus roles, workspaces con acceso por equipo y usuario, y uso de la suscripción" title="Equipos y roles">Equipos con un rol por miembro, y qué equipos y usuarios llegan a cada workspace.</Flow>
+  <Flow src="/projects/marketfully/brand.webp" alt="Sección de marca con audiencias aprobadas y sugeridas junto a perfil de marca, competidores, mensajes, glosarios, reglas de escritura, tono de voz, look and feel, archivos y plantillas de assets" title="Marca">Perfil, audiencias, competidores, mensajes, glosarios, reglas de escritura, tono de voz, look and feel, archivos y plantillas.</Flow>
+</Flows>
+
+La marca vivía en el producto, no en un PDF. Cada sección era parte de la base de conocimiento detrás de cada generación, y nada entraba sin control: una audiencia propuesta por la IA quedaba como sugerida hasta que alguien la aprobaba. El contenido para Argentina y el contenido para Estados Unidos salían de la misma fuente.
+
+## De una oportunidad a cada mercado
+
+El home ofrecía cuatro caminos, cada uno etiquetado con quién hacía el trabajo. Pedir servicios de expertos era humano. Crear un brief, crear un asset y transcrear contenido eran IA y humano juntos. Debajo, ideas de contenido sugeridas a partir de la marca y su actividad reciente.
+
+![Home de Marketfully con cuatro caminos de creación etiquetados IA o humano, y contenido sugerido para un workspace](/projects/marketfully/home.webp#wide "Home: cuatro caminos, cada uno etiquetado con quién hace el trabajo, y contenido sugerido a partir de la actividad reciente de la marca.")
+
+Oportunidades rankeaba ideas de contenido por score, tipo, costo, mercado y esfuerzo, y cada fila terminaba en la misma acción: iniciar un brief. El brief guardaba objetivo, audiencia, idioma y ubicación, tono y un outline por plantilla de asset. El asistente lo completaba con el equipo, revisaba inconsistencias y medía qué tan completo estaba antes de generar nada. El borrador se abría después en el editor, al lado del brief, sus keywords y un puntaje de riesgo.
 
 <Label>Flujos clave</Label>
 
 <Flows>
-  <Flow src="/projects/marketfully/home.webp" alt="Home de Marketfully.ai con caminos de creación y contenido sugerido para un workspace" title="Empezar en el workspace">Caminos de creación y contenido sugerido para el equipo que ya está en el workspace.</Flow>
-  <Flow src="/projects/marketfully/brief.webp" alt="Brief de Marketfully.ai con campos de estrategia, outline y un asistente de IA" title="Moldear el brief">Campos de estrategia, un outline y un asistente, antes de generar nada.</Flow>
-  <Flow src="/projects/marketfully/editor.webp" alt="Editor de contenido de Marketfully.ai con borrador, metadata y el brief al lado" title="Editar al lado del brief">El borrador y su metadata se quedan al lado del brief que los produjo.</Flow>
+  <Flow src="/projects/marketfully/opportunities.webp" alt="Reporte de oportunidades que rankea ideas de contenido por score, tipo, tema, costo, mercado, esfuerzo y competidores, cada una con la acción de iniciar un brief" title="Encontrar una oportunidad">Ideas rankeadas por impacto, competencia y esfuerzo, cada una a un brief de distancia.</Flow>
+  <Flow src="/projects/marketfully/brief.webp" alt="Brief de Marketfully con campos de estrategia, outline y un asistente de IA que revisa dependencias con skills" title="Moldear el brief">Estrategia, outline y un asistente con skills que revisa el brief antes de generar nada.</Flow>
+  <Flow src="/projects/marketfully/editor.webp" alt="Editor de contenido de Marketfully con un borrador junto a su información, puntaje de riesgo, brief, keywords y outline de contenido" title="Editar al lado del brief">Borrador, tono, keywords, extensión y puntaje de riesgo en una sola vista, con el brief a un clic.</Flow>
 </Flows>
 
-![Organizaciones, equipos y marcas en un workspace de Marketfully](/projects/marketfully/workspace.webp#wide "Workspace: una estructura para la empresa, sus equipos y sus marcas.")
+La generación era un primer borrador. El equipo lo iteraba en el lugar: mejorar, acortar, revisar keywords, ajustar el tono o reescribir, sin salir del documento. Cuando la pieza necesitaba un ojo nativo, los servicios de expertos la tomaban: revisión de contenido, verificación de precisión, traducción de video o un pedido a medida, cada uno con seguimiento de costo y estado. Una vez aprobado, el asset se podía transcrear para otras audiencias, así una campaña llegaba a cada mercado sin reescribirse desde cero en cada idioma.
 
-![Un brief que pasa de campos de estrategia a un asset que se mantiene en el brief](/projects/marketfully/brief-flow.webp#wide "Flujo del brief: la asistencia lo redacta, los especialistas lo ajustan, después se vuelve contenido.")
+<Label>Revisar y escalar</Label>
 
-## Un sistema de diseño que el flujo pueda compartir
-
-Armé un sistema de diseño para que la definición de producto y la experiencia del cliente compartieran un lenguaje entre assets de marketing generados con IA, flujos de traducción y las marcas de agencia bajo [Marketfully](https://marketfully.com/). UX, UI y CX quedaron conectados. La interfaz tenía que servir a la marca tanto como al flujo de trabajo.
-
-![Sistema de diseño que cubre assets de marketing con IA, traducción y marcas de agencia](/projects/marketfully/design-system.webp#wide "Un lenguaje para el producto, los assets y las marcas bajo Marketfully.")
-
-Armé y lideré un equipo de diseño y producto (un Product Designer, un AI Solution Designer y una UX Researcher) que reportaba directo a mí. Juntos nos hicimos cargo de cómo se veía el producto, cómo se comportaba y cómo aprendíamos de quienes lo usaban. También armé y lideré un equipo de IA para entregar soluciones basadas en IA, trabajando al lado de QA, ingeniería e ingenieros de IA.
-
-![Equipos de diseño, producto e IA trabajando al lado de QA e ingeniería](/projects/marketfully/team.webp#wide "El equipo de diseño y producto, y el equipo de IA al lado de QA e ingeniería.")
+<Flows>
+  <Flow src="/projects/marketfully/assistant.webp" alt="Editor de Marketfully con un borrador de artículo y el asistente de IA que ofrece mejorar, acortar, revisar keywords, ajustar el tono o reescribir" title="Iterar con el asistente">Mejorar, acortar, revisar keywords, ajustar el tono o reescribir sin salir del borrador.</Flow>
+  <Flow src="/projects/marketfully/expert-services.webp" alt="Página de Expert Services con revisión de contenido, revisión de performance, guía de estrategia, keyword research, verificación de precisión, traducción de video y servicios a medida, más una lista de pedidos con costo y estado" title="Pasárselo a un experto">Revisión humana, chequeos de precisión y traducción, pedidos y seguidos con costo y estado.</Flow>
+</Flows>
 
 ## Lo que aceptamos cambiar
 
-La velocidad de generación no era el punto. Un asset que se iba del brief era un asset fallido, aunque un experto tuviera que llevarlo el resto del camino.
+Cambiamos la promesa que vendía el producto por la que se sostenía. La automatización total era más fácil de vender. Una persona al mando era lo que funcionaba. Así que el agente redacta desde los datos de marca y el contexto externo, el equipo revisa cada cambio y recién entonces el asset sale. Un asset que se iba de su brief era un asset fallido, aunque un experto pudiera arreglarlo después.
 
-> El asset seguía atado al brief de cualquier modo.
+> Cambiamos la automatización total por una persona al mando.
 
 ## Qué aprendí
 
 <Facts>
-  <Fact title="Atar el asset">El trabajo generado se mantiene en la marca solo si el brief sigue pegado cuando alguien lo edita.</Fact>
-  <Fact title="La práctica viaja">Estándares, rituales y una relación de trabajo con ingeniería, empezados en GetGloby, son lo que la plataforma sigue usando.</Fact>
+  <Fact title="Automatizar no es autonomía">Los modelos le sacaron tiempo a la mayoría de los pasos, pero alguien tenía que seguir guiando la producción y chequeando cada cambio.</Fact>
+  <Fact title="Documentar la marca una vez">Cuando guidelines, tono y glosarios viven en el producto, la IA y las personas trabajan desde el mismo contexto.</Fact>
+  <Fact title="Atar el asset al brief">El trabajo generado se mantiene en la marca solo si el brief sigue pegado cuando alguien lo edita.</Fact>
 </Facts>

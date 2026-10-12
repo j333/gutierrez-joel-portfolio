@@ -46,7 +46,7 @@ export const es: Dictionary = {
     },
     selectedWork: {
       title: 'Trabajo seleccionado',
-      subtitle: 'Tres casos entre IA, localización y marca.',
+      subtitle: 'Proyectos entre estrategia de producto, diseño y marca.',
       allCases: 'TODOS LOS CASOS',
       cases: {
         marketfully: {

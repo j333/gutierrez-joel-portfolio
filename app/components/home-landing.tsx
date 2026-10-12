@@ -109,7 +109,6 @@ export const HomeLanding = ({
     <div className="flex w-full flex-col">
       <section className="flex w-full flex-col gap-10">
         <div className="flex w-full flex-col gap-4">
-          <p className={sectionLabelClassName}>{copy.home.eyebrow}</p>
           <div className="flex w-full flex-col gap-8 lg:flex-row lg:gap-6">
             <h1 className="w-full max-w-[860px] shrink-0 text-[2rem] font-normal leading-[1.12] tracking-[-0.04em] text-black sm:text-4xl md:text-[3.25rem] lg:w-[860px] dark:text-white">
               {copy.home.headline}

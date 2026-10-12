@@ -28,10 +28,10 @@ export const en = {
   home: {
     title: 'Home',
     description:
-      'I develop products at the intersection of design, development, and business.',
+      'I build products at the intersection of design, development, and business.',
     eyebrow: 'PRODUCT DESIGNER',
     headline:
-      'I develop products at the intersection of design, development, and business.',
+      'I build products at the intersection of design, development, and business.',
     nowLabel: 'NOW',
     now: 'Exploring and building personal projects around the new possibilities of AI.',
     intro:
@@ -44,7 +44,7 @@ export const en = {
     },
     selectedWork: {
       title: 'Selected work',
-      subtitle: 'Three cases across AI, localization, and brand.',
+      subtitle: 'Projects across product strategy, design, and brand.',
       allCases: 'ALL CASES',
       cases: {
         marketfully: {

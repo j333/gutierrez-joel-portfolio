@@ -281,19 +281,19 @@ html.dark .prose a:not(.heading-link):hover {
 }
 
 .prose h1 {
-  @apply relative text-xl font-normal leading-7 tracking-tight mt-6 mb-2;
+  @apply relative mt-6 mb-2 text-xl font-normal leading-7 tracking-tight text-black dark:text-white;
 }
 
 .prose h2 {
-  @apply relative text-lg font-normal tracking-tight mt-12 mb-3;
+  @apply relative mt-16 mb-4 text-xl font-normal leading-7 tracking-tight text-black dark:text-white;
 }
 
 .prose h3 {
-  @apply relative text-base font-normal tracking-tight mt-8 mb-2;
+  @apply relative mt-10 mb-3 text-lg font-normal tracking-tight text-neutral-900 dark:text-neutral-100;
 }
 
 .prose h4 {
-  @apply relative text-base font-normal tracking-tight mt-6 mb-2;
+  @apply relative mt-8 mb-2 text-base font-normal tracking-tight text-neutral-900 dark:text-neutral-100;
 }
 
 .prose h5,
@@ -342,7 +342,11 @@ html.dark .prose a:not(.heading-link):hover {
 }
 
 .prose p.case-label {
-  @apply mt-10 mb-3;
+  @apply mt-8 mb-0 font-mono text-xs font-normal uppercase leading-4 tracking-wider text-neutral-500 dark:text-neutral-400;
+}
+
+.prose p.case-label + .case-flows {
+  margin-top: 0.75rem;
 }
 
 pre::-webkit-scrollbar {

@@ -12,67 +12,116 @@ type: 'Full-time'
 industry: 'Marketing / SaaS'
 ---
 
-## How do you keep AI marketing on brief?
+## How does one team create on-brand content for every market?
 
-After [GetGloby](/getgloby), I designed Marketfully.ai: the same localization and transcreation work, now in one product with content creation for global brands and agencies.
-
-<Facts>
-  <Fact title="The brief">Language, location, tone, audience, topic, objective, and keywords stayed attached to whatever came next.</Fact>
-  <Fact title="The workspace">Organizations held teams, so one company could run marketing without splitting the brand across tools.</Fact>
-  <Fact title="The loop">Assistants iterated the work. Expert services stepped in when a human had to take the asset.</Fact>
-</Facts>
-
-### Problem: generated work drifted off the brand.
-
-Marketing specialists needed a brief they could shape, with AI in the loop, then turn into assets that did not drift. The design problem was keeping generated work on-brand and tied to that brief.
-
-![A brief holding language, tone, audience, and keywords above the assets it produces](/projects/marketfully/stack.webp#wide "The brief stayed the source of truth for everything generated after it.")
-
-### Opportunity: one product for brands and the agencies that serve them.
-
-Brands and agencies sat in the same structure. A brief could be drafted with assistance, adjusted by specialists, and then converted into content. Image generation and editing lived in the same loop. The asset stayed bound to the brief either way.
+After the acquisition of [GetGloby](/getgloby), I led product design at Marketfully: a web app for marketing teams that create content for global audiences. Translation, transcreation, and content creation in one product, with AI writing the first draft and people deciding what shipped.
 
 <Facts>
-  <Fact title="Shared language">Product definition and customer experience needed one language across assets, translation, and agency brands.</Fact>
-  <Fact title="AI workflows">Generated marketing, translation flows, and day-to-day marketing needs had to meet in the same product.</Fact>
-  <Fact title="The practice">I defined team structures, technology stacks, and product roadmaps, and partially managed development.</Fact>
+  <Fact title="The research">Personas, the buying committee, and the finding that reshaped the product: the human could not be removed.</Fact>
+  <Fact title="The concepts">Architecture, flows, and an agent stack drawn ahead of each release.</Fact>
+  <Fact title="The platform">Workspace, brand, and a loop from opportunity to every market, with a person in the lead at every step.</Fact>
 </Facts>
 
-## A shared workspace for brands and agencies
+### Problem: global content was slow, inconsistent, and easy to get wrong.
 
-The product was a shared working environment. Organizations held teams, so one company could run marketing, or any other group they brought in, without splitting the brand across tools.
+Teams producing for several markets juggled briefs, drafts, translators, and reviewers across tools. Every handoff lost context, so the brand sounded different in each language and errors slipped through. Generic AI tools made drafting faster without making it safer: they wrote from nothing, with no brand, no audience, and no brief to hold them.
+
+### Opportunity: one platform, from the idea to every market.
+
+If the brand lived in the product and every brief carried it, one team could go from an idea to a finished asset in every market without losing the thread. AI could draft, people could decide, and native experts could step in only where a model fell short.
+
+<Facts>
+  <Fact title="Shared context">Brand, audience, and glossary travelled with every brief and every asset it produced.</Fact>
+  <Fact title="AI first draft">Generation gave the team something to shape, not something to accept.</Fact>
+  <Fact title="Human in the lead">Reviewers and native experts stepped in where a model should not be trusted.</Fact>
+</Facts>
+
+## What we expected from AI, and what we found
+
+The bet going in, from the buyers as much as from us, was full automation: a platform that would take a brand and produce every asset for every market with no one in between. We spent the first months testing that bet. We mapped the problems teams actually had, ran the models against real briefs, and studied cases where generated content had already shipped.
+
+The finding was consistent. Generation cut hours from most steps, and many of them ran on their own. But every piece that reached a market without a person guiding the production and checking each change came back wrong: off-tone, off-brand, or plainly incorrect. The human was not a fallback for when the model failed. It was the part of the system that made the rest worth using.
+
+![Agentic AI concept diagram with a loop between human in the lead, agentic AI, and context or environment, fed by internal brand data and external channels, competitors, industry, and trends](/projects/marketfully/agentic-loop.webp#wide "The loop we drew after that finding: the person steers, the agent works from brand data and the outside context on a set cadence, and nothing publishes without feedback.")
+
+The research also told us who was buying. Three people sat in every purchase: the champion who brought the product in, the economic buyer who paid for it, and the operational gatekeeper who had to live with it. We documented each one, with the buying signals and the tech stack around them, and designed for the three at once.
+
+![Research board with persona cards for the champion, the economic buyer, and the operational gatekeeper, plus buying signals and tech stack](/projects/marketfully/personas.webp#wide "Personas and buying committee: the champion, the economic buyer, and the operational gatekeeper, with buying signals and tech stack.")
+
+## Concepts: the platform, drawn ahead of each release
+
+With the loop settled, the concept boards drew the platform before engineering built it. Architecture v2.0 put organization, workspace, brands, and content in one hierarchy, with the knowledge base (brand, voice and tone, glossaries, audience personas, style guides) under every generation.
+
+![Platform architecture board with the organization, workspace, brands, and content hierarchy, five functional zones, and a knowledge base map](/projects/marketfully/workspace.webp#wide "Architecture v2.0: organization, workspace, brands, and content in one hierarchy, with the knowledge base under every generation.")
+
+The flow boards took each path from opportunities to campaign brief to editor. The concept map showed the next layer: an API and MCP layer, an agent harness with tools, skills, and subagents, and a brand brain under the interface.
+
+<Label>Concepts</Label>
+
+<Flows>
+  <Flow src="/projects/marketfully/brief-flow.webp" alt="Concept board with onboarding and campaign flows, wireframes from opportunities to campaign brief to editor asset, and the steps to find opportunities" title="Flows and wireframes">Opportunities become a campaign brief, the brief becomes an asset, and the asset opens in the editor.</Flow>
+  <Flow src="/projects/marketfully/stack.webp" alt="Marketfully concept map with API and MCP, an agent harness, UI/UX, and brand brain layers beside a Claude plugin and the view tree" title="Concept map">API and MCP, an agent harness, the interface, and a brand brain, so everything generated stays on the brief.</Flow>
+</Flows>
+
+## A design system and a team to ship it
+
+I built the design system the product shipped on. It started from a color palette, then semantic tokens for text, icons, surfaces, and borders, named by role, not by color, and those tokens became components. The components were applied in different templates, consistent across the platform and intuitive to use, so a critical border or a subdued label meant the same thing on every screen. The interface stayed quiet on purpose. The brands inside it had to be the loudest thing on the page.
+
+![Design system tokens file with descriptive color tokens for text, icons, surfaces, tints, and borders, grouped by default, primary, critical, interactive, and state](/projects/marketfully/design-system.webp#wide "Tokens: descriptive colors for text, icons, surfaces, and borders, named by role so every screen reads the same way.")
+
+I built and led the product design team: a Product Designer, an AI Solution Designer, and a UX Researcher, reporting to me. Together we owned how the product looked, how it behaved, and how we learned from the people buying and using it. I also stood up the AI team that turned those designs into agent-based features, working alongside product, engineering, and QA on every release.
+
+![Release contributors slide listing development, product design, product management, and QA, beside a video call grid of the team](/projects/marketfully/team.webp#wide "One release, one team: development, product design, product management, and QA.")
+
+## What shipped: a workspace that holds the team and the brand
+
+Organizations held workspaces and teams. Admins created teams, gave each member a role such as account manager or member, and decided which teams and users could reach each workspace. One company could run marketing, sales, and HR side by side without splitting the brand across tools.
+
+<Label>Workspace and brand</Label>
+
+<Flows>
+  <Flow src="/projects/marketfully/organizations.webp" alt="Admin panel listing organizations with their admin, members, workspaces, and plan" title="Organizations">Every client or company in one admin panel, with its admin, members, workspaces, and plan.</Flow>
+  <Flow src="/projects/marketfully/teams.webp" alt="Organization page with teams, members and their roles, workspaces with team and user access, and subscription usage" title="Teams and roles">Teams with a role per member, and which teams and users can reach each workspace.</Flow>
+  <Flow src="/projects/marketfully/brand.webp" alt="Brand section with approved and suggested audiences beside brand profile, competitors, messaging, glossaries, writing rules, tone of voice, look and feel, files, and asset templates" title="Brand">Profile, audiences, competitors, messaging, glossaries, writing rules, tone of voice, look and feel, files, and templates.</Flow>
+</Flows>
+
+The brand lived in the product, not in a PDF. Each section was part of the knowledge base behind every generation, and nothing entered it unchecked: an audience the AI proposed stayed suggested until someone approved it. Content for Argentina and content for the United States came from the same source.
+
+## From an opportunity to every market
+
+Home offered four paths, each labeled with who did the work. Request expert services was human. Create a brief, create an asset, and transcreate content were AI and human together. Below them, content ideas suggested from the brand and its recent activity.
+
+![Marketfully home with four creation paths labeled AI or human, and content suggested for a workspace](/projects/marketfully/home.webp#wide "Home: four paths, each labeled with who does the work, and content suggested from the brand's recent activity.")
+
+Opportunities ranked content ideas by score, type, cost, market, and effort, and every row ended in the same action: start a brief. The brief held goal, audience, language and location, tone, and an outline per asset template. The assistant filled it in with the team, checked it for inconsistencies, and tracked how complete it was before anything was generated. The draft then opened in the editor beside the brief, its keywords, and a risk score.
 
 <Label>Core flows</Label>
 
 <Flows>
-  <Flow src="/projects/marketfully/home.webp" alt="Marketfully.ai home with creation paths and suggested content for a workspace" title="Start in the workspace">Creation paths and suggested content for the team already in the workspace.</Flow>
-  <Flow src="/projects/marketfully/brief.webp" alt="Marketfully.ai brief with strategy fields, outline, and an AI assistant" title="Shape the brief">Strategy fields, an outline, and an assistant, before anything is generated.</Flow>
-  <Flow src="/projects/marketfully/editor.webp" alt="Marketfully.ai content editor with draft, metadata, and the brief alongside" title="Edit beside the brief">The draft and its metadata stay next to the brief that produced them.</Flow>
+  <Flow src="/projects/marketfully/opportunities.webp" alt="Opportunities report ranking content ideas by score, type, topic, cost, market, effort, and competitors, each with a start a brief action" title="Find an opportunity">Ideas ranked by impact, competition, and effort, each one a brief away.</Flow>
+  <Flow src="/projects/marketfully/brief.webp" alt="Marketfully brief with strategy fields, outline, and an AI assistant checking dependencies with skills" title="Shape the brief">Strategy, outline, and an assistant with skills that checks the brief before anything is generated.</Flow>
+  <Flow src="/projects/marketfully/editor.webp" alt="Marketfully content editor with a draft beside its information, risk score, brief, keywords, and content outline" title="Edit beside the brief">Draft, tone, keywords, length, and risk score in one view, with the brief one click away.</Flow>
 </Flows>
 
-![Organizations, teams, and brands in one Marketfully workspace](/projects/marketfully/workspace.webp#wide "Workspace: one structure for the company, its teams, and its brands.")
+Generation was a first draft. The team iterated it in place: improve, shorten, check keywords, adjust the tone, or rewrite, without leaving the document. When the piece needed a native eye, expert services took it: content review, accuracy assessment, video translation, or a custom request, each tracked with cost and status. Once an asset was approved it could be transcreated for other audiences, so one campaign reached every market without being rewritten from scratch in each language.
 
-![A brief moving from strategy fields into an asset that stays on brief](/projects/marketfully/brief-flow.webp#wide "Brief flow: assistance drafts it, specialists adjust it, then it becomes content.")
+<Label>Review and scale</Label>
 
-## A design system the workflow can share
-
-I built a design system so product definition and customer experience shared one language across AI-generated marketing assets, translation flows, and the agency brands under [Marketfully](https://marketfully.com/). UX, UI, and CX stayed connected. The interface had to serve the brand as much as the workflow.
-
-![Design system covering AI marketing assets, translation, and agency brands](/projects/marketfully/design-system.webp#wide "One language for the product, the assets, and the brands under Marketfully.")
-
-I built and led a design and product team (a Product Designer, an AI Solution Designer, and a UX Researcher) who reported directly to me. Together we owned how the product looked, how it behaved, and how we learned from the people using it. I also built and led an AI team to deliver AI-based solutions, working side by side with QA, engineering, and AI engineers.
-
-![Design, product, and AI teams working beside QA and engineering](/projects/marketfully/team.webp#wide "The design and product team, and the AI team beside QA and engineering.")
+<Flows>
+  <Flow src="/projects/marketfully/assistant.webp" alt="Marketfully editor with a draft article and the AI assistant offering to improve, shorten, check keywords, adjust tone, or rewrite" title="Iterate with the assistant">Improve, shorten, check keywords, adjust tone, or rewrite without leaving the draft.</Flow>
+  <Flow src="/projects/marketfully/expert-services.webp" alt="Expert Services page with content review, performance review, strategy guidance, keyword research, accuracy assessment, video translation, and custom services, plus a list of requests with cost and status" title="Hand it to an expert">Human review, accuracy checks, and translation, requested and tracked with cost and status.</Flow>
+</Flows>
 
 ## What we were willing to trade
 
-Speed of generation was not the point. An asset that left the brief was a failed asset, even when an expert had to take it the rest of the way.
+We traded the promise that sold the product for the one that held up. Full automation was easier to pitch. A person in the lead was what worked. So the agent drafts from brand data and the outside context, the team reviews each change, and only then does the asset go out. An asset that drifted from its brief was a failed asset, even if an expert could have fixed it later.
 
-> The asset stayed bound to the brief either way.
+> We traded full automation for a person in the lead.
 
 ## What I learned
 
 <Facts>
-  <Fact title="Bind the asset">Generated work stays on-brand only if the brief is still attached when someone edits it.</Fact>
-  <Fact title="The practice travels">Standards, rituals, and a working relationship with engineering, started at GetGloby, are what the platform still runs on.</Fact>
+  <Fact title="Automation is not autonomy">The models cut the time in most steps, but someone still had to guide the production and check every change.</Fact>
+  <Fact title="Document the brand once">When guidelines, tone, and glossaries live in the product, AI and people work from the same context.</Fact>
+  <Fact title="Bind the asset to the brief">Generated work stays on-brand only if the brief is still attached when someone edits it.</Fact>
 </Facts>
