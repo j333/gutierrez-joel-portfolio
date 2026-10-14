@@ -28,10 +28,10 @@ export const en = {
   home: {
     title: 'Home',
     description:
-      'I build products at the intersection of design, development, and business.',
+      'I build products at the intersection of design, development, and strategy.',
     eyebrow: 'PRODUCT DESIGNER',
     headline:
-      'I build products at the intersection of design, development, and business.',
+      'I build products at the intersection of design, development, and strategy.',
     nowLabel: 'NOW',
     now: 'Exploring and building personal projects around the new possibilities of AI.',
     intro:
@@ -163,7 +163,7 @@ export const en = {
     title: 'About',
     heading: 'Gutiérrez Joel',
     description:
-      'Product designer working at the intersection of design, development, and business.',
+      'Product designer working at the intersection of design, development, and strategy.',
     intro: 'Product Designer',
     experience: 'Experience',
     education: 'Education',
@@ -171,7 +171,7 @@ export const en = {
     stack: 'Stack',
     languages: 'Languages',
     bio: [
-      "I'm Joel, a product designer working at the intersection of design, development, and business.",
+      "I'm Joel, a product designer working at the intersection of design, development, and strategy.",
       'I taught myself at 15, building websites while I studied electronics. Design school later gave me a more strategic way of looking at problems.',
       "These days I'm building personal projects around what AI makes possible. When I'm not between screens, I get lost in the mountains around Mendoza, where I live.",
     ],

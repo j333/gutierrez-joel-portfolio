@@ -30,10 +30,10 @@ export const es: Dictionary = {
   home: {
     title: 'Inicio',
     description:
-      'Desarrollo productos en la intersección entre diseño, desarrollo y negocio.',
+      'Desarrollo productos en la intersección entre diseño, desarrollo y estrategia.',
     eyebrow: 'PRODUCT DESIGNER',
     headline:
-      'Desarrollo productos en la intersección entre diseño, desarrollo y negocio.',
+      'Desarrollo productos en la intersección entre diseño, desarrollo y estrategia.',
     nowLabel: 'AHORA',
     now: 'Explorando y construyendo proyectos personales alrededor de las nuevas posibilidades de AI.',
     intro:
@@ -166,7 +166,7 @@ export const es: Dictionary = {
     title: 'Sobre mí',
     heading: 'Gutiérrez Joel',
     description:
-      'Product designer entre diseño, desarrollo y negocio.',
+      'Product designer entre diseño, desarrollo y estrategia.',
     intro: 'Product Designer',
     experience: 'Experiencia',
     education: 'Educación',
@@ -174,7 +174,7 @@ export const es: Dictionary = {
     stack: 'Stack',
     languages: 'Idiomas',
     bio: [
-      'Soy Joel, product designer entre las intersecciones de diseño, desarrollo y negocio.',
+      'Soy Joel, product designer entre las intersecciones de diseño, desarrollo y estrategia.',
       'Comencé de manera autodidacta a los 15, creando sitios web mientras estudiaba electrónica. Diseño en la universidad me dio después una forma más estratégica de mirar los problemas.',
       'Hoy desarrollo proyectos personales con lo que hace posible la IA. Cuando no estoy entre pantallas, me pierdo en la montaña de Mendoza, donde vivo.',
     ],
