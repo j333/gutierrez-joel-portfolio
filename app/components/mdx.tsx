@@ -287,12 +287,14 @@ export const CustomMDX = async (props: MDXRemoteProps) => {
   }) => (
     <div className="case-block flex min-w-0 flex-col gap-1">
       <p className="case-fact-title">{title}</p>
-      <div>{children}</div>
+      <div className="text-pretty text-sm leading-5 text-neutral-500 dark:text-neutral-400">
+        {children}
+      </div>
     </div>
   )
 
   const Facts = ({ children }: { children?: React.ReactNode }) => (
-    <div className="not-prose my-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="not-prose my-8 grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
       {children}
     </div>
   )

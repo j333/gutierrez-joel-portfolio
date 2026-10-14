@@ -132,7 +132,7 @@ const Writing = async ({ params }: SlugPageProps) => {
         )}
         <div className="relative">
           {headings.length >= 3 ? (
-            <aside className="hidden lg:absolute lg:left-0 lg:top-0 lg:block lg:h-full lg:w-44">
+            <aside className="hidden xl:absolute xl:left-0 xl:top-0 xl:block xl:h-full xl:w-44">
               <div className="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto pr-4">
                 <ArticleToc headings={headings} label={copy.notes.toc} />
               </div>

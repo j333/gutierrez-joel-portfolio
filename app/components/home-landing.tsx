@@ -109,11 +109,11 @@ export const HomeLanding = ({
     <div className="flex w-full flex-col">
       <section className="flex w-full flex-col gap-10">
         <div className="flex w-full flex-col gap-4">
-          <div className="flex w-full flex-col gap-8 lg:flex-row lg:gap-6">
-            <h1 className="w-full max-w-[860px] shrink-0 text-[2rem] font-normal leading-[1.12] tracking-[-0.04em] text-black sm:text-4xl md:text-[3.25rem] lg:w-[860px] dark:text-white">
+          <div className="grid w-full grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-x-8">
+            <h1 className="w-full max-w-[860px] text-balance text-[2rem] font-normal leading-[1.12] tracking-[-0.04em] text-black sm:text-4xl md:text-[3.25rem] dark:text-white">
               {copy.home.headline}
             </h1>
-            <div className="flex w-full flex-col gap-2.5 pt-9 pb-1.5 lg:min-w-0 lg:flex-1">
+            <div className="flex w-full min-w-0 flex-col gap-2.5 pt-9 pb-1.5">
               <p className={sectionLabelClassName}>{copy.home.nowLabel}</p>
               <p className="max-w-[65ch] text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
                 {copy.home.now}
@@ -229,8 +229,8 @@ export const HomeLanding = ({
           <p className="max-w-xl text-[1.375rem] font-normal leading-[1.45] tracking-[-0.025em] text-black dark:text-white">
             {copy.home.aboutTeaser.lead}
           </p>
-          <div className="grid w-full grid-cols-1 gap-6 lg:grid-cols-2">
-            <p className="text-base leading-relaxed text-neutral-600 dark:text-neutral-400">
+          <div className="grid w-full grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-x-8">
+            <p className="text-base leading-relaxed text-neutral-600 lg:pr-8 dark:text-neutral-400">
               {copy.home.aboutTeaser.body}
             </p>
             <div className="flex w-full flex-col gap-3 pt-1.5">
@@ -278,7 +278,7 @@ export const HomeLanding = ({
           linkLabel={copy.home.kindWords.allOnLinkedIn}
           external
         />
-        <div className="grid w-full grid-cols-1 gap-12 border-t border-neutral-200 pt-8 dark:border-neutral-800 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-6 lg:gap-y-12">
+        <div className="grid w-full grid-cols-1 gap-12 border-t border-neutral-200 pt-8 dark:border-neutral-800 sm:grid-cols-2 lg:grid-cols-3">
           {copy.home.kindWords.quotes.map((item) => (
             <figure key={item.name} className="flex min-w-0 flex-col gap-5">
               <figcaption className="flex flex-col gap-0.5">
