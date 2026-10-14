@@ -31,6 +31,9 @@ const localeNames: Record<Locale, string> = {
 
 const triggerClassName = `${chromeLinkSharedClassName} min-h-11 cursor-pointer gap-1.5 border-0 bg-transparent uppercase tracking-wider transition-colors hover:text-black aria-expanded:text-neutral-900 sm:min-h-0 dark:hover:text-white dark:aria-expanded:text-neutral-100`
 
+const triggerTouchClassName =
+  'inline-flex min-h-11 min-w-11 cursor-pointer items-center gap-2 rounded-sm border-0 bg-transparent px-3 font-mono text-sm uppercase leading-5 tracking-wider text-neutral-600 outline-none transition-colors hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 aria-expanded:text-neutral-900 dark:text-neutral-400 dark:hover:text-white dark:focus-visible:outline-neutral-100 dark:aria-expanded:text-neutral-100'
+
 const menuClassName =
   'absolute z-50 w-max min-w-32 border border-neutral-200 bg-white py-1 dark:border-neutral-800 dark:bg-black'
 
@@ -53,6 +56,7 @@ type LocaleSwitchProps = {
   label: string
   id?: string
   compact?: boolean
+  touch?: boolean
 }
 
 const rememberLocale = (locale: Locale) => {
@@ -71,6 +75,7 @@ export const LocaleSwitch = ({
   label,
   id = 'locale-switch',
   compact = false,
+  touch = false,
 }: LocaleSwitchProps) => {
   const pathname = usePathname() ?? localePath(locale, '/')
   const router = useRouter()
@@ -243,14 +248,18 @@ export const LocaleSwitch = ({
   return (
     <div
       ref={rootRef}
-      className="relative -mx-1 inline-flex w-fit items-center justify-self-start"
+      className={
+        touch
+          ? 'relative inline-flex items-center'
+          : 'relative -mx-1 inline-flex w-fit items-center justify-self-start'
+      }
       onBlur={handleBlur}
     >
       <button
         ref={buttonRef}
         id={id}
         type="button"
-        className={triggerClassName}
+        className={touch ? triggerTouchClassName : triggerClassName}
         aria-label={`${label}: ${localeNames[locale]}`}
         aria-haspopup="listbox"
         aria-expanded={isOpen}

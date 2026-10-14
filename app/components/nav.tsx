@@ -19,7 +19,7 @@ const sheetLinkClassName =
   'group flex min-h-14 w-full items-center py-4 text-xl font-normal leading-7 tracking-tight text-neutral-600 outline-none transition-colors hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-neutral-900 aria-[current=page]:text-black dark:text-neutral-400 dark:hover:text-white dark:aria-[current=page]:text-white dark:focus-visible:outline-neutral-100'
 
 const sheetControlsClassName =
-  'mt-auto flex items-center gap-x-6 pt-16'
+  'mt-auto flex w-full items-center justify-between pt-16'
 
 const sheetClassName =
   'nav-sheet fixed! inset-x-0 bottom-0 top-[var(--nav-height)] z-30 flex flex-col overflow-y-auto bg-white px-4 pb-[max(2.5rem,calc(1rem+env(safe-area-inset-bottom)))] pt-4 motion-safe:translate-y-0 motion-safe:opacity-100 motion-safe:transition-[opacity,translate] motion-safe:duration-200 motion-safe:ease-out motion-safe:starting:-translate-y-1 motion-safe:starting:opacity-0 dark:bg-black @min-[40rem]:hidden'
@@ -33,6 +33,7 @@ const smContainerWidth = 40
 
 type NavCopy = {
   primary: string
+  home: string
   craft: string
   notes: string
   about: string
@@ -83,6 +84,7 @@ export const Navbar = ({ locale, copy }: NavbarProps) => {
     { href: localePath(locale, '/notes'), name: copy.notes },
     { href: localePath(locale, '/about'), name: copy.about },
   ]
+  const sheetItems = [{ href: home, name: copy.home }, ...navItems]
   const navShellStyle = { '--nav-height': navHeight } as CSSProperties
 
   isMenuOpenRef.current = isMenuOpen
@@ -263,7 +265,7 @@ export const Navbar = ({ locale, copy }: NavbarProps) => {
               className={sheetClassName}
             >
               <ul className="flex flex-col">
-                {navItems.map((item) => (
+                {sheetItems.map((item) => (
                   <li
                     key={item.href}
                     className="border-b border-neutral-200 dark:border-neutral-800"
@@ -285,8 +287,9 @@ export const Navbar = ({ locale, copy }: NavbarProps) => {
                   id="locale-switch-menu"
                   locale={locale}
                   label={copy.language}
+                  touch
                 />
-                <ThemeToggle copy={copy.theme} />
+                <ThemeToggle copy={copy.theme} touch />
               </div>
             </div>
           ) : null}

@@ -112,6 +112,7 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
               locale={locale}
               copy={{
                 primary: copy.nav.primary,
+                home: copy.nav.home,
                 craft: copy.nav.craft,
                 notes: copy.nav.notes,
                 about: copy.nav.about,

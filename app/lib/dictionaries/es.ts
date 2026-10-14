@@ -7,6 +7,7 @@ export const es: Dictionary = {
   skip: 'Saltar al contenido principal',
   nav: {
     primary: 'Principal',
+    home: 'Inicio',
     craft: 'Proyectos',
     notes: 'Artículos',
     about: 'Sobre mí',

@@ -5,6 +5,7 @@ export const en = {
   skip: 'Skip to main content',
   nav: {
     primary: 'Primary',
+    home: 'Home',
     craft: 'Craft',
     notes: 'Notes',
     about: 'About',
