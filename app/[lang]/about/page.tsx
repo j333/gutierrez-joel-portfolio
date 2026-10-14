@@ -97,7 +97,7 @@ const Page = async () => {
 
             <AboutSection title={copy.about.education}>
               <ul className="flex w-full flex-col">
-                <li className="flex w-full items-start justify-between gap-3 py-3">
+                <li className="flex w-full items-baseline justify-between gap-3 py-3">
                   <div className="flex min-w-0 flex-col gap-1">
                     <h3 className="text-sm font-medium leading-5 text-neutral-800 dark:text-neutral-200">
                       {copy.about.degree}
@@ -109,7 +109,7 @@ const Page = async () => {
                   <YearRange
                     start={site.educationStart}
                     end={site.educationEnd}
-                    className="shrink-0 pt-0.5 font-mono text-xs leading-4 text-neutral-500 dark:text-neutral-400"
+                    className="shrink-0 font-mono text-xs leading-4 text-neutral-500 dark:text-neutral-400"
                   />
                 </li>
               </ul>

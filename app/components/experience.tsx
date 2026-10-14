@@ -13,7 +13,7 @@ type ExperiencePostsProps = {
 }
 
 const rowLinkClassName =
-  'group flex w-full items-start justify-between gap-3 border-neutral-200 py-3 outline-none transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 dark:border-neutral-800 dark:focus-visible:outline-neutral-100'
+  'group flex w-full items-baseline justify-between gap-3 border-neutral-200 py-3 outline-none transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 dark:border-neutral-800 dark:focus-visible:outline-neutral-100'
 
 const rowTitleClassName =
   'text-sm font-medium leading-5 text-neutral-800 transition-colors group-hover:text-black dark:text-neutral-200 dark:group-hover:text-white'
@@ -49,13 +49,13 @@ export const ExperiencePosts = async ({
                 </p>
               ) : null}
             </div>
-            <span className="flex shrink-0 items-center gap-2 pt-0.5">
+            <span className="flex shrink-0 items-baseline gap-2">
               <YearRange
                 start={entry.metadata.startedAt}
                 end={entry.metadata.endedAt}
                 className={rowYearClassName}
               />
-              <ArrowIcon className={rowArrowClassName} />
+              <ArrowIcon className={`${rowArrowClassName} self-center`} />
             </span>
           </Link>
         </li>

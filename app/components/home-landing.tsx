@@ -45,28 +45,28 @@ const formatHomeNoteDate = (date: string, locale: Locale, months: string[]) => {
   return `${month} ${parsed.getFullYear()}`
 }
 
-const SectionHeader = ({
+const sectionFrameClassName =
+  'flex w-full flex-col gap-8 pt-[120px] sm:grid sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end sm:gap-x-6 sm:gap-y-8'
+
+const sectionIntroClassName =
+  'flex min-w-0 flex-col gap-1 sm:col-start-1 sm:row-start-1'
+
+const sectionBodyClassName =
+  'min-w-0 sm:col-span-2 sm:col-start-1 sm:row-start-2'
+
+const sectionActionClassName = 'sm:col-start-2 sm:row-start-1'
+
+const SectionIntro = ({
   title,
   subtitle,
-  href,
-  linkLabel,
-  external,
 }: {
   title: string
   subtitle: string
-  href: string
-  linkLabel: string
-  external?: boolean
 }) => {
   return (
-    <div className="flex w-full flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-      <div className="flex min-w-0 flex-col gap-1">
-        <h2 className={sectionTitleClassName}>{title}</h2>
-        <p className={sectionSubtitleClassName}>{subtitle}</p>
-      </div>
-      <HomeActionLink href={href} external={external}>
-        {linkLabel}
-      </HomeActionLink>
+    <div className={sectionIntroClassName}>
+      <h2 className={sectionTitleClassName}>{title}</h2>
+      <p className={sectionSubtitleClassName}>{subtitle}</p>
     </div>
   )
 }
@@ -109,11 +109,11 @@ export const HomeLanding = ({
     <div className="flex w-full flex-col">
       <section className="flex w-full flex-col gap-10">
         <div className="flex w-full flex-col gap-4">
-          <div className="grid w-full grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-x-8">
-            <h1 className="w-full max-w-[860px] text-balance text-[2rem] font-normal leading-[1.12] tracking-[-0.04em] text-black sm:text-4xl md:text-[3.25rem] dark:text-white">
+          <div className="grid w-full grid-cols-1 gap-8 lg:grid-cols-4 lg:gap-x-8 xl:grid-cols-2">
+            <h1 className="w-full max-w-[860px] text-balance text-[2rem] font-normal leading-[1.12] tracking-[-0.04em] text-black sm:text-4xl md:text-[3.25rem] lg:col-span-3 xl:col-span-1 dark:text-white">
               {copy.home.headline}
             </h1>
-            <div className="flex w-full min-w-0 flex-col gap-2.5 pt-9 pb-1.5">
+            <div className="flex w-full min-w-0 flex-col gap-2.5 pb-1.5 lg:col-span-1 lg:pt-9">
               <p className={sectionLabelClassName}>{copy.home.nowLabel}</p>
               <p className="max-w-[65ch] text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
                 {copy.home.now}
@@ -142,14 +142,13 @@ export const HomeLanding = ({
         className="pt-28"
       />
 
-      <section className="flex w-full flex-col gap-8 pt-[120px]">
-        <SectionHeader
+      <section className={sectionFrameClassName}>
+        <SectionIntro
           title={copy.home.selectedWork.title}
           subtitle={copy.home.selectedWork.subtitle}
-          href={craftHref}
-          linkLabel={copy.home.selectedWork.allCases}
         />
-        {featuredCase ? (
+        <div className={`flex w-full flex-col gap-8 ${sectionBodyClassName}`}>
+          {featuredCase ? (
           <article className="flex w-full flex-col gap-3">
             <Link
               href={localePath(locale, `/${featuredCase.project.slug}`)}
@@ -170,7 +169,7 @@ export const HomeLanding = ({
                   />
                 ) : null
               })()}
-              <div className="flex w-full flex-col gap-1 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+              <div className="flex w-full flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
                 <h3 className="text-sm font-medium leading-5 text-neutral-800 transition-colors group-hover:text-black dark:text-neutral-200 dark:group-hover:text-white">
                   {featuredCase.copy.title}
                 </h3>
@@ -180,8 +179,8 @@ export const HomeLanding = ({
               </div>
             </Link>
           </article>
-        ) : null}
-        {pairCases.length > 0 ? (
+          ) : null}
+          {pairCases.length > 0 ? (
           <div className="grid w-full grid-cols-1 gap-6 lg:grid-cols-2">
             {pairCases.map((item) => {
               const image = getProjectImage(item.project)
@@ -202,7 +201,7 @@ export const HomeLanding = ({
                         quality={projectImageQuality}
                       />
                     ) : null}
-                    <div className="flex w-full flex-col gap-1 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+                    <div className="flex w-full flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
                       <h3 className="text-sm font-medium leading-5 text-neutral-800 transition-colors group-hover:text-black dark:text-neutral-200 dark:group-hover:text-white">
                         {item.copy.title}
                       </h3>
@@ -215,17 +214,18 @@ export const HomeLanding = ({
               )
             })}
           </div>
-        ) : null}
+          ) : null}
+        </div>
+        <HomeActionLink href={craftHref} className={sectionActionClassName}>
+          {copy.home.selectedWork.allCases}
+        </HomeActionLink>
       </section>
 
-      <section className="flex w-full flex-col gap-6 pt-[120px]">
-        <div className="flex w-full flex-col gap-6">
-          <div className="flex w-full flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-            <h2 className={sectionTitleClassName}>{copy.home.aboutTeaser.title}</h2>
-            <HomeActionLink href={aboutHref}>
-              {copy.home.aboutTeaser.more}
-            </HomeActionLink>
-          </div>
+      <section className="flex w-full flex-col gap-6 pt-[120px] sm:grid sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end sm:gap-x-6 sm:gap-y-6">
+        <h2 className={`${sectionTitleClassName} sm:col-start-1 sm:row-start-1`}>
+          {copy.home.aboutTeaser.title}
+        </h2>
+        <div className={`flex w-full flex-col gap-6 ${sectionBodyClassName}`}>
           <p className="max-w-xl text-[1.375rem] font-normal leading-[1.45] tracking-[-0.025em] text-black dark:text-white">
             {copy.home.aboutTeaser.lead}
           </p>
@@ -242,11 +242,11 @@ export const HomeLanding = ({
                   <li key={role.slug}>
                     <Link
                       href={localePath(locale, `/experience/${role.slug}`)}
-                      className={`group flex w-full items-center justify-between gap-3 border-neutral-200 py-3 outline-none transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 dark:border-neutral-800 dark:focus-visible:outline-neutral-100 ${
+                      className={`group flex w-full items-baseline justify-between gap-3 border-neutral-200 py-3 outline-none transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 dark:border-neutral-800 dark:focus-visible:outline-neutral-100 ${
                         index === 0 ? 'border-t-0' : 'border-t'
                       }`}
                     >
-                      <div className="flex min-w-0 flex-col gap-1 sm:flex-row sm:items-center sm:gap-3">
+                      <div className="flex min-w-0 flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-3">
                         <ScrambleTitle
                           text={role.company}
                           className="text-sm font-medium leading-5 text-neutral-800 transition-colors group-hover:text-black dark:text-neutral-200 dark:group-hover:text-white"
@@ -255,11 +255,11 @@ export const HomeLanding = ({
                           {role.role}
                         </span>
                       </div>
-                      <span className="flex shrink-0 items-center gap-2">
+                      <span className="flex shrink-0 items-baseline gap-2">
                         <span className="font-mono text-xs leading-4 text-neutral-500 dark:text-neutral-400">
                           {role.years}
                         </span>
-                        <ArrowIcon className={rowArrowClassName} />
+                        <ArrowIcon className={`${rowArrowClassName} self-center`} />
                       </span>
                     </Link>
                   </li>
@@ -268,17 +268,17 @@ export const HomeLanding = ({
             </div>
           </div>
         </div>
+        <HomeActionLink href={aboutHref} className={sectionActionClassName}>
+          {copy.home.aboutTeaser.more}
+        </HomeActionLink>
       </section>
 
-      <section className="flex w-full flex-col gap-8 pt-[120px]">
-        <SectionHeader
+      <section className={sectionFrameClassName}>
+        <SectionIntro
           title={copy.home.kindWords.title}
           subtitle={copy.home.kindWords.subtitle}
-          href={linkedIn}
-          linkLabel={copy.home.kindWords.allOnLinkedIn}
-          external
         />
-        <div className="grid w-full grid-cols-1 gap-12 border-t border-neutral-200 pt-8 dark:border-neutral-800 sm:grid-cols-2 lg:grid-cols-3">
+        <div className={`grid w-full grid-cols-1 gap-12 border-t border-neutral-200 pt-8 dark:border-neutral-800 sm:grid-cols-2 lg:grid-cols-3 ${sectionBodyClassName}`}>
           {copy.home.kindWords.quotes.map((item) => (
             <figure key={item.name} className="flex min-w-0 flex-col gap-5">
               <figcaption className="flex flex-col gap-0.5">
@@ -295,16 +295,21 @@ export const HomeLanding = ({
             </figure>
           ))}
         </div>
+        <HomeActionLink
+          href={linkedIn}
+          external
+          className={sectionActionClassName}
+        >
+          {copy.home.kindWords.allOnLinkedIn}
+        </HomeActionLink>
       </section>
 
-      <section className="flex w-full flex-col gap-8 pt-[120px] pb-[120px]">
-        <SectionHeader
+      <section className={`${sectionFrameClassName} pb-[120px]`}>
+        <SectionIntro
           title={copy.home.notesTeaser.title}
           subtitle={copy.home.notesTeaser.subtitle}
-          href={notesHref}
-          linkLabel={copy.home.notesTeaser.allNotes}
         />
-        <div className="grid w-full grid-cols-1 gap-6 lg:grid-cols-2">
+        <div className={`grid w-full grid-cols-1 gap-6 lg:grid-cols-2 ${sectionBodyClassName}`}>
           {previewNotes.map((post) => {
             const image = getWritingPostImage(post)
 
@@ -329,7 +334,7 @@ export const HomeLanding = ({
                       className={`aspect-video w-full ${imagePlaceholderClassName}`}
                     />
                   )}
-                  <div className="flex w-full flex-col gap-1 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+                  <div className="flex w-full flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
                     <h3 className="text-sm font-medium leading-5 text-neutral-800 transition-colors group-hover:text-black dark:text-neutral-200 dark:group-hover:text-white">
                       {post.metadata.title}
                     </h3>
@@ -349,6 +354,9 @@ export const HomeLanding = ({
             )
           })}
         </div>
+        <HomeActionLink href={notesHref} className={sectionActionClassName}>
+          {copy.home.notesTeaser.allNotes}
+        </HomeActionLink>
       </section>
     </div>
   )
