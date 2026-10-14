@@ -21,10 +21,6 @@ ${copy.about.bio.join('\n\n')}
 
 ${experience}
 
-## ${copy.about.education}
-
-- **${copy.about.degree}**, ${site.school} (${site.educationStart}–${site.educationEnd})
-
 ## ${copy.markdown.capabilities}
 
 ${copy.about.skills.map((skill) => `- ${skill}`).join('\n')}
@@ -32,12 +28,6 @@ ${copy.about.skills.map((skill) => `- ${skill}`).join('\n')}
 ## ${copy.about.stack}
 
 ${site.stack.map((tool) => `- ${tool}`).join('\n')}
-
-${copy.about.stackNote}
-
-## ${copy.markdown.languages}
-
-${copy.about.languageList.map((language) => `- ${language}`).join('\n')}
 `
 }
 

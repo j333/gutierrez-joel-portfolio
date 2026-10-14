@@ -7,7 +7,6 @@ import {
   sectionHeadingClassName,
   textColumnClassName,
 } from 'app/components/page-layout'
-import { YearRange } from 'app/components/year-range'
 import { JsonLd } from 'app/components/json-ld'
 import { fullWidthImageSizes } from 'app/lib/image-sizes'
 import { getDictionary, getLocale } from 'app/lib/i18n'
@@ -40,8 +39,7 @@ type AboutSectionProps = {
   children: ReactNode
 }
 
-const aboutListClassName =
-  'grid grid-cols-2 gap-y-2 sm:grid-cols-3 2xl:grid-cols-1'
+const aboutListClassName = 'grid grid-cols-2 gap-y-2 sm:grid-cols-3'
 
 // The grid gutter (gap-x-8) matches the nav and footer grids, so column left
 // edges sit on the chrome axes. Right padding inside each column widens the
@@ -89,34 +87,12 @@ const Page = async () => {
           ))}
         </div>
 
-        <div className="grid w-full grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-x-8 2xl:grid-cols-4">
-          <div className={`${pageStackClassName} 2xl:contents`}>
-            <AboutSection title={copy.about.experience}>
-              <ExperiencePosts heading="h3" />
-            </AboutSection>
+        <div className="grid w-full grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-x-8">
+          <AboutSection title={copy.about.experience}>
+            <ExperiencePosts heading="h3" />
+          </AboutSection>
 
-            <AboutSection title={copy.about.education}>
-              <ul className="flex w-full flex-col">
-                <li className="flex w-full items-baseline justify-between gap-3 py-3">
-                  <div className="flex min-w-0 flex-col gap-1">
-                    <h3 className="text-sm font-medium leading-5 text-neutral-800 dark:text-neutral-200">
-                      {copy.about.degree}
-                    </h3>
-                    <p className="text-pretty text-sm leading-5 text-neutral-500 dark:text-neutral-400">
-                      {site.school}
-                    </p>
-                  </div>
-                  <YearRange
-                    start={site.educationStart}
-                    end={site.educationEnd}
-                    className="shrink-0 font-mono text-xs leading-4 text-neutral-500 dark:text-neutral-400"
-                  />
-                </li>
-              </ul>
-            </AboutSection>
-          </div>
-
-          <div className={`${pageStackClassName} 2xl:contents`}>
+          <div className={pageStackClassName}>
             <AboutSection title={copy.about.capabilities}>
               <ul className={aboutListClassName}>
                 {copy.about.skills.map((skill) => (
@@ -130,36 +106,18 @@ const Page = async () => {
               </ul>
             </AboutSection>
 
-            <div className={`${pageStackClassName} ${textColumnClassName}`}>
-              <AboutSection title={copy.about.stack}>
-                <ul className={aboutListClassName}>
-                  {site.stack.map((tool) => (
-                    <li
-                      key={tool}
-                      className="text-sm leading-5 text-neutral-600 dark:text-neutral-400"
-                    >
-                      {tool}
-                    </li>
-                  ))}
-                </ul>
-                <p className="mt-4 text-pretty text-xs leading-4 text-neutral-500 dark:text-neutral-400">
-                  {copy.about.stackNote}
-                </p>
-              </AboutSection>
-
-              <AboutSection title={copy.about.languages}>
-                <ul className={aboutListClassName}>
-                  {copy.about.languageList.map((language) => (
-                    <li
-                      key={language}
-                      className="text-sm leading-5 text-neutral-600 dark:text-neutral-400"
-                    >
-                      {language}
-                    </li>
-                  ))}
-                </ul>
-              </AboutSection>
-            </div>
+            <AboutSection title={copy.about.stack}>
+              <ul className={aboutListClassName}>
+                {site.stack.map((tool) => (
+                  <li
+                    key={tool}
+                    className="text-sm leading-5 text-neutral-600 dark:text-neutral-400"
+                  >
+                    {tool}
+                  </li>
+                ))}
+              </ul>
+            </AboutSection>
           </div>
         </div>
 

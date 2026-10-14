@@ -5,9 +5,6 @@ export const site = {
   githubUrl: 'https://github.com/j333/gutierrez-joel-portfolio/',
   resumePath: '/Joel_Gutierrez_Resume.pdf',
   email: 'joelg333@gmail.com',
-  school: 'Universidad Nacional de Cuyo',
-  educationStart: '2008',
-  educationEnd: '2013',
   stack: [
     'Claude',
     'Cursor',

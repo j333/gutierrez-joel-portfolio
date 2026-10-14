@@ -51,7 +51,7 @@ export const es: Dictionary = {
       cases: {
         marketfully: {
           title: 'Plataforma de marketing con IA — del MVP a la adquisición',
-          meta: 'MARKETFULLY · 2022–2026',
+          meta: 'MARKETFULLY',
         },
         jaga: {
           title: 'Identidad de producto para transcreación',
@@ -169,10 +169,8 @@ export const es: Dictionary = {
       'Product designer entre diseño, desarrollo y estrategia.',
     intro: 'Product Designer',
     experience: 'Experiencia',
-    education: 'Educación',
     capabilities: 'Capacidades',
     stack: 'Stack',
-    languages: 'Idiomas',
     bio: [
       'Soy Joel, product designer entre las intersecciones de diseño, desarrollo y estrategia.',
       'Comencé de manera autodidacta a los 15, creando sitios web mientras estudiaba electrónica. Diseño en la universidad me dio después una forma más estratégica de mirar los problemas.',
@@ -188,10 +186,6 @@ export const es: Dictionary = {
       'Investigación de usuarios',
       'Branding',
     ],
-    stackNote:
-      'Estas son mis favoritas actualmente, siendo mi stack de conocimiento de herramientas más amplio.',
-    languageList: ['Inglés (C1)', 'Español (nativo)'],
-    degree: 'Diseño gráfico',
     portraitAlt: 'Retrato de Joel Gutiérrez',
   },
   experience: {
@@ -265,7 +259,6 @@ export const es: Dictionary = {
   markdown: {
     aboutTitle: 'Sobre mí',
     capabilities: 'Capacidades',
-    languages: 'Idiomas',
     projects: 'Proyectos',
   },
 }

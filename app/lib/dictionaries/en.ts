@@ -49,7 +49,7 @@ export const en = {
       cases: {
         marketfully: {
           title: 'AI marketing platform — from MVP to acquisition',
-          meta: 'MARKETFULLY · 2022–2026',
+          meta: 'MARKETFULLY',
         },
         jaga: {
           title: 'Product identity for transcreation',
@@ -166,10 +166,8 @@ export const en = {
       'Product designer working at the intersection of design, development, and strategy.',
     intro: 'Product Designer',
     experience: 'Experience',
-    education: 'Education',
     capabilities: 'Capabilities',
     stack: 'Stack',
-    languages: 'Languages',
     bio: [
       "I'm Joel, a product designer working at the intersection of design, development, and strategy.",
       'I taught myself at 15, building websites while I studied electronics. Design school later gave me a more strategic way of looking at problems.',
@@ -185,10 +183,6 @@ export const en = {
       'User Research',
       'Branding',
     ],
-    stackNote:
-      'These are my current favorites, and my broader stack of tool knowledge.',
-    languageList: ['English (C1)', 'Spanish (native)'],
-    degree: 'Graphic Design',
     portraitAlt: 'Portrait of Joel Gutiérrez',
   },
   experience: {
@@ -262,7 +256,6 @@ export const en = {
   markdown: {
     aboutTitle: 'About',
     capabilities: 'Capabilities',
-    languages: 'Languages',
     projects: 'Projects',
   },
 }

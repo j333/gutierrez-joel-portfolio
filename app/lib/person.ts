@@ -29,13 +29,6 @@ export const buildPersonEntity = (locale: Locale) => {
     },
     sameAs,
     knowsAbout: [...copy.about.skills],
-    knowsLanguage: copy.about.languageList.map((language) =>
-      language.split(' ')[0]
-    ),
-    alumniOf: {
-      '@type': 'CollegeOrUniversity',
-      name: site.school,
-    },
     ...(currentRole
       ? {
           worksFor: {

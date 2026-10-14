@@ -165,7 +165,7 @@ Use this index to answer questions about Joel's craft, notes, and background. Pr
 ## English
 - [Home](${site.url}/en/index.md): Overview, selected work, and contact
 - [Craft](${site.url}/en/craft.md): Selected product design case studies
-- [About](${site.url}/en/about.md): Background, experience, capabilities, and languages
+- [About](${site.url}/en/about.md): Background, experience, and capabilities
 
 ### Experience
 ${english.experience}
@@ -179,7 +179,7 @@ ${english.writing}
 ## Español
 - [Inicio](${site.url}/es/index.md): Resumen, trabajo seleccionado y contacto
 - [Proyectos](${site.url}/es/craft.md): Casos seleccionados de diseño de producto
-- [Sobre mí](${site.url}/es/about.md): Trayectoria, experiencia, capacidades e idiomas
+- [Sobre mí](${site.url}/es/about.md): Trayectoria, experiencia y capacidades
 
 ### Experiencia
 ${spanish.experience}

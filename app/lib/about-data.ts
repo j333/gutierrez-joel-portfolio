@@ -25,15 +25,3 @@ export const aboutStack = [
   'PostHog',
   'Slack',
 ] as const
-
-export const aboutStackNote =
-  'These are my current favorites. Over more than a decade I have worked with many others, and I still have knowledge across a broader set of tools.'
-
-export const aboutLanguages = ['English (C1)', 'Spanish (native)'] as const
-
-export const aboutEducation = {
-  degree: 'Graphic Design',
-  school: 'Universidad Nacional de Cuyo',
-  start: '2008',
-  end: '2013',
-} as const
