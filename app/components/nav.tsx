@@ -237,7 +237,7 @@ export const Navbar = ({ locale, copy }: NavbarProps) => {
                 </li>
               ))}
               <li className="flex min-w-0 items-center gap-x-6 lg:justify-end lg:gap-x-8">
-                <LocaleSwitch locale={locale} label={copy.language} />
+                <LocaleSwitch compact locale={locale} label={copy.language} />
                 <ThemeToggle copy={copy.theme} />
               </li>
             </ul>
