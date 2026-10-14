@@ -109,8 +109,8 @@ export const HomeLanding = ({
     <div className="flex w-full flex-col">
       <section className="flex w-full flex-col gap-10">
         <div className="flex w-full flex-col gap-4">
-          <div className="grid w-full grid-cols-1 gap-8 lg:grid-cols-4 lg:gap-x-8 xl:grid-cols-2">
-            <h1 className="w-full max-w-[860px] text-balance text-[2rem] font-normal leading-[1.12] tracking-[-0.04em] text-black sm:text-4xl md:text-[3.25rem] lg:col-span-3 xl:col-span-1 dark:text-white">
+          <div className="grid w-full grid-cols-1 gap-8 lg:grid-cols-4 lg:gap-x-8">
+            <h1 className="w-full max-w-[860px] text-balance text-[2rem] font-normal leading-[1.12] tracking-[-0.04em] text-black sm:text-4xl md:text-[3.25rem] lg:col-span-3 dark:text-white">
               {copy.home.headline}
             </h1>
             <div className="flex w-full min-w-0 flex-col gap-2.5 pb-1.5 lg:col-span-1 lg:pt-9">
