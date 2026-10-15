@@ -261,5 +261,6 @@ export const es: Dictionary = {
     aboutTitle: 'Sobre mí',
     capabilities: 'Capacidades',
     projects: 'Proyectos',
+    contact: 'Contacto',
   },
 }

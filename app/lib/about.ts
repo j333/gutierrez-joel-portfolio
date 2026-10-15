@@ -1,6 +1,7 @@
 import { getExperience } from 'app/experience/utils'
 import { dictionaries } from 'app/lib/i18n'
 import { localePath, type Locale } from 'app/lib/locale'
+import { getWritingPosts } from 'app/notes/utils'
 import { getListedProjects } from 'app/projects/utils'
 import { site } from 'app/lib/site'
 
@@ -66,11 +67,48 @@ ${copy.home.aboutTeaser.roles
 
 ${copy.projects.employmentNote} [${copy.about.title}](${site.url}${localePath(locale, '/about')}.md).
 
+## ${copy.home.kindWords.title}
+
+${copy.home.kindWords.subtitle}
+
+${copy.home.kindWords.quotes
+  .map((item) => `- ${item.quote} — ${item.name}, ${item.role}`)
+  .join('\n')}
+
 ## ${copy.craft.title}
 
 ${copy.projects.homeNote}
 
 [${copy.craft.title}](${site.url}${localePath(locale, '/craft')}.md)
+
+## ${copy.home.notesTeaser.title}
+
+${copy.home.notesTeaser.subtitle}
+
+[${copy.home.notesTeaser.title}](${site.url}${localePath(locale, '/notes')}.md)
+
+## ${copy.markdown.contact}
+
+${site.email}
+`
+}
+
+export const buildNotesMarkdown = (locale: Locale) => {
+  const copy = dictionaries[locale]
+  const posts = getWritingPosts(locale)
+    .map(
+      (post) =>
+        `- [${post.metadata.title}](${site.url}${localePath(locale, `/notes/${post.slug}`)}.md) (${post.metadata.publishedAt}): ${post.metadata.summary}`
+    )
+    .join('\n')
+
+  return `# ${copy.notes.title}
+
+> ${copy.notes.description}
+
+${copy.notes.intro}
+
+${posts}
 `
 }
 

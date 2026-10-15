@@ -258,6 +258,7 @@ export const en = {
     aboutTitle: 'About',
     capabilities: 'Capabilities',
     projects: 'Projects',
+    contact: 'Contact',
   },
 }
 

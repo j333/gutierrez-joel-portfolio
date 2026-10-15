@@ -18,6 +18,7 @@ export const generateMetadata = async () => {
     path: '/notes',
     title: copy.notes.title,
     description: copy.notes.description,
+    markdownPath: '/notes',
   })
 }
 

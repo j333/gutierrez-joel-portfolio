@@ -60,7 +60,7 @@ Projects, notes, and experience are MDX collections. The filename is the slug. A
 
 Every content image on the site is **WebP**. Convert PNG/JPEG sources with the scripts below; do not commit those formats to `public/projects` or `public/writing`. Platform icons (`favicon.ico`, PWA PNGs) are the exception.
 
-HTML pages advertise a `text/markdown` alternate. Append `.md` to a URL (`/jaga.md`, `/notes/liquid-glass.md`, `/about.md`, `/index.md`) for a machine-readable version. [`/llms.txt`](https://www.gutierrezjoel.com/llms.txt) is an index of those files; [`/llms-full.txt`](https://www.gutierrezjoel.com/llms-full.txt) concatenates about, cases, and notes.
+HTML pages advertise a `text/markdown` alternate. Append `.md` to a URL (`/jaga.md`, `/notes/liquid-glass.md`, `/about.md`, `/index.md`) for a machine-readable version. [`/llms.txt`](https://www.gutierrezjoel.com/llms.txt) is an index of those files; [`/llms-full.txt`](https://www.gutierrezjoel.com/llms-full.txt) concatenates the pages, experience, cases, and notes in both languages.
 
 ### Images
 

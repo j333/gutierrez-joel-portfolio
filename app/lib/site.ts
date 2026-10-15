@@ -3,7 +3,6 @@ export const site = {
   url: 'https://www.gutierrezjoel.com',
   host: 'gutierrezjoel.com',
   githubUrl: 'https://github.com/j333/gutierrez-joel-portfolio/',
-  resumePath: '/Joel_Gutierrez_Resume.pdf',
   email: 'joelg333@gmail.com',
   stack: [
     'Claude',

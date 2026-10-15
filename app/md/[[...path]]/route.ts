@@ -11,7 +11,9 @@ export const generateStaticParams = async () => {
 
   return locales.flatMap((lang) => [
     { path: [lang, 'index'] },
+    { path: [lang, 'craft'] },
     { path: [lang, 'about'] },
+    { path: [lang, 'notes'] },
     ...getProjects(lang).map((project) => ({ path: [lang, project.slug] })),
     ...getWritingPosts(lang).map((post) => ({
       path: [lang, 'notes', post.slug],

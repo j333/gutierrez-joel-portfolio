@@ -2,19 +2,14 @@ import {
   buildAboutMarkdown,
   buildCraftMarkdown,
   buildHomeMarkdown,
+  buildNotesMarkdown,
 } from 'app/lib/about'
+import { dictionaries } from 'app/lib/i18n'
 import { locales, localePath, isLocale, type Locale } from 'app/lib/locale'
 import { site, socialLinks } from 'app/lib/site'
 import { getExperience, getExperienceBySlug } from 'app/experience/utils'
-import {
-  getListedProjects,
-  getProjectBySlug,
-  getProjects,
-} from 'app/projects/utils'
-import {
-  getWritingPostBySlug,
-  getWritingPosts,
-} from 'app/notes/utils'
+import { getListedProjects, getProjectBySlug } from 'app/projects/utils'
+import { getWritingPostBySlug, getWritingPosts } from 'app/notes/utils'
 
 export const markdownContentType = 'text/markdown; charset=utf-8'
 
@@ -58,6 +53,10 @@ export const resolveMarkdownPath = (segments: string[] | undefined) => {
 
   if (rest.length === 1 && rest[0] === 'about') {
     return buildAboutMarkdown(locale)
+  }
+
+  if (rest.length === 1 && rest[0] === 'notes') {
+    return buildNotesMarkdown(locale)
   }
 
   if (rest.length === 2 && rest[0] === 'notes') {
@@ -123,95 +122,146 @@ export const resolveMarkdownPath = (segments: string[] | undefined) => {
   return null
 }
 
-const sectionLinks = (locale: Locale) => {
-  const projects = getListedProjects(locale)
-    .map(
-      (project) =>
-        `- [${project.metadata.title}](${site.url}${localePath(locale, `/${project.slug}`)}.md) (${project.metadata.product}): ${project.metadata.summary ?? project.metadata.title}`
-    )
-    .join('\n')
+const yearRange = (startedAt: string, endedAt: string) =>
+  startedAt === endedAt ? startedAt : `${startedAt}–${endedAt}`
 
-  const experience = getExperience(locale)
-    .map(
-      (entry) =>
-        `- [${entry.metadata.title}](${site.url}${localePath(locale, `/experience/${entry.slug}`)}.md) (${entry.metadata.startedAt}–${entry.metadata.endedAt}): ${entry.metadata.summary}`
-    )
-    .join('\n')
+const markdownUrl = (locale: Locale, path: string) =>
+  `${site.url}${localePath(locale, path)}.md`
 
-  const writing = getWritingPosts(locale)
-    .map(
-      (post) =>
-        `- [${post.metadata.title}](${site.url}${localePath(locale, `/notes/${post.slug}`)}.md): ${post.metadata.summary}`
-    )
-    .join('\n')
+const linkLine = (title: string, url: string, description: string) =>
+  `- [${title}](${url}): ${description}`
 
-  return { projects, experience, writing }
+type LlmsSectionCopy = {
+  pages: string
+  cases: string
+  experience: string
+  notes: string
+  home: string
+  about: string
+}
+
+const llmsSectionCopy: Record<Locale, LlmsSectionCopy> = {
+  en: {
+    pages: 'Pages (English)',
+    cases: 'Case studies (English)',
+    experience: 'Experience (English)',
+    notes: 'Notes (English)',
+    home: 'Headline, what Joel is working on now, selected work, previous roles, kind words, and contact',
+    about: 'Bio, employment history, capabilities, and tools',
+  },
+  es: {
+    pages: 'Páginas (español)',
+    cases: 'Proyectos (español)',
+    experience: 'Experiencia (español)',
+    notes: 'Artículos (español)',
+    home: 'Titular, en qué está trabajando ahora, trabajo seleccionado, roles anteriores, palabras amables y contacto',
+    about: 'Bio, trayectoria laboral, capacidades y herramientas',
+  },
+}
+
+const localeSections = (locale: Locale) => {
+  const copy = dictionaries[locale]
+  const labels = llmsSectionCopy[locale]
+
+  const pages = [
+    linkLine(copy.home.title, markdownUrl(locale, '/index'), labels.home),
+    linkLine(copy.craft.title, markdownUrl(locale, '/craft'), copy.craft.intro),
+    linkLine(copy.about.title, markdownUrl(locale, '/about'), labels.about),
+    linkLine(copy.notes.title, markdownUrl(locale, '/notes'), copy.notes.intro),
+  ]
+
+  const cases = getListedProjects(locale).map((project) => {
+    const meta = [
+      project.metadata.product,
+      project.metadata.role,
+      yearRange(project.metadata.startedAt, project.metadata.endedAt),
+    ]
+      .filter(Boolean)
+      .join(', ')
+
+    return linkLine(
+      project.metadata.title,
+      markdownUrl(locale, `/${project.slug}`),
+      `${meta}. ${project.metadata.summary ?? project.metadata.deliverable}`
+    )
+  })
+
+  const experience = getExperience(locale).map((entry) => {
+    const meta = [
+      entry.metadata.role,
+      yearRange(entry.metadata.startedAt, entry.metadata.endedAt),
+    ]
+      .filter(Boolean)
+      .join(', ')
+
+    return linkLine(
+      entry.metadata.title,
+      markdownUrl(locale, `/experience/${entry.slug}`),
+      `${meta}. ${entry.metadata.summary}`
+    )
+  })
+
+  const notes = getWritingPosts(locale).map((post) =>
+    linkLine(
+      post.metadata.title,
+      markdownUrl(locale, `/notes/${post.slug}`),
+      `${copy.meta.published} ${post.metadata.publishedAt}. ${post.metadata.summary}`
+    )
+  )
+
+  return [
+    `## ${labels.pages}\n\n${pages.join('\n')}`,
+    `## ${labels.cases}\n\n${cases.join('\n')}`,
+    `## ${labels.experience}\n\n${experience.join('\n')}`,
+    `## ${labels.notes}\n\n${notes.join('\n')}`,
+  ].join('\n\n')
 }
 
 export const buildLlmsTxt = () => {
-  const english = sectionLinks('en')
-  const spanish = sectionLinks('es')
+  const copy = dictionaries.en
   const optionalLinks = [
-    `- [Resume PDF](${site.url}${site.resumePath})`,
-    ...socialLinks.map((link) => `- [${link.name}](${link.url})`),
+    ...socialLinks.map((link) =>
+      linkLine(link.name, link.url, `Joel's ${link.name} profile`)
+    ),
+    linkLine('Source on GitHub', site.githubUrl, 'Code for this site'),
   ].join('\n')
 
   return `# ${site.name}
 
-English lives at /en. Spanish lives at /es. El español está en /es.
+> Portfolio of ${site.name}, ${copy.jobTitle} based in Mendoza, Argentina. ${copy.description} Case studies, employment history, and notes on design, product, and craft, in English and Spanish.
 
-Use this index to answer questions about Joel's craft, notes, and background. Prefer the markdown versions of pages when available.
+${copy.home.intro} Now: ${copy.home.now}
 
-## English
-- [Home](${site.url}/en/index.md): Overview, selected work, and contact
-- [Craft](${site.url}/en/craft.md): Selected product design case studies
-- [About](${site.url}/en/about.md): Background, experience, and capabilities
+The site lives at [${site.host}](${site.url}). English is under /en and Spanish under /es, with the same slugs in both languages. Every page listed below has a Markdown mirror at the same path with \`.md\` appended; these are the links used here. Prefer them over the HTML pages when answering questions. The full text of every page, in both languages, is concatenated at [llms-full.txt](${site.url}/llms-full.txt).
 
-### Experience
-${english.experience}
+${copy.projects.homeNote} ${copy.projects.employmentNote} the Experience entries and the About page. Contact: ${site.email}.
 
-### Project case studies
-${english.projects}
+${localeSections('en')}
 
-### Notes
-${english.writing}
-
-## Español
-- [Inicio](${site.url}/es/index.md): Resumen, trabajo seleccionado y contacto
-- [Proyectos](${site.url}/es/craft.md): Casos seleccionados de diseño de producto
-- [Sobre mí](${site.url}/es/about.md): Trayectoria, experiencia y capacidades
-
-### Experiencia
-${spanish.experience}
-
-### Proyectos
-${spanish.projects}
-
-### Artículos
-${spanish.writing}
+${localeSections('es')}
 
 ## Optional
+
 ${optionalLinks}
 `
 }
 
 export const buildLlmsFullTxt = () => {
-  const sections = locales.flatMap((locale) => {
-    const projects = getProjects(locale)
-    const writing = getWritingPosts(locale)
-
-    return [
-      buildHomeMarkdown(locale),
-      buildCraftMarkdown(locale),
-      buildAboutMarkdown(locale),
-      ...projects.map(
-        (project) => resolveMarkdownPath([locale, project.slug]) ?? ''
-      ),
-      ...writing.map(
-        (post) => resolveMarkdownPath([locale, 'notes', post.slug]) ?? ''
-      ),
-    ]
-  })
+  const sections = locales.flatMap((locale) => [
+    buildHomeMarkdown(locale),
+    buildCraftMarkdown(locale),
+    buildAboutMarkdown(locale),
+    buildNotesMarkdown(locale),
+    ...getExperience(locale).map(
+      (entry) => resolveMarkdownPath([locale, 'experience', entry.slug]) ?? ''
+    ),
+    ...getListedProjects(locale).map(
+      (project) => resolveMarkdownPath([locale, project.slug]) ?? ''
+    ),
+    ...getWritingPosts(locale).map(
+      (post) => resolveMarkdownPath([locale, 'notes', post.slug]) ?? ''
+    ),
+  ])
 
   return sections.filter(Boolean).join('\n\n---\n\n')
 }
