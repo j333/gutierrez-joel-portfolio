@@ -158,10 +158,22 @@ export const ZoomableImage = ({
     handleClose()
   }
 
-  const overlayImageClassName = cx(
-    'h-auto w-auto max-w-[calc(100vw-2rem)] cursor-zoom-out select-none object-contain',
-    caption ? 'max-h-[calc(100vh-8rem)]' : 'max-h-[calc(100vh-3rem)]'
-  )
+  const overlayViewportMaxWidth = 'calc(100vw - 2rem)'
+  const overlayViewportMaxHeight = caption
+    ? 'calc(100vh - 8rem)'
+    : 'calc(100vh - 3rem)'
+  // Never draw the enlarged image larger than its own pixels. The viewport
+  // still shrinks it when the screen is smaller than the file.
+  const overlayImageStyle = {
+    maxWidth: hasDimensions
+      ? `min(${width}px, ${overlayViewportMaxWidth})`
+      : overlayViewportMaxWidth,
+    maxHeight: hasDimensions
+      ? `min(${height}px, ${overlayViewportMaxHeight})`
+      : overlayViewportMaxHeight,
+  }
+  const overlayImageClassName =
+    'h-auto w-auto cursor-zoom-out select-none object-contain'
 
   const overlay = isOpen ? (
     <div
@@ -197,6 +209,7 @@ export const ZoomableImage = ({
             width={width}
             height={height}
             onClick={handleOverlayImageClick}
+            style={overlayImageStyle}
             className={overlayImageClassName}
           />
         ) : (
@@ -205,8 +218,9 @@ export const ZoomableImage = ({
             alt={alt}
             width={width}
             height={height}
-            sizes="100vw"
+            sizes={hasDimensions ? `${width}px` : '100vw'}
             onClick={handleOverlayImageClick}
+            style={overlayImageStyle}
             className={overlayImageClassName}
           />
         )}
