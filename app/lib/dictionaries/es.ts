@@ -46,7 +46,7 @@ export const es: Dictionary = {
       years: '2014 — 2026',
     },
     selectedWork: {
-      title: 'Trabajo seleccionado',
+      title: 'Trabajos seleccionados',
       subtitle: 'Proyectos entre estrategia de producto, diseño y marca.',
       allCases: 'TODOS LOS CASOS',
       cases: {
@@ -67,7 +67,7 @@ export const es: Dictionary = {
     aboutTeaser: {
       lead:
         'La IA multiplica las opciones y la velocidad de trabajo. Mi tarea se centra en colaborar y tomar decisiones para solucionar problemas reales, para ser desarrolladas en equipo, bajo objetivos específicos.',
-      body: 'Diseñé en industrias distintas, como seguros, salud, retail, gastronomía, educación y marketing. El producto cambiaba con el problema: dashboards, landings, web apps y apps de iOS, siempre al lado de producto e ingeniería. Cuando no estoy entre pantallas, cuadernos y fibras, estoy en la montaña de Mendoza en moto o bici.',
+      body: 'Colaboré en proyectos para muchas industrias, como seguros, salud, retail, gastronomía, educación y marketing. El producto cambiaba con el problema: dashboards, landings, web apps y apps de iOS, siempre al lado de producto, ingeniería y negocios. Cuando no estoy entre pantallas, cuadernos y fibras, estoy en la montaña de Mendoza en moto o bici.',
       more: 'MÁS SOBRE MÍ',
       title: 'Sobre mí',
       previously: 'ANTES',
@@ -99,10 +99,10 @@ export const es: Dictionary = {
       ],
     },
     kindWords: {
-      title: 'Palabras amables',
+      title: 'Recomendaciones',
       subtitle:
         'Lo que dicen managers, compañeros y clientes sobre trabajar conmigo.',
-      allOnLinkedIn: 'TODO EN LINKEDIN',
+      allOnLinkedIn: 'VER EN LINKEDIN',
       quotes: [
         {
           name: 'Rob Lyons',
@@ -174,8 +174,8 @@ export const es: Dictionary = {
     stack: 'Stack',
     bio: [
       'Soy Joel, product designer entre las intersecciones de diseño, desarrollo y estrategia.',
-      'Comencé de manera autodidacta a los 15, creando sitios web mientras estudiaba electrónica. Diseño en la universidad me dio después una forma más estratégica de mirar los problemas.',
-      'Hoy desarrollo proyectos personales con lo que hace posible la IA. Cuando no estoy entre pantallas, me pierdo en la montaña de Mendoza, donde vivo.',
+      'Comencé de manera autodidacta a los 15, creando sitios web mientras estudiaba electrónica. En la universidad estudié Diseño, lo que me dio una forma estratégica de mirar los problemas y crear soluciones efectivas.',
+      'Hoy estoy desarrollando proyectos personales con lo que hace posible la IA: kywise.com y cofactor.team. Cuando no estoy entre pantallas, me pierdo en la montaña de Mendoza.',
     ],
     skills: [
       'Diseño de producto',
@@ -191,9 +191,9 @@ export const es: Dictionary = {
   },
   experience: {
     title: 'Experiencia',
-    description: 'Marcas, empresas y los proyectos en el medio.',
+    description: 'Marcas, empresas y proyectos.',
     eyebrow: 'EXPERIENCIA',
-    selectedWork: 'Trabajo seleccionado',
+    selectedWork: 'Trabajos seleccionados',
     clientWork: 'Trabajo con clientes',
     project: 'Proyecto',
   },

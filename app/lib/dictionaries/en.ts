@@ -65,7 +65,7 @@ export const en = {
     aboutTeaser: {
       lead:
         'AI multiplies the options and the pace of work. My role is to collaborate and make decisions that solve real problems, so they can be developed as a team, against specific goals.',
-      body: "I've designed across industries such as insurance, healthcare, retail, food, education, and marketing. The product changed with the problem: dashboards, landing pages, web apps, and iOS apps, always next to product and engineering. When I'm not between screens, notebooks, and pens, I'm in the mountains of Mendoza on my motorcycle or bike.",
+      body: "I've collaborated on projects across many industries, including insurance, healthcare, retail, food, education, and marketing. The product changed with the problem: dashboards, landing pages, web apps, and iOS apps, always alongside product, engineering, and the business. When I'm not between screens, notebooks, and pens, I'm in the mountains of Mendoza on my motorcycle or bike.",
       more: 'MORE ABOUT ME',
       title: 'About',
       previously: 'PREVIOUSLY',
@@ -97,9 +97,9 @@ export const en = {
       ],
     },
     kindWords: {
-      title: 'Kind words',
+      title: 'Recommendations',
       subtitle: 'What managers, teammates, and clients say about working with me.',
-      allOnLinkedIn: 'ALL ON LINKEDIN',
+      allOnLinkedIn: 'VIEW ON LINKEDIN',
       quotes: [
         {
           name: 'Rob Lyons',
@@ -171,8 +171,8 @@ export const en = {
     stack: 'Stack',
     bio: [
       "I'm Joel, a product designer working at the intersection of design, development, and strategy.",
-      'I taught myself at 15, building websites while I studied electronics. Design school later gave me a more strategic way of looking at problems.',
-      "These days I'm building personal projects around what AI makes possible. When I'm not between screens, I get lost in the mountains around Mendoza, where I live.",
+      'I taught myself at 15, building websites while I studied electronics. At university I studied design, which gave me a strategic way to look at problems and shape solutions that work.',
+      "These days I'm building personal projects with what AI makes possible: kywise.com and cofactor.team. When I'm not between screens, I get lost in the mountains around Mendoza.",
     ],
     skills: [
       'Product Design',
@@ -188,7 +188,7 @@ export const en = {
   },
   experience: {
     title: 'Experience',
-    description: 'Brands, companies, and the projects in between.',
+    description: 'Brands, companies, and projects.',
     eyebrow: 'EXPERIENCE',
     selectedWork: 'Selected work',
     clientWork: 'Client work',
