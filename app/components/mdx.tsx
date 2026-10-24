@@ -375,6 +375,29 @@ export const CustomMDX = async (props: MDXRemoteProps) => {
     <p className={`case-label ${metaLabelClassName}`}>{children}</p>
   )
 
+  const Site = ({
+    href,
+    children,
+  }: {
+    href: string
+    children?: React.ReactNode
+  }) => {
+    const label = typeof children === 'string' ? children : undefined
+
+    return (
+      <p>
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={label ? `${label}${copy.footer.externalSuffix}` : undefined}
+        >
+          {children}
+        </a>
+      </p>
+    )
+  }
+
   return (
     <MDXRemote
       {...props}
@@ -400,6 +423,7 @@ export const CustomMDX = async (props: MDXRemoteProps) => {
         Flows,
         Flow,
         Label,
+        Site,
         ...(props.components || {}),
       }}
     />
