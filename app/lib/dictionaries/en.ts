@@ -259,7 +259,7 @@ export const en = {
     open: 'Assistant',
     close: 'Close',
     restart: 'Restart',
-    placeholder: 'Ask about the work',
+    placeholder: 'Ask me anything',
     send: 'Send',
     ask: 'Ask',
     selectionQuestion: 'What should I make of this passage?',

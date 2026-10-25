@@ -262,7 +262,7 @@ export const es: Dictionary = {
     open: 'Assistant',
     close: 'Cerrar',
     restart: 'Reiniciar',
-    placeholder: 'Preguntá por el trabajo',
+    placeholder: 'Preguntame lo que quieras',
     send: 'Enviar',
     ask: 'Preguntar',
     selectionQuestion: '¿Qué tendría que leer en este fragmento?',
