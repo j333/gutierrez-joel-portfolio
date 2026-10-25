@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  serverExternalPackages: ['@opentelemetry/sdk-node', '@posthog/ai'],
   async rewrites() {
     return [
       {

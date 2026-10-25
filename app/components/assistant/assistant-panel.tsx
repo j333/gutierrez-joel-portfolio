@@ -30,7 +30,7 @@ import { Spinner } from 'app/components/ui/spinner'
 import type { AssistantUIMessage } from 'app/lib/assistant/agent'
 import type { AssistantCatalog } from 'app/lib/assistant/catalog'
 import { assistantContact } from 'app/lib/assistant/joel-context'
-import { capture } from 'app/lib/capture'
+import { assistantTraceIdentity, capture } from 'app/lib/capture'
 import { localePath, stripLocale, type Locale } from 'app/lib/locale'
 import { useAssistant } from './assistant-context'
 
@@ -432,6 +432,7 @@ export const Assistant = ({ locale, copy, catalog }: AssistantPanelProps) => {
   const chatBody = (quote: string) => ({
     locale,
     path: pathname,
+    ...assistantTraceIdentity(),
     ...(quote ? { quotedText: quote } : {}),
   })
 

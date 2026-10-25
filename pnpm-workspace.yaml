@@ -1,2 +1,10 @@
 allowBuilds:
   core-js: false
+  protobufjs: false
+overrides:
+  "@opentelemetry/api": "1.9.1"
+  "@opentelemetry/exporter-trace-otlp-http": "0.209.0"
+  "@opentelemetry/otlp-exporter-base": "0.209.0"
+  "@opentelemetry/otlp-transformer": "0.209.0"
+  "@opentelemetry/resources": "2.3.0"
+  "@opentelemetry/sdk-trace-base": "2.3.0"

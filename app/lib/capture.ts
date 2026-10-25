@@ -12,6 +12,20 @@ export const capture = (
   void posthog.capture(event, properties)
 }
 
+export const assistantTraceIdentity = () => {
+  if (!posthog.__loaded || posthog.has_opted_out_capturing()) {
+    return {}
+  }
+
+  const distinctId = posthog.get_distinct_id()
+  const sessionId = posthog.get_session_id()
+
+  return {
+    ...(distinctId ? { distinctId } : {}),
+    ...(sessionId ? { sessionId } : {}),
+  }
+}
+
 export const captureOutboundClick = (href: string) => {
   if (href.startsWith('mailto:')) {
     capture('contact_clicked')

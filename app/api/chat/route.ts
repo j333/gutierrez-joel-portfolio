@@ -2,9 +2,11 @@ import { google } from '@ai-sdk/google'
 import { groq } from '@ai-sdk/groq'
 import { Redis } from '@upstash/redis'
 import { consumeStream, createAgentUIStreamResponse, smoothStream, type LanguageModel } from 'ai'
+import { after } from 'next/server'
 import { createAssistantAgent, type AssistantUIMessage } from 'app/lib/assistant/agent'
 import { trimMessages } from 'app/lib/assistant/messages'
 import { withModelFallback } from 'app/lib/assistant/model-fallback'
+import { flushPostHogAiTraces, startPostHogAiTelemetry } from 'app/lib/assistant/posthog-telemetry'
 import { z } from 'zod'
 
 export const maxDuration = 30
@@ -28,6 +30,8 @@ const bodySchema = z.object({
   locale: z.enum(['en', 'es']),
   path: z.string().max(300),
   quotedText: z.string().max(2000).optional(),
+  distinctId: z.string().min(1).max(200).optional(),
+  sessionId: z.string().min(1).max(200).optional(),
 })
 
 const modelChain = [
@@ -120,17 +124,23 @@ export const POST = async (request: Request) => {
     return Response.json({ error: 'unavailable' }, { status: 503 })
   }
 
-  const { locale, path, quotedText } = parsed.data
+  const { locale, path, quotedText, distinctId, sessionId } = parsed.data
   const messages = trimMessages(parsed.data.messages as unknown as AssistantUIMessage[])
   const startedAt = Date.now()
 
-  return createAgentUIStreamResponse({
+  startPostHogAiTelemetry()
+
+  let traceDone: Promise<void> = Promise.resolve()
+
+  const response = await createAgentUIStreamResponse({
     agent: createAssistantAgent(resolved.model),
     uiMessages: messages,
-    options: { locale, path, quotedText },
+    options: { locale, path, quotedText, distinctId, sessionId },
     abortSignal: request.signal,
     experimental_transform: smoothStream({ chunking: 'word' }),
-    consumeSseStream: ({ stream }) => consumeStream({ stream }),
+    consumeSseStream: ({ stream }) => {
+      traceDone = consumeStream({ stream }).finally(() => flushPostHogAiTraces())
+    },
     onError: () => 'unavailable',
     messageMetadata: ({ part }) => {
       if (part.type === 'start') {
@@ -145,4 +155,8 @@ export const POST = async (request: Request) => {
       }
     },
   })
+
+  after(traceDone)
+
+  return response
 }
