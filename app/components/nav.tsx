@@ -238,6 +238,7 @@ export const Navbar = ({ locale, copy }: NavbarProps) => {
                   </li>
                 ))}
               </ul>
+              <AssistantTrigger label={copy.assistant} />
               <button
                 ref={menuButtonRef}
                 type="button"
@@ -249,7 +250,6 @@ export const Navbar = ({ locale, copy }: NavbarProps) => {
               >
                 <span ref={menuLabelRef}>{menuLabel}</span>
               </button>
-              <AssistantTrigger label={copy.assistant} />
             </div>
           </div>
           {isMenuOpen ? (

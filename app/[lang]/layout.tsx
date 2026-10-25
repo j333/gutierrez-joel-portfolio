@@ -1,10 +1,11 @@
 import '../global.css'
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { IBM_Plex_Mono, IBM_Plex_Sans } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { Navbar } from 'app/components/nav'
 import Footer from 'app/components/footer'
 import { Assistant } from 'app/components/assistant/assistant-panel'
+import { getAssistantCatalog } from 'app/lib/assistant/catalog'
 import { AssistantProvider } from 'app/components/assistant/assistant-context'
 import { AssistantShell } from 'app/components/assistant/assistant-shell'
 import { TextSelectionTooltip } from 'app/components/assistant/text-selection-tooltip'
@@ -36,6 +37,12 @@ const ibmPlexMono = IBM_Plex_Mono({
 })
 
 export const dynamicParams = false
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  interactiveWidget: 'resizes-content',
+}
 
 export const generateStaticParams = () =>
   locales.map((lang) => ({
@@ -81,6 +88,7 @@ export const generateMetadata = async (): Promise<Metadata> => {
 const RootLayout = async ({ children }: { children: React.ReactNode }) => {
   const locale = await getLocale()
   const copy = await getDictionary()
+  const catalog = getAssistantCatalog(locale)
 
   return (
     <html
@@ -137,7 +145,7 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
             </div>
             <Footer />
           </AssistantShell>
-          <Assistant locale={locale} copy={copy.assistant} />
+          <Assistant locale={locale} copy={copy.assistant} catalog={catalog} />
           <TextSelectionTooltip
             label={copy.assistant.ask}
             question={copy.assistant.selectionQuestion}

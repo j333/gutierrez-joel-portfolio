@@ -259,7 +259,7 @@ export const es: Dictionary = {
   dateLocale: 'es-AR',
   assistant: {
     title: 'Mi réplica artificial',
-    open: 'Assistant',
+    open: 'Réplica',
     close: 'Cerrar',
     restart: 'Reiniciar',
     placeholder: 'Preguntame lo que quieras',
@@ -275,7 +275,7 @@ export const es: Dictionary = {
     retry: 'Reintentar',
     thinking: 'Pensando',
     scrollToBottom: 'Al final',
-    error: 'Assistant no está disponible ahora.',
+    error: 'La réplica no está disponible ahora.',
     limit: 'Llegaste al límite de esta hora. Probá más tarde.',
     questions: {
       home: [

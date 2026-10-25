@@ -28,7 +28,8 @@ import {
 import { Suggestion, Suggestions } from 'app/components/ai-elements/suggestion'
 import { Spinner } from 'app/components/ui/spinner'
 import type { AssistantUIMessage } from 'app/lib/assistant/agent'
-import { joelContext } from 'app/lib/assistant/joel-context'
+import type { AssistantCatalog } from 'app/lib/assistant/catalog'
+import { assistantContact } from 'app/lib/assistant/joel-context'
 import { capture } from 'app/lib/capture'
 import { localePath, stripLocale, type Locale } from 'app/lib/locale'
 import { useAssistant } from './assistant-context'
@@ -68,6 +69,7 @@ export type AssistantCopy = {
 type AssistantPanelProps = {
   locale: Locale
   copy: AssistantCopy
+  catalog: AssistantCatalog
 }
 
 const fillTitle = (questions: readonly string[], title: string) =>
@@ -75,7 +77,7 @@ const fillTitle = (questions: readonly string[], title: string) =>
 
 const questionsForPath = (
   pathname: string,
-  locale: Locale,
+  catalog: AssistantCatalog,
   questions: AssistantCopy['questions']
 ) => {
   const path = stripLocale(pathname)
@@ -97,19 +99,19 @@ const questionsForPath = (
   }
 
   if (path.startsWith('/notes/')) {
-    const note = joelContext.notes.find((item) => item.path === path)
+    const note = catalog.notes.find((item) => item.path === path)
     return fillTitle(questions.note, note?.title ?? '')
   }
 
   if (path.startsWith('/experience/')) {
-    const role = joelContext.experience.find((item) => item.path === path)
+    const role = catalog.experience.find((item) => item.path === path)
     return fillTitle(questions.experience, role?.title ?? '')
   }
 
-  const caseStudy = joelContext.cases.find((item) => item.path === path)
+  const caseStudy = catalog.cases.find((item) => item.path === path)
 
   if (caseStudy) {
-    return fillTitle(questions.case, caseStudy.title[locale])
+    return fillTitle(questions.case, caseStudy.title)
   }
 
   return questions.default
@@ -192,17 +194,19 @@ const proseThenCards = (parts: AssistantUIMessage['parts']) => {
 const ProjectToolCard = ({
   slug,
   locale,
+  cases,
 }: {
   slug: string
   locale: Locale
+  cases: AssistantCatalog['cases']
 }) => {
-  const caseStudy = joelContext.cases.find((item) => item.slug === slug)
+  const caseStudy = cases.find((item) => item.slug === slug)
 
   if (!caseStudy) {
     return null
   }
 
-  const title = caseStudy.title[locale]
+  const title = caseStudy.title
 
   return (
     <article>
@@ -243,7 +247,7 @@ const ContactToolCard = ({ copy }: { copy: AssistantCopy }) => {
 
   const handleCopyEmail = async () => {
     try {
-      await navigator.clipboard.writeText(joelContext.email)
+      await navigator.clipboard.writeText(assistantContact.email)
     } catch {
       return
     }
@@ -262,7 +266,7 @@ const ContactToolCard = ({ copy }: { copy: AssistantCopy }) => {
   return (
     <article className="border-b border-neutral-200 dark:border-neutral-800">
       <a
-        href={joelContext.linkedin}
+        href={assistantContact.linkedin}
         target="_blank"
         rel="noopener noreferrer"
         className={contactRowClassName}
@@ -276,7 +280,7 @@ const ContactToolCard = ({ copy }: { copy: AssistantCopy }) => {
         aria-live="polite"
         className={contactRowClassName}
       >
-        <span className={`${contactLabelClassName} truncate`}>{joelContext.email}</span>
+        <span className={`${contactLabelClassName} truncate`}>{assistantContact.email}</span>
         <span className="shrink-0 font-mono text-xs uppercase leading-4 tracking-wider text-neutral-500 dark:text-neutral-400">
           {copied ? copy.copied : copy.copyEmail}
         </span>
@@ -298,10 +302,12 @@ const ToolPart = ({
   part,
   locale,
   copy,
+  cases,
 }: {
   part: AssistantUIMessage['parts'][number]
   locale: Locale
   copy: AssistantCopy
+  cases: AssistantCatalog['cases']
 }) => {
   if (part.type !== 'tool-showProjectCard' && part.type !== 'tool-triggerContactCTA') {
     return null
@@ -329,14 +335,14 @@ const ToolPart = ({
 
   if (part.type === 'tool-showProjectCard') {
     return (
-      <ProjectToolCard slug={part.output.slug} locale={locale} />
+      <ProjectToolCard slug={part.output.slug} locale={locale} cases={cases} />
     )
   }
 
   return <ContactToolCard copy={copy} />
 }
 
-export const Assistant = ({ locale, copy }: AssistantPanelProps) => {
+export const Assistant = ({ locale, copy, catalog }: AssistantPanelProps) => {
   const pathname = usePathname() ?? localePath(locale, '/')
   const {
     isOpen,
@@ -354,8 +360,10 @@ export const Assistant = ({ locale, copy }: AssistantPanelProps) => {
   const sentPendingRef = useRef('')
   const [input, setInput] = useState('')
   const [sheetFrame, setSheetFrame] = useState({
-    top: '0px',
+    mobile: false,
     height: '100dvh',
+    frameOffset: '0px',
+    frameHeight: '100%',
   })
   const { ref: sendLabelRef, replay: replaySendLabel } = useScrambleText(copy.send, {
     scramble: 5,
@@ -384,7 +392,7 @@ export const Assistant = ({ locale, copy }: AssistantPanelProps) => {
 
   const { messages, sendMessage, setMessages, status, error, stop, regenerate, clearError } =
     useChat<AssistantUIMessage>({
-      id: 'portfolio-assistant',
+      id: `portfolio-assistant-${locale}`,
       transport,
       throttle: 50,
       onFinish: ({ message, isAbort, isError }) => {
@@ -409,7 +417,7 @@ export const Assistant = ({ locale, copy }: AssistantPanelProps) => {
       },
     })
 
-  const suggestions = questionsForPath(pathname, locale, copy.questions)
+  const suggestions = questionsForPath(pathname, catalog, copy.questions)
   const busy = status === 'submitted' || status === 'streaming'
   const lastMessage = messages.at(-1)
   const waitingForReply =
@@ -461,27 +469,89 @@ export const Assistant = ({ locale, copy }: AssistantPanelProps) => {
     }
   }, [isOpen])
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!isOpen) {
       return
     }
 
     const query = window.matchMedia('(max-width: 639px)')
+    const html = document.documentElement
+    const { body } = document
+    let lockedScrollY = 0
+    let locked = false
 
-    const applyScrollLock = () => {
-      document.documentElement.style.overflow = query.matches ? 'hidden' : ''
+    const lock = () => {
+      if (!query.matches || locked) {
+        return
+      }
+
+      lockedScrollY = window.scrollY
+      html.style.overflow = 'hidden'
+      html.style.overscrollBehavior = 'none'
+      body.style.position = 'fixed'
+      body.style.top = `-${lockedScrollY}px`
+      body.style.left = '0'
+      body.style.right = '0'
+      body.style.width = '100%'
+      body.style.overflow = 'hidden'
+      locked = true
     }
 
-    applyScrollLock()
-    query.addEventListener('change', applyScrollLock)
+    const unlock = () => {
+      if (!locked) {
+        return
+      }
+
+      html.style.overflow = ''
+      html.style.overscrollBehavior = ''
+      body.style.position = ''
+      body.style.top = ''
+      body.style.left = ''
+      body.style.right = ''
+      body.style.width = ''
+      body.style.overflow = ''
+      locked = false
+      window.scrollTo(0, lockedScrollY)
+    }
+
+    const handleTouchMove = (event: TouchEvent) => {
+      if (!query.matches) {
+        return
+      }
+
+      const target = event.target
+
+      if (
+        target instanceof Element &&
+        target.closest('[data-assistant-transcript], textarea')
+      ) {
+        return
+      }
+
+      event.preventDefault()
+    }
+
+    const syncLock = () => {
+      if (query.matches) {
+        lock()
+        return
+      }
+
+      unlock()
+    }
+
+    syncLock()
+    query.addEventListener('change', syncLock)
+    document.addEventListener('touchmove', handleTouchMove, { passive: false, capture: true })
 
     return () => {
-      query.removeEventListener('change', applyScrollLock)
-      document.documentElement.style.overflow = ''
+      query.removeEventListener('change', syncLock)
+      document.removeEventListener('touchmove', handleTouchMove, { capture: true })
+      unlock()
     }
   }, [isOpen])
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!isOpen) {
       return
     }
@@ -495,13 +565,24 @@ export const Assistant = ({ locale, copy }: AssistantPanelProps) => {
 
     const updateFrame = () => {
       if (!mobileQuery.matches) {
-        setSheetFrame({ top: '0px', height: '100dvh' })
+        setSheetFrame({
+          mobile: false,
+          height: '100dvh',
+          frameOffset: '0px',
+          frameHeight: '100%',
+        })
         return
       }
 
+      const offsetTop = viewport.offsetTop
+      const visibleHeight = viewport.height
+      const layoutHeight = Math.max(window.innerHeight, document.documentElement.clientHeight)
+
       setSheetFrame({
-        top: `${viewport.offsetTop}px`,
-        height: `${viewport.height}px`,
+        mobile: true,
+        height: `${offsetTop + Math.max(visibleHeight, layoutHeight)}px`,
+        frameOffset: `${offsetTop}px`,
+        frameHeight: `${visibleHeight}px`,
       })
     }
 
@@ -583,14 +664,30 @@ export const Assistant = ({ locale, copy }: AssistantPanelProps) => {
       ref={dialogRef}
       data-assistant=""
       aria-labelledby="assistant-title"
-      style={{
-        '--assistant-sheet-top': sheetFrame.top,
-        '--assistant-sheet-height': sheetFrame.height,
-      } as CSSProperties}
-      className="fixed top-[var(--assistant-sheet-top,0px)] left-0 z-50 m-0 hidden h-[var(--assistant-sheet-height,100dvh)] w-full max-h-none max-w-none translate-y-2 flex-col border-0 border-neutral-200 bg-white p-0 text-black opacity-0 transition-discrete open:flex open:translate-y-0 open:opacity-100 motion-safe:transition-[translate,opacity,display] motion-safe:duration-200 motion-safe:ease-out motion-safe:starting:open:translate-y-2 motion-safe:starting:open:opacity-0 sm:inset-y-0 sm:left-auto sm:right-0 sm:h-dvh sm:w-[400px] sm:translate-x-full sm:translate-y-0 sm:border-l sm:opacity-100 sm:open:translate-x-0 sm:motion-safe:starting:open:translate-x-full sm:motion-safe:starting:open:translate-y-0 sm:motion-safe:starting:open:opacity-100 dark:border-neutral-800 dark:bg-black dark:text-white"
+      style={
+        sheetFrame.mobile
+          ? ({
+              top: 0,
+              height: sheetFrame.height,
+            } as CSSProperties)
+          : undefined
+      }
+      className="fixed top-0 left-0 z-50 m-0 hidden h-dvh w-full max-h-none max-w-none translate-y-2 flex-col overflow-visible overscroll-none border-0 border-neutral-200 bg-white p-0 text-black opacity-0 transition-discrete open:flex open:translate-y-0 open:opacity-100 motion-safe:transition-[translate,opacity,display] motion-safe:duration-200 motion-safe:ease-out motion-safe:starting:open:translate-y-2 motion-safe:starting:open:opacity-0 sm:inset-y-0 sm:left-auto sm:right-0 sm:h-dvh sm:w-[400px] sm:translate-x-full sm:translate-y-0 sm:border-l sm:opacity-100 sm:open:translate-x-0 sm:motion-safe:starting:open:translate-x-full sm:motion-safe:starting:open:translate-y-0 sm:motion-safe:starting:open:opacity-100 dark:border-neutral-800 dark:bg-black dark:text-white"
       onClose={closeAssistant}
     >
-      <div className="flex items-center justify-between px-4 pt-[max(1rem,env(safe-area-inset-top))] pb-3">
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 top-full h-dvh bg-white sm:hidden dark:bg-black"
+      />
+      <div
+        className="flex h-full min-h-0 w-full flex-col overflow-hidden"
+        style={
+          sheetFrame.mobile
+            ? { marginTop: sheetFrame.frameOffset, height: sheetFrame.frameHeight, flexShrink: 0 }
+            : undefined
+        }
+      >
+      <div className="flex shrink-0 items-center justify-between px-4 pt-[max(1rem,env(safe-area-inset-top))] pb-3">
         <div className="flex items-center gap-2">
           <AssistantIcon className="size-4 shrink-0 text-black dark:text-white" />
           <h2 id="assistant-title" className="py-1 font-mono text-xs uppercase leading-4 tracking-wider text-neutral-500">
@@ -618,8 +715,11 @@ export const Assistant = ({ locale, copy }: AssistantPanelProps) => {
           </button>
         </div>
       </div>
-      <Conversation className="min-h-0">
-        <ConversationContent className="gap-0 px-4 pt-4 pb-8">
+      <Conversation data-assistant-transcript="" className="min-h-0">
+        <ConversationContent
+          scrollClassName="touch-pan-y overscroll-y-contain"
+          className="gap-0 px-4 pt-4 pb-8"
+        >
           {messages.map((message, index) => {
               if (!hasVisiblePart(message)) {
                 return null
@@ -662,6 +762,7 @@ export const Assistant = ({ locale, copy }: AssistantPanelProps) => {
                         part={part}
                         locale={locale}
                         copy={copy}
+                        cases={catalog.cases}
                       />
                     )
                   })}
@@ -694,7 +795,7 @@ export const Assistant = ({ locale, copy }: AssistantPanelProps) => {
         />
       </Conversation>
       {messages.length === 0 ? (
-        <Suggestions className="px-4 pt-3 pb-4">
+        <Suggestions className="shrink-0 px-4 pt-3 pb-4">
           {suggestions.map((question) => (
             <Suggestion
               key={question}
@@ -707,7 +808,7 @@ export const Assistant = ({ locale, copy }: AssistantPanelProps) => {
       ) : null}
       <PromptInput
         onSubmit={handleSubmit}
-        className="border-t border-neutral-200 px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] dark:border-neutral-800"
+        className="shrink-0 border-t border-neutral-200 px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] dark:border-neutral-800"
       >
         <PromptInputBody>
           {quotedText ? (
@@ -748,6 +849,7 @@ export const Assistant = ({ locale, copy }: AssistantPanelProps) => {
           </div>
         </PromptInputBody>
       </PromptInput>
+      </div>
     </dialog>
   )
 }
