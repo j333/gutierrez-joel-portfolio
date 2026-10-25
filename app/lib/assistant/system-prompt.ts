@@ -17,11 +17,18 @@ import type { Locale } from 'app/lib/locale'
 import { stripLocale } from 'app/lib/locale'
 import { site } from 'app/lib/site'
 
-type PromptInput = {
+export type PromptInput = {
   locale: Locale
   currentPath: string
   quotedText?: string
 }
+
+export const assistantPromptNames = {
+  en: 'portfolio-assistant-en',
+  es: 'portfolio-assistant-es',
+} as const
+
+export const assistantPromptLabel = 'production'
 
 const quoteLimit = 600
 
@@ -199,7 +206,10 @@ const profileBlock = (locale: Locale) => {
   ].join('\n')
 }
 
-export const buildSystemPrompt = ({
+export const assistantPromptTemplate = (locale: Locale) =>
+  [...voice[locale], '{{profile}}', '{{context}}'].join('\n\n')
+
+export const assistantPromptVariables = ({
   locale,
   currentPath,
   quotedText,
@@ -208,17 +218,16 @@ export const buildSystemPrompt = ({
   const quote = quotedText?.trim().slice(0, quoteLimit)
   const sources = loadAssistantSources(locale)
   const labels = fieldLabels[locale]
-
-  const sections = [
-    ...voice[locale],
-    profileBlock(locale),
+  const context = [
     `${labels.path}: ${path}`,
     focusBlock(locale, path, sources),
+    quote ? `${labels.quote}\n"""${quote}"""` : '',
   ]
+    .filter(Boolean)
+    .join('\n\n')
 
-  if (quote) {
-    sections.push(`${labels.quote}\n"""${quote}"""`)
+  return {
+    profile: profileBlock(locale),
+    context,
   }
-
-  return sections.join('\n\n')
 }

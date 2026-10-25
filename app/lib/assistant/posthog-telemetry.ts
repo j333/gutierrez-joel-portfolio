@@ -12,6 +12,9 @@ const posthogAiGlobal = globalThis as typeof globalThis & {
 const spanAttribute = (value: unknown) =>
   typeof value === 'string' && value.length > 0 ? value : undefined
 
+const spanNumber = (value: unknown) =>
+  typeof value === 'number' && Number.isFinite(value) ? value : undefined
+
 export const startPostHogAiTelemetry = () => {
   if (posthogAiGlobal.__posthogAiStarted) {
     return
@@ -46,6 +49,8 @@ export const startPostHogAiTelemetry = () => {
         enrichSpan: ({ runtimeContext }) => ({
           'posthog.distinct_id': spanAttribute(runtimeContext?.distinctId),
           $ai_session_id: spanAttribute(runtimeContext?.sessionId),
+          $ai_prompt_name: spanAttribute(runtimeContext?.promptName),
+          $ai_prompt_version: spanNumber(runtimeContext?.promptVersion),
         }),
       })
     )

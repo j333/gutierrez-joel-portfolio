@@ -2,7 +2,7 @@ import { stepCountIs, tool, ToolLoopAgent, type InferAgentUIMessage } from 'ai'
 import type { LanguageModel } from 'ai'
 import { z } from 'zod'
 import { caseSlugs } from 'app/lib/assistant/joel-context'
-import { buildSystemPrompt } from 'app/lib/assistant/system-prompt'
+import { loadAssistantInstructions } from 'app/lib/assistant/managed-prompt'
 
 const callOptionsSchema = z.object({
   locale: z.enum(['en', 'es']),
@@ -49,20 +49,30 @@ export const createAssistantAgent = (model: LanguageModel) =>
       includeRuntimeContext: {
         distinctId: true,
         sessionId: true,
+        promptName: true,
+        promptVersion: true,
       },
     },
-    prepareCall: ({ options, ...settings }) => ({
-      ...settings,
-      instructions: buildSystemPrompt({
+    prepareCall: async ({ options, ...settings }) => {
+      const loaded = await loadAssistantInstructions({
         locale: options.locale,
         currentPath: options.path,
         quotedText: options.quotedText,
-      }),
-      runtimeContext: {
-        distinctId: options.distinctId,
-        sessionId: options.sessionId,
-      },
-    }),
+      })
+
+      return {
+        ...settings,
+        instructions: loaded.instructions,
+        temperature: loaded.temperature,
+        maxOutputTokens: loaded.maxOutputTokens,
+        runtimeContext: {
+          distinctId: options.distinctId,
+          sessionId: options.sessionId,
+          promptName: loaded.promptName,
+          promptVersion: loaded.promptVersion,
+        },
+      }
+    },
     stopWhen: stepCountIs(3),
     temperature: 0.2,
     maxOutputTokens: 400,
