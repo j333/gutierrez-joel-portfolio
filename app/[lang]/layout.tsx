@@ -4,6 +4,10 @@ import { IBM_Plex_Mono, IBM_Plex_Sans } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { Navbar } from 'app/components/nav'
 import Footer from 'app/components/footer'
+import { Assistant } from 'app/components/assistant/assistant-panel'
+import { AssistantProvider } from 'app/components/assistant/assistant-context'
+import { AssistantShell } from 'app/components/assistant/assistant-shell'
+import { TextSelectionTooltip } from 'app/components/assistant/text-selection-tooltip'
 import { JsonLd } from 'app/components/json-ld'
 import { chromeLinkClassName } from 'app/components/link-styles'
 import { cx } from 'app/lib/cx'
@@ -102,38 +106,44 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
         suppressHydrationWarning
         className="relative isolate min-h-dvh w-full antialiased"
       >
-        <div aria-hidden="true" className="site-noise" />
-        <div className="flex min-h-dvh w-full flex-col gap-2 px-4 pb-[max(2.5rem,calc(1rem+env(safe-area-inset-bottom)))] sm:px-6 sm:pb-[max(1.5rem,calc(1rem+env(safe-area-inset-bottom)))]">
-          <a href="#main-content" className={`skip-link ${chromeLinkClassName}`}>
-            {copy.skip}
-          </a>
-          <div className="flex min-h-0 min-w-0 flex-1 flex-col">
-            <Navbar
-              locale={locale}
-              copy={{
-                primary: copy.nav.primary,
-                home: copy.nav.home,
-                craft: copy.nav.craft,
-                notes: copy.nav.notes,
-                about: copy.nav.about,
-                brand: copy.nav.brand,
-                menu: copy.nav.menu,
-                close: copy.nav.close,
-                language: copy.footer.language,
-                theme: copy.theme,
-              }}
-            />
-            <main
-              id="main-content"
-              tabIndex={-1}
-              className="mt-16 flex min-h-0 min-w-0 flex-1 flex-col focus:outline-none"
-            >
-              {children}
-            </main>
-          </div>
-          <Footer />
-        </div>
-        <Analytics />
+        <AssistantProvider>
+          <div aria-hidden="true" className="site-noise" />
+          <AssistantShell>
+            <a href="#main-content" className={`skip-link ${chromeLinkClassName}`}>
+              {copy.skip}
+            </a>
+            <div className="flex min-h-0 min-w-0 flex-1 flex-col">
+              <Navbar
+                locale={locale}
+                copy={{
+                  primary: copy.nav.primary,
+                  home: copy.nav.home,
+                  craft: copy.nav.craft,
+                  notes: copy.nav.notes,
+                  about: copy.nav.about,
+                  brand: copy.nav.brand,
+                  menu: copy.nav.menu,
+                  close: copy.nav.close,
+                  assistant: copy.assistant.open,
+                }}
+              />
+              <main
+                id="main-content"
+                tabIndex={-1}
+                className="mt-16 flex min-h-0 min-w-0 flex-1 flex-col focus:outline-none"
+              >
+                {children}
+              </main>
+            </div>
+            <Footer />
+          </AssistantShell>
+          <Assistant locale={locale} copy={copy.assistant} />
+          <TextSelectionTooltip
+            label={copy.assistant.ask}
+            question={copy.assistant.selectionQuestion}
+          />
+          <Analytics />
+        </AssistantProvider>
       </body>
     </html>
   )

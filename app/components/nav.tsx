@@ -5,21 +5,18 @@ import { usePathname } from 'next/navigation'
 import { useScrollNavVisibility } from '../hooks/use-scroll-nav-visibility'
 import { useScrambleText } from '../hooks/use-scramble-text'
 import { localePath, stripLocale, type Locale } from 'app/lib/locale'
+import { AssistantTrigger } from './assistant/assistant-panel'
 import { ChromeScrambleLink } from './chrome-scramble-link'
-import { chromeCtaListClassName, chromeLinkNavClassName } from './link-styles'
-import { LocaleSwitch } from './locale-switch'
-import { ThemeToggle, type ThemeToggleCopy } from './theme-toggle'
+import { chromeLinkNavClassName } from './link-styles'
 
 const navLinkClassName = `${chromeLinkNavClassName} -mx-1 min-h-11 whitespace-nowrap sm:min-h-0`
 
-const desktopNavListClassName = `${chromeCtaListClassName} @max-[40rem]:hidden`
+const desktopNavListClassName =
+  'flex min-w-0 flex-wrap items-center gap-x-6 gap-y-2 sm:flex-nowrap sm:gap-x-8 @max-[40rem]:hidden lg:grid lg:grid-cols-3'
 const menuToggleClassName = `${navLinkClassName} @min-[40rem]:hidden`
 
 const sheetLinkClassName =
   'group flex min-h-14 w-full items-center py-4 text-xl font-normal leading-7 tracking-tight text-neutral-600 outline-none transition-colors hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-neutral-900 aria-[current=page]:text-black dark:text-neutral-400 dark:hover:text-white dark:aria-[current=page]:text-white dark:focus-visible:outline-neutral-100'
-
-const sheetControlsClassName =
-  'mt-auto flex w-full items-center justify-between pt-16'
 
 const sheetClassName =
   'nav-sheet fixed! inset-x-0 bottom-0 top-[var(--nav-height)] z-30 flex flex-col overflow-y-auto bg-white px-4 pb-[max(2.5rem,calc(1rem+env(safe-area-inset-bottom)))] pt-4 motion-safe:translate-y-0 motion-safe:opacity-100 motion-safe:transition-[opacity,translate] motion-safe:duration-200 motion-safe:ease-out motion-safe:starting:-translate-y-1 motion-safe:starting:opacity-0 dark:bg-black @min-[40rem]:hidden'
@@ -40,8 +37,7 @@ type NavCopy = {
   brand: string
   menu: string
   close: string
-  language: string
-  theme: ThemeToggleCopy
+  assistant: string
 }
 
 type NavbarProps = {
@@ -220,40 +216,41 @@ export const Navbar = ({ locale, copy }: NavbarProps) => {
             ref={barRef}
             className="flex w-full items-center justify-between gap-x-6 sm:gap-x-8 lg:grid lg:grid-cols-2"
           >
-            <ChromeScrambleLink
-              href={home}
-              text={copy.brand}
-              className={navLinkClassName}
-            />
-            <ul className={desktopNavListClassName}>
-              {navItems.map((item) => (
-                <li key={item.href} className="flex min-w-0 items-center">
-                  <ChromeScrambleLink
-                    href={item.href}
-                    text={item.name}
-                    className={navLinkClassName}
-                    aria-current={
-                      isCurrentPath(pathname, item.href) ? 'page' : undefined
-                    }
-                  />
-                </li>
-              ))}
-              <li className="flex min-w-0 items-center gap-x-6 lg:justify-end lg:gap-x-8">
-                <LocaleSwitch compact locale={locale} label={copy.language} />
-                <ThemeToggle copy={copy.theme} />
-              </li>
-            </ul>
-            <button
-              ref={menuButtonRef}
-              type="button"
-              className={menuToggleClassName}
-              aria-expanded={isMenuOpen}
-              aria-controls="nav-menu"
-              onClick={handleToggleMenu}
-              onMouseEnter={replayMenuLabel}
-            >
-              <span ref={menuLabelRef}>{menuLabel}</span>
-            </button>
+            <div className="flex min-w-0 items-center gap-x-6 lg:gap-x-8">
+              <ChromeScrambleLink
+                href={home}
+                text={copy.brand}
+                className={navLinkClassName}
+              />
+            </div>
+            <div className="flex min-w-0 flex-1 items-center justify-end gap-x-6 lg:gap-x-8">
+              <ul className={`${desktopNavListClassName} flex-1`}>
+                {navItems.map((item) => (
+                  <li key={item.href} className="flex min-w-0 items-center">
+                    <ChromeScrambleLink
+                      href={item.href}
+                      text={item.name}
+                      className={navLinkClassName}
+                      aria-current={
+                        isCurrentPath(pathname, item.href) ? 'page' : undefined
+                      }
+                    />
+                  </li>
+                ))}
+              </ul>
+              <button
+                ref={menuButtonRef}
+                type="button"
+                className={menuToggleClassName}
+                aria-expanded={isMenuOpen}
+                aria-controls="nav-menu"
+                onClick={handleToggleMenu}
+                onMouseEnter={replayMenuLabel}
+              >
+                <span ref={menuLabelRef}>{menuLabel}</span>
+              </button>
+              <AssistantTrigger label={copy.assistant} />
+            </div>
           </div>
           {isMenuOpen ? (
             <div
@@ -282,15 +279,6 @@ export const Navbar = ({ locale, copy }: NavbarProps) => {
                   </li>
                 ))}
               </ul>
-              <div className={sheetControlsClassName}>
-                <LocaleSwitch
-                  id="locale-switch-menu"
-                  locale={locale}
-                  label={copy.language}
-                  touch
-                />
-                <ThemeToggle copy={copy.theme} touch />
-              </div>
             </div>
           ) : null}
         </div>
