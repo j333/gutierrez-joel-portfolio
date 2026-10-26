@@ -9,7 +9,7 @@ import {
 } from 'app/lib/assistant/system-prompt'
 
 const defaultTemperature = 0.2
-const defaultMaxOutputTokens = 700
+const defaultMaxOutputTokens = 1500
 
 type PromptVariables = {
   profile: string
