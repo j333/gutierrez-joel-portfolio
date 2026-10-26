@@ -14,7 +14,10 @@ const asV4Model = (model: LanguageModel): V4Model => {
 }
 
 const hasContent = (part: V4StreamPart) =>
-  part.type === 'text-delta' || part.type === 'tool-call' || part.type === 'tool-input-start'
+  part.type === 'text-delta' ||
+  part.type === 'reasoning-delta' ||
+  part.type === 'tool-call' ||
+  part.type === 'tool-input-start'
 
 const openUntilContent = async (result: V4StreamResult) => {
   const reader = result.stream.getReader()

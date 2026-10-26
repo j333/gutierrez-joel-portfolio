@@ -119,6 +119,13 @@ export const createAssistantAgent = (model: LanguageModel) =>
     temperature: 0.2,
     maxOutputTokens: 1500,
     reasoning: 'low',
+    providerOptions: {
+      google: {
+        thinkingConfig: {
+          includeThoughts: true,
+        },
+      },
+    },
   })
 
 export type AssistantAgent = ReturnType<typeof createAssistantAgent>

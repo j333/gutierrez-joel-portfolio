@@ -28,6 +28,8 @@ import {
 import { Suggestion, Suggestions } from 'app/components/ai-elements/suggestion'
 import { Spinner } from 'app/components/ui/spinner'
 import type { AssistantUIMessage } from 'app/lib/assistant/agent'
+import { spokenAnswer } from 'app/lib/assistant/messages'
+import { reasoningActivity } from 'app/lib/assistant/reasoning-activity'
 import type { AssistantCatalog } from 'app/lib/assistant/catalog'
 import { assistantContact } from 'app/lib/assistant/joel-context'
 import { assistantTraceIdentity, capture } from 'app/lib/capture'
@@ -51,6 +53,9 @@ export type AssistantCopy = {
   stop: string
   retry: string
   thinking: string
+  thought: string
+  showingProject: string
+  preparingContact: string
   scrollToBottom: string
   error: string
   limit: string
@@ -151,6 +156,20 @@ const CloseIcon = () => (
 
 const chatTextClassName = 'text-base leading-relaxed'
 
+const thoughtLabelClassName =
+  'flex items-center gap-2 font-mono text-xs uppercase leading-4 tracking-wider text-neutral-500'
+
+const thinkingDotClassName =
+  'opacity-20 motion-safe:animate-thinking-dot motion-reduce:opacity-100'
+
+const ThinkingDots = () => (
+  <span aria-hidden className="tracking-normal">
+    <span className={thinkingDotClassName} style={{ animationDelay: '0ms' }}>.</span>
+    <span className={thinkingDotClassName} style={{ animationDelay: '180ms' }}>.</span>
+    <span className={thinkingDotClassName} style={{ animationDelay: '360ms' }}>.</span>
+  </span>
+)
+
 const responseClassName =
   `${chatTextClassName} text-neutral-800 dark:text-neutral-200 [&_a]:underline [&_a]:underline-offset-4 [&_a]:hover:text-black dark:[&_a]:hover:text-white [&_code]:font-mono [&_code]:text-xs [&_li+li]:mt-1 [&_ol]:mt-2 [&_ol]:list-decimal [&_ol]:pl-4 [&_p]:m-0 [&_p+p]:mt-4 [&_strong]:font-medium [&_ul]:mt-2 [&_ul]:list-disc [&_ul]:pl-4`
 
@@ -176,7 +195,7 @@ const transcriptGapClassName = (
   }
 
   if (previousRole === 'user') {
-    return 'mt-4'
+    return 'mt-3'
   }
 
   return 'mt-6'
@@ -187,7 +206,7 @@ const proseThenCards = (parts: AssistantUIMessage['parts']) => {
 
   return [
     ...indexed.filter(({ part }) => part.type === 'text'),
-    ...indexed.filter(({ part }) => part.type !== 'text'),
+    ...indexed.filter(({ part }) => part.type !== 'text' && part.type !== 'reasoning'),
   ]
 }
 
@@ -291,12 +310,65 @@ const ContactToolCard = ({ copy }: { copy: AssistantCopy }) => {
 
 const hasVisiblePart = (message: AssistantUIMessage) =>
   message.parts.some((part) => {
-    if (part.type === 'text') {
+    if (part.type === 'text' || part.type === 'reasoning') {
       return part.text.trim().length > 0
     }
 
     return part.type === 'tool-showProjectCard' || part.type === 'tool-triggerContactCTA'
   })
+
+const replyHasBody = (message: AssistantUIMessage) =>
+  message.parts.some((part) => {
+    if (part.type === 'text') {
+      return spokenAnswer(part.text).trim().length > 0
+    }
+
+    if (part.type !== 'tool-showProjectCard' && part.type !== 'tool-triggerContactCTA') {
+      return false
+    }
+
+    return part.state === 'input-streaming' || part.state === 'input-available' || part.state === 'output-available' || isToolOutputErrorUIPart(part)
+  })
+
+const streamingReasoning = (
+  message: AssistantUIMessage | undefined,
+  status: string
+) => {
+  if (status !== 'streaming' || message?.role !== 'assistant') {
+    return ''
+  }
+
+  const streaming = message.parts.findLast(
+    (part) => part.type === 'reasoning' && part.state === 'streaming'
+  )
+
+  return streaming?.type === 'reasoning' ? streaming.text : ''
+}
+
+const useLiveActivity = (next: string | null, active: boolean) => {
+  const nextRef = useRef(next)
+  const [shown, setShown] = useState<string | null>(null)
+  nextRef.current = next
+
+  useEffect(() => {
+    if (!active) {
+      setShown(null)
+      return
+    }
+
+    const commit = () => {
+      const value = nextRef.current
+      setShown((current) => (current === value ? current : value))
+    }
+
+    commit()
+    const timer = window.setInterval(commit, 500)
+
+    return () => window.clearInterval(timer)
+  }, [active])
+
+  return shown
+}
 
 const ToolPart = ({
   part,
@@ -322,9 +394,13 @@ const ToolPart = ({
   }
 
   if (part.state === 'input-streaming' || part.state === 'input-available') {
+    const label =
+      part.type === 'tool-showProjectCard' ? copy.showingProject : copy.preparingContact
+
     return (
-      <p className="font-mono text-xs uppercase leading-4 tracking-wider text-neutral-500">
-        {copy.thinking}
+      <p className="flex items-center gap-2 font-mono text-xs uppercase leading-4 tracking-wider text-neutral-500">
+        <Spinner className="size-3" />
+        {label}
       </p>
     )
   }
@@ -423,6 +499,11 @@ export const Assistant = ({ locale, copy, catalog }: AssistantPanelProps) => {
   const waitingForReply =
     status === 'submitted' ||
     (status === 'streaming' && (!lastMessage || lastMessage.role !== 'assistant' || !hasVisiblePart(lastMessage)))
+  const streamingReasoningText = streamingReasoning(lastMessage, status)
+  const liveActivity = useLiveActivity(
+    streamingReasoningText ? reasoningActivity(streamingReasoningText) : null,
+    streamingReasoningText.length > 0
+  )
   const errorText = error
     ? error.message.includes('rate_limit')
       ? copy.limit
@@ -732,22 +813,38 @@ export const Assistant = ({ locale, copy, catalog }: AssistantPanelProps) => {
                 message.role,
                 previousVisible?.role
               )
+              const replyStreaming = isLast && status === 'streaming'
+              const showThinking = message.role === 'assistant' && replyStreaming && !replyHasBody(message)
 
               return (
                 <Message
                   from={message.role}
                   key={message.id}
-                  className={`${message.role === 'assistant' ? 'gap-6' : ''} ${gapClassName}`.trim()}
+                  className={gapClassName}
                 >
+                  {showThinking ? (
+                    <p className={thoughtLabelClassName}>
+                      <span>
+                        {liveActivity ?? copy.thinking}
+                        <ThinkingDots />
+                      </span>
+                    </p>
+                  ) : null}
                   {proseThenCards(message.parts).map(({ part, partIndex }) => {
                     if (part.type === 'text' && part.text) {
+                      const answer = message.role === 'assistant' ? spokenAnswer(part.text) : part.text
+
+                      if (!answer) {
+                        return null
+                      }
+
                       return message.role === 'assistant' ? (
                         <MessageContent key={`${message.id}-text-${partIndex}`} className={chatTextClassName}>
                           <MessageResponse
                             className={responseClassName}
                             isAnimating={status === 'streaming' && isLast}
                           >
-                            {part.text}
+                            {answer}
                           </MessageResponse>
                         </MessageContent>
                       ) : (
@@ -771,10 +868,12 @@ export const Assistant = ({ locale, copy, catalog }: AssistantPanelProps) => {
               )
             })}
           {waitingForReply ? (
-            <Message from="assistant" className="mt-4">
-              <p className="flex items-center gap-2 font-mono text-xs uppercase leading-4 tracking-wider text-neutral-500">
-                <Spinner />
-                {copy.thinking}
+            <Message from="assistant" className="mt-3">
+              <p className={thoughtLabelClassName}>
+                <span>
+                  {copy.thinking}
+                  <ThinkingDots />
+                </span>
               </p>
             </Message>
           ) : null}
