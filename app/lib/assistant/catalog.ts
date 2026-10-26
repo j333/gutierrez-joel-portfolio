@@ -1,10 +1,6 @@
 import { getExperience } from 'app/experience/utils'
-import {
-  caseDetails,
-  experienceDetails,
-  isCaseSlug,
-  type CaseSlug,
-} from 'app/lib/assistant/joel-context'
+import { isCaseSlug, type CaseSlug } from 'app/lib/assistant/joel-context'
+import { englishBodiesForPath } from 'app/lib/assistant/replica-router'
 import type { Locale } from 'app/lib/locale'
 import { getWritingPosts } from 'app/notes/utils'
 import { getProjects } from 'app/projects/utils'
@@ -67,7 +63,7 @@ export const loadAssistantSources = (locale: Locale): AssistantSources => {
         product: project.metadata.product,
         role: project.metadata.role ?? '',
         years: years(project.metadata.startedAt, project.metadata.endedAt),
-        detail: caseDetails[project.slug][locale],
+        detail: englishBodiesForPath(`/${project.slug}`),
       },
     ]
   })
@@ -79,7 +75,7 @@ export const loadAssistantSources = (locale: Locale): AssistantSources => {
     summary: entry.metadata.summary,
     role: entry.metadata.role ?? '',
     years: years(entry.metadata.startedAt, entry.metadata.endedAt),
-    detail: experienceDetails[entry.slug]?.[locale] ?? '',
+    detail: englishBodiesForPath(`/experience/${entry.slug}`),
   }))
 
   const notes = getWritingPosts(locale).map((post) => ({

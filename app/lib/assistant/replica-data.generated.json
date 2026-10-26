@@ -1,0 +1,883 @@
+{
+  "notes": [
+    {
+      "id": "caso-dummies-rebranding",
+      "file": "03_Proyectos_y_Casos_STAR/caso_dummies_rebranding_global.md",
+      "type": "proyecto",
+      "period": "2018-2019",
+      "tags": [
+        "caso-star",
+        "dummies",
+        "wiley",
+        "centric-digital",
+        "rebranding",
+        "ux-ui"
+      ],
+      "titleEs": "Caso STAR — Rebranding y Rediseño Web de For Dummies (Wiley)",
+      "titleEn": "STAR Case — For Dummies (Wiley) Rebranding and Web Redesign",
+      "tldrEs": "Lideré en Centric Digital el rebranding y rediseño web de For Dummies (Wiley), impactando una marca con más de 200 millones de libros impresos y 2,500 títulos.",
+      "tldrEn": "At Centric Digital, I led the rebranding and web redesign of For Dummies (Wiley), impacting a brand with over 200 million printed books and 2,500 titles.",
+      "bodyEs": "## Situación y Problema\nDurante mi etapa en Centric Digital, trabajamos con la editorial **Wiley** en la evolución digital y de marca de **For Dummies** (dummies.com), una de las franquicias educativas más reconocidas del mundo con más de **200 millones de libros impresos y 2,500 títulos**.\n\n## Tarea\nModernizar la identidad de marca (2018) y rediseñar la experiencia del sitio web (2019) para trasladar el valor histórico de la colección impresa hacia una plataforma educativa digital clara, accesible y escalable.\n\n## Acción yResultado\n- **Liderazgo de Rebranding (2018):** Como Brand Designer, lideré la iniciativa de renovación visual respetando el ADN icónico de la marca pero adaptándolo a entornos digitales modernos.\n- **Rediseño UX/UI de Plataforma Web (2019):** Como UX/UI Designer, diseñé la arquitectura e interfaz de `dummies.com` para facilitar el descubrimiento y lectura de miles de artículos y guías educativas en Estados Unidos y a nivel global.\n\n## Conexiones\n- Etapa en agencia: exp_centric_digital_senior_product_designer\n- Catálogo completo de proyectos: catalogo_proyectos_2010_2026",
+      "bodyEn": "## Situation and Problem\nDuring my time at Centric Digital, we worked with the publisher **Wiley** on the digital and brand evolution of **For Dummies** (dummies.com), one of the most recognized educational franchises in the world with over **200 million printed books and 2,500 titles**.\n\n## Task\nTo modernize the brand identity (2018) and redesign the website experience (2019) in order to translate the historical value of the print collection into a clear, accessible, and scalable digital educational platform.\n\n## Action and Result\n- **Rebranding Leadership (2018):** As Brand Designer, I led the visual renewal initiative while respecting the iconic DNA of the brand and adapting it to modern digital environments.\n- **UX/UI Redesign of the Web Platform (2019):** As UX/UI Designer, I designed the architecture and interface of `dummies.com` to facilitate the discovery and reading of thousands of articles and educational guides in the United States and globally.\n\n## Connections\n- Agency period: exp_centric_digital_senior_product_designer\n- Complete project catalog: catalogo_proyectos_2010_2026",
+      "links": [
+        "exp-centric-digital",
+        "proy-catalogo-completo"
+      ],
+      "hash": "d1c96e50f48e5470d779d88df242e8c1e38fc38a04d949bb194462590ea01c06"
+    },
+    {
+      "id": "caso-getgloby-saas",
+      "file": "03_Proyectos_y_Casos_STAR/caso_getgloby_mvp_a_adquisicion.md",
+      "type": "proyecto",
+      "period": "2022-2025",
+      "tags": [
+        "caso-star",
+        "getgloby",
+        "saas",
+        "mvp",
+        "adquisicion",
+        "localizacion",
+        "latam-airlines"
+      ],
+      "titleEs": "Caso STAR — De MVP de Servicios a Plataforma SaaS Adquirida (GetGloby)",
+      "titleEn": "STAR Case — From Services MVP to Acquired SaaS Platform (GetGloby)",
+      "tldrEs": "Como hire #1 de producto y diseño en GetGloby, llevé la plataforma de 0 a 1 acelerando campañas de días a segundos para marcas como LATAM Airlines hasta su adquisición.",
+      "tldrEn": "As the #1 product and design hire at GetGloby, I took the platform from 0 to 1, accelerating campaigns from days to seconds for brands like LATAM Airlines until its acquisition.",
+      "bodyEs": "## Situación y Problema\nEntré a **GetGloby** (gutierrezjoel.com/en/getgloby · getgloby.ai) en 2022 como el **hire #1 de Producto y Diseño** (Head of Design and UX), reportando directamente a los 2 Founders (CTO y CPO). Al inicio, las traducciones y adaptaciones culturales de campañas publicitarias dependían de procesos manuales que **tardaban días** y los clientes aún no podían operar la solución como un producto SaaS autónomo.\n\n## Tarea\nLlevar la plataforma **de 0 a 1**: convertir un MVP basado en servicios en un SaaS escalable de marketing y localización multilingüe (+20 idiomas), y construir desde cero el área de diseño y sus sistemas a medida que la empresa crecía hasta ~22 integrantes (6 desarrolladores, 5 diseñadores bajo mi liderazgo, 4 de operaciones, 2 de finanzas, 1 de legal y 2 fundadores).\n\n## Acción y Ejecución\n- **Automatización en segundos con IA + lingüistas nativos:** Rediseñé la plataforma de extremo a extremo para que la traducción y transcreación de campañas de **Google Ads** se ejecutara en **segundos** en lugar de días, integrando IA y validación de lingüistas nativos en un mismo flujo intuitivo.\n- **Fundación de la práctica de diseño y Design System:** Recluté y dirigí a un equipo de hasta 5 perfiles de diseño (2 fijos y especialistas en Ops, Gráfico, Social Media, Branding y Video), estableciendo rituales con los 6 ingenieros y creando la identidad de Jaga.\n\n## Resultado e Impacto\n- **Operación en tiempo real:** Reducción del tiempo de adaptación de anuncios de Google Ads de **varios días a segundos**.\n- **Clientes Enterprise activos:** **5 grandes marcas** operaban diariamente dentro de la plataforma, destacando **LATAM Airlines** y compañías líderes de **turismo y hotelería**.\n- **Adquisición exitosa:** El producto y los sistemas construidos fueron la base para la adquisición de GetGloby por MotionPoint / Marketfully, donde su tecnología evolucionó hacia Marketfully.AI.\n\n## Conexiones\n- Rol asociado: exp_getgloby_head_of_design\n- Identidad del motor: caso_jaga_identidad_motor_ia\n- Testimonio de Juan Fusoni (Angel Investor): testimonios_y_referencias",
+      "bodyEn": "## Situation and Problem\nI joined **GetGloby** (gutierrezjoel.com/en/getgloby · getgloby.ai) in 2022 as the **#1 Product and Design hire** (Head of Design and UX), reporting directly to the 2 Founders (CTO and CPO). At first, translations and cultural adaptations of advertising campaigns depended on manual processes that **took days** and clients could not yet operate the solution as a standalone SaaS product.\n\n## Task\nTake the platform **from 0 to 1**: turn a service-based MVP into a scalable multilingual marketing and localization SaaS (+20 languages), and build the design department and its bespoke systems from scratch as the company grew to ~22 team members (6 developers, 5 designers under my leadership, 4 in operations, 2 in finance, 1 in legal, and 2 founders).\n\n## Action and Execution\n- **Automation in seconds with AI + native linguists:** I redesigned the platform from end to end so that the translation and transcreation of **Google Ads** campaigns could execute in **seconds** instead of days, integrating AI and native linguist validation into a single intuitive workflow.\n- **Foundation of the design practice and Design System:** I recruited and led a team of up to 5 design profiles (2 full-time and specialists in Ops, Graphic, Social Media, Branding, and Video), establishing rituals with the 6 engineers and creating the Jaga identity.\n\n## Result and Impact\n- **Real-time operation:** Reduction of Google Ads ad adaptation time from **several days to seconds**.\n- **Active Enterprise clients:** **5 major brands** operated daily within the platform, highlighting **LATAM Airlines** and leading **tourism and hospitality** companies.\n- **Successful acquisition:** The product and systems built were the foundation for the acquisition of GetGloby by MotionPoint / Marketfully, where its technology evolved into Marketfully.AI.\n\n## Connections\n- Associated role: exp_getgloby_head_of_design\n- Engine identity: caso_jaga_identidad_motor_ia\n- Testimonial by Juan Fusoni (Angel Investor): testimonios_y_referencias",
+      "links": [
+        "caso-jaga-identidad",
+        "exp-marketfully",
+        "caso-marketfully-ai",
+        "exp-getgloby",
+        "id-testimonios-referencias"
+      ],
+      "hash": "0e7df6dd4edd7b275ccb612c3d9840e43a446b4a636718bbabffc15a734588c9"
+    },
+    {
+      "id": "caso-jaga-identidad",
+      "file": "03_Proyectos_y_Casos_STAR/caso_jaga_identidad_motor_ia.md",
+      "type": "proyecto",
+      "period": "2022-2023",
+      "tags": [
+        "caso-star",
+        "jaga",
+        "getgloby",
+        "branding",
+        "product-identity",
+        "ai-engine"
+      ],
+      "titleEs": "Caso STAR — Jaga: Identidad de Producto para Motor de Transcreación con IA",
+      "titleEn": "STAR Case — Jaga: Product Identity for an AI Transcreation Engine",
+      "tldrEs": "Lideré el posicionamiento, identidad y sistema visual de Jaga, el motor de IA y NLP de GetGloby, unificando el lenguaje entre la interfaz UI y ventas.",
+      "tldrEn": "I led the positioning, identity, and visual system of Jaga, GetGloby's AI and NLP engine, unifying the language between the UI interface and sales.",
+      "bodyEs": "## Situación y Problema\n**Jaga** es el motor de transcreación de GetGloby: tecnología de traducción publicitaria con IA y NLP que interpreta tono, contexto cultural e intención, no solo palabras (gutierrezjoel.com/en/jaga · Behance: Jaga Brand Identity). El problema era que el motor era potente pero invisible: los equipos de marketing y ventas no podían verlo, nombrarlo ni explicarlo, por lo que parecía una historia técnica en ingeniería y un discurso distinto en ventas.\n\n## Tarea\nDarle nombre, posicionamiento e identidad de producto a una capacidad de IA invisible, logrando que viviera tanto dentro de los estados de la interfaz UI como en los mazos comerciales sin competir con las tareas del usuario en pantalla.\n\n## Acción y Ejecución\n- **Workshop interno de posicionamiento:** Tomamos la decisión pragmática de ejecutar un workshop interno (objetivo, proto-persona y exploración de marca) para definir un posicionamiento defendible y rápido sobre el cual iterar.\n- **Dirección de equipo multidisciplinario:** Dirigí al equipo de diseño que armé en GetGloby: Federico Tossi (Head of Graphic Design), Carelí Sapino (Marketing Designer), Dai Fiorenza (Graphic Designer) y Agustín Morrison (Ilustrador).\n- **Un guía sabio, no una mascota decorativa:** Diseñamos a Jaga como un personaje místico, potente y sabio que guía a los equipos entre idiomas y culturas (con poses para estados de interfaz: meditación, energía, levitación y agradecimiento en coreano), integrado al Design System con logotipo, isotipo, tipografía y paleta propios.\n\n## Resultado e Impacto\n- Unificamos en un solo sistema el lenguaje de las pantallas de producto y el pitch comercial, transformando un algoritmo complejo de machine learning en un activo tangible que los equipos globales podían señalar, vender y usar.\n\n## Conexiones\n- Plataforma principal: caso_getgloby_mvp_a_adquisicion\n- Rol asociado: exp_getgloby_head_of_design",
+      "bodyEn": "## Situation and Problem\n\n**Jaga** is GetGloby's transcreation engine: AI and NLP advertising translation technology that interprets tone, cultural context, and intent, not just words (gutierrezjoel.com/en/jaga · Behance: Jaga Brand Identity). The problem was that the engine was powerful yet invisible: marketing and sales teams could not see, name, or explain it, so it felt like a technical engineering story and a different pitch in sales.\n\n## Task\n\nTo give a name, positioning, and product identity to an invisible AI capability, making it live both within UI interface states and commercial decks without competing with the user's tasks on screen.\n\n## Action and Execution\n\n- **Internal positioning workshop:** We made the pragmatic decision to run an internal workshop (objective, proto-persona, and brand exploration) to define a defensible and rapid positioning to iterate upon.\n- **Multidisciplinary team leadership:** I directed the design team I put together at GetGloby: Federico Tossi (Head of Graphic Design), Carelí Sapino (Marketing Designer), Dai Fiorenza (Graphic Designer), and Agustín Morrison (Illustrator).\n- **A wise guide, not a decorative mascot:** We designed Jaga as a mystical, powerful, and wise character who guides teams across languages and cultures (with poses for interface states: meditation, energy, levitation, and gratitude in Korean), integrated into the Design System with its own logotype, isotype, typography, and palette.\n\n## Result and Impact\n\n- We unified product screen language and the commercial pitch into a single system, transforming a complex machine learning algorithm into a tangible asset that global teams could point to, sell, and use.\n\n## Connections\n\n- Main platform: caso_getgloby_mvp_a_adquisicion\n- Associated role: exp_getgloby_head_of_design",
+      "links": [
+        "exp-getgloby",
+        "caso-getgloby-saas"
+      ],
+      "hash": "9dea42e89d2beb0d2e8ecd0eb86ded6db9d9df04b74d84e2a36ae4ae77c04a22"
+    },
+    {
+      "id": "caso-kove-800x-rally",
+      "file": "03_Proyectos_y_Casos_STAR/caso_kove_800x_rally_concept.md",
+      "type": "proyecto",
+      "period": "2026",
+      "tags": [
+        "kove",
+        "800x-rally",
+        "branding",
+        "landing-page",
+        "motos",
+        "estudio-conceptual"
+      ],
+      "titleEs": "Caso de Estudio — Elevando el Valor Percibido en la Kove 800X Rally",
+      "titleEn": "Case Study — Elevating Perceived Value in the Kove 800X Rally",
+      "tldrEs": "Experimento personal de marca, gráfica de tanque y diseño de landing page para alinear el valor percibido de la moto Kove 800X Rally con su ingeniería real.",
+      "tldrEn": "Personal brand experiment, tank graphics, and landing page design to align the perceived value of the Kove 800X Rally motorcycle with its real engineering.",
+      "bodyEs": "## Contexto y Pregunta de Diseño\nEste es un experimento personal no comisionado sobre la motocicleta **Kove 800X Rally** (gutierrezjoel.com/en/kove-800x-rally), nacido de mi pasión por las motos de montaña en Mendoza. La pregunta central fue: *¿Cómo elevas el valor percibido de un producto sin inventar una historia nueva?*\n\n## Análisis del Producto Real\nZhang Xue (mecánico y piloto de motocross) fundó Kove en 2017 con el motorsport como meta, y en 2023 la fábrica completó el Rally Dakar con todas las motos que inscribió (un hito histórico en el debut de un fabricante chino). La ingeniería y el rendimiento (*\"rider, engineer, race to road\"*) ya existían, pero la gráfica recargada y la web actual ocultaban esa historia.\n\n## Intervención de Diseño\n- **Rediseño de marca y gráfica a escala de motocicleta:** Redibujé el logotipo para funcionar a escala industrial y simplifiqué las marcas del tanque para que la silueta de rally y el color característico (teal) transmitieran rendimiento puro.\n- **Una primera impresión más silenciosa (Landing Page):** Reemplacé la página saturada de texto sobre la foto por un hero limpio: la moto en el desierto, una navegación silenciosa de KOVE, el nombre del modelo y cuatro especificaciones clave debajo (*\"One hero, a quiet nav, the name, and four specs\"*).\n\n## Conexiones\n- Identidad personal y afición por las motos en Mendoza: propuesta_de_valor_y_bio\n- Capacidades de marca y producto: capacidades_producto_ia_y_sistemas",
+      "bodyEn": "## Context and Design Question\nThis is a personal, uncommissioned experiment regarding the **Kove 800X Rally** motorcycle (gutierrezjoel.com/en/kove-800x-rally), born from my passion for dirt bikes in Mendoza. The central question was: *How do you elevate the perceived value of a product without inventing a new story?*\n\n## Analysis of the Real Product\nZhang Xue (mechanic and motocross rider) founded Kove in 2017 with motorsport as the goal, and in 2023 the factory completed the Dakar Rally with all the motorcycles it entered (a historic milestone in the debut of a Chinese manufacturer). The engineering and performance (\"rider, engineer, race to road\") already existed, but the cluttered graphics and the current website concealed that story.\n\n## Design Intervention\n- **Brand redesign and motorcycle-scale graphics:** I redrew the logo to function at an industrial scale and simplified the tank branding so that the rally silhouette and characteristic color (teal) would convey pure performance.\n- **A quieter first impression (Landing Page):** I replaced the text-saturated page over the photo with a clean hero: the motorcycle in the desert, a quiet KOVE navigation, the model name, and four key specifications below (\"One hero, a quiet nav, the name, and four specs\").\n\n## Connections\n- Personal identity and passion for motorcycles in Mendoza: propuesta_de_valor_y_bio\n- Brand and product capabilities: capacidades_producto_ia_y_sistemas",
+      "links": [
+        "id-propuesta-valor-bio",
+        "skills-capacidades-producto"
+      ],
+      "hash": "9edfa2fd7c4f3a1710357eeab4b183f9a03d6ff966dc2aa6b4e4af4881ff3ecb"
+    },
+    {
+      "id": "caso-marketfully-ai",
+      "file": "03_Proyectos_y_Casos_STAR/caso_marketfully_ai_platform.md",
+      "type": "proyecto",
+      "period": "2025-2026",
+      "tags": [
+        "caso-star",
+        "marketfully",
+        "saas",
+        "ai-workflows",
+        "design-system",
+        "posthog",
+        "railway"
+      ],
+      "titleEs": "Caso STAR — Plataforma de Marketing con IA en Marketfully",
+      "titleEn": "STAR Case — AI Marketing Platform at Marketfully",
+      "tldrEs": "Unifiqué contenido, traducción y transcreación en Marketfully; reduje el prototipado de 1 mes a 3 días con Railway y ahorré >97% en analítica con PostHog.",
+      "tldrEn": "I unified content, translation, and transcreation at Marketfully; reduced prototyping time from 1 month to 3 days with Railway and saved >97% on analytics with PostHog.",
+      "bodyEs": "## Situación y Problema\nTras la adquisición de GetGloby, asumí como **Product Design Manager** en **Marketfully** (gutierrezjoel.com/en/marketfully · app.marketfully.ai). Debíamos unificar traducción, transcreación y creación de contenido en una sola plataforma para equipos globales, acelerar los ciclos de validación (que antes tomaban alrededor de un mes) y escalar la analítica de producto sin disparar los costos de licencias.\n\n## Tarea y Hallazgo Clave\nAl investigar a los usuarios y al comité de compra, descubrimos el principio que guió toda la arquitectura: **el humano no podía ser eliminado del circuito**. La IA debía generar el primer borrador, pero las personas debían mantener el control de cada entrega.\n\n## Acción y Ejecución\n- **Design System por tokens semánticos con cobertura del 100%:** Construí un sistema de diseño basado en tokens semánticos nombrados por rol (texto, íconos, superficies, bordes) que cubría **toda la plataforma**. Gracias a esta estandarización, muchas funcionalidades nuevas se desarrollaban directamente con los componentes existentes sin pasar antes por un diseño de pantalla en Figma, requiriendo solo un *design check* rápido de validación.\n- **De 1 mes a 3 días con Vibe Coding y Railway:** Junto a equipos interdisciplinarios reducidos, implementé flujos de *vibe coding* y agentes de producción de ideas desplegando entornos ligeros en **Railway** para que operaciones probara prototipos reales en días.\n- **Liderazgo de equipos y migración a PostHog:** Dirigí al equipo de Product Design (Product Designer, AI Solution Designer y UX Researcher) y levanté el equipo de IA junto a ingeniería y QA. Además, lideré el reemplazo de Pendo por **PostHog** en todos los productos del grupo.\n\n## Resultado e Impacto\n- **Velocidad de validación (~90% más rápido):** Reducción del ciclo de entrega de prototipos funcionales para operaciones de **1 mes a solo 3 días**.\n- **Eficiencia en Product Analytics (>97% de ahorro):** Reducción de **más del 97%** en el gasto anual de herramientas de analítica al pasar a un esquema por uso en PostHog, escalando la medición a todo el portafolio de productos de Marketfully.\n\n## Conexiones\n- Rol asociado: exp_marketfully_product_design_manager\n- Origen tecnológico: caso_getgloby_mvp_a_adquisicion, caso_jaga_identidad_motor_ia",
+      "bodyEn": "## Situation and Problem\nFollowing the acquisition of GetGloby, I assumed the role of **Product Design Manager** at **Marketfully** (gutierrezjoel.com/en/marketfully · app.marketfully.ai). We needed to unify translation, transcreation, and content creation into a single platform for global teams, accelerate validation cycles (which previously took about a month), and scale product analytics without skyrocketing license costs.\n\n## Task and Key Finding\nWhen researching users and the buying committee, we discovered the principle that guided the entire architecture: **the human could not be removed from the loop**. AI had to generate the first draft, but people needed to maintain control of every delivery.\n\n## Action and Execution\n- **Design System using semantic tokens with 100% coverage:** I built a design system based on semantic tokens named by role (text, icons, surfaces, borders) covering **the entire platform**. Thanks to this standardization, many new features were developed directly using existing components without going through prior screen design in Figma, requiring only a quick validation *design check*.\n- **From 1 month to 3 days with Vibe Coding and Railway:** Alongside lean cross-functional teams, I implemented *vibe coding* flows and ideation production agents by deploying lightweight environments on **Railway** so operations could test real prototypes in days.\n- **Team leadership and migration to PostHog:** I led the Product Design team (Product Designer, AI Solution Designer, and UX Researcher) and stood up the AI team alongside engineering and QA. Additionally, I led the replacement of Pendo with **PostHog** across all group products.\n\n## Result and Impact\n- **Validation speed (~90% faster):** Reduction of the functional prototype delivery cycle for operations from **1 month to just 3 days**.\n- **Product Analytics efficiency (>97% savings):** Reduction of **more than 97%** in the annual spend on analytics tools by switching to a usage-based scheme in PostHog, scaling measurement across Marketfully's entire product portfolio.\n\n## Connections\n- Associated role: exp_marketfully_product_design_manager\n- Technological origin: caso_getgloby_mvp_a_adquisicion, caso_jaga_identidad_motor_ia",
+      "links": [
+        "exp-getgloby",
+        "exp-marketfully",
+        "caso-getgloby-saas",
+        "caso-jaga-identidad"
+      ],
+      "hash": "5663a1712e9f391c7b48b070b237310a7f0773972679a2f00b56bac1da534f5d"
+    },
+    {
+      "id": "core-perfil-tldr",
+      "file": "00_Core_y_Router/01_Perfil_Core_TLDR.md",
+      "type": "core",
+      "period": "2010-2026",
+      "tags": [
+        "bio",
+        "tldr",
+        "resumen-ejecutivo",
+        "contacto",
+        "metricas"
+      ],
+      "titleEs": "Perfil Ejecutivo TL;DR — Joel Gutiérrez",
+      "titleEn": "Executive Profile TL;DR — Joel Gutiérrez",
+      "tldrEs": "Product Design Manager con +12 años creando productos SaaS, flujos de IA y marcas globales (de 0 a 1 hasta adquisición) para EE. UU., LATAM y Europa.",
+      "tldrEn": "Product Design Manager with 12+ years creating SaaS products, AI workflows, and global brands (from 0 to 1 until acquisition) for the US, LATAM, and Europe.",
+      "bodyEs": "## Resumen Ejecutivo\nSoy **Joel Gutiérrez**, Product Design Manager y estratega de producto con más de 12 años de experiencia construyendo productos digitales, sistemas de diseño y marcas en la intersección de diseño, desarrollo e inteligencia artificial. Vivo en Luján de Cuyo, Mendoza, Argentina, y trabajo de forma remota con equipos y clientes de Estados Unidos, Latinoamérica y Europa.\n\n## Trayectoria e Hitos Medibles\n- **Actualidad (2025–Presente):** Co-Founder & Product Lead en Cofactor (cofactor.team, asistentes de IA que ejecutan tareas operativas de principio a fin) y Founder & Director en Kywise (kywise.com, agencia de automatización B2B y agentes de IA).\n- **De 0 a 1 hasta Adquisición en GetGloby y Liderazgo en Marketfully (2022–2026):** Entré a GetGloby como el **hire #1 de Producto y Diseño**, lideré hasta 5 diseñadores en un equipo de ~22 personas, y llevamos la adaptación de campañas de Google Ads de **días a segundos** para marcas que operaban a diario como **LATAM Airlines** y grupos hoteleros/turísticos. Tras su adquisición por Marketfully, lideré el equipo de Product Design e IA, reduje los ciclos de prototipado de **1 mes a 3 días** (con Railway y *vibe coding*), ahorré **>97% en costos de analítica** implementando PostHog en todos los productos, y creé un Design System que cubría el 100% de la plataforma.\n- **Experiencia Enterprise y Agencia (2013–2022):** Staff/UX Designer en Golf Boost / Rehab Boost, Senior Product Designer en Dickey's Barbecue, Senior Product Designer durante casi 7 años en Centric Digital (AIG, Kaiser Permanente, Humana, Victoria's Secret, rebranding de For Dummies en +200M de libros y J.D. Power), Product Manager en Viña Errázuriz y Marketing Designer en VSPT Wine Group.\n\n## Contacto Directo y Enlaces Oficiales\n- **Sitio Web Personal:** gutierrezjoel.com (Repositorio en GitHub)\n- **Proyectos Actuales:** cofactor.team · kywise.com\n- **LinkedIn:** linkedin.com/in/gutierrezjoel · **Behance:** behance.net/gutierrezjoel · **Dribbble:** dribbble.com/gutierrezjoel\n- **Email Directo:** `joelg333@gmail.com`",
+      "bodyEn": "## Executive Summary\nI am **Joel Gutiérrez**, a Product Design Manager and product strategist with over 12 years of experience building digital products, design systems, and brands at the intersection of design, development, and artificial intelligence. I live in Luján de Cuyo, Mendoza, Argentina, and work remotely with teams and clients from the United States, Latin America, and Europe.\n\n## Track Record and Measurable Milestones\n- **Present (2025–Present):** Co-Founder & Product Lead at Cofactor (cofactor.team, AI assistants that execute operational tasks from end to end) and Founder & Director at Kywise (kywise.com, B2B automation agency and AI agents).\n- **From 0 to 1 until Acquisition at GetGloby and Leadership at Marketfully (2022–2026):** I joined GetGloby as the **#1 hire in Product and Design**, led up to 5 designers in a team of ~22 people, and brought Google Ads campaign adaptation down from **days to seconds** for brands operating daily like **LATAM Airlines** and hotel/tourism groups. Following its acquisition by Marketfully, I led the Product Design and AI team, reduced prototyping cycles from **1 month to 3 days** (using Railway and *vibe coding*), saved **>97% in analytics costs** by implementing PostHog across all products, and created a Design System covering 100% of the platform.\n- **Enterprise and Agency Experience (2013–2022):** Staff/UX Designer at Golf Boost / Rehab Boost, Senior Product Designer at Dickey's Barbecue, Senior Product Designer for almost 7 years at Centric Digital (AIG, Kaiser Permanente, Humana, Victoria's Secret, rebranding of For Dummies across +200M books and J.D. Power), Product Manager at Viña Errázuriz, and Marketing Designer at VSPT Wine Group.\n\n## Direct Contact and Official Links\n- **Personal Website:** gutierrezjoel.com (GitHub Repository)\n- **Current Projects:** cofactor.team · kywise.com\n- **LinkedIn:** linkedin.com/in/gutierrezjoel · **Behance:** behance.net/gutierrezjoel · **Dribbble:** dribbble.com/gutierrezjoel\n- **Direct Email:** `joelg333@gmail.com`",
+      "links": [
+        "exp-cofactor",
+        "exp-kywise",
+        "exp-getgloby",
+        "exp-marketfully",
+        "exp-golf-boost-rehab-boost",
+        "exp-dickeys",
+        "exp-centric-digital",
+        "exp-vina-errazuriz",
+        "exp-vspt-wine-group"
+      ],
+      "hash": "d63f042b7d68305c1f51a1691a3dccadbaf88d7339f688db3c4766568d82b620"
+    },
+    {
+      "id": "edu-formacion-certificaciones",
+      "file": "05_Educacion_y_Credenciales/educacion_certificaciones_idiomas.md",
+      "type": "educacion",
+      "period": "2008-2026",
+      "tags": [
+        "educacion",
+        "uncuyo",
+        "certificaciones",
+        "idiomas",
+        "scrum",
+        "accesibilidad"
+      ],
+      "titleEs": "Educación Universitaria, Certificaciones e Idiomas",
+      "titleEn": "University Education, Certifications, and Languages",
+      "tldrEs": "Diseñador Gráfico graduado en la Universidad Nacional de Cuyo (2008–2013), con 5 certificaciones en UX/Scrum/PM, español nativo e inglés profesional.",
+      "tldrEn": "Graphic Designer graduated from the Universidad Nacional de Cuyo (2008–2013), with 5 certifications in UX/Scrum/PM, native Spanish, and professional English.",
+      "bodyEs": "## Educación Universitaria\n- **Universidad Nacional de Cuyo (Mendoza, Argentina · 2008 – 2013):** Título de **Diseñador Gráfico**. La carrera me dio una base sólida en pensamiento sistémico, comunicación visual y resolución estratégica de problemas que complementó mi formación autodidacta previa en desarrollo web y electrónica.\n\n## Certificaciones Profesionales\n- **UX Foundations: Accessibility** — Diseño accesible e inclusivo de interfaces digitales.\n- **Scrum: The Basics** — Marcos de trabajo ágiles e iterativos con equipos de ingeniería.\n- **Creating a Design System with Adobe XD** — Fundamentos de sistemas de diseño y librerías de componentes.\n- **Learning Design Sprints** — Facilitación de talleres de validación rápida y prototipado.\n- **Project Management for Designers** — Gestión de hojas de ruta, tiempos, alcance y entregables de diseño.\n\n## Idiomas\n- **Español:** Nativo.\n- **Inglés:** *Professional Working Proficiency* (+10 años trabajando a diario con equipos, ejecutivos y clientes en Nueva York, Miami, Dallas y Europa en Marketfully, GetGloby, Dickey's y Centric Digital).\n\n## Conexiones\n- Historia personal: propuesta_de_valor_y_bio\n- Capacidades profesionales: capacidades_producto_ia_y_sistemas",
+      "bodyEn": "## University Education\n- **Universidad Nacional de Cuyo (Mendoza, Argentina · 2008 – 2013):** Degree in **Graphic Design**. My studies gave me a solid foundation in systems thinking, visual communication, and strategic problem-solving that complemented my previous self-taught background in web development and electronics.\n\n## Professional Certifications\n- **UX Foundations: Accessibility** — Accessible and inclusive design of digital interfaces.\n- **Scrum: The Basics** — Agile and iterative frameworks with engineering teams.\n- **Creating a Design System with Adobe XD** — Fundamentals of design systems and component libraries.\n- **Learning Design Sprints** — Facilitation of rapid validation and prototyping workshops.\n- **Project Management for Designers** — Management of roadmaps, timelines, scope, and design deliverables.\n\n## Languages\n- **Spanish:** Native.\n- **English:** *Professional Working Proficiency* (+10 years working daily with teams, executives, and clients in New York, Miami, Dallas, and Europe at Marketfully, GetGloby, Dickey's, and Centric Digital).\n\n## Connections\n- Personal history: propuesta_de_valor_y_bio\n- Professional capabilities: capacidades_producto_ia_y_sistemas",
+      "links": [
+        "exp-marketfully",
+        "exp-getgloby",
+        "exp-dickeys",
+        "exp-centric-digital",
+        "id-propuesta-valor-bio",
+        "skills-capacidades-producto"
+      ],
+      "hash": "cef83530981bd0ef440382c9dcc3a79c85ba6407f268815f66030974518a09ae"
+    },
+    {
+      "id": "exp-centric-digital",
+      "file": "02_Experiencia_Profesional/exp_centric_digital_senior_product_designer.md",
+      "type": "experiencia",
+      "period": "2014-08 a 2021-04",
+      "tags": [
+        "centric-digital",
+        "enterprise",
+        "aig",
+        "kaiser-permanente",
+        "humana",
+        "victoria-secret",
+        "dummies"
+      ],
+      "titleEs": "Senior Product Designer en Centric Digital (6 años y 9 meses)",
+      "titleEn": "Senior Product Designer at Centric Digital (6 years and 9 months)",
+      "tldrEs": "Casi 7 años evolucionando de UI Designer a Senior Product Designer en Centric Digital (NY/Mendoza) para clientes Fortune 500 y startups.",
+      "tldrEn": "Almost 7 years evolving from UI Designer to Senior Product Designer at Centric Digital (NY/Mendoza) for Fortune 500 clients and startups.",
+      "bodyEs": "## Resumen\nTrabajé durante **6 años y 9 meses** en la consultora de transformación digital **Centric Digital** (centricdigital.com, Nueva York / Mendoza), creciendo en tres roles consecutivos:\n- **Senior Product Designer** (marzo 2019 – abril 2021)\n- **Product Designer** (abril 2016 – febrero 2019)\n- **User Interface Designer** (agosto 2014 – marzo 2016)\n\n## Clientes y Proyectos Destacados por Industria\n- **Seguros — AIG (aig.com):** Diseñé el *PDH Executive Visualization Dashboard*, *Active Care EWS* (versión en japonés), *Claim Digital Design* y participé entre 2015 y 2019 en los **Global Code-a-thons** de AIG en EE. UU. y Malasia (donde descubrí Figma en Kuala Lumpur en 2016).\n- **Salud — Kaiser Permanente (kaiserpermanente.org) y Humana (humana.com):** Diseñé múltiples plataformas entre 2014 y 2018, incluyendo *Mobile Apps Dashboard*, *Trends Dashboard*, *Joining KP Early Engagement*, *CDS Progress Update*, *HEP Website* y *Find Doctors & Locations*.\n- **Retail y Moda — LBrands / Victoria's Secret / Pink (victoriassecret.com):** Lideré el diseño del *Pink Bra Dashboard Webapp* (2019–2020), *Boutique Builder*, *Analytics Design* y *Wexner Patterning CBD Data Analysis*.\n- **Educación e Investigación — Wiley / For Dummies (dummies.com) y J.D. Power (jdpower.com):** Lideré la iniciativa de rebranding y rediseño web de **For Dummies** (impactando más de **200 millones de libros impresos y 2,500 títulos**) y el diseño de reportes industriales para **J.D. Power**.\n- **SaaS, E-commerce y Startups:** Diseñé la plataforma propia **Dimensions** de Centric Digital, dashboards de reclutamiento para **Tallo** (tallo.com), branding y producto para **Premo Social** (premosocial.com), migraciones a Shopify/Webflow para **TempraMed** (tempramed.com), **Andrew McMahon in the Wilderness** (andrewmcmahon.com) y **Dear Jack Foundation** (dearjackfoundation.org).\n\n## Conexiones\n- Caso destacado For Dummies: caso_dummies_rebranding_global\n- Listado completo de los 64 proyectos: catalogo_proyectos_2010_2026\n- Testimonio de Asher Feldman (ex-Centric Digital): testimonios_y_referencias",
+      "bodyEn": "## Summary\nI worked for **6 years and 9 months** at the digital transformation consultancy **Centric Digital** (centricdigital.com, New York / Mendoza), growing through three consecutive roles:\n- **Senior Product Designer** (March 2019 – April 2021)\n- **Product Designer** (April 2016 – February 2019)\n- **User Interface Designer** (August 2014 – March 2016)\n\n## Featured Clients and Projects by Industry\n- **Insurance — AIG (aig.com):** I designed the *PDH Executive Visualization Dashboard*, *Active Care EWS* (Japanese version), *Claim Digital Design*, and participated between 2015 and 2019 in AIG's **Global Code-a-thons** in the US and Malaysia (where I discovered Figma in Kuala Lumpur in 2016).\n- **Healthcare — Kaiser Permanente (kaiserpermanente.org) and Humana (humana.com):** I designed multiple platforms between 2014 and 2018, including *Mobile Apps Dashboard*, *Trends Dashboard*, *Joining KP Early Engagement*, *CDS Progress Update*, *HEP Website*, and *Find Doctors & Locations*.\n- **Retail and Fashion — LBrands / Victoria's Secret / Pink (victoriassecret.com):** I led the design of the *Pink Bra Dashboard Webapp* (2019–2020), *Boutique Builder*, *Analytics Design*, and *Wexner Patterning CBD Data Analysis*.\n- **Education and Research — Wiley / For Dummies (dummies.com) and J.D. Power (jdpower.com):** I led the rebranding and web redesign initiative for **For Dummies** (impacting over **200 million printed books and 2,500 titles**) and the design of industry reports for **J.D. Power**.\n- **SaaS, E-commerce, and Startups:** I designed Centric Digital's proprietary **Dimensions** platform, recruitment dashboards for **Tallo** (tallo.com), branding and product for **Premo Social** (premosocial.com), and Shopify/Webflow migrations for **TempraMed** (tempramed.com), **Andrew McMahon in the Wilderness** (andrewmcmahon.com), and **Dear Jack Foundation** (dearjackfoundation.org).\n\n## Connections\n- Featured For Dummies case: caso_dummies_rebranding_global\n- Complete list of the 64 projects: catalogo_proyectos_2010_2026\n- Testimonial by Asher Feldman (ex-Centric Digital): testimonios_y_referencias",
+      "links": [
+        "caso-dummies-rebranding",
+        "proy-catalogo-completo",
+        "id-testimonios-referencias"
+      ],
+      "hash": "614681c0fc673d5322e0780c262ac920370ca36dee5888ed0fc80a2dd67deffc"
+    },
+    {
+      "id": "exp-cofactor",
+      "file": "02_Experiencia_Profesional/exp_cofactor_cofounder_product_lead.md",
+      "type": "experiencia",
+      "period": "2026-09 a Presente",
+      "tags": [
+        "cofactor",
+        "co-founder",
+        "product-lead",
+        "ai-assistants",
+        "design-system",
+        "frontend"
+      ],
+      "titleEs": "Co-Founder & Product Lead en Cofactor",
+      "titleEn": "Co-Founder & Product Lead at Cofactor",
+      "tldrEs": "Co-fundador y Product Lead en Cofactor (cofactor.team), plataforma de asistentes de IA para empresas que ejecutan tareas operativas de principio a fin con aprobación humana.",
+      "tldrEn": "Co-founder and Product Lead at Cofactor (cofactor.team), an AI assistant platform for enterprises that execute end-to-end operational tasks with human approval.",
+      "bodyEs": "## Resumen\nDesde septiembre de 2026 soy **Co-Founder & Product Lead** en **Cofactor** (cofactor.team, Mendoza, Argentina), donde creamos asistentes de IA para empresas que ejecutan tareas operativas repetitivas de principio a fin (*\"El trabajo se automatiza. El control es tuyo\"*).\n\n## Qué Hace el Producto (Cofactor)\n- **Asistentes de IA con su propio escritorio:** A diferencia de un chat genérico, cada asistente de Cofactor entra directamente a los programas de gestión (incluso software antiguo sin API), portales web, hojas de cálculo y correo dentro de la infraestructura segura de la empresa.\n- **Casos de uso de principio a fin:** Conciliación automática de facturas contra órdenes de compra, generación y envío programado de informes de ventas en Excel, revisión y descarga de documentos en portales externos (como aseguradoras) y redacción de borradores con datos reales.\n- **Control humano por reglas (*Human-in-the-loop*):** El usuario le habla al asistente por chat en lenguaje natural y define reglas estrictas de aprobación (por ejemplo, ningún pago superior a cierto monto se programa sin visto bueno humano).\n\n## Mis Responsabilidades Clave\n- **Estrategia de producto y relación con clientes:** Dirijo la visión de producto y acompaño a las empresas desde la elección de la primera tarea crítica hasta su puesta en marcha en producción.\n- **Diseño UX/UI end-to-end y Design System:** Diseñé la interfaz conversacional y de aprobación de la app de Cofactor, junto con un **Design System escalable** para acelerar el desarrollo.\n- **Marca, Landing Page y Front-End:** Creé la identidad de marca integral, diseñé y construí la landing page oficial (cofactor.team) y ejecuto el desarrollo front-end codo a codo con mi co-fundador técnico.\n\n## Conexiones\n- Mi agencia de transformación digital y automatización: exp_kywise_founder_director\n- Filosofía de IA con humanos al mando: filosofia_liderazgo_y_trabajo",
+      "bodyEn": "## Summary\nSince September 2026 I have been **Co-Founder & Product Lead** at **Cofactor** (cofactor.team, Mendoza, Argentina), where we build AI assistants for enterprises that execute repetitive operational tasks from end to end (\"El trabajo se automatiza. El control es tuyo\").\n\n## What the Product Does (Cofactor)\n- **AI assistants with their own desktop:** Unlike a generic chat, each Cofactor assistant logs directly into management programs (even legacy software without an API), web portals, spreadsheets, and email within the company's secure infrastructure.\n- **End-to-end use cases:** Automatic invoice reconciliation against purchase orders, generation and scheduled delivery of Excel sales reports, review and downloading of documents on external portals (such as insurance companies), and drafting with real data.\n- **Rule-based human control (Human-in-the-loop):** The user talks to the assistant via chat in natural language and defines strict approval rules (for example, no payment above a certain amount is scheduled without human sign-off).\n\n## My Key Responsibilities\n- **Product strategy and client relations:** I lead the product vision and guide companies from choosing their first critical task to going live in production.\n- **End-to-end UX/UI design and Design System:** I designed the conversational and approval interface of the Cofactor app, along with a **scalable Design System** to accelerate development.\n- **Brand, Landing Page, and Front-End:** I created the comprehensive brand identity, designed and built the official landing page (cofactor.team), and execute front-end development hand-in-hand with my technical co-founder.\n\n## Connections\n- My digital transformation and automation agency: exp_kywise_founder_director\n- AI philosophy with humans in command: filosofia_liderazgo_y_trabajo",
+      "links": [
+        "exp-kywise",
+        "id-filosofia-liderazgo"
+      ],
+      "hash": "d4f7c527a60d58a3cbb2c48ba5d2058838f72aefe0dc789f45d5670463a1484c"
+    },
+    {
+      "id": "exp-dickeys",
+      "file": "02_Experiencia_Profesional/exp_dickeys_senior_product_designer.md",
+      "type": "experiencia",
+      "period": "2021-05 a 2021-12",
+      "tags": [
+        "dickeys",
+        "ecommerce",
+        "restaurantes",
+        "app-design",
+        "dashboard",
+        "wing-boss"
+      ],
+      "titleEs": "Senior Product Designer en Dickey's Barbecue Restaurants, Inc.",
+      "titleEn": "Senior Product Designer at Dickey's Barbecue Restaurants, Inc.",
+      "tldrEs": "Lideré el diseño digital web, app móvil y dashboards para múltiples marcas gastronómicas en EE. UU. (Dickey's, Barbecue at Home, Wing Boss).",
+      "tldrEn": "I led the digital design for web, mobile app, and dashboards for multiple restaurant brands in the U.S. (Dickey's, Barbecue at Home, Wing Boss).",
+      "bodyEs": "## Resumen\nEntre mayo y diciembre de 2021 fui **Senior Product Designer** en **Dickey's Barbecue Restaurants, Inc.** (Dallas, Texas / Remoto), liderando el diseño de productos digitales de e-commerce, aplicaciones móviles y herramientas internas para el portafolio multimarca del grupo en Estados Unidos (gutierrezjoel.com/en/about).\n\n## Hechos y Responsabilidades Clave\n- **Lanzamiento de Barbecue at Home y ecosistema multimarca:** Lideré el diseño digital para el lanzamiento e-commerce de Barbecue at Home, el sitio web de Wing Boss, y funcionalidades para **Big Deal Burger** y **Trailer Birds**.\n- **App móvil y Spark Dashboard:** Diseñé mejoras clave en la App iOS de Dickey's Barbecue Pit y en el panel administrativo interno **Spark Dashboard** (`dashboard-admin.dickeys.com`).\n- **User Research y gestión de entregas:** Realicé investigación de usuarios para respaldar decisiones de conversión en pedidos online y gestioné cronogramas y entregables junto a equipos multifuncionales de producto e ingeniería.\n\n## Conexiones\n- Catálogo completo de proyectos: catalogo_proyectos_2010_2026",
+      "bodyEn": "## Summary\nBetween May and December 2021 I was **Senior Product Designer** at **Dickey's Barbecue Restaurants, Inc.** (Dallas, Texas / Remote), leading the design of digital e-commerce products, mobile applications, and internal tools for the group's multibrand portfolio in the United States (gutierrezjoel.com/en/about).\n\n## Key Facts and Responsibilities\n- **Launch of Barbecue at Home and multibrand ecosystem:** I led the digital design for the e-commerce launch of Barbecue at Home, the Wing Boss website, and features for **Big Deal Burger** and **Trailer Birds**.\n- **Mobile app and Spark Dashboard:** I designed key improvements in the Dickey's Barbecue Pit iOS App and in the internal administrative panel **Spark Dashboard** (`dashboard-admin.dickeys.com`).\n- **User Research and delivery management:** I conducted user research to support conversion decisions in online ordering and managed schedules and deliverables alongside cross-functional product and engineering teams.\n\n## Connections\n- Complete project catalog: catalogo_proyectos_2010_2026",
+      "links": [
+        "proy-catalogo-completo"
+      ],
+      "hash": "208a281119f5a506e4ede04f223feb35d0068b49abaaf9737c33883c06ce249f"
+    },
+    {
+      "id": "exp-getgloby",
+      "file": "02_Experiencia_Profesional/exp_getgloby_head_of_design.md",
+      "type": "experiencia",
+      "period": "2022-04 a 2025-07",
+      "tags": [
+        "getgloby",
+        "head-of-design",
+        "saas",
+        "localizacion",
+        "transcreacion",
+        "jaga",
+        "latam-airlines",
+        "mvp-to-acquisition"
+      ],
+      "titleEs": "Head of Design and UX / Lead Product Designer en GetGloby",
+      "titleEn": "Head of Design and UX / Lead Product Designer at GetGloby",
+      "tldrEs": "Hire #1 de producto y diseño en GetGloby; llevé el producto de 0 a 1 reduciendo tiempos de días a segundos para marcas como LATAM Airlines hasta su adquisición.",
+      "tldrEn": "First product and design hire at GetGloby; took the product from 0 to 1, reducing turnaround times from days to seconds for brands like LATAM Airlines until its acquisition.",
+      "bodyEs": "## Resumen\nMe uní a **GetGloby** (getgloby.ai · Caso en gutierrezjoel.com) en abril de 2022 como **Founding Lead Product Designer** (el **hire #1 de Producto y Diseño**) y en agosto de 2022 asumí como **Head of Design and UX** hasta julio de 2025 (Nueva York / Remoto), reportando directamente a los 2 Founders (CTO y CPO).\n\n## Hechos y Responsabilidades Clave\n- **De 0 a 1 (De MVP manual a SaaS en segundos):** Evolucioné la plataforma desde un servicio manual hacia un producto SaaS autosuficiente para equipos de marketing en EE. UU., Latinoamérica y Europa, logrando que las traducciones y transcreaciones de campañas de Google Ads en más de 20 idiomas pasaran de tardar **días a ejecutarse en segundos**.\n- **Creación del área de diseño y escalado organizacional:** Entré como el primer integrante de producto/diseño y construí la práctica desde cero en una organización que creció hasta ~22 personas (2 Founders, 6 Developers, **5 Diseñadores a mi cargo** —2 fijos y especialistas en Ops, Gráfico, Social Media, Branding y Video—, 4 en Operaciones, 2 en Finanzas y 1 en Legal).\n- **Arquitectura UX e identidad de \"Jaga\":** Diseñé la experiencia e identidad de producto para **Jaga** (el motor central de IA y NLP para transcreación publicitaria), unificando la interfaz UI con el discurso comercial.\n\n## Resultados e Impacto Medible\n- **Adopción diaria por grandes marcas:** 5 grandes marcas operaban diariamente en la plataforma, incluyendo **LATAM Airlines** y compañías líderes del sector de **turismo y hotelería**.\n- **Exit / Adquisición exitosa:** La solidez del producto, la marca y los sistemas permitió la adquisición de GetGloby por MotionPoint / Marketfully, donde orquesté la transición completa de diseño y producto.\n\n## Conexiones\n- Casos de estudio profundos: caso_getgloby_mvp_a_adquisicion, caso_jaga_identidad_motor_ia\n- Continuación post-adquisición: exp_marketfully_product_design_manager\n- Testimonio de Juan Fusoni (Angel Investor): testimonios_y_referencias",
+      "bodyEn": "## Summary\nI joined **GetGloby** (getgloby.ai · Case study on gutierrezjoel.com) in April 2022 as **Founding Lead Product Designer** (the **#1 Product and Design hire**) and in August 2022 I took over as **Head of Design and UX** until July 2025 (New York / Remote), reporting directly to the 2 Founders (CTO and CPO).\n\n## Key Facts and Responsibilities\n- **From 0 to 1 (From manual MVP to SaaS in seconds):** I evolved the platform from a manual service into a self-service SaaS product for marketing teams in the US, Latin America, and Europe, successfully reducing the time it took to execute Google Ads translations and transcreations in over 20 languages **from days to seconds**.\n- **Design department creation and organizational scaling:** I entered as the first product/design member and built the practice from scratch in an organization that grew to ~22 people (2 Founders, 6 Developers, **5 Designers under my supervision** —2 full-time and specialists in Ops, Graphic, Social Media, Branding, and Video—, 4 in Operations, 2 in Finance, and 1 in Legal).\n- **UX architecture and \"Jaga\" identity:** I designed the experience and product identity for **Jaga** (the core AI and NLP engine for advertising transcreation), unifying the UI interface with the commercial pitch.\n\n## Results and Measurable Impact\n- **Daily adoption by major brands:** 5 major brands operated daily on the platform, including **LATAM Airlines** and leading companies in the **tourism and hospitality** sector.\n- **Exit / Successful acquisition:** The strength of the product, brand, and systems enabled the acquisition of GetGloby by MotionPoint / Marketfully, where I orchestrated the complete design and product transition.\n\n## Connections\n- In-depth case studies: caso_getgloby_mvp_a_adquisicion, caso_jaga_identidad_motor_ia\n- Post-acquisition continuation: exp_marketfully_product_design_manager\n- Testimonial by Juan Fusoni (Angel Investor): testimonios_y_referencias",
+      "links": [
+        "exp-marketfully",
+        "caso-getgloby-saas",
+        "caso-jaga-identidad",
+        "id-testimonios-referencias"
+      ],
+      "hash": "e96332aa03444611c061d1f14e7ca8e689db90c63a1fc3265e3e2eba349c311b"
+    },
+    {
+      "id": "exp-golf-boost-rehab-boost",
+      "file": "02_Experiencia_Profesional/exp_golf_boost_rehab_boost.md",
+      "type": "experiencia",
+      "period": "2019-04 a 2022-04",
+      "tags": [
+        "golf-boost",
+        "rehab-boost",
+        "ios-app",
+        "ai-motion-recognition",
+        "healthtech",
+        "sportstech"
+      ],
+      "titleEs": "Staff Product Designer & UX Designer en Golf Boost / Rehab Boost",
+      "titleEn": "Staff Product Designer & UX Designer at Golf Boost / Rehab Boost",
+      "tldrEs": "Diseñé apps iOS impulsadas por IA y reconocimiento de movimiento para rehabilitación física (Rehab Boost) y deporte (Golf Boost) en Miami.",
+      "tldrEn": "I designed AI-powered iOS apps driven by motion recognition for physical rehabilitation (Rehab Boost) and sports (Golf Boost) in Miami.",
+      "bodyEs": "## Resumen\nTrabajé con **Golf Boost Software Company** (Miami, Florida / Remoto) en dos etapas: como **User Experience Designer** (abril 2019 – marzo 2021) y como **Staff Product Designer** (enero 2022 – abril 2022), liderando el diseño de aplicaciones iOS basadas en inteligencia artificial y visión por computadora para deporte (golfboost.com) y salud (rehabboost.com).\n\n## Hechos y Responsabilidades Clave\n- **App iOS con IA y reconocimiento de movimiento (Rehab Boost):** Diseñé desde cero la experiencia de una aplicación iOS que utiliza IA y captura de movimiento en tiempo real para guiar y monitorear ejercicios de fisioterapia y rehabilitación en pacientes.\n- **Investigación y pruebas con pacientes reales:** Conduje entrevistas de usuario y sesiones de testeo de usabilidad para asegurar que la interfaz fuera accesible, clara y fácil de seguir para pacientes en rehabilitación física.\n- **Design System y librería de componentes iOS:** Construí el sistema de diseño y la librería de componentes UI para mantener consistencia visual y acelerar el desarrollo junto a los equipos de producto e ingeniería.\n- **Rebranding de Golf Boost:** Lideré la iniciativa de rebranding y rediseño de la app iOS de Golf Boost, mejorando la identidad visual y la retención de usuarios.\n\n## Conexiones\n- Catálogo completo de proyectos: catalogo_proyectos_2010_2026\n- Capacidades en productos de IA: capacidades_producto_ia_y_sistemas",
+      "bodyEn": "## Summary\nI worked with **Golf Boost Software Company** (Miami, Florida / Remote) in two stages: as a **User Experience Designer** (April 2019 – March 2021) and as a **Staff Product Designer** (January 2022 – April 2022), leading the design of iOS applications based on artificial intelligence and computer vision for sports (golfboost.com) and healthcare (rehabboost.com).\n\n## Key Facts and Responsibilities\n- **AI-powered iOS app with motion recognition (Rehab Boost):** I designed from scratch the experience of an iOS application that uses AI and real-time motion capture to guide and monitor physical therapy and rehabilitation exercises in patients.\n- **Research and testing with real patients:** I conducted user interviews and usability testing sessions to ensure the interface was accessible, clear, and easy to follow for patients in physical rehabilitation.\n- **Design System and iOS component library:** I built the design system and UI component library to maintain visual consistency and accelerate development alongside the product and engineering teams.\n- **Golf Boost Rebranding:** I led the rebranding and redesign initiative for the Golf Boost iOS app, improving visual identity and user retention.\n\n## Connections\n- Complete project catalog: catalogo_proyectos_2010_2026\n- Capabilities in AI products: capacidades_producto_ia_y_sistemas",
+      "links": [
+        "proy-catalogo-completo",
+        "skills-capacidades-producto"
+      ],
+      "hash": "7934a6a8aab65f8de37d7ecf76c8e6a5db95bab7cdc2ded744c4ec8d0ad33547"
+    },
+    {
+      "id": "exp-kywise",
+      "file": "02_Experiencia_Profesional/exp_kywise_founder_director.md",
+      "type": "experiencia",
+      "period": "2025-08 a Presente",
+      "tags": [
+        "kywise",
+        "founder",
+        "ai-agents",
+        "automatizacion",
+        "b2b"
+      ],
+      "titleEs": "Founder & Director en Kywise",
+      "titleEn": "Founder & Director at Kywise",
+      "tldrEs": "Fundador y Director de Kywise (kywise.com), agencia especializada en automatización de procesos, transformación digital y despliegue de agentes de IA para empresas B2B.",
+      "tldrEn": "Founder and Director of Kywise (kywise.com), an agency specialized in process automation, digital transformation, and the deployment of AI agents for B2B companies.",
+      "bodyEs": "## Resumen\nDesde agosto de 2025 soy **Founder & Director** de **Kywise** (kywise.com, Mendoza, Argentina), una agencia enfocada en automatización de procesos, agentes de IA personalizados y transformación digital para clientes B2B.\n\n## Hechos y Responsabilidades Clave\n- **Visión estratégica y operaciones:** Dirijo la estrategia y las operaciones de la agencia, entregando soluciones de transformación digital y automatización que optimizan flujos de trabajo B2B.\n- **Diseño y despliegue de Agentes de IA:** Diseño e implemento agentes de inteligencia artificial personalizados para automatizar procesos operativos y escalar la eficiencia de nuestros clientes.\n- **Puente entre diseño, ingeniería y negocio:** Conecto la lógica de negocio con el diseño de producto y la ingeniería para construir y lanzar plataformas digitales escalables.\n- **Liderazgo de clientes y marca:** Lidero la relación con clientes, defino los roadmaps de cada proyecto y creé desde cero la identidad de marca integral y el sitio web oficial (kywise.com).\n\n## Conexiones\n- Producto SaaS de asistentes de IA que co-fundé: exp_cofactor_cofounder_product_lead\n- Capacidades de IA y herramientas: capacidades_producto_ia_y_sistemas, stack_herramientas_2026",
+      "bodyEn": "## Summary\nSince August 2025 I am **Founder & Director** of **Kywise** (kywise.com, Mendoza, Argentina), an agency focused on process automation, custom AI agents, and digital transformation for B2B clients.\n\n## Key Facts and Responsibilities\n- **Strategic vision and operations:** I direct the agency's strategy and operations, delivering digital transformation and automation solutions that optimize B2B workflows.\n- **Design and deployment of AI Agents:** I design and implement custom artificial intelligence agents to automate operational processes and scale our clients' efficiency.\n- **Bridge between design, engineering, and business:** I connect business logic with product design and engineering to build and launch scalable digital platforms.\n- **Client and brand leadership:** I lead client relationships, define the roadmap for each project, and created the comprehensive brand identity and official website (kywise.com) from scratch.\n\n## Connections\n- SaaS AI assistant product that I co-founded: exp_cofactor_cofounder_product_lead\n- AI capabilities and tools: capacidades_producto_ia_y_sistemas, stack_herramientas_2026",
+      "links": [
+        "exp-cofactor",
+        "skills-capacidades-producto",
+        "skills-stack-2026"
+      ],
+      "hash": "56df5071bd13f81667dadca18fc2ace680248e51611f60e36c118508f080b72e"
+    },
+    {
+      "id": "exp-marketfully",
+      "file": "02_Experiencia_Profesional/exp_marketfully_product_design_manager.md",
+      "type": "experiencia",
+      "period": "2025-08 a 2026-08",
+      "tags": [
+        "marketfully",
+        "product-design-manager",
+        "saas",
+        "ai-marketing",
+        "posthog",
+        "railway",
+        "design-system"
+      ],
+      "titleEs": "Product Design Manager en MarketFully Group",
+      "titleEn": "Product Design Manager at MarketFully Group",
+      "tldrEs": "Product Design Manager en Marketfully; reduje ciclos de prototipado de 1 mes a 3 días con Railway y vibe coding, y ahorré >97% en analítica migrando a PostHog.",
+      "tldrEn": "Product Design Manager at Marketfully; I reduced prototyping cycles from 1 month to 3 days using Railway and vibe coding, and saved >97% on analytics by migrating to PostHog.",
+      "bodyEs": "## Resumen\nEntre agosto de 2025 y agosto de 2026 me desempeñé como **Product Design Manager** en **MarketFully Group** (app.marketfully.ai · Caso en gutierrezjoel.com), liderando la integración de diseño y producto tras la adquisición de GetGloby.\n\n## Hechos y Responsabilidades Clave\n- **Liderazgo de equipos de Diseño e IA:** Construí y dirigí el equipo de Product Design (1 Product Designer, 1 AI Solution Designer y 1 UX Researcher reportándome directamente) y levanté el equipo de IA que convirtió diseños en funcionalidades basadas en agentes junto a producto, ingeniería y QA.\n- **Design System con cobertura del 100% y velocidad de entrega:** Diseñé el sistema de diseño por tokens semánticos que cubría **toda la plataforma**. Su madurez permitió que muchas funcionalidades nuevas pasaran directo a desarrollo sin necesidad de diseñar pantallas previas desde cero, requiriendo solo un *design check* de validación.\n- **Prototipado rápido con Railway, Vibe Coding y Agentes:** Implementé un flujo con equipos interdisciplinarios reducidos usando *vibe coding* (Cursor/Claude), agentes de generación de ideas y despliegues rápidos en **Railway** para validar con operaciones antes de ir a producción.\n\n## Resultados e Impacto Medible\n- **Ciclos de validación ~90% más rápidos (de 1 mes a 3 días):** Pasamos de tardar cerca de **1 mes** en llevar una idea a pruebas operativas a desplegar prototipos funcionales en solo **3 días**.\n- **Reducción de más del 97% en costos de Product Analytics:** Lideré el reemplazo de herramientas tradicionales costosas (como Pendo) por un modelo de pago por uso en **PostHog**, logrando un **ahorro superior al 97%** en el costo anual de licencias y expandiendo la herramienta a **todos los productos del grupo**.\n\n## Conexiones\n- Caso de estudio detallado: caso_marketfully_ai_platform\n- Etapa previa al frente de GetGloby: exp_getgloby_head_of_design\n- Testimonio de mi CPTO (Rob Lyons): testimonios_y_referencias",
+      "bodyEn": "## Summary\nBetween August 2025 and August 2026 I worked as **Product Design Manager** at **MarketFully Group** (app.marketfully.ai · Case at gutierrezjoel.com), leading the integration of design and product following the acquisition of GetGloby.\n\n## Key Facts and Responsibilities\n- **Design and AI Team Leadership:** I built and led the Product Design team (1 Product Designer, 1 AI Solution Designer, and 1 UX Researcher reporting directly to me) and stood up the AI team that turned designs into agent-based features alongside product, engineering, and QA.\n- **Design System with 100% Coverage and Delivery Speed:** I designed the semantic token design system covering **the entire platform**. Its maturity allowed many new features to go straight to development without needing to design screens from scratch beforehand, requiring only a validation *design check*.\n- **Rapid Prototyping with Railway, Vibe Coding, and Agents:** I implemented a workflow with lean cross-functional teams using *vibe coding* (Cursor/Claude), ideation generation agents, and fast deployments on **Railway** to validate with operations before going to production.\n\n## Results and Measurable Impact\n- **Validation cycles ~90% faster (from 1 month to 3 days):** We went from taking nearly **1 month** to bring an idea to operational testing to deploying functional prototypes in just **3 days**.\n- **Reduction of over 97% in Product Analytics costs:** I led the replacement of costly traditional tools (such as Pendo) with a pay-as-you-go model in **PostHog**, achieving **savings exceeding 97%** in annual license costs and expanding the tool to **all group products**.\n\n## Connections\n- Detailed case study: caso_marketfully_ai_platform\n- Previous stage heading GetGloby: exp_getgloby_head_of_design\n- Testimonial from my CPTO (Rob Lyons): testimonios_y_referencias",
+      "links": [
+        "exp-getgloby",
+        "caso-marketfully-ai",
+        "id-testimonios-referencias"
+      ],
+      "hash": "c7b992bd70e83fd5d3d604505104d2ecd4eea88b112692d836df7dd320ef6704"
+    },
+    {
+      "id": "exp-vina-errazuriz",
+      "file": "02_Experiencia_Profesional/exp_vina_errazuriz_product_manager.md",
+      "type": "experiencia",
+      "period": "2017-02 a 2020-10",
+      "tags": [
+        "vina-errazuriz",
+        "vinedo-chadwick",
+        "product-manager",
+        "dam",
+        "arboleda",
+        "sena",
+        "caliterra"
+      ],
+      "titleEs": "Product Manager & Lead Product Designer para Viña Errázuriz / Viñedo Chadwick",
+      "titleEn": "Product Manager & Lead Product Designer for Viña Errázuriz / Viñedo Chadwick",
+      "tldrEs": "Lideré durante casi 4 años la estrategia de producto y plataformas DAM para las bodegas chilenas de prestigio Viña Errázuriz, Seña, Arboleda y Caliterra.",
+      "tldrEn": "I led the product strategy and DAM platforms for nearly 4 years for the prestigious Chilean wineries Viña Errázuriz, Seña, Arboleda, and Caliterra.",
+      "bodyEs": "## Resumen\nEntre febrero de 2017 y octubre de 2020 trabajé como **Product Manager y Lead Product Designer** para **Viña Errázuriz / Grupo Viñedo Chadwick** (Santiago de Chile / Remoto), desarrollando estrategias de producto y plataformas de gestión de activos digitales (DAM) para sus bodegas de clase mundial.\n\n## Hechos y Responsabilidades Clave\n- **Sistemas de Gestión de Activos Digitales (DAM):** Desarrollé y ejecuté la estrategia de producto, diseño y gestión de las WebApps de descarga de activos de marketing para distribuidores globales de Viña Errázuriz, Viña Arboleda y Viña Caliterra.\n- **Sitios Institucionales y Localización Asiática (Seña):** Diseñé y gestioné el sitio institucional de Arboleda (2017) y lideré el diseño y desarrollo de las versiones en **japonés y chino** del sitio web de la bodega ícono Seña (2018).\n- **Investigación y optimización de flujos:** Realicé investigación de mercado y colaboré con los equipos comerciales y de marketing para agilizar el acceso global a materiales de marca.\n\n## Conexiones\n- Experiencia previa en la industria del vino: exp_vspt_wine_group_marketing_designer\n- Testimonio de Cinthia Morabito (Head of Marketing, Viña Errázuriz): testimonios_y_referencias",
+      "bodyEn": "## Summary\nBetween February 2017 and October 2020 I worked as a **Product Manager and Lead Product Designer** for **Viña Errázuriz / Grupo Viñedo Chadwick** (Santiago de Chile / Remote), developing product strategies and digital asset management (DAM) platforms for their world-class wineries.\n\n## Key Facts and Responsibilities\n- **Digital Asset Management (DAM) Systems:** I developed and executed the product strategy, design, and management of the marketing asset download WebApps for global distributors of Viña Errázuriz, Viña Arboleda, and Viña Caliterra.\n- **Institutional Sites and Asian Localization (Seña):** I designed and managed the Arboleda institutional site (2017) and led the design and development of the **Japanese and Chinese** versions of the icon winery Seña's website (2018).\n- **Research and Workflow Optimization:** I conducted market research and collaborated with commercial and marketing teams to streamline global access to brand materials.\n\n## Connections\n- Previous experience in the wine industry: exp_vspt_wine_group_marketing_designer\n- Testimonial from Cinthia Morabito (Head of Marketing, Viña Errázuriz): testimonios_y_referencias",
+      "links": [
+        "exp-vspt-wine-group",
+        "id-testimonios-referencias"
+      ],
+      "hash": "ecc52cd0de4583ebd71f8c5a12331bda64f5da2a81d8f1091923259e1cc7b07f"
+    },
+    {
+      "id": "exp-vspt-wine-group",
+      "file": "02_Experiencia_Profesional/exp_vspt_wine_group_marketing_designer.md",
+      "type": "experiencia",
+      "period": "2013-02 a 2014-07",
+      "tags": [
+        "vspt",
+        "marketing-designer",
+        "winery",
+        "packaging",
+        "internacional"
+      ],
+      "titleEs": "Marketing Designer en VSPT Wine Group",
+      "titleEn": "Marketing Designer at VSPT Wine Group",
+      "tldrEs": "Mi primer rol in-house liderando diseño web, activos para distribuidores y etiquetas de exportación a +23 países para 8 marcas de VSPT Wine Group.",
+      "tldrEn": "My first in-house role leading web design, distributor assets, and export labels to over 23 countries for 8 brands at VSPT Wine Group.",
+      "bodyEs": "## Resumen\nEntre febrero de 2013 y julio de 2014 fui **Marketing Designer** (y Lead Designer para las marcas de Argentina) en **VSPT Wine Group** (vsptwinegroup.com · Caso en gutierrezjoel.com, Mendoza, Argentina). Fue mi primer rol in-house tras graduarme de la universidad.\n\n## Hechos y Responsabilidades Clave\n- **Diseño web y gráfico para 8 marcas principales:** Diseñé y desarrollé materiales digitales, sitios institucionales (incluyendo *La Consulta Wines* y *Castillo de Molina*) y piezas gráficas para posicionar las marcas del grupo en mercados internacionales.\n- **Normativa internacional en más de 23 países:** Creé etiquetas vitivinícolas de exportación asegurando el cumplimiento técnico y legal para más de **23 países**, aprendiendo a diseñar bajo restricciones reales de producción y regulación.\n- **Biblioteca de activos para distribuidores (Dealers):** Organicé y gestioné la plataforma de activos de marketing para distribuidores comerciales, transformando carpetas difíciles de navegar en un catálogo estructurado y fácil de usar.\n\n## Conexiones\n- Evolución posterior como Product Manager en bodegas: exp_vina_errazuriz_product_manager\n- Formación universitaria: educacion_certificaciones_idiomas",
+      "bodyEn": "## Summary\nBetween February 2013 and July 2014, I was a **Marketing Designer** (and Lead Designer for the Argentina brands) at **VSPT Wine Group** (vsptwinegroup.com · Case study at gutierrezjoel.com, Mendoza, Argentina). It was my first in-house role after graduating from university.\n\n## Key Facts and Responsibilities\n- **Web and graphic design for 8 core brands:** I designed and developed digital materials, corporate websites (including *La Consulta Wines* and *Castillo de Molina*), and graphic pieces to position the group's brands in international markets.\n- **International compliance in over 23 countries:** I created export wine labels ensuring technical and legal compliance for more than **23 countries**, learning to design under real production and regulatory constraints.\n- **Dealer asset library:** I organized and managed the marketing asset platform for commercial distributors, transforming difficult-to-navigate folders into a structured, user-friendly catalog.\n\n## Connections\n- Subsequent evolution as Product Manager in wineries: exp_vina_errazuriz_product_manager\n- University education: educacion_certificaciones_idiomas",
+      "links": [
+        "exp-vina-errazuriz",
+        "edu-formacion-certificaciones"
+      ],
+      "hash": "760844816ede816a366dafacfa9e42ff83180591af1de30af3b25f6d80969814"
+    },
+    {
+      "id": "faq-clientes-consultoria",
+      "file": "06_FAQ_Profesionales/faq_clientes_consultoria_e_ia.md",
+      "type": "faq",
+      "period": "2026",
+      "tags": [
+        "faq",
+        "clientes",
+        "consultoria",
+        "cofactor",
+        "kywise",
+        "mvp",
+        "ai-agents"
+      ],
+      "titleEs": "FAQ para Clientes, Fundadores y Proyectos de IA / Producto",
+      "titleEn": "FAQ for Clients, Founders, and AI / Product Projects",
+      "tldrEs": "Respuestas en primera persona para fundadores y empresas que buscan diseñar productos SaaS, escalar un MVP o implementar asistentes y agentes de IA.",
+      "tldrEn": "First-person answers for founders and companies looking to design SaaS products, scale an MVP, or implement AI assistants and agents.",
+      "bodyEs": "## Preguntas Frecuentes de Clientes y Fundadores\n\n### ¿Cómo puedes ayudar a mi startup o empresa hoy?\nA través de mi práctica profesional y mis compañías actuales —Cofactor (cofactor.team) y Kywise (kywise.com)—, ayudo a empresas B2B y startups en tres frentes:\n1. **Asistentes y Agentes de IA Operativos (Cofactor & Kywise):** Desplegamos asistentes de IA que entran a tus sistemas actuales (ERPs, portales, hojas de cálculo, correo) para ejecutar tareas repetitivas de principio a fin (conciliación de facturas, informes semanales, revisión de portales) con reglas claras de aprobación humana.\n2. **De 0 a 1 (De MVP a Producto SaaS Escalable):** Transformar una idea o servicio inicial en una plataforma SaaS lista para escalar, con arquitectura UX intuitiva y un Design System robusto (tal como hice de 0 a 1 hasta la adquisición en GetGloby y luego en Marketfully).\n3. **Identidad de Producto y Ejecución Front-End:** Crear una identidad de marca que unifique el discurso comercial con la interfaz del producto (como en Jaga) y construir el front-end listo para producción.\n\n### ¿Con qué industrias has trabajado?\nHe entregado más de 64 proyectos sin restricciones de confidencialidad (catalogo_proyectos_2010_2026) en sectores de **SaaS y Marketing/AdTech** (Marketfully, GetGloby), **Seguros** (AIG), **Salud y Medicina** (Kaiser Permanente, Humana, Rehab Boost, TempraMed), **Retail y Moda** (Victoria's Secret, Pink, LBrands), **Gastronomía** (Dickey's Barbecue, Wing Boss), **Educación e Investigación** (For Dummies / Wiley, J.D. Power) y **Vitivinicultura** (Viña Errázuriz, Seña, VSPT Wine Group).\n\n### ¿Cómo cotizas un proyecto o cómo empezamos a trabajar juntos?\nPara entender el alcance de lo que necesitas construir o automatizar, escríbeme directamente a **joelg333@gmail.com** contándome brevemente sobre tu producto o el proceso que quieres resolver, y agendamos una conversación inicial.\n\n## Conexiones\n- Preguntas de reclutadores: faq_reclutadores_y_contacto\n- Testimonios de fundadores y clientes: testimonios_y_referencias",
+      "bodyEn": "## Frequently Asked Questions from Clients and Founders\n\n### How can you help my startup or company today?\nThrough my professional practice and my current companies—Cofactor (cofactor.team) and Kywise (kywise.com)—I help B2B companies and startups on three fronts:\n1. **Operational AI Assistants and Agents (Cofactor & Kywise):** We deploy AI assistants that integrate into your current systems (ERPs, portals, spreadsheets, email) to execute repetitive tasks from end to end (invoice reconciliation, weekly reports, portal reviews) with clear human-in-the-loop approval rules.\n2. **From 0 to 1 (From MVP to Scalable SaaS Product):** Transforming an initial idea or service into a SaaS platform ready to scale, with intuitive UX architecture and a robust Design System (just as I did from 0 to 1 until acquisition at GetGloby and later at Marketfully).\n3. **Product Identity and Front-End Execution:** Creating a brand identity that unifies the commercial pitch with the product interface (like in Jaga) and building the production-ready front-end.\n\n### What industries have you worked with?\nI have delivered over 64 projects without confidentiality restrictions (catalogo_proyectos_2010_2026) in sectors such as **SaaS and Marketing/AdTech** (Marketfully, GetGloby), **Insurance** (AIG), **Health and Medicine** (Kaiser Permanente, Humana, Rehab Boost, TempraMed), **Retail and Fashion** (Victoria's Secret, Pink, LBrands), **Gastronomy** (Dickey's Barbecue, Wing Boss), **Education and Research** (For Dummies / Wiley, J.D. Power), and **Wine and Viticulture** (Viña Errázuriz, Seña, VSPT Wine Group).\n\n### How do you quote a project or how do we start working together?\nTo understand the scope of what you need to build or automate, write to me directly at **joelg333@gmail.com** telling me briefly about your product or the process you want to solve, and we will schedule an initial conversation.\n\n## Connections\n- Recruiter questions: faq_reclutadores_y_contacto\n- Founder and client testimonials: testimonios_y_referencias",
+      "links": [
+        "exp-cofactor",
+        "exp-kywise",
+        "caso-getgloby-saas",
+        "caso-marketfully-ai",
+        "caso-jaga-identidad",
+        "proy-catalogo-completo",
+        "faq-reclutadores",
+        "id-testimonios-referencias"
+      ],
+      "hash": "06e4dd022548209c7ba170f931e12a9236a65eac0b7b81e091533f9ded56fcfb"
+    },
+    {
+      "id": "faq-reclutadores",
+      "file": "06_FAQ_Profesionales/faq_reclutadores_y_contacto.md",
+      "type": "faq",
+      "period": "2026",
+      "tags": [
+        "faq",
+        "reclutadores",
+        "contratacion",
+        "disponibilidad",
+        "remoto",
+        "liderazgo",
+        "metricas"
+      ],
+      "titleEs": "FAQ para Reclutadores y Líderes de Contratación",
+      "titleEn": "FAQ for Recruiters and Hiring Leaders",
+      "tldrEs": "Respuestas directas en primera persona a preguntas de reclutadores con métricas reales de liderazgo, escala 0 a 1, ahorro de costos y velocidad de entrega.",
+      "tldrEn": "Direct first-person answers to recruiter questions with real leadership metrics, 0 to 1 scaling, cost savings, and delivery speed.",
+      "bodyEs": "## Preguntas Frecuentes de Reclutadores\n\n### ¿Qué tipo de rol tienes y cuál es tu especialidad principal?\nSoy **Product Design Manager / Head of Design / Founding o Staff Product Designer** con más de 12 años de experiencia. Me especializo en construir y escalar productos **SaaS B2B/B2C e Inteligencia Artificial**, liderando tanto la estrategia y el equipo de diseño como la ejecución técnica (Design Systems por tokens semánticos, *vibe coding* con Cursor/Next.js, despliegues rápidos en Railway y analítica con PostHog).\n\n### ¿Qué métricas concretas de impacto has logrado en tus últimos roles?\n- **De 0 a 1 hasta adquisición en GetGloby:** Entré como el **hire #1 de Producto y Diseño**. Llevamos las traducciones y transcreaciones de campañas de Google Ads de procesos manuales que tardaban **días a ejecutarse en segundos**, operando diariamente con 5 grandes marcas (incluyendo **LATAM Airlines** y empresas de turismo y hotelería) hasta concretar la adquisición por MotionPoint / Marketfully.\n- **Reducción del ciclo de validación de 1 mes a 3 días en Marketfully:** Usando despliegues rápidos en **Railway**, *vibe coding* y agentes de IA en equipos interdisciplinarios reducidos, bajamos el tiempo para probar prototipos funcionales con operaciones de **1 mes a 3 días** (~90% más rápido).\n- **Ahorro de más del 97% en Product Analytics:** Lideré la adopción de **PostHog** bajo pago por uso frente a licencias enterprise como Pendo, reduciendo más de un **97%** el gasto anual y escalando la herramienta a todos los productos del grupo.\n- **Design System al 100% sin cuellos de botella:** Creé un Design System que cubría toda la plataforma, logrando que muchas funcionalidades nuevas se desarrollaran directamente en código requiriendo solo un *design check* de validación por parte de diseño.\n\n### ¿Qué tamaño de equipos has liderado y con quiénes has colaborado?\nEn GetGloby entré como el #1 de producto y diseño en una empresa que escaló hasta ~22 personas (2 Founders, 6 Developers, **5 Diseñadores a mi cargo** en Ops, Gráfico, Social Media, Branding y Video, 4 en Operaciones, 2 en Finanzas y 1 en Legal). Luego en Marketfully lideré directamente al equipo de Product Design (Product Designer, AI Solution Designer y UX Researcher) y levanté el equipo de IA junto a ingeniería y QA.\n\n### ¿Cuáles son tus expectativas salariales, tarifas o disponibilidad?\nComo cada oportunidad varía según el alcance del rol o proyecto, prefiero conversarlo directamente. Te invito a enviarme un correo a **joelg333@gmail.com** (o escribirme por LinkedIn) con los detalles de la propuesta para coordinar una llamada.",
+      "bodyEn": "## Recruiter Frequently Asked Questions\n\n### What kind of role do you have and what is your main specialty?\nI am a **Product Design Manager / Head of Design / Founding or Staff Product Designer** with over 12 years of experience. I specialize in building and scaling **B2B/B2C SaaS and Artificial Intelligence** products, leading both the strategy and design team as well as technical execution (Design Systems via semantic tokens, *vibe coding* with Cursor/Next.js, rapid deployments on Railway, and analytics with PostHog).\n\n### What concrete impact metrics have you achieved in your recent roles?\n- **From 0 to 1 to acquisition at GetGloby:** I joined as the **#1 Product and Design hire**. We took Google Ads campaign translations and transcreations from manual processes that took **days to execute down to seconds**, operating daily with 5 major brands (including **LATAM Airlines** and tourism and hospitality companies) until securing the acquisition by MotionPoint / Marketfully.\n- **Reduction of the validation cycle from 1 month to 3 days at Marketfully:** Using rapid deployments on **Railway**, *vibe coding*, and AI agents in lean cross-functional teams, we cut the time to test functional prototypes from **1 month to 3 days** (~90% faster).\n- **Savings of over 97% in Product Analytics:** I led the adoption of usage-based **PostHog** over enterprise licenses like Pendo, reducing annual spending by over **97%** and scaling the tool across all group products.\n- **Design System at 100% without bottlenecks:** I created a Design System covering the entire platform, ensuring that many new features were developed directly in code requiring only a validation *design check* from design.\n\n### What size teams have you led and who have you collaborated with?\nAt GetGloby I joined as the #1 in product and design in a company that scaled up to ~22 people (2 Founders, 6 Developers, **5 Designers reporting to me** in Ops, Graphic, Social Media, Branding, and Video, 4 in Operations, 2 in Finance, and 1 in Legal). Later at Marketfully I directly led the Product Design team (Product Designer, AI Solution Designer, and UX Researcher) and built the AI team alongside engineering and QA.\n\n### What are your salary expectations, rates, or availability?\nSince each opportunity varies depending on the scope of the role or project, I prefer to discuss it directly. I invite you to send me an email at **joelg333@gmail.com** (or message me on LinkedIn) with the proposal details to coordinate a call.",
+      "links": [
+        "exp-getgloby",
+        "exp-marketfully"
+      ],
+      "hash": "4a754fed518f6b17ae0d0bc42de34c645e47b3310dbc631007ef292a55942b78"
+    },
+    {
+      "id": "id-filosofia-liderazgo",
+      "file": "01_Identidad_y_Estilo/filosofia_liderazgo_y_trabajo.md",
+      "type": "identidad",
+      "period": "2014-2026",
+      "tags": [
+        "liderazgo",
+        "filosofia",
+        "ia",
+        "design-systems",
+        "railway",
+        "vibe-coding"
+      ],
+      "titleEs": "Filosofía de Trabajo, Liderazgo y Enfoque en IA",
+      "titleEn": "Work Philosophy, Leadership, and AI Focus",
+      "tldrEs": "Lidero equipos reduciendo ciclos de validación de 1 mes a 3 días con Railway y vibe coding, y creando Design Systems donde desarrollo avanza con solo un design check.",
+      "tldrEn": "I lead teams reducing validation cycles from 1 month to 3 days with Railway and vibe coding, and creating Design Systems where development moves forward with just a design check.",
+      "bodyEs": "## Resumen\nLa inteligencia artificial multiplica las opciones y la velocidad de trabajo, pero mi rol es colaborar y tomar decisiones que resuelvan problemas reales para que el equipo pueda desarrollarlas contra objetivos concretos (gutierrezjoel.com).\n\n## Mis Principios de Trabajo y Liderazgo\n- **De 1 mes a 3 días (Diseñar *con* los usuarios mediante Vibe Coding y Railway):** En lugar de esperar un mes por un release tradicional, trabajo en equipos interdisciplinarios reducidos usando *vibe coding* (Cursor/Claude), agentes de producción de ideas y despliegues ligeros en **Railway**. Así, en Marketfully logramos que los prototipos funcionales llegaran a los equipos de operaciones en **3 días**, cerrando un bucle de feedback real.\n- **Design Systems que eliminan cuellos de botella:** Construyo sistemas de diseño por tokens semánticos que cubren el **100% de la plataforma**. Cuando el sistema está bien implementado en código, cada feature nueva se desarrolla muchísimo más rápido y muchas veces no necesita pasar por un diseño previo en Figma, sino únicamente por una revisión rápida (*design check*) de mi equipo antes de salir.\n- **El humano siempre al mando en productos de IA:** Tanto en Marketfully y GetGloby como hoy en Cofactor, diseño bajo la premisa de que la IA automatiza el trabajo pesado (en segundos en vez de días), pero el humano conserva el control y la aprobación final.\n- **Construcción de equipos desde el Hire #1:** En GetGloby entré como el #1 de producto y diseño y escalé el área hasta liderar a 5 diseñadores (Ops, Gráfico, Social Media, Branding y Video) trabajando junto a 6 desarrolladores, operaciones y founders.\n\n## Conexiones\n- Herramientas que sostienen mi flujo: stack_herramientas_2026\n- Evidencia de impacto en equipos: testimonios_y_referencias",
+      "bodyEn": "## Summary\nArtificial intelligence multiplies options and work speed, but my role is to collaborate and make decisions that solve real problems so the team can develop them against concrete objectives (gutierrezjoel.com).\n\n## My Work and Leadership Principles\n- **From 1 month to 3 days (Designing *with* users through Vibe Coding and Railway):** Instead of waiting a month for a traditional release, I work in small cross-functional teams using *vibe coding* (Cursor/Claude), idea production agents, and lightweight deployments on **Railway**. Thus, at Marketfully we achieved functional prototypes reaching operations teams in **3 days**, closing a real feedback loop.\n- **Design Systems that eliminate bottlenecks:** I build design systems using semantic tokens that cover **100% of the platform**. When the system is well implemented in code, each new feature is developed much faster and often does not need to go through prior design in Figma, but rather just a quick review (*design check*) from my team before release.\n- **Humans always in command in AI products:** Both at Marketfully and GetGloby and today at Cofactor, I design under the premise that AI automates heavy work (in seconds instead of days), but humans retain control and final approval.\n- **Team building from Hire #1:** At GetGloby I entered as product and design hire #1 and scaled the area until leading 5 designers (Ops, Graphic, Social Media, Branding, and Video) working alongside 6 developers, operations, and founders.\n\n## Connections\n- Tools that sustain my flow: stack_herramientas_2026\n- Evidence of impact on teams: testimonios_y_referencias",
+      "links": [
+        "exp-marketfully",
+        "caso-marketfully-ai",
+        "caso-getgloby-saas",
+        "exp-cofactor",
+        "skills-stack-2026",
+        "id-testimonios-referencias"
+      ],
+      "hash": "558acf0570aac7f7810b808a5ac18b502ae185552ef7ee61cec855212e1d684b"
+    },
+    {
+      "id": "id-propuesta-valor-bio",
+      "file": "01_Identidad_y_Estilo/propuesta_de_valor_y_bio.md",
+      "type": "identidad",
+      "period": "2008-2026",
+      "tags": [
+        "identidad",
+        "bio",
+        "propuesta-de-valor",
+        "mendoza",
+        "historia"
+      ],
+      "titleEs": "Propuesta de Valor e Historia Personal",
+      "titleEn": "Propuesta de Valor e Historia Personal",
+      "tldrEs": "Empecé a los 15 años creando webs mientras estudiaba electrónica, me gradué de diseñador en la UNCuyo y hoy dirijo producto, diseño e IA.",
+      "tldrEn": "Empecé a los 15 años creando webs mientras estudiaba electrónica, me gradué de diseñador en la UNCuyo y hoy dirijo producto, diseño e IA.",
+      "bodyEs": "## Resumen\nConstruyo productos en la intersección de **diseño, desarrollo y estrategia de negocio** (gutierrezjoel.com/en/about). Con más de una década en la industria, dirijo el diseño de producto desde la visión estratégica hasta la ejecución técnica para empresas SaaS y corporativas.\n\n## Mi Historia y Origen Técnico-Estratégico\n- **Raíz técnica autodidacta:** Aprendí por mi cuenta a los 15 años construyendo sitios web mientras estudiaba electrónica. Eso me dio desde el inicio una comprensión real de cómo se construye el software por dentro.\n- **Formación estratégica:** Estudié Diseño Gráfico en la **Universidad Nacional de Cuyo** (2008–2013), lo que sumó pensamiento sistémico, comunicación visual y metodología estratégica para resolver problemas complejos.\n- **Versatilidad de industrias y formatos:** He diseñado dashboards ejecutivos, plataformas SaaS B2B, sistemas de diseño, e-commerce, landing pages y apps iOS con IA para sectores de marketing/publicidad, seguros, salud, retail, gastronomía, educación y vitivinicultura.\n- **Lado personal:** Vivo en Luján de Cuyo, Mendoza, Argentina. Cuando no estoy entre pantallas, cuadernos y lapiceras, me pierdo en las montañas de Mendoza en mi moto o en bicicleta (afición que también inspiró mi estudio conceptual Kove 800X Rally).\n\n## Diferenciadores Clave\n- **Puente real entre diseño, ingeniería y negocio:** No entrego pantallas aisladas; trabajo codo a codo con ingeniería, producto, marketing y operaciones para que lo que construimos mueva las métricas del negocio.\n- **Ejecución aumentada con IA y código:** Uso herramientas como Cursor y Claude para prototipar en código, desplegar entornos ligeros de prueba en días y construir funcionalidades basadas en agentes de IA.\n\n## Conexiones\n- Filosofía de liderazgo: filosofia_liderazgo_y_trabajo\n- Testimonios de colegas: testimonios_y_referencias",
+      "bodyEn": "## Resumen\nConstruyo productos en la intersección de **diseño, desarrollo y estrategia de negocio** (gutierrezjoel.com/en/about). Con más de una década en la industria, dirijo el diseño de producto desde la visión estratégica hasta la ejecución técnica para empresas SaaS y corporativas.\n\n## Mi Historia y Origen Técnico-Estratégico\n- **Raíz técnica autodidacta:** Aprendí por mi cuenta a los 15 años construyendo sitios web mientras estudiaba electrónica. Eso me dio desde el inicio una comprensión real de cómo se construye el software por dentro.\n- **Formación estratégica:** Estudié Diseño Gráfico en la **Universidad Nacional de Cuyo** (2008–2013), lo que sumó pensamiento sistémico, comunicación visual y metodología estratégica para resolver problemas complejos.\n- **Versatilidad de industrias y formatos:** He diseñado dashboards ejecutivos, plataformas SaaS B2B, sistemas de diseño, e-commerce, landing pages y apps iOS con IA para sectores de marketing/publicidad, seguros, salud, retail, gastronomía, educación y vitivinicultura.\n- **Lado personal:** Vivo en Luján de Cuyo, Mendoza, Argentina. Cuando no estoy entre pantallas, cuadernos y lapiceras, me pierdo en las montañas de Mendoza en mi moto o en bicicleta (afición que también inspiró mi estudio conceptual Kove 800X Rally).\n\n## Diferenciadores Clave\n- **Puente real entre diseño, ingeniería y negocio:** No entrego pantallas aisladas; trabajo codo a codo con ingeniería, producto, marketing y operaciones para que lo que construimos mueva las métricas del negocio.\n- **Ejecución aumentada con IA y código:** Uso herramientas como Cursor y Claude para prototipar en código, desplegar entornos ligeros de prueba en días y construir funcionalidades basadas en agentes de IA.\n\n## Conexiones\n- Filosofía de liderazgo: filosofia_liderazgo_y_trabajo\n- Testimonios de colegas: testimonios_y_referencias",
+      "links": [
+        "caso-kove-800x-rally",
+        "id-filosofia-liderazgo",
+        "id-testimonios-referencias"
+      ],
+      "hash": "b19e29e862306d26b9672f9e40a7ed2c7f56edb64bc171eba05c2ad0377f73b4"
+    },
+    {
+      "id": "id-testimonios-linkedin-asher-feldman",
+      "file": "01_Identidad_y_Estilo/testimonios_linkedin_asher_feldman.md",
+      "type": "identidad",
+      "period": "2018",
+      "tags": [
+        "testimonios",
+        "linkedin",
+        "centric",
+        "estrategia"
+      ],
+      "titleEs": "Recomendación de Asher Feldman",
+      "titleEn": "Recommendation from Asher Feldman",
+      "tldrEs": "Asher Feldman, Head of Data en TodayTix y ex Centric, cuenta que convierto pedidos imprecisos en diseño usable.",
+      "tldrEn": "Asher Feldman, Head of Data at TodayTix and formerly at Centric, shares how I turn imprecise requests into usable design.",
+      "bodyEs": "## Resumen\nAsher Feldman, hoy Head of Data en TodayTix Group, trabajó conmigo en el mismo equipo en Centric Digital. Publicó esta recomendación el 5 de junio de 2018, visible para todos los miembros de LinkedIn.\n\n## Cita\n> I've worked with Joel for the all three years I've been a digital strategist at Centric Digital, beginning almost from the day I started at CD. From the moment we were placed together — executing UX and product design against an overwhelmingly complex set of business requirements from a client — I knew Joel was someone I could trust to take an idea I had and make it richer, simpler and better than I ever could.\n>\n> Working with Joel has undoubtedly made me a better strategist, as his ability to help design and make real very imprecise requests from myself or business partners have helped me realize what it takes to unpack a design problem and come up with a precise and usable solution. Above and beyond his ability to translate those requests into visually appealing and usable designs, his work has always been supported by quick, efficient process and standardization that is central to creating business-quality deliverables to CD's clients.\n>\n> Even more wonderfully, though, I've been able to develop a great working relationship with Joel, who I consider a friend, even though he works more than 5,000 miles away. His humor, good nature and overall fantastic work ethic have created a relationship between us that I really appreciate every single day I come to work and have the opportunity to work with him. And I know I'm a far better worker for having spent even a day getting to be Joel's partner in work.\n\n## Conexiones\n- Índice: testimonios_y_referencias\n- Carlos Mendoza y Thomas Preston, del mismo periodo: testimonios_linkedin_centric_2018\n\n## Preguntas Abiertas\n- Asher no nombra al cliente de ese primer proyecto. No lo invento.",
+      "bodyEn": "## Summary\nAsher Feldman, currently Head of Data at TodayTix Group, worked with me on the same team at Centric Digital. He published this recommendation on June 5, 2018, visible to all LinkedIn members.\n\n## Quote\n> I've worked with Joel for the all three years I've been a digital strategist at Centric Digital, beginning almost from the day I started at CD. From the moment we were placed together — executing UX and product design against an overwhelmingly complex set of business requirements from a client — I knew Joel was someone I could trust to take an idea I had and make it richer, simpler and better than I ever could.\n>\n> Working with Joel has undoubtedly made me a better strategist, as his ability to help design and make real very imprecise requests from myself or business partners have helped me realize what it takes to unpack a design problem and come up with a precise and usable solution. Above and beyond his ability to translate those requests into visually appealing and usable designs, his work has always been supported by quick, efficient process and standardization that is central to creating business-quality deliverables to CD's clients.\n>\n> Even more wonderfully, though, I've been able to develop a great working relationship with Joel, who I consider a friend, even though he works more than 5,000 miles away. His humor, good nature and overall fantastic work ethic have created a relationship between us that I really appreciate every single day I come to work and have the opportunity to work with him. And I know I'm a far better worker for having spent even a day getting to be Joel's partner in work.\n\n## Connections\n- Index: testimonios_y_referencias\n- Carlos Mendoza and Thomas Preston, from the same period: testimonios_linkedin_centric_2018\n\n## Open Questions\n- Asher does not name the client from that first project. I am not inventing it.",
+      "links": [
+        "exp-centric-digital",
+        "id-testimonios-referencias",
+        "id-testimonios-linkedin-centric-2018"
+      ],
+      "hash": "13fc53a2c54830f29bf085861bd78b29a67e0eac46170c8d7d7ca02444a9cff5"
+    },
+    {
+      "id": "id-testimonios-linkedin-centric-2018",
+      "file": "01_Identidad_y_Estilo/testimonios_linkedin_centric_2018.md",
+      "type": "identidad",
+      "period": "2018",
+      "tags": [
+        "testimonios",
+        "linkedin",
+        "centric",
+        "datos"
+      ],
+      "titleEs": "Recomendaciones de Centric Digital en 2018",
+      "titleEn": "Centric Digital Recommendations in 2018",
+      "tldrEs": "Carlos Mendoza y Thomas Preston recomiendan mi trabajo en Centric Digital, incluido un entregable para Kaiser Permanente.",
+      "tldrEn": "Carlos Mendoza and Thomas Preston recommend my work at Centric Digital, including a deliverable for Kaiser Permanente.",
+      "bodyEs": "## Resumen\nDos compañeros de Centric Digital me recomendaron en 2018, con visibilidad para todos los miembros de LinkedIn. Copio las citas sin editarlas.\n\n## Carlos Mendoza\nHead of Data Insights en Chief. 18 de junio de 2018. Mismo equipo. Dice que trabajamos tres años en Centric Digital.\n\n> Joel is the model co-worker that everyone should have the pleasure to work with.\n>\n> I have worked with Joel for three years while working at Centric Digital. I was very impressed with his ability to work well in teams, prioritize workload, manage multiple workstreams, his great eye for visual design, and above all else his contagiously positive personality. Doesn't matter the amount of work pressure he is in, he will always find a way to get the job done.\n>\n> Joel would be an extremely valuable asset to any organization.\n\n## Thomas Preston\nProductos digitales de farmacia y eCommerce en Kaiser Permanente. 5 de marzo de 2018. Equipos distintos.\n\n> I had the pleasure of working with Joel at Centric Digital for two full years, and during that time I was always struck by his can-do attitude and willingness to invest great attention to detail into his projects.\n>\n> During my first couple of weeks at Centric Digital, Joel helped me with design work on a presentation for leadership stakeholders at Kaiser Permanente. He set a high-quality standard for that project which helped lead to it's great success. Ever since then, we worked on numerous projects together. Joel was always incredible to work with on any of our client deliverables.\n>\n> I would recommend Joel for any team, and deeply value his standard of design excellence.\n\n## Conexiones\n- Índice: testimonios_y_referencias\n- Asher Feldman, del mismo periodo: testimonios_linkedin_asher_feldman\n\n## Preguntas Abiertas\n- Ninguno de los dos da una métrica del proyecto de Kaiser. No invento el resultado.",
+      "bodyEn": "## Summary\nTwo colleagues from Centric Digital recommended me in 2018, with visibility to all LinkedIn members. I am copying the quotes unedited.\n\n## Carlos Mendoza\nHead of Data Insights at Chief. June 18, 2018. Same team. Says we worked together for three years at Centric Digital.\n\n> Joel is the model co-worker that everyone should have the pleasure to work with.\n>\n> I have worked with Joel for three years while working at Centric Digital. I was very impressed with his ability to work well in teams, prioritize workload, manage multiple workstreams, his great eye for visual design, and above all else his contagiously positive personality. Doesn't matter the amount of work pressure he is in, he will always find a way to get the job done.\n>\n> Joel would be an extremely valuable asset to any organization.\n\n## Thomas Preston\nDigital Pharmacy and eCommerce Products at Kaiser Permanente. March 5, 2018. Different teams.\n\n> I had the pleasure of working with Joel at Centric Digital for two full years, and during that time I was always struck by his can-do attitude and willingness to invest great attention to detail into his projects.\n>\n> During my first couple of weeks at Centric Digital, Joel helped me with design work on a presentation for leadership stakeholders at Kaiser Permanente. He set a high-quality standard for that project which helped lead to it's great success. Ever since then, we worked on numerous projects together. Joel was always incredible to work with on any of our client deliverables.\n>\n> I would recommend Joel for any team, and deeply value his standard of design excellence.\n\n## Connections\n- Index: testimonios_y_referencias\n- Asher Feldman, from the same period: testimonios_linkedin_asher_feldman\n\n## Open Questions\n- Neither of them gives a metric for the Kaiser project. I am not inventing the result.",
+      "links": [
+        "exp-centric-digital",
+        "id-testimonios-referencias",
+        "id-testimonios-linkedin-asher-feldman"
+      ],
+      "hash": "567111ef4805e245c6b6014463ea172d2bfbe0a0075055a643d1548cd0bd88c1"
+    },
+    {
+      "id": "id-testimonios-linkedin-clientes-2021",
+      "file": "01_Identidad_y_Estilo/testimonios_linkedin_clientes_2021.md",
+      "type": "identidad",
+      "period": "2021",
+      "tags": [
+        "testimonios",
+        "linkedin",
+        "clientes",
+        "liderazgo"
+      ],
+      "titleEs": "Recomendaciones de clientes y pares en 2021",
+      "titleEn": "Client and Peer Recommendations in 2021",
+      "tldrEs": "Carissa De Santis, Paul Jaure, Ira Petris y Cinthia Morabito me recomendaron en 2021 desde cliente, equipo y dirección.",
+      "tldrEn": "Carissa De Santis, Paul Jaure, Ira Petris, and Cinthia Morabito recommended me in 2021 from client, team, and management perspectives.",
+      "bodyEs": "## Resumen\nCuatro recomendaciones de 2021 siguen en On. Copio el inglés original. Carissa no nombra la marca y no la invento.\n\n## Carissa De Santis, PMP\nCliente. 8 dic 2021.\n\n> Joel is a personable and very capable product designer that helped us build one of our e-commerce solutions. His knowledge of multiple tools including Figma and all of the Adobe suite made him a valuable team member not only on the product, but also on the marketing side. Joel is a great collaborator, used to driving effective communication with the engineering team and will make a fantastic team member if you choose to hire him!\n\n## Paul Jaure\nAI Consulting, profesor en FIU. 23 abr 2021. Mismo equipo.\n\n> I gladly recommend Joel,\n>\n> Time after time, I am impressed by his diligent, hard-working nature and the energy he brings to our business. He has proven to be reliable and operate exceptionally under pressure respecting our demanding start-up deadlines.\n>\n> He also provided creative contributions to enhance our product proposal.\n>\n> He is a solid professional and excellent person!\n\n## Ira Petris\nSenior Graphic Designer. 7 dic 2021. LinkedIn no indica la relación.\n\n> Joel's designs are innovative and original, and he is always coming up with new ideas. He has a strong sense of creativity and makes insightful design suggestions. He also inspires others to do their best. I enjoyed working with Joel.\n\n## Cinthia Morabito\nHead of Marketing de Viña Errázuriz. 28 abr 2021. Me dirigió.\n\n> I've had the pleasure to work with Joel since its origins in the professional world, and today I continue collaborating with him because he has always highlighted by its responsibility. He is very curious and his work is always functionally and aesthetically excellent. Joel will be a great leader in a company who needs to add value and solve different projects.\n\n## Conexiones\n- Índice: testimonios_y_referencias\n\n## Preguntas Abiertas\n- Ira no dice el equipo. No lo infiero.",
+      "bodyEn": "## Summary\nFour recommendations from 2021 remain On. I am copying the original English. Carissa does not name the brand and I will not invent it.\n\n## Carissa De Santis, PMP\nClient. Dec 8, 2021.\n\n> Joel is a personable and very capable product designer that helped us build one of our e-commerce solutions. His knowledge of multiple tools including Figma and all of the Adobe suite made him a valuable team member not only on the product, but also on the marketing side. Joel is a great collaborator, used to driving effective communication with the engineering team and will make a fantastic team member if you choose to hire him!\n\n## Paul Jaure\nAI Consulting, professor at FIU. Apr 23, 2021. Same team.\n\n> I gladly recommend Joel,\n>\n> Time after time, I am impressed by his diligent, hard-working nature and the energy he brings to our business. He has proven to be reliable and operate exceptionally under pressure respecting our demanding start-up deadlines.\n>\n> He also provided creative contributions to enhance our product proposal.\n>\n> He is a solid professional and excellent person!\n\n## Ira Petris\nSenior Graphic Designer. Dec 7, 2021. LinkedIn does not indicate the relationship.\n\n> Joel's designs are innovative and original, and he is always coming up with new ideas. He has a strong sense of creativity and makes insightful design suggestions. He also inspires others to do their best. I enjoyed working with Joel.\n\n## Cinthia Morabito\nHead of Marketing at Viña Errázuriz. Apr 28, 2021. Managed me.\n\n> I've had the pleasure to work with Joel since its origins in the professional world, and today I continue collaborating with him because he has always highlighted by its responsibility. He is very curious and his work is always functionally and aesthetically excellent. Joel will be a great leader in a company who needs to add value and solve different projects.\n\n## Connections\n- Index: testimonios_y_referencias\n\n## Open Questions\n- Ira does not state the team. I do not infer it.",
+      "links": [
+        "exp-vina-errazuriz",
+        "id-testimonios-referencias"
+      ],
+      "hash": "16bcbfdd42519fb9cced82d9f68b96e48ce494b9f77284f21b8c45bbce758cc5"
+    },
+    {
+      "id": "id-testimonios-linkedin-equipo-2026",
+      "file": "01_Identidad_y_Estilo/testimonios_linkedin_equipo_2026.md",
+      "type": "identidad",
+      "period": "2026",
+      "tags": [
+        "testimonios",
+        "linkedin",
+        "liderazgo",
+        "investigacion"
+      ],
+      "titleEs": "Recomendaciones de quien me reportó en 2026",
+      "titleEn": "Recommendations from people who reported to me in 2026",
+      "tldrEs": "Maria Fernanda Mirante Andia y Rocio Espinoza, que me reportaron, describen cómo las dirigí en research y producto.",
+      "tldrEn": "Maria Fernanda Mirante Andia and Rocio Espinoza, who reported to me, describe how I managed them in research and product.",
+      "bodyEs": "## Resumen\nDos personas que me reportaron directamente publicaron recomendación en agosto de 2026, visible para todos los miembros de LinkedIn. Las copio en el inglés original.\n\n## Maria Fernanda Mirante Andia\nUX Researcher. 20 de agosto de 2026. LinkedIn indica que me reportó.\n\n> Working with Joel as my Manager was a great experience. He gave me the freedom to actively participate and bring my own ideas to how I approached research, while also guiding me along the way to grow as a UX Researcher with every project. He was always attentive to my feedback, encouraged continuous learning, and included me in key discussions across different teams, where I could confidently propose ideas and design solutions.\n>\n> He's a leader of great human quality: responsible, present, and always ready to offer good advice and support the team. I highly recommend him to any team looking for a Product Manager like him!\n\n## Rocio Espinoza\nProduct Designer. 19 de agosto de 2026. LinkedIn indica que me reportó. Ella nombra Marketfully.\n\n> Working with Joel at Marketfully was a great experience. He combines a strong product vision with a genuine user-first mindset, always encouraging the team to listen, validate, and solve real user problems while pushing for meaningful innovation.\n> Beyond his strong product sense, he is a great leader. He created an environment where the team felt genuinely heard, coordinated our strengths seamlessly, and fostered true collaboration between design and development. Any team would be lucky to have Joel.\n\n## Conexiones\n- Índice: testimonios_y_referencias\n- Rol en el que Rocio me reportó: exp_marketfully_product_design_manager\n- Cómo dirijo: filosofia_liderazgo_y_trabajo\n\n## Preguntas Abiertas\n- Maria Fernanda no nombra la empresa en el texto. No la asigno a un rol más allá de \"me reportó\".",
+      "bodyEn": "## Summary\nTwo people who reported directly to me published recommendations in August 2026, visible to all LinkedIn members. I copy them in the original English.\n\n## Maria Fernanda Mirante Andia\nUX Researcher. August 20, 2026. LinkedIn indicates that she reported to me.\n\n> Working with Joel as my Manager was a great experience. He gave me the freedom to actively participate and bring my own ideas to how I approached research, while also guiding me along the way to grow as a UX Researcher with every project. He was always attentive to my feedback, encouraged continuous learning, and included me in key discussions across different teams, where I could confidently propose ideas and design solutions.\n>\n> He's a leader of great human quality: responsible, present, and always ready to offer good advice and support the team. I highly recommend him to any team looking for a Product Manager like him!\n\n## Rocio Espinoza\nProduct Designer. August 19, 2026. LinkedIn indicates that she reported to me. She names Marketfully.\n\n> Working with Joel at Marketfully was a great experience. He combines a strong product vision with a genuine user-first mindset, always encouraging the team to listen, validate, and solve real user problems while pushing for meaningful innovation.\n> Beyond his strong product sense, he is a great leader. He created an environment where the team felt genuinely heard, coordinated our strengths seamlessly, and fostered true collaboration between design and development. Any team would be lucky to have Joel.\n\n## Connections\n- Index: testimonios_y_referencias\n- Role in which Rocio reported to me: exp_marketfully_product_design_manager\n- How I manage: filosofia_liderazgo_y_trabajo\n\n## Open Questions\n- Maria Fernanda does not name the company in the text. I do not assign her to a role beyond \"reported to me\".",
+      "links": [
+        "id-testimonios-referencias",
+        "exp-marketfully",
+        "id-filosofia-liderazgo"
+      ],
+      "hash": "8333f4f2773e23d9f88fd5443dd49e9404181f93ff618f3f750d81140517706c"
+    },
+    {
+      "id": "id-testimonios-linkedin-ingenieria",
+      "file": "01_Identidad_y_Estilo/testimonios_linkedin_ingenieria.md",
+      "type": "identidad",
+      "period": "2021-2022",
+      "tags": [
+        "testimonios",
+        "linkedin",
+        "ingenieria",
+        "frontend"
+      ],
+      "titleEs": "Recomendaciones de ingeniería",
+      "titleEn": "Engineering recommendations",
+      "tldrEs": "Adriel Zarate y Sebastián Veggiani, desde ingeniería, describen cómo paso requisitos a diseño y a desarrollo.",
+      "tldrEn": "Adriel Zarate and Sebastián Veggiani, from engineering, describe how I pass requirements to design and development.",
+      "bodyEs": "## Resumen\nDos ingenieros publicaron recomendación entre 2021 y 2022, visible para todos los miembros de LinkedIn. Conservo el inglés original, con su gramática.\n\n## Adriel Zarate\nSenior Software Engineer. 16 de febrero de 2022. Mismo equipo.\n\n> I had the pleasure of working with Joel in many projects for different clients and industries. From complex UI's with a lot of data visualization, to entirely redesign e-commerce websites, or create design systems from scratch, he covers all these fields and much more with extremely professionalism.\n> He is the best designer I have ever worked with, not only by his phenomenal aesthetically for the UI, but also because he know how to translate the requirements to the technical team. The excellent combination of Designer that cares for the company interests, user experience and good communication with the developer team.\n\n## Sebastián Veggiani\nSenior Front-end Developer en Exhibit Suite. 15 de diciembre de 2021. LinkedIn no indica la relación. El texto habla de proyectos de Dickey's.\n\n> Having Joel in our team while working in Dickey's projects was one of the most successful and enriching experiences I have had working with a Designer. His UX, product focused approach and care for details was a key factor on achieving the company goals. He aligned perfectly to the Front-end development team from the initial designs to the last minute refinements. He's also experienced in the web platform and the numerous constrains and characteristics of the medium. I surely recommend having him in your teams and I'm looking for to be working with Joel in the near future.\n\n## Conexiones\n- Índice: testimonios_y_referencias\n- Dickey's: exp_dickeys_senior_product_designer\n\n## Preguntas Abiertas\n- No infiero en qué empresa coincidí con Adriel: el texto solo dice clientes e industrias distintas.",
+      "bodyEn": "## Summary\nTwo engineers published recommendations between 2021 and 2022, visible to all LinkedIn members. I keep the original English, with its grammar.\n\n## Adriel Zarate\nSenior Software Engineer. February 16, 2022. Same team.\n\n> I had the pleasure of working with Joel in many projects for different clients and industries. From complex UI's with a lot of data visualization, to entirely redesign e-commerce websites, or create design systems from scratch, he covers all these fields and much more with extremely professionalism.\n> He is the best designer I have ever worked with, not only by his phenomenal aesthetically for the UI, but also because he know how to translate the requirements to the technical team. The excellent combination of Designer that cares for the company interests, user experience and good communication with the developer team.\n\n## Sebastián Veggiani\nSenior Front-end Developer at Exhibit Suite. December 15, 2021. LinkedIn does not indicate the relationship. The text talks about Dickey's projects.\n\n> Having Joel in our team while working in Dickey's projects was one of the most successful and enriching experiences I have had working with a Designer. His UX, product focused approach and care for details was a key factor on achieving the company goals. He aligned perfectly to the Front-end development team from the initial designs to the last minute refinements. He's also experienced in the web platform and the numerous constrains and characteristics of the medium. I surely recommend having him in your teams and I'm looking for to be working with Joel in the near future.\n\n## Connections\n- Index: testimonios_y_referencias\n- Dickey's: exp_dickeys_senior_product_designer\n\n## Open Questions\n- I do not infer at which company I worked with Adriel: the text only mentions different clients and industries.",
+      "links": [
+        "id-testimonios-referencias",
+        "exp-dickeys"
+      ],
+      "hash": "7418e54fd7816d1c91d110c2d78e0db906d09cb6e83b4b0a0ee4d0c4f51928c4"
+    },
+    {
+      "id": "id-testimonios-linkedin-juan-fusoni",
+      "file": "01_Identidad_y_Estilo/testimonios_linkedin_juan_fusoni.md",
+      "type": "identidad",
+      "period": "2026",
+      "tags": [
+        "testimonios",
+        "linkedin",
+        "getgloby",
+        "liderazgo"
+      ],
+      "titleEs": "Recomendación de Juan Fusoni",
+      "titleEn": "Recommendation by Juan Fusoni",
+      "tldrEs": "Juan Fusoni dice que fui su primer hire de producto en GetGloby y que armé esa función desde cero.",
+      "tldrEn": "Juan Fusoni says that I was his first product hire at GetGloby and that I built that function from scratch.",
+      "bodyEs": "## Resumen\nJuan Fusoni, entrepreneur y angel investor, me dirigió en GetGloby. Publicó esta recomendación el 26 de febrero de 2026, visible para todos los miembros de LinkedIn. Copio el texto sin corregirlo.\n\n## Cita\n> After founding GetGloby, Joel was the first product team member I hired, reporting directly to me as CTO & CPO. From day one, he played a defining role in shaping the product, sharpening our value proposition, and building the systems that enabled us to scale. Joel brings exceptional clarity to ambiguity, turning complexity into structure and translating strategic direction into thoughtful, scalable execution. His contribution was fundamental in maturing our platform and strengthening the foundation that ultimately supported our acquisition by MotionPoint.\n>\n> Joel is a natural leader. He built and shaped the product function from the ground up while earning the trust and influence of the engineering team. His leadership extended beyond design. He aligned teams, elevated standards, and consistently moved the company forward with autonomy and strong business alignment. Any organization looking for someone who can build durable foundations, raise the quality bar, and transform vision into measurable impact will be fortunate to have Joel on their team.\n\n## Conexiones\n- Índice: testimonios_y_referencias\n- De cero a la adquisición: caso_getgloby_mvp_a_adquisicion\n\n## Preguntas Abiertas\n- Ninguna sobre este texto. La adquisición por MotionPoint ya está en el caso de GetGloby.",
+      "bodyEn": "## Summary\n\nJuan Fusoni, entrepreneur and angel investor, managed me at GetGloby. He published this recommendation on February 26, 2026, visible to all LinkedIn members. I am copying the text without correcting it.\n\n## Quote\n\n> After founding GetGloby, Joel was the first product team member I hired, reporting directly to me as CTO & CPO. From day one, he played a defining role in shaping the product, sharpening our value proposition, and building the systems that enabled us to scale. Joel brings exceptional clarity to ambiguity, turning complexity into structure and translating strategic direction into thoughtful, scalable execution. His contribution was fundamental in maturing our platform and strengthening the foundation that ultimately supported our acquisition by MotionPoint.\n>\n> Joel is a natural leader. He built and shaped the product function from the ground up while earning the trust and influence of the engineering team. His leadership extended beyond design. He aligned teams, elevated standards, and consistently moved the company forward with autonomy and strong business alignment. Any organization looking for someone who can build durable foundations, raise the quality bar, and transform vision into measurable impact will be fortunate to have Joel on their team.\n\n## Connections\n\n- Index: testimonios_y_referencias\n- From zero to acquisition: caso_getgloby_mvp_a_adquisicion\n\n## Open Questions\n\n- None regarding this text. The acquisition by MotionPoint is already in the GetGloby case.",
+      "links": [
+        "exp-getgloby",
+        "id-testimonios-referencias",
+        "caso-getgloby-saas"
+      ],
+      "hash": "abcc78b5ac2049feb5f942d504d3c9b6ee35704fd1bc7b1cdc238f8baa38f0a7"
+    },
+    {
+      "id": "id-testimonios-linkedin-producto-ia-2026",
+      "file": "01_Identidad_y_Estilo/testimonios_linkedin_producto_ia_2026.md",
+      "type": "identidad",
+      "period": "2026",
+      "tags": [
+        "testimonios",
+        "linkedin",
+        "producto",
+        "ia"
+      ],
+      "titleEs": "Recomendaciones de producto e IA en 2026",
+      "titleEn": "Product and AI Recommendations in 2026",
+      "tldrEs": "Francis Perelman, Ainhoa Lizarralde y Frank Drucker recomiendan mi criterio de producto y mi trabajo con IA.",
+      "tldrEn": "Francis Perelman, Ainhoa Lizarralde, and Frank Drucker recommend my product judgment and my work with AI.",
+      "bodyEs": "## Resumen\nTres pares de producto e IA me recomendaron en 2026, con visibilidad para todos los miembros de LinkedIn. Dejo las citas como están, incluidas las repeticiones del original.\n\n## Francis Perelman\nAI Program Manager en Capria Ventures. 26 de octubre de 2026. Yo era senior y no lo dirigía.\n\n> Joel is one of the most talented product designers I've worked with. He combines exceptional taste, strong judgment, and a distinctive vision to create products that genuinely elevate the human experience. He never lets products stagnate. He constantly evolves, finding new ways to improve and reimagine experiences as trends, technologies, and expectations change. In an age of AI slop, his originality and design sensibility stand out more than ever.\n\n## Ainhoa Lizarralde\nInternational Head of SEO. 25 de agosto de 2026. Trabajamos en equipos distintos.\n\n> I had the pleasure of working with Joel on several projects across content intelligence, AI content generation and content production. He is incredibly smart, thoughtful and always brings a strong product perspective to the table. He was a fantastic person to collaborate with, and I really appreciated his ability to understand complex challenges and turn them into practical solutions. I would happily recommend Joel to any team looking for someone with strong product and AI expertise who is also a genuinely great person to work with.\n\n## Frank Drucker\nProduct Leader. 19 de agosto de 2026. Mismo equipo.\n\n> I had the pleasure of working with Joel on a progressive product that is AI powered. Joel did a fantastic job developing a clean, efficient, and intuitive User Interface. Joel is a dedicated, talented, and dedicated Product Leader that would make a wonderful addition to any team lucky enough to have him.\n\n## Conexiones\n- Índice: testimonios_y_referencias\n- Cómo uso IA en producto: capacidades_producto_ia_y_sistemas\n\n## Preguntas Abiertas\n- Francis, Ainhoa y Frank no nombran la empresa en el texto. No se la asigno.",
+      "bodyEn": "## Summary\nThree product and AI peers recommended me in 2026, with visibility for all LinkedIn members. I leave the quotes as they are, including the repetitions from the original.\n\n## Francis Perelman\nAI Program Manager at Capria Ventures. October 26, 2026. I was senior and did not manage him.\n\n> Joel is one of the most talented product designers I've worked with. He combines exceptional taste, strong judgment, and a distinctive vision to create products that genuinely elevate the human experience. He never lets products stagnate. He constantly evolves, finding new ways to improve and reimagine experiences as trends, technologies, and expectations change. In an age of AI slop, his originality and design sensibility stand out more than ever.\n\n## Ainhoa Lizarralde\nInternational Head of SEO. August 25, 2026. We worked on different teams.\n\n> I had the pleasure of working with Joel on several projects across content intelligence, AI content generation and content production. He is incredibly smart, thoughtful and always brings a strong product perspective to the table. He was a fantastic person to collaborate with, and I really appreciated his ability to understand complex challenges and turn them into practical solutions. I would happily recommend Joel to any team looking for someone with strong product and AI expertise who is also a genuinely great person to work with.\n\n## Frank Drucker\nProduct Leader. August 19, 2026. Same team.\n\n> I had the pleasure of working with Joel on a progressive product that is AI powered. Joel did a fantastic job developing a clean, efficient, and intuitive User Interface. Joel is a dedicated, talented, and dedicated Product Leader that would make a wonderful addition to any team lucky enough to have him.\n\n## Connections\n- Index: testimonios_y_referencias\n- How I use AI in product: capacidades_producto_ia_y_sistemas\n\n## Open Questions\n- Francis, Ainhoa, and Frank do not name the company in the text. I do not assign it to them.",
+      "links": [
+        "id-testimonios-referencias",
+        "skills-capacidades-producto"
+      ],
+      "hash": "68baa95bcbaa2580a556c7f15ffe00908ad02b566f02ac05c2eea23625e19815"
+    },
+    {
+      "id": "id-testimonios-linkedin-rob-lyons",
+      "file": "01_Identidad_y_Estilo/testimonios_linkedin_rob_lyons.md",
+      "type": "identidad",
+      "period": "2026",
+      "tags": [
+        "testimonios",
+        "linkedin",
+        "marketfully",
+        "liderazgo"
+      ],
+      "titleEs": "Recomendación de Rob Lyons",
+      "titleEn": "Recommendation from Rob Lyons",
+      "tldrEs": "Rob Lyons, CPTO de Marketfully, describe cómo diseñé con usuarios, cerré el feedback y pensé como dueño.",
+      "tldrEn": "Rob Lyons, CPTO of Marketfully, describes how I designed with users, closed the feedback loop, and thought like an owner.",
+      "bodyEs": "## Resumen\nRob Lyons, Chief Product & Technology Officer de Marketfully y fundador de Rebusly, me dirigió. Publicó esta recomendación el 14 de agosto de 2026, visible para todos los miembros de LinkedIn. La dejo en su inglés original.\n\n## Cita\n> Joel spent just over a year on my team as Product Design Manager for MF.ai, our AI production workbench, working across three brands and as many time zones.\n>\n> Two things made him valuable. First, he designed with users rather than at them. He set up a lightweight deployment environment so prototypes reached our operations teams in days instead of waiting on a release, then ran a feedback loop that actually closed. When I pushed on why something hadn't moved, he'd tell me it was a priority call, not a blocker. I never had to guess where the product stood.\n>\n> Second, he thought like an owner. Tool requests arrived with a cost, an alternative and a reason. He found us a data provider at a fraction of what we'd been paying. He came to me about seats for his designers because one of them was quietly covering it himself. That instinct tells you the most of what you need to know about how he leads.\n>\n> Sharp on product, straight with his manager, generous with his team. Hire him.\n\n## Conexiones\n- Índice de las 16 recomendaciones en On: testimonios_y_referencias\n- El trabajo que describe: caso_marketfully_ai_platform\n\n## Preguntas Abiertas\n- Rob no nombra al proveedor de datos ni el monto. No invento esa cifra.",
+      "bodyEn": "## Summary\nRob Lyons, Chief Product & Technology Officer at Marketfully and founder of Rebusly, managed me. He published this recommendation on August 14, 2026, visible to all LinkedIn members. I leave it in its original English.\n\n## Quote\n> Joel spent just over a year on my team as Product Design Manager for MF.ai, our AI production workbench, working across three brands and as many time zones.\n>\n> Two things made him valuable. First, he designed with users rather than at them. He set up a lightweight deployment environment so prototypes reached our operations teams in days instead of waiting on a release, then ran a feedback loop that actually closed. When I pushed on why something hadn't moved, he'd tell me it was a priority call, not a blocker. I never had to guess where the product stood.\n>\n> Second, he thought like an owner. Tool requests arrived with a cost, an alternative and a reason. He found us a data provider at a fraction of what we'd been paying. He came to me about seats for his designers because one of them was quietly covering it himself. That instinct tells you the most of what you need to know about how he leads.\n>\n> Sharp on product, straight with his manager, generous with his team. Hire him.\n\n## Connections\n- Index of the 16 recommendations in On: testimonios_y_referencias\n- The work he describes: caso_marketfully_ai_platform\n\n## Open Questions\n- Rob does not name the data provider or the amount. I am not inventing that figure.",
+      "links": [
+        "exp-marketfully",
+        "id-testimonios-referencias",
+        "caso-marketfully-ai"
+      ],
+      "hash": "4e98fb290eaa2a5a32f219f6bdbf97d8ffd8d1e38edccbc430de890b97bdd1ef"
+    },
+    {
+      "id": "id-testimonios-referencias",
+      "file": "01_Identidad_y_Estilo/testimonios_y_referencias.md",
+      "type": "identidad",
+      "period": "2018-2026",
+      "tags": [
+        "testimonios",
+        "referencias",
+        "linkedin",
+        "social-proof"
+      ],
+      "titleEs": "Testimonios visibles en LinkedIn",
+      "titleEn": "Visible Testimonials on LinkedIn",
+      "tldrEs": "Dieciséis recomendaciones de LinkedIn en On, de jefes, reportes, ingeniería y producto, entre 2018 y 2026.",
+      "tldrEn": "Sixteen LinkedIn recommendations on On, from managers, reports, engineering, and product, between 2018 and 2026.",
+      "bodyEs": "## Resumen\nEl 26 de octubre de 2026 copié las 16 recomendaciones de LinkedIn en On, visibles para todos los miembros. El texto completo está en cada nota, en inglés original. Daniel Gutiérrez (2 sep 2013, cliente) está en Off y no se veía su texto.\n\n## Quién me recomienda\n\n### Jefes\n- **Rob Lyons**, CPTO de Marketfully (14 ago 2026). Me dirigió. testimonios_linkedin_rob_lyons\n- **Juan Fusoni**, Entrepreneur & Angel Investor (26 feb 2026). Me dirigió en GetGloby. testimonios_linkedin_juan_fusoni\n- **Cinthia Morabito**, Head of Marketing de Viña Errázuriz (28 abr 2021). Me dirigió. testimonios_linkedin_clientes_2021\n\n### Equipo que me reportó\n- **Maria Fernanda Mirante Andia**, UX Researcher (20 ago 2026). testimonios_linkedin_equipo_2026\n- **Rocio Espinoza**, Product Designer en Marketfully (19 ago 2026). testimonios_linkedin_equipo_2026\n\n### Producto e IA en 2026\n- **Francis Perelman**, AI Program Manager en Capria Ventures (26 oct 2026). Yo era senior y no lo dirigía. testimonios_linkedin_producto_ia_2026\n- **Ainhoa Lizarralde**, International Head of SEO (25 ago 2026). Equipos distintos. testimonios_linkedin_producto_ia_2026\n- **Frank Drucker**, Product Leader (19 ago 2026). Mismo equipo. testimonios_linkedin_producto_ia_2026\n\n### Ingeniería\n- **Adriel Zarate**, Senior Software Engineer (16 feb 2022). Mismo equipo. testimonios_linkedin_ingenieria\n- **Sebastián Veggiani**, Senior Front-end Developer en Exhibit Suite (15 dic 2021). Habla de Dickey's. testimonios_linkedin_ingenieria\n\n### Centric Digital, 2018\n- **Asher Feldman**, Head of Data en TodayTix Group (5 jun 2018). Mismo equipo. testimonios_linkedin_asher_feldman\n- **Carlos Mendoza**, Head of Data Insights en Chief (18 jun 2018). Mismo equipo. testimonios_linkedin_centric_2018\n- **Thomas Preston**, farmacia digital y eCommerce en Kaiser Permanente (5 mar 2018). Equipos distintos. testimonios_linkedin_centric_2018\n\n### Clientes y pares en 2021\n- **Carissa De Santis, PMP**, tecnología para restaurantes (8 dic 2021). Fue mi cliente. testimonios_linkedin_clientes_2021\n- **Paul Jaure**, AI Consulting y profesor de IA en FIU (23 abr 2021). Mismo equipo. testimonios_linkedin_clientes_2021\n- **Ira Petris**, Senior Graphic Designer (7 dic 2021). testimonios_linkedin_clientes_2021\n\n## Conexiones\n- Cómo lidero: filosofia_liderazgo_y_trabajo\n- Transcripción literal: raw_linkedin_recomendaciones_on_2026-10-26\n\n## Preguntas Abiertas\n- Sebastián Veggiani e Ira Petris no traen línea de relación en LinkedIn. No infiero jerarquía ni empresa más allá del texto.",
+      "bodyEn": "## Summary\nOn October 26, 2026, I copied the 16 LinkedIn recommendations on On, visible to all members. The full text is in each note, in the original English. Daniel Gutiérrez (Sep 2, 2013, client) is on Off and his text was not visible.\n\n## Who Recommends Me\n\n### Managers\n- **Rob Lyons**, CPTO at Marketfully (Aug 14, 2026). Managed me. testimonios_linkedin_rob_lyons\n- **Juan Fusoni**, Entrepreneur & Angel Investor (Feb 26, 2026). Managed me at GetGloby. testimonios_linkedin_juan_fusoni\n- **Cinthia Morabito**, Head of Marketing at Viña Errázuriz (Apr 28, 2021). Managed me. testimonios_linkedin_clientes_2021\n\n### Team That Reported to Me\n- **Maria Fernanda Mirante Andia**, UX Researcher (Aug 20, 2026). testimonios_linkedin_equipo_2026\n- **Rocio Espinoza**, Product Designer at Marketfully (Aug 19, 2026). testimonios_linkedin_equipo_2026\n\n### Product and AI in 2026\n- **Francis Perelman**, AI Program Manager at Capria Ventures (Oct 26, 2026). I was senior and did not manage him. testimonios_linkedin_producto_ia_2026\n- **Ainhoa Lizarralde**, International Head of SEO (Aug 25, 2026). Different teams. testimonios_linkedin_producto_ia_2026\n- **Frank Drucker**, Product Leader (Aug 19, 2026). Same team. testimonios_linkedin_producto_ia_2026\n\n### Engineering\n- **Adriel Zarate**, Senior Software Engineer (Feb 16, 2022). Same team. testimonios_linkedin_ingenieria\n- **Sebastián Veggiani**, Senior Front-end Developer at Exhibit Suite (Dec 15, 2021). Mentions Dickey's. testimonios_linkedin_ingenieria\n\n### Centric Digital, 2018\n- **Asher Feldman**, Head of Data at TodayTix Group (Jun 5, 2018). Same team. testimonios_linkedin_asher_feldman\n- **Carlos Mendoza**, Head of Data Insights at Chief (Jun 18, 2018). Same team. testimonios_linkedin_centric_2018\n- **Thomas Preston**, digital pharmacy and eCommerce at Kaiser Permanente (Mar 5, 2018). Different teams. testimonios_linkedin_centric_2018\n\n### Clients and Peers in 2021\n- **Carissa De Santis, PMP**, restaurant technology (Dec 8, 2021). Was my client. testimonios_linkedin_clientes_2021\n- **Paul Jaure**, AI Consulting and AI professor at FIU (Apr 23, 2021). Same team. testimonios_linkedin_clientes_2021\n- **Ira Petris**, Senior Graphic Designer (Dec 7, 2021). testimonios_linkedin_clientes_2021\n\n## Connections\n- How I lead: filosofia_liderazgo_y_trabajo\n- Verbatim transcription: raw_linkedin_recomendaciones_on_2026-10-26\n\n## Open Questions\n- Sebastián Veggiani and Ira Petris do not have a relationship line on LinkedIn. I do not infer hierarchy or company beyond the text.",
+      "links": [
+        "exp-marketfully",
+        "id-testimonios-linkedin-rob-lyons",
+        "exp-getgloby",
+        "id-testimonios-linkedin-juan-fusoni",
+        "exp-vina-errazuriz",
+        "id-testimonios-linkedin-clientes-2021",
+        "id-testimonios-linkedin-equipo-2026",
+        "id-testimonios-linkedin-producto-ia-2026",
+        "id-testimonios-linkedin-ingenieria",
+        "id-testimonios-linkedin-asher-feldman",
+        "id-testimonios-linkedin-centric-2018",
+        "id-filosofia-liderazgo",
+        "raw_linkedin_recomendaciones_on_2026-10-26"
+      ],
+      "hash": "fe3150f2316c0276a584fd726634fe6209ca3a21a8554bc94527f5c7bf38e914"
+    },
+    {
+      "id": "proy-catalogo-completo",
+      "file": "03_Proyectos_y_Casos_STAR/catalogo_proyectos_2010_2026.md",
+      "type": "proyecto",
+      "period": "2010-2026",
+      "tags": [
+        "portafolio",
+        "catalogo",
+        "industrias",
+        "proyectos",
+        "clientes"
+      ],
+      "titleEs": "Catálogo Completo de Proyectos por Industria (2010–2026 — 64 Proyectos)",
+      "titleEn": "Complete Catalog of Projects by Industry (2010–2026 — 64 Projects)",
+      "tldrEs": "Registro consolidado de mis 64 proyectos profesionales entre 2010 y 2026 agrupados por industria, cliente, rol y enlace.",
+      "tldrEn": "A consolidated registry of my 64 professional projects between 2010 and 2026, grouped by industry, client, role, and link.",
+      "bodyEs": "## Resumen del Portafolio (64 Proyectos en 16 Años)\nA lo largo de mi carrera he ejecutado más de 64 proyectos verificados en EE. UU., Chile, Argentina y Dubái:\n\n## 1. SaaS, Marketing, Publicidad e IA (2012–2026)\n- **Marketfully (EE. UU., 2025–2026):** Marketfully.ai — *Product Design Manager* (caso_marketfully_ai_platform).\n- **GetGloby (EE. UU., 2022–2025):** GetGloby Platform (*Head of Design*), Jaga Brand Identity (*Founding Lead Product Designer*), GetGloby Design System, GetGloby Landing Page y GetGloby Brand Identity (caso_getgloby_mvp_a_adquisicion).\n- **Centric Digital (EE. UU., 2018–2020):** Dimensions Webapp Platform (*Senior Product Designer*).\n- **Premo Social (EE. UU., 2018–2020):** Premo WebApp Redesign 2020 (*Founding Product Designer*), *WebApp 2019 & Product Management* y *Branding* (2018).\n- **Tallo (EE. UU., 2020):** Dashboard Design & Data Analysis (*Lead Product Designer*, Recruitment).\n- **J.D. Power (EE. UU., 2018):** Industries Reports Design (*UX/UI Designer*, Market Research).\n- **Career Done Write (EE. UU., 2015) y Net Media Factory (Dubái, 2012):** Sitios institucionales (careersdonewrite.com, netmediafactory.com).\n\n## 2. Salud, Medicina y Deportes con IA (2014–2022)\n- **Rehab Boost (EE. UU., 2020–2022):** Rehab Boost iOS App (*Founding Product Designer* — IA y reconocimiento de movimiento, exp_golf_boost_rehab_boost).\n- **Golf Boost (EE. UU., 2019–2021):** Golf Boost iOS App (*Founding Product Designer*).\n- **TempraMed (EE. UU., 2021):** Website Redesign & Shopify Migration (*Senior Product Designer*).\n- **Kaiser Permanente (EE. UU., 2014–2018):** 7 proyectos en Centric Digital (kaiserpermanente.org): *Mobile Apps Dashboard* (2017–2018), *Trends Dashboard* (2016), *Joining KP Early Engagement* (2015), *CDS Progress Update* (2015), *Experiences Design* (2014), *HEP Website Frontend* (2014) y *Find Doctors & Locations* (2014).\n- **Humana (EE. UU., 2014–2018):** Various Digital Product Designs (*UX/UI Designer*).\n\n## 3. Seguros — AIG (EE. UU., Malasia y Japón, 2015–2019)\n- **AIG (aig.com):** *USA & Malaysia Codeathons Design* (2015–2019), *Claim Digital Design* (2016), *PDH Executive Visualization Dashboard* (2015–2016) y *Active Care EWS Japanese Design* (2015).\n\n## 4. Gastronomía, Retail, Moda y E-Commerce (2011–2021)\n- **Dickey's Barbecue (EE. UU., 2021):** Barbecue at Home Redesign (*Founding Product Designer*), Wing Boss Website, Spark Dashboard y Dickey's App iOS (exp_dickeys_senior_product_designer).\n- **LBrands / Victoria's Secret / Pink (EE. UU., 2016–2020):** Pink Bra Dashboard Webapp (*Lead Product Designer*, 2019–2020), Wexner Patterning CBD Data Analysis (2019), Victoria's Secret Boutique Builder (2017) y *Analytics Design* (2016).\n- **Aberturas Tobares (Argentina, 2020–2021) y Mugeen (Argentina, 2011–2013):** Branding, web y e-commerce (aberturastobares.com, mugeen.com.ar).\n\n## 5. Industria Vitivinícola — Chile y Argentina (2013–2020)\n- **Grupo Viñedo Chadwick (Chile, 2017–2020):** Plataformas DAM y sitios para Viña Errázuriz, Arboleda, Caliterra y versiones en japonés y chino de Seña (exp_vina_errazuriz_product_manager).\n- **VSPT Wine Group (Chile/Argentina, 2013–2015):** Castillo de Molina, La Consulta Wines y *VSPT Argentina WebApp* (exp_vspt_wine_group_marketing_designer).\n\n## 6. Educación, Música, Arte y ONGs (2010–2021)\n- **Wiley / For Dummies (EE. UU., 2018–2019):** Branding Redesign & Website Redesign (caso_dummies_rebranding_global).\n- **Andrew McMahon in the Wilderness (EE. UU., 2014–2021):** 5 rediseños anuales y migración a Shopify (andrewmcmahon.com).\n- **ONGs (EE. UU., 2016–2018):** Dear Jack Foundation y Leukemia & Lymphoma Society (LLS Light The Night & TNT).\n- **Arte, Fotografía y Eventos (2010–2021):** Various Projects Webflow Migration (2021), Quinta Rufino (2013), Daniel Serio (2011), *Fabián Ariel Eventos* (2011), Impresión Digital Mendoza (2010) y *Raquel Fluixá* (2010).",
+      "bodyEn": "## Portfolio Summary (64 Projects in 16 Years) Throughout my career I have executed over 64 verified projects in the U.S., Chile, Argentina, and Dubai: ## 1. SaaS, Marketing, Advertising, and AI (2012–2026) - Marketfully (U.S., 2025–2026): Marketfully.ai — Product Design Manager (caso_marketfully_ai_platform). - GetGloby (U.S., 2022–2025): GetGloby Platform (Head of Design), Jaga Brand Identity (Founding Lead Product Designer), GetGloby Design System, GetGloby Landing Page, and GetGloby Brand Identity (caso_getgloby_mvp_a_adquisicion). - Centric Digital (U.S., 2018–2020): Dimensions Webapp Platform (Senior Product Designer). - Premo Social (U.S., 2018–2020): Premo WebApp Redesign 2020 (Founding Product Designer), WebApp 2019 & Product Management, and Branding (2018). - Tallo (U.S., 2020): Dashboard Design & Data Analysis (Lead Product Designer, Recruitment). - J.D. Power (U.S., 2018): Industries Reports Design (UX/UI Designer, Market Research). - Career Done Write (U.S., 2015) and Net Media Factory (Dubai, 2012): Institutional sites (careersdonewrite.com, netmediafactory.com). ## 2. Health, Medicine, and Sports with AI (2014–2022) - Rehab Boost (U.S., 2020–2022): Rehab Boost iOS App (Founding Product Designer — AI and motion recognition, exp_golf_boost_rehab_boost). - Golf Boost (U.S., 2019–2021): Golf Boost iOS App (Founding Product Designer). - TempraMed (U.S., 2021): Website Redesign & Shopify Migration (Senior Product Designer). - Kaiser Permanente (U.S., 2014–2018): 7 projects at Centric Digital (kaiserpermanente.org): Mobile Apps Dashboard (2017–2018), Trends Dashboard (2016), Joining KP Early Engagement (2015), CDS Progress Update (2015), Experiences Design (2014), HEP Website Frontend (2014), and Find Doctors & Locations (2014). - Humana (U.S., 2014–2018): Various Digital Product Designs (UX/UI Designer). ## 3. Insurance — AIG (U.S., Malaysia, and Japan, 2015–2019) - AIG (aig.com): USA & Malaysia Codeathons Design (2015–2019), Claim Digital Design (2016), PDH Executive Visualization Dashboard (2015–2016), and Active Care EWS Japanese Design (2015). ## 4. Gastronomy, Retail, Fashion, and E-Commerce (2011–2021) - Dickey's Barbecue (U.S., 2021): Barbecue at Home Redesign (Founding Product Designer), Wing Boss Website, Spark Dashboard, and Dickey's App iOS (exp_dickeys_senior_product_designer). - LBrands / Victoria's Secret / Pink (U.S., 2016–2020): Pink Bra Dashboard Webapp (Lead Product Designer, 2019–2020), Wexner Patterning CBD Data Analysis (2019), Victoria's Secret Boutique Builder (2017), and Analytics Design (2016). - Aberturas Tobares (Argentina, 2020–2021) and Mugeen (Argentina, 2011–2013): Branding, web, and e-commerce (aberturastobares.com, mugeen.com.ar). ## 5. Wine Industry — Chile and Argentina (2013–2020) - Grupo Viñedo Chadwick (Chile, 2017–2020): DAM platforms and sites for Viña Errázuriz, Arboleda, Caliterra, and Japanese and Chinese versions of Seña (exp_vina_errazuriz_product_manager). - VSPT Wine Group (Chile/Argentina, 2013–2015): Castillo de Molina, La Consulta Wines, and VSPT Argentina WebApp (exp_vspt_wine_group_marketing_designer). ## 6. Education, Music, Art, and NGOs (2010–2021) - Wiley / For Dummies (U.S., 2018–2019): Branding Redesign & Website Redesign (caso_dummies_rebranding_global). - Andrew McMahon in the Wilderness (U.S., 2014–2021): 5 annual redesigns and Shopify migration (andrewmcmahon.com). - NGOs (U.S., 2016–2018): Dear Jack Foundation and Leukemia & Lymphoma Society (LLS Light The Night & TNT). - Art, Photography, and Events (2010–2021): Various Projects Webflow Migration (2021), Quinta Rufino (2013), Daniel Serio (2011), Fabián Ariel Eventos (2011), Impresión Digital Mendoza (2010), and Raquel Fluixá (2010).",
+      "links": [
+        "caso-marketfully-ai",
+        "caso-getgloby-saas",
+        "exp-golf-boost-rehab-boost",
+        "exp-centric-digital",
+        "exp-dickeys",
+        "exp-vina-errazuriz",
+        "exp-vspt-wine-group",
+        "caso-dummies-rebranding"
+      ],
+      "hash": "2bc1648f32fcdcf113b46afd7897c6a34a4c1eaac276b10db5346155023e0c98"
+    },
+    {
+      "id": "skills-articulos-pensamiento",
+      "file": "04_Habilidades_y_Stack/articulos_y_pensamiento_liquid_glass.md",
+      "type": "skill",
+      "period": "2025-2026",
+      "tags": [
+        "writing",
+        "notes",
+        "liquid-glass",
+        "tool-stack",
+        "medium",
+        "ui-design"
+      ],
+      "titleEs": "Artículos y Ensayos Publicados (Notes & Medium)",
+      "titleEn": "Published Articles and Essays (Notes & Medium)",
+      "tldrEs": "Mis ensayos sobre diseño, producto e interfaces publicados en gutierrezjoel.com/notes y en la publicación Bootcamp de Medium.",
+      "tldrEn": "My essays on design, product, and interfaces published on gutierrezjoel.com/notes and in the Bootcamp publication on Medium.",
+      "bodyEs": "## Resumen\nEscribo en inglés y español sobre diseño de producto, herramientas e ideas de interfaz en gutierrezjoel.com/en/notes (versión en español) y en **Bootcamp (Medium)**.\n\n## Artículos Publicados\n\n### 1. My 2026 Tool Stack: Daily Essentials as a Product Design Manager (Agosto 2026)\n- **Enlaces:** Leer en gutierrezjoel.com · Leer en Medium Bootcamp\n- **Tesis:** Cómo pasé de flujos fragmentados en 2016 a un ecosistema integrado en 2026 (Figma, FigJam, PostHog, Linear, Slack, Claude, Cursor y Notion) donde los agentes de IA y la colaboración en tiempo real aceleran la entrega de producto. Ver detalle en stack_herramientas_2026.\n\n### 2. Liquid Glass has reignited ideas that never quite disappeared (Junio 2025)\n- **Enlaces:** Leer en gutierrezjoel.com (EN) · *Liquid Glass reactivó ideas que nunca se fueron* (ES)\n- **Tesis:** Nacido de una conversación con el ingeniero de software Adriel Zarate tras el anuncio de *Liquid Glass* de Apple. Analizo cómo el diseño de interfaces está superando el enfoque plano y geométrico de Material Design (2014) para recuperar la tangibilidad física de Aqua Design, explorando cómo los componentes digitales pueden comportarse como los **estados de la materia** (líquido, gaseoso y sólido) con fluidez, refracción y translucidez.\n\n## Conexiones\n- Filosofía de diseño: filosofia_liderazgo_y_trabajo\n- Referencia de Adriel Zarate: testimonios_y_referencias",
+      "bodyEn": "## Overview\nI write in English and Spanish about product design, tools, and interface ideas on gutierrezjoel.com/en/notes (Spanish version) and on **Bootcamp (Medium)**.\n\n## Published Articles\n\n### 1. My 2026 Tool Stack: Daily Essentials as a Product Design Manager (Agosto 2026)\n- **Links:** Read on gutierrezjoel.com · Read on Medium Bootcamp\n- **Thesis:** How I moved from fragmented workflows in 2016 to an integrated ecosystem in 2026 (Figma, FigJam, PostHog, Linear, Slack, Claude, Cursor, and Notion) where AI agents and real-time collaboration accelerate product delivery. See details in stack_herramientas_2026.\n\n### 2. Liquid Glass has reignited ideas that never quite disappeared (Junio 2025)\n- **Links:** Read on gutierrezjoel.com (EN) · *Liquid Glass reactivó ideas que nunca se fueron* (ES)\n- **Thesis:** Born from a conversation with software engineer Adriel Zarate after Apple's announcement of *Liquid Glass*. I analyze how interface design is moving past the flat and geometric approach of Material Design (2014) to recover the physical tangibility of Aqua Design, exploring how digital components can behave like the **estados de la materia** (liquid, gaseous, and solid) with fluidity, refraction, and translucency.\n\n## Connections\n- Design philosophy: filosofia_liderazgo_y_trabajo\n- Adriel Zarate reference: testimonios_y_referencias",
+      "links": [
+        "skills-stack-2026",
+        "id-filosofia-liderazgo",
+        "id-testimonios-referencias"
+      ],
+      "hash": "396f51081e85cacf3259bf427d212d3aec3fb0bdf50ec754557823a274e02c06"
+    },
+    {
+      "id": "skills-capacidades-producto",
+      "file": "04_Habilidades_y_Stack/capacidades_producto_ia_y_sistemas.md",
+      "type": "skill",
+      "period": "2010-2026",
+      "tags": [
+        "product-design",
+        "product-strategy",
+        "design-systems",
+        "ai-products",
+        "user-research",
+        "branding",
+        "frontend"
+      ],
+      "titleEs": "Capacidades Clave: Producto, Sistemas de Diseño, IA y Liderazgo",
+      "titleEn": "Core Capabilities: Product, Design Systems, AI, and Leadership",
+      "tldrEs": "Mis 8 capacidades nucleares: Product Design, Product Strategy, Team Leadership, Design Systems, AI Products, UX Design, User Research y Branding.",
+      "tldrEn": "My 8 core capabilities: Product Design, Product Strategy, Team Leadership, Design Systems, AI Products, UX Design, User Research, and Branding.",
+      "bodyEs": "## Mis 8 Capacidades Nucleares (gutierrezjoel.com/en/about)\n1. **Product Design & UX/UI:** Más de 12 años diseñando plataformas SaaS B2B/B2C, dashboards ejecutivos de datos, e-commerce y aplicaciones móviles iOS.\n2. **Product Strategy & Vision:** Definición de roadmaps, priorización de alcance junto a CTO/CPO/CPTO, alineación con métricas de negocio y acompañamiento desde MVP hasta adquisición (caso_getgloby_mvp_a_adquisicion).\n3. **Team Leadership:** Creación y escalado de equipos de diseño desde cero (contratación y dirección de Product Designers, AI Solution Designers, UX Researchers, Graphic Designers e Ilustradores en Marketfully y GetGloby).\n4. **Design Systems (Tokens Semánticos):** Arquitectura de sistemas de diseño escalables basados en tokens semánticos nombrados por rol (texto, íconos, superficies, bordes) que unifican diseño e ingeniería (caso_marketfully_ai_platform).\n5. **AI Products & Process Automation:** Diseño de experiencias humano-en-el-bucle para motores de NLP/transcreación (caso_jaga_identidad_motor_ia), apps con visión por computadora (exp_golf_boost_rehab_boost) y despliegue de agentes de IA para automatización B2B en Kywise.\n6. **User Research & Product Analytics:** Entrevistas con usuarios y pacientes, pruebas de usabilidad con prototipos desplegados en días y analítica cuantitativa con PostHog.\n7. **Branding & Product Identity:** Creación y rebranding de identidades con peso cultural y comercial (desde Jaga y GetGloby hasta For Dummies).\n8. **Front-End & Prototyping in Code:** Desarrollo front-end directo (HTML/CSS/JS, Next.js, Tailwind CSS, MDX, Shopify, Webflow) para llevar ideas a producción y hablar el mismo idioma que el equipo de ingeniería.\n\n## Conexiones\n- Stack de herramientas diario: stack_herramientas_2026\n- Educación y certificaciones: educacion_certificaciones_idiomas",
+      "bodyEn": "## My 8 Core Capabilities (gutierrezjoel.com/en/about)\n1. **Product Design & UX/UI:** Over 12 years designing B2B/B2C SaaS platforms, executive data dashboards, e-commerce, and iOS mobile apps.\n2. **Product Strategy & Vision:** Defining roadmaps, prioritizing scope alongside CTOs/CPOs/CPTOs, aligning with business metrics, and guiding products from MVP to acquisition (caso_getgloby_mvp_a_adquisicion).\n3. **Team Leadership:** Building and scaling design teams from scratch (hiring and leading Product Designers, AI Solution Designers, UX Researchers, Graphic Designers, and Illustrators at Marketfully and GetGloby).\n4. **Design Systems (Semantic Tokens):** Architecture of scalable design systems based on semantic tokens named by role (text, icons, surfaces, borders) that unify design and engineering (caso_marketfully_ai_platform).\n5. **AI Products & Process Automation:** Designing human-in-the-loop experiences for NLP/transcreation engines (caso_jaga_identidad_motor_ia), computer vision apps (exp_golf_boost_rehab_boost), and deploying AI agents for B2B automation at Kywise.\n6. **User Research & Product Analytics:** User and patient interviews, usability testing with prototypes deployed in days, and quantitative analytics with PostHog.\n7. **Branding & Product Identity:** Creation and rebranding of identities with cultural and commercial weight (from Jaga and GetGloby to For Dummies).\n8. **Front-End & Prototyping in Code:** Direct front-end development (HTML/CSS/JS, Next.js, Tailwind CSS, MDX, Shopify, Webflow) to bring ideas to production and speak the same language as the engineering team.\n\n## Connections\n- Daily tool stack: stack_herramientas_2026\n- Education and certifications: educacion_certificaciones_idiomas",
+      "links": [
+        "caso-getgloby-saas",
+        "exp-marketfully",
+        "exp-getgloby",
+        "caso-marketfully-ai",
+        "caso-jaga-identidad",
+        "exp-golf-boost-rehab-boost",
+        "exp-kywise",
+        "caso-dummies-rebranding",
+        "skills-stack-2026",
+        "edu-formacion-certificaciones"
+      ],
+      "hash": "2c5f588485488530a0267c961bd9e4eae6c431dc8605977374649ba2ff7ff633"
+    },
+    {
+      "id": "skills-stack-2026",
+      "file": "04_Habilidades_y_Stack/stack_herramientas_2026.md",
+      "type": "skill",
+      "period": "2016-2026",
+      "tags": [
+        "stack",
+        "figma",
+        "figjam",
+        "posthog",
+        "linear",
+        "claude",
+        "cursor",
+        "railway",
+        "notion",
+        "nextjs"
+      ],
+      "titleEs": "Mi Tool Stack Diario 2026 como Product Design Manager",
+      "titleEn": "My Daily Tool Stack 2026 as a Product Design Manager",
+      "tldrEs": "Mi stack diario integra Figma, FigJam, PostHog (>97% ahorro vs Pendo), Linear, Claude, Cursor, Railway (prototipos en 3 días), Notion y Slack.",
+      "tldrEn": "My daily stack integrates Figma, FigJam, PostHog (>97% savings vs Pendo), Linear, Claude, Cursor, Railway (prototypes in 3 days), Notion, and Slack.",
+      "bodyEs": "## Resumen\nComo documenté en mi artículo *My 2026 Tool Stack: Daily Essentials as a Product Design Manager* (también en Medium Bootcamp), el verdadero cambio de juego en mi día a día es cómo se conectan mis herramientas bajo cuatro pilares: colaboración en tiempo real, soporte multiplataforma, interfaces invisibles y agentes de IA integrados.\n\n## Herramientas Principales e Impacto Real\n- **Figma & FigJam (Estrategia y Design Systems al 100%):** Descubrí Figma en un hackathon en Kuala Lumpur en 2016. Uso FigJam para mapear estrategia y flujos, y Figma para mantener sistemas de diseño por tokens semánticos tan completos que permiten a ingeniería construir nuevas features directo desde los componentes con solo un *design check*.\n- **PostHog (Product Analytics con IA y >97% de ahorro):** En Marketfully evaluamos herramientas tradicionales como Pendo, pero lideré la migración a **PostHog** bajo esquema de pago por uso. Logramos **reducir más de un 97% el costo anual** de analítica en ese producto y luego desplegamos PostHog en **todos los productos de la compañía**.\n- **Cursor, Claude y Railway (De 1 mes a 3 días con Vibe Coding):** Uso **Claude** como orquestador conectado a Figma, Linear y PostHog, **Cursor** para *vibe coding* y prototipado en código (Next.js, Tailwind CSS, MDX), y **Railway** para desplegar entornos ligeros en minutos. Con este stack redujimos el tiempo de validación de prototipos con operaciones de **1 mes a solo 3 días**.\n- **Linear, Notion y Slack (Ejecución y documentación):** Uso Linear desde 2022 para gestión ágil con foco en entrega, Notion como cerebro central de specs y research, y Slack para coordinación diaria.\n- **Utilidades de entorno:** **Recordly** (alternativa ágil a Loom para grabar flujos de producto y demos), **Dia**, **Magnet** y **YouTube Music**.\n\n## Conexiones\n- Capacidades estratégicas: capacidades_producto_ia_y_sistemas\n- Artículos publicados: articulos_y_pensamiento_liquid_glass",
+      "bodyEn": "## Summary\nAs I documented in my article *My 2026 Tool Stack: Daily Essentials as a Product Design Manager* (also on Medium Bootcamp), the real game-changer in my day-to-day is how my tools connect under four pillars: real-time collaboration, multiplatform support, invisible interfaces, and integrated AI agents.\n\n## Core Tools and Real Impact\n- **Figma & FigJam (Strategy and Design Systems at 100%):** I discovered Figma at a hackathon in Kuala Lumpur in 2016. I use FigJam to map strategy and flows, and Figma to maintain design systems using semantic tokens so complete that they allow engineering to build new features directly from components with just a *design check*.\n- **PostHog (Product Analytics with AI and >97% Savings):** At Marketfully we evaluated traditional tools like Pendo, but I led the migration to **PostHog** under a pay-as-you-go model. We managed to **reduce the annual analytics cost of that product by more than 97%** and later deployed PostHog across **all company products**.\n- **Cursor, Claude, and Railway (From 1 month to 3 days with Vibe Coding):** I use **Claude** as an orchestrator connected to Figma, Linear, and PostHog, **Cursor** for *vibe coding* and code prototyping (Next.js, Tailwind CSS, MDX), and **Railway** to deploy lightweight environments in minutes. With this stack we reduced prototype validation time with operations from **1 month to just 3 days**.\n- **Linear, Notion, and Slack (Execution and Documentation):** I have been using Linear since 2022 for agile management focused on delivery, Notion as the central brain for specs and research, and Slack for daily coordination.\n- **Environment Utilities:** **Recordly** (an agile alternative to Loom for recording product flows and demos), **Dia**, **Magnet**, and **YouTube Music**.\n\n## Connections\n- Strategic capabilities: capacidades_producto_ia_y_sistemas\n- Published articles: articulos_y_pensamiento_liquid_glass",
+      "links": [
+        "exp-marketfully",
+        "skills-capacidades-producto",
+        "skills-articulos-pensamiento"
+      ],
+      "hash": "fdf979db198ce1e1d7de2126c7f8736ea54558147840ac035851a71a6c316bab"
+    }
+  ]
+}

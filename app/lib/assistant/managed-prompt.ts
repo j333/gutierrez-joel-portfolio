@@ -1,18 +1,20 @@
 import { Prompts } from '@posthog/ai'
 import {
   assistantPromptLabel,
-  assistantPromptNames,
+  assistantPromptName,
   assistantPromptTemplate,
   assistantPromptVariables,
+  assistantVisitBlock,
   type PromptInput,
 } from 'app/lib/assistant/system-prompt'
 
 const defaultTemperature = 0.2
-const defaultMaxOutputTokens = 400
+const defaultMaxOutputTokens = 700
 
 type PromptVariables = {
   profile: string
   context: string
+  replicaNotes: string
 }
 
 export type LoadedAssistantPrompt = {
@@ -21,6 +23,7 @@ export type LoadedAssistantPrompt = {
   maxOutputTokens: number
   promptName?: string
   promptVersion?: number
+  replicaNotes?: string
 }
 
 let client: Prompts | null = null
@@ -107,26 +110,37 @@ export const loadAssistantInstructions = async (
   input: PromptInput
 ): Promise<LoadedAssistantPrompt> => {
   const variables = assistantPromptVariables(input)
-  const fallback = assistantPromptTemplate(input.locale)
+  const fallback = assistantPromptTemplate()
   const prompts = getPromptClient()
+  const instructionsFrom = (template: string) => {
+    const hasSlots = template.includes('{{profile}}') || template.includes('{{context}}')
+
+    if (hasSlots) {
+      return compileTemplate(template, variables)
+    }
+
+    return [template.trim(), assistantVisitBlock(input)].filter(Boolean).join('\n\n')
+  }
 
   if (!prompts) {
     return {
-      instructions: compileTemplate(fallback, variables),
+      instructions: instructionsFrom(fallback),
       temperature: defaultTemperature,
       maxOutputTokens: defaultMaxOutputTokens,
+      replicaNotes: variables.replicaNotes,
     }
   }
 
-  const result = await prompts.get(assistantPromptNames[input.locale], {
+  const result = await prompts.get(assistantPromptName, {
     label: assistantPromptLabel,
     fallback,
   })
 
   return {
-    instructions: compileTemplate(result.prompt, variables),
+    instructions: instructionsFrom(result.prompt),
     ...samplingFrom(result.config),
     promptName: result.name,
     promptVersion: result.version,
+    replicaNotes: variables.replicaNotes,
   }
 }

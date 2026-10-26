@@ -10,11 +10,11 @@
     "start": "next start",
     "optimize-cover": "node scripts/optimize-cover.mjs",
     "optimize-image": "node scripts/optimize-image.mjs",
-    "placeholder-image": "node scripts/placeholder-image.mjs"
+    "placeholder-image": "node scripts/placeholder-image.mjs",
+    "sync-replica": "node --env-file=.env.local scripts/sync-replica.mjs"
   },
   "dependencies": {
     "@ai-sdk/google": "^4.0.104",
-    "@ai-sdk/groq": "^4.0.69",
     "@ai-sdk/otel": "^1.0.152",
     "@ai-sdk/react": "^4.0.156",
     "@opentelemetry/resources": "^2.3.0",

@@ -1,7 +1,6 @@
 import { google } from '@ai-sdk/google'
-import { groq } from '@ai-sdk/groq'
 import { Redis } from '@upstash/redis'
-import { consumeStream, createAgentUIStreamResponse, smoothStream, type LanguageModel } from 'ai'
+import { consumeStream, createAgentUIStreamResponse, smoothStream } from 'ai'
 import { after } from 'next/server'
 import { createAssistantAgent, type AssistantUIMessage } from 'app/lib/assistant/agent'
 import { trimMessages } from 'app/lib/assistant/messages'
@@ -39,9 +38,6 @@ const modelChain = [
   'gemini-3.1-flash-lite',
   'gemma-4-31b-it',
 ] as const
-
-const groqFallbackModelId = () =>
-  process.env.ASSISTANT_FALLBACK_MODEL || 'llama-3.3-70b-versatile'
 
 let redis: Redis | null = null
 
@@ -83,26 +79,19 @@ const withinLimit = async (ip: string) => {
 }
 
 const resolveModel = () => {
-  const hasGoogle = Boolean(process.env.GOOGLE_GENERATIVE_AI_API_KEY)
-  const hasGroq = Boolean(process.env.GROQ_API_KEY)
-
-  if (hasGoogle) {
-    const [primaryId, ...fallbackIds] = modelChain
-
-    return {
-      model: withModelFallback(
-        google(primaryId),
-        fallbackIds.map((id) => google(id))
-      ),
-      id: primaryId,
-    }
+  if (!process.env.GOOGLE_GENERATIVE_AI_API_KEY) {
+    return null
   }
 
-  if (hasGroq) {
-    return { model: groq(groqFallbackModelId()), id: groqFallbackModelId() }
-  }
+  const [primaryId, ...fallbackIds] = modelChain
 
-  return null
+  return {
+    model: withModelFallback(
+      google(primaryId),
+      fallbackIds.map((id) => google(id))
+    ),
+    id: primaryId,
+  }
 }
 
 export const POST = async (request: Request) => {

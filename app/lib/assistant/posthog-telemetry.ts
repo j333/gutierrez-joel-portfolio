@@ -51,6 +51,7 @@ export const startPostHogAiTelemetry = () => {
           $ai_session_id: spanAttribute(runtimeContext?.sessionId),
           $ai_prompt_name: spanAttribute(runtimeContext?.promptName),
           $ai_prompt_version: spanNumber(runtimeContext?.promptVersion),
+          $ai_replica_notes: spanAttribute(runtimeContext?.replicaNotes),
         }),
       })
     )

@@ -1,7 +1,6 @@
 import { wrapLanguageModel, type LanguageModel, type LanguageModelMiddleware } from 'ai'
 
 type V4Model = Extract<Exclude<LanguageModel, string>, { specificationVersion: 'v4' }>
-type V4CallOptions = Parameters<V4Model['doStream']>[0]
 type V4StreamResult = Awaited<ReturnType<V4Model['doStream']>>
 type V4GenerateResult = Awaited<ReturnType<V4Model['doGenerate']>>
 type V4StreamPart = V4StreamResult['stream'] extends ReadableStream<infer Part> ? Part : never
@@ -16,19 +15,6 @@ const asV4Model = (model: LanguageModel): V4Model => {
 
 const hasContent = (part: V4StreamPart) =>
   part.type === 'text-delta' || part.type === 'tool-call' || part.type === 'tool-input-start'
-
-const paramsForModel = (model: V4Model, params: V4CallOptions): V4CallOptions => {
-  if (!model.provider.includes('groq') || !params.providerOptions?.google) {
-    return params
-  }
-
-  const { google: _google, ...providerOptions } = params.providerOptions
-
-  return {
-    ...params,
-    providerOptions: Object.keys(providerOptions).length > 0 ? providerOptions : undefined,
-  }
-}
 
 const openUntilContent = async (result: V4StreamResult) => {
   const reader = result.stream.getReader()
@@ -107,7 +93,7 @@ export const withModelFallback = (primary: LanguageModel, fallbacks: LanguageMod
 
         for (const candidate of fallbackModels) {
           try {
-            return await candidate.doGenerate(paramsForModel(candidate, params))
+            return await candidate.doGenerate(params)
           } catch (error) {
             lastError = error
           }
@@ -132,7 +118,7 @@ export const withModelFallback = (primary: LanguageModel, fallbacks: LanguageMod
       for (const candidate of fallbackModels) {
         try {
           const opened = await openUntilContent(
-            await candidate.doStream(paramsForModel(candidate, params))
+            await candidate.doStream(params)
           )
 
           if (!opened.failed) {
