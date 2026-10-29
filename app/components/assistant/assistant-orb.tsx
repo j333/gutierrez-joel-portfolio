@@ -6,6 +6,7 @@ type AssistantOrbProps = {
   className?: string
   mode?: 'icon' | 'backdrop'
   loading?: boolean
+  followPointer?: boolean
 }
 
 const vertexSource = `
@@ -103,7 +104,12 @@ const trackElement = (canvas: HTMLCanvasElement) => {
 
 const isDarkTheme = () => document.documentElement.classList.contains('dark')
 
-export const AssistantOrb = ({ className, mode = 'icon', loading = false }: AssistantOrbProps) => {
+export const AssistantOrb = ({
+  className,
+  mode = 'icon',
+  loading = false,
+  followPointer = true,
+}: AssistantOrbProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const loadingRef = useRef(loading)
   const [fallback, setFallback] = useState(false)
@@ -291,8 +297,10 @@ export const AssistantOrb = ({ className, mode = 'icon', loading = false }: Assi
       draw(now)
     }
 
-    track.addEventListener('pointermove', handleMove)
-    track.addEventListener('pointerleave', handleLeave)
+    if (followPointer) {
+      track.addEventListener('pointermove', handleMove)
+      track.addEventListener('pointerleave', handleLeave)
+    }
     motion.addEventListener('change', handleMotion)
     resizeObserver.observe(canvas)
     themeObserver.observe(document.documentElement, {
@@ -309,8 +317,10 @@ export const AssistantOrb = ({ className, mode = 'icon', loading = false }: Assi
     return () => {
       running = false
       window.cancelAnimationFrame(frame)
-      track.removeEventListener('pointermove', handleMove)
-      track.removeEventListener('pointerleave', handleLeave)
+      if (followPointer) {
+        track.removeEventListener('pointermove', handleMove)
+        track.removeEventListener('pointerleave', handleLeave)
+      }
       motion.removeEventListener('change', handleMotion)
       resizeObserver.disconnect()
       themeObserver.disconnect()
@@ -318,7 +328,7 @@ export const AssistantOrb = ({ className, mode = 'icon', loading = false }: Assi
       gl.deleteBuffer(buffer)
       gl.deleteProgram(program)
     }
-  }, [mode])
+  }, [followPointer, mode])
 
   if (fallback) {
     return (

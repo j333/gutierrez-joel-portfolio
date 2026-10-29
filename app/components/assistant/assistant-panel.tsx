@@ -169,6 +169,9 @@ const thoughtLabelClassName =
 const thinkingDotClassName =
   'opacity-20 motion-safe:animate-thinking-dot motion-reduce:opacity-100'
 
+const idleOrbFadeMs = 700
+const thinkingGlowFadeMs = 2000
+
 const ThinkingDots = () => (
   <span aria-hidden className="tracking-normal">
     <span className={thinkingDotClassName} style={{ animationDelay: '0ms' }}>.</span>
@@ -509,6 +512,70 @@ export const Assistant = ({ locale, copy, catalog }: AssistantPanelProps) => {
   const orbLoading =
     waitingForReply ||
     (status === 'streaming' && lastMessage?.role === 'assistant' && !replyHasBody(lastMessage))
+  const conversationStarted = messages.length > 0
+  const [idleOrbMounted, setIdleOrbMounted] = useState(false)
+  const [idleOrbVisible, setIdleOrbVisible] = useState(false)
+
+  useEffect(() => {
+    if (!isOpen) {
+      setIdleOrbVisible(false)
+      return
+    }
+
+    if (conversationStarted) {
+      setIdleOrbVisible(false)
+      const timeout = window.setTimeout(() => {
+        setIdleOrbMounted(false)
+      }, idleOrbFadeMs)
+
+      return () => {
+        window.clearTimeout(timeout)
+      }
+    }
+
+    setIdleOrbMounted(true)
+    setIdleOrbVisible(false)
+    let frame = 0
+    const firstFrame = window.requestAnimationFrame(() => {
+      frame = window.requestAnimationFrame(() => {
+        setIdleOrbVisible(true)
+      })
+    })
+
+    return () => {
+      window.cancelAnimationFrame(firstFrame)
+      window.cancelAnimationFrame(frame)
+    }
+  }, [conversationStarted, isOpen])
+
+  const [thinkingOrbMounted, setThinkingOrbMounted] = useState(false)
+  const [thinkingOrbVisible, setThinkingOrbVisible] = useState(false)
+
+  useEffect(() => {
+    if (!busy) {
+      setThinkingOrbVisible(false)
+      const timeout = window.setTimeout(() => {
+        setThinkingOrbMounted(false)
+      }, thinkingGlowFadeMs + 80)
+
+      return () => {
+        window.clearTimeout(timeout)
+      }
+    }
+
+    setThinkingOrbMounted(true)
+    let frame = 0
+    const firstFrame = window.requestAnimationFrame(() => {
+      frame = window.requestAnimationFrame(() => {
+        setThinkingOrbVisible(true)
+      })
+    })
+
+    return () => {
+      window.cancelAnimationFrame(firstFrame)
+      window.cancelAnimationFrame(frame)
+    }
+  }, [busy])
   const streamingReasoningText = streamingReasoning(lastMessage, status)
   const liveActivity = useLiveActivity(
     streamingReasoningText ? reasoningActivity(streamingReasoningText) : null,
@@ -783,11 +850,36 @@ export const Assistant = ({ locale, copy, catalog }: AssistantPanelProps) => {
         aria-hidden
         className="pointer-events-none absolute inset-0 overflow-hidden bg-white dark:bg-black"
       >
-        <AssistantOrb
-          mode="backdrop"
-          loading={orbLoading}
-          className="absolute top-[46%] left-1/2 h-full w-[min(88%,22rem)] -translate-x-1/2 -translate-y-1/2"
-        />
+        {idleOrbMounted ? (
+          <div
+            className={`absolute top-[46%] left-1/2 h-full w-[min(88%,22rem)] -translate-x-1/2 -translate-y-1/2 motion-safe:transition-opacity motion-safe:duration-700 motion-safe:ease-out ${
+              idleOrbVisible ? 'opacity-100' : 'opacity-0'
+            }`}
+          >
+            <AssistantOrb
+              mode="backdrop"
+              loading={orbLoading}
+              className="block size-full"
+            />
+          </div>
+        ) : null}
+        {thinkingOrbMounted ? (
+          <div
+            data-thinking-glow=""
+            className={`pointer-events-none absolute inset-x-0 top-0 h-36 overflow-hidden motion-safe:transition-opacity [mask-image:linear-gradient(to_bottom,black_20%,transparent)] [-webkit-mask-image:linear-gradient(to_bottom,black_20%,transparent)] ${
+              thinkingOrbVisible
+                ? 'opacity-80 motion-safe:duration-700 motion-safe:ease-out dark:opacity-60'
+                : 'opacity-0 motion-safe:duration-[2000ms] motion-safe:ease-in'
+            }`}
+          >
+            <AssistantOrb
+              mode="backdrop"
+              loading
+              followPointer={false}
+              className="absolute top-0 left-1/2 h-[28rem] w-[28rem] -translate-x-1/2 -translate-y-[62%]"
+            />
+          </div>
+        ) : null}
       </div>
       <div className="relative z-10 flex shrink-0 items-center justify-between px-4 pt-[max(1rem,env(safe-area-inset-top))] pb-3">
         <div className="flex items-center gap-2">
