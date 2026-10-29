@@ -882,12 +882,9 @@ export const Assistant = ({ locale, copy, catalog }: AssistantPanelProps) => {
         ) : null}
       </div>
       <div className="relative z-10 flex shrink-0 items-center justify-between px-4 pt-[max(1rem,env(safe-area-inset-top))] pb-3">
-        <div className="flex items-center gap-2">
-          <AssistantIcon className="size-4 shrink-0 text-black dark:text-white" />
-          <h2 id="assistant-title" className="py-1 font-mono text-xs uppercase leading-4 tracking-wider text-neutral-500">
-            {copy.title}
-          </h2>
-        </div>
+        <h2 id="assistant-title" className="py-1 font-mono text-xs uppercase leading-4 tracking-wider text-neutral-500">
+          {copy.title}
+        </h2>
         <div className="flex items-center gap-1">
           {messages.length > 0 ? (
             <button
