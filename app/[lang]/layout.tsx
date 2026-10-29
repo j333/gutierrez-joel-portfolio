@@ -8,6 +8,7 @@ import { Assistant } from 'app/components/assistant/assistant-panel'
 import { getAssistantCatalog } from 'app/lib/assistant/catalog'
 import { AssistantProvider } from 'app/components/assistant/assistant-context'
 import { AssistantShell } from 'app/components/assistant/assistant-shell'
+import { AssistantFloatingTrigger } from 'app/components/assistant/assistant-floating-trigger'
 import { TextSelectionTooltip } from 'app/components/assistant/text-selection-tooltip'
 import { JsonLd } from 'app/components/json-ld'
 import { chromeLinkClassName } from 'app/components/link-styles'
@@ -146,6 +147,7 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
             <Footer />
           </AssistantShell>
           <Assistant locale={locale} copy={copy.assistant} catalog={catalog} />
+          <AssistantFloatingTrigger label={copy.assistant.open} />
           <TextSelectionTooltip
             label={copy.assistant.ask}
             question={copy.assistant.selectionQuestion}

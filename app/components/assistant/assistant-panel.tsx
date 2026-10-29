@@ -4,10 +4,11 @@ import { useChat } from '@ai-sdk/react'
 import { DefaultChatTransport, isToolOutputErrorUIPart } from 'ai'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
+import { useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties, type MouseEvent } from 'react'
 import { useScrambleText } from 'app/hooks/use-scramble-text'
 import { ArrowUpRightIcon } from 'app/components/home-action-link'
 import { AssistantIcon } from 'app/components/assistant-icon'
+import { AssistantOrb } from './assistant-orb'
 import { GlitchCover } from 'app/components/glitch-cover'
 import { cardTitleClassName, navTextClassName } from 'app/components/link-styles'
 import { Conversation, ConversationContent, ConversationScrollButton } from 'app/components/ai-elements/conversation'
@@ -125,7 +126,11 @@ const questionsForPath = (
 const headerIconButtonClassName =
   'inline-flex min-h-11 min-w-11 cursor-pointer items-center justify-center rounded-sm text-neutral-600 outline-none transition-colors hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 sm:min-h-6 sm:min-w-6 dark:text-neutral-400 dark:hover:text-white dark:focus-visible:outline-neutral-100'
 
-const assistantTriggerRef = { current: null as HTMLButtonElement | null }
+const assistantTriggerRef = { current: null as HTMLElement | null }
+
+export const rememberAssistantTrigger = (node: HTMLElement | null) => {
+  assistantTriggerRef.current = node
+}
 
 const iconProps = {
   width: 16,
@@ -155,6 +160,8 @@ const CloseIcon = () => (
 )
 
 const chatTextClassName = 'text-base leading-relaxed'
+
+const readableBlockClassName = '-mx-4 max-w-none bg-white px-4 dark:bg-black'
 
 const thoughtLabelClassName =
   'flex items-center gap-2 font-mono text-xs uppercase leading-4 tracking-wider text-neutral-500'
@@ -499,6 +506,9 @@ export const Assistant = ({ locale, copy, catalog }: AssistantPanelProps) => {
   const waitingForReply =
     status === 'submitted' ||
     (status === 'streaming' && (!lastMessage || lastMessage.role !== 'assistant' || !hasVisiblePart(lastMessage)))
+  const orbLoading =
+    waitingForReply ||
+    (status === 'streaming' && lastMessage?.role === 'assistant' && !replyHasBody(lastMessage))
   const streamingReasoningText = streamingReasoning(lastMessage, status)
   const liveActivity = useLiveActivity(
     streamingReasoningText ? reasoningActivity(streamingReasoningText) : null,
@@ -762,14 +772,24 @@ export const Assistant = ({ locale, copy, catalog }: AssistantPanelProps) => {
         className="absolute inset-x-0 top-full h-dvh bg-white sm:hidden dark:bg-black"
       />
       <div
-        className="flex h-full min-h-0 w-full flex-col overflow-hidden"
+        className="relative flex h-full min-h-0 w-full flex-col overflow-hidden"
         style={
           sheetFrame.mobile
             ? { marginTop: sheetFrame.frameOffset, height: sheetFrame.frameHeight, flexShrink: 0 }
             : undefined
         }
       >
-      <div className="flex shrink-0 items-center justify-between px-4 pt-[max(1rem,env(safe-area-inset-top))] pb-3">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 overflow-hidden bg-white dark:bg-black"
+      >
+        <AssistantOrb
+          mode="backdrop"
+          loading={orbLoading}
+          className="absolute top-[46%] left-1/2 h-full w-[min(88%,22rem)] -translate-x-1/2 -translate-y-1/2"
+        />
+      </div>
+      <div className="relative z-10 flex shrink-0 items-center justify-between px-4 pt-[max(1rem,env(safe-area-inset-top))] pb-3">
         <div className="flex items-center gap-2">
           <AssistantIcon className="size-4 shrink-0 text-black dark:text-white" />
           <h2 id="assistant-title" className="py-1 font-mono text-xs uppercase leading-4 tracking-wider text-neutral-500">
@@ -797,7 +817,7 @@ export const Assistant = ({ locale, copy, catalog }: AssistantPanelProps) => {
           </button>
         </div>
       </div>
-      <Conversation data-assistant-transcript="" className="min-h-0">
+      <Conversation data-assistant-transcript="" className="relative z-10 min-h-0">
         <ConversationContent
           scrollClassName="touch-pan-y overscroll-y-contain"
           className="gap-0 px-4 pt-4 pb-8"
@@ -820,7 +840,7 @@ export const Assistant = ({ locale, copy, catalog }: AssistantPanelProps) => {
                 <Message
                   from={message.role}
                   key={message.id}
-                  className={gapClassName}
+                  className={`${gapClassName} ${message.role === 'assistant' && !showThinking ? readableBlockClassName : ''}`}
                 >
                   {showThinking ? (
                     <p className={thoughtLabelClassName}>
@@ -878,7 +898,7 @@ export const Assistant = ({ locale, copy, catalog }: AssistantPanelProps) => {
             </Message>
           ) : null}
           {errorText ? (
-            <div className="mt-6 flex flex-col items-start gap-2">
+            <div className={`mt-6 flex flex-col items-start gap-2 ${readableBlockClassName}`}>
               <p className={`${chatTextClassName} text-neutral-600 dark:text-neutral-400`}>{errorText}</p>
               <MessageAction
                 onClick={handleRetry}
@@ -895,7 +915,7 @@ export const Assistant = ({ locale, copy, catalog }: AssistantPanelProps) => {
         />
       </Conversation>
       {messages.length === 0 ? (
-        <Suggestions className="shrink-0 px-4 pt-3 pb-4">
+        <Suggestions className="relative z-10 shrink-0 px-4 pt-3 pb-4">
           {suggestions.map((question) => (
             <Suggestion
               key={question}
@@ -908,7 +928,7 @@ export const Assistant = ({ locale, copy, catalog }: AssistantPanelProps) => {
       ) : null}
       <PromptInput
         onSubmit={handleSubmit}
-        className="shrink-0 border-t border-neutral-200 px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] dark:border-neutral-800"
+        className="relative z-10 shrink-0 border-t border-neutral-200 px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] dark:border-neutral-800"
       >
         <PromptInputBody>
           {quotedText ? (
@@ -960,7 +980,9 @@ const assistantTriggerClassName =
 export const AssistantTrigger = ({ label }: { label: string }) => {
   const { isOpen, openAssistant, closeAssistant } = useAssistant()
 
-  const handleToggle = () => {
+  const handleToggle = (event: MouseEvent<HTMLButtonElement>) => {
+    rememberAssistantTrigger(event.currentTarget)
+
     if (isOpen) {
       closeAssistant()
       return
@@ -972,7 +994,9 @@ export const AssistantTrigger = ({ label }: { label: string }) => {
   return (
     <button
       ref={(node) => {
-        assistantTriggerRef.current = node
+        if (node && !assistantTriggerRef.current) {
+          assistantTriggerRef.current = node
+        }
       }}
       type="button"
       aria-label={label}
