@@ -118,11 +118,11 @@ export const createAssistantAgent = (model: LanguageModel) =>
     stopWhen: stepCountIs(3),
     temperature: 0.2,
     maxOutputTokens: 1500,
-    reasoning: 'low',
+    reasoning: 'none',
     providerOptions: {
       google: {
         thinkingConfig: {
-          includeThoughts: true,
+          includeThoughts: false,
         },
       },
     },
