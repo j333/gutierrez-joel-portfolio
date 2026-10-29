@@ -4,13 +4,12 @@ import { useChat } from '@ai-sdk/react'
 import { DefaultChatTransport, isToolOutputErrorUIPart } from 'ai'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties, type MouseEvent } from 'react'
+import { useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
 import { useScrambleText } from 'app/hooks/use-scramble-text'
 import { ArrowUpRightIcon } from 'app/components/home-action-link'
-import { AssistantIcon } from 'app/components/assistant-icon'
 import { AssistantOrb } from './assistant-orb'
 import { GlitchCover } from 'app/components/glitch-cover'
-import { cardTitleClassName, navTextClassName } from 'app/components/link-styles'
+import { cardTitleClassName } from 'app/components/link-styles'
 import { Conversation, ConversationContent, ConversationScrollButton } from 'app/components/ai-elements/conversation'
 import {
   Message,
@@ -875,6 +874,7 @@ export const Assistant = ({ locale, copy, catalog }: AssistantPanelProps) => {
             <AssistantOrb
               mode="backdrop"
               loading
+              eyes={false}
               followPointer={false}
               className="absolute top-0 left-1/2 h-[28rem] w-[28rem] -translate-x-1/2 -translate-y-[62%]"
             />
@@ -1063,39 +1063,3 @@ export const Assistant = ({ locale, copy, catalog }: AssistantPanelProps) => {
   )
 }
 
-const assistantTriggerClassName =
-  'group relative inline-flex min-h-11 min-w-11 w-fit cursor-pointer items-center justify-center rounded-sm border-0 bg-transparent -mx-1 px-1 py-0.5 outline-none transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 aria-expanded:text-black sm:min-h-0 sm:min-w-0 dark:focus-visible:outline-neutral-100 dark:aria-expanded:text-white'
-
-export const AssistantTrigger = ({ label }: { label: string }) => {
-  const { isOpen, openAssistant, closeAssistant } = useAssistant()
-
-  const handleToggle = (event: MouseEvent<HTMLButtonElement>) => {
-    rememberAssistantTrigger(event.currentTarget)
-
-    if (isOpen) {
-      closeAssistant()
-      return
-    }
-
-    openAssistant('button')
-  }
-
-  return (
-    <button
-      ref={(node) => {
-        if (node && !assistantTriggerRef.current) {
-          assistantTriggerRef.current = node
-        }
-      }}
-      type="button"
-      aria-label={label}
-      aria-haspopup="dialog"
-      aria-expanded={isOpen}
-      hidden={isOpen}
-      onClick={handleToggle}
-      className={`${navTextClassName} ${assistantTriggerClassName}`}
-    >
-      <AssistantIcon className="size-5 shrink-0" />
-    </button>
-  )
-}

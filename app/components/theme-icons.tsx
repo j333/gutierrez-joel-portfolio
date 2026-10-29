@@ -1,5 +1,3 @@
-export const themeIconClassName = 'ml-1 shrink-0'
-
 type ThemeIconProps = {
   className?: string
 }
@@ -7,50 +5,29 @@ type ThemeIconProps = {
 const iconProps = {
   width: 16,
   height: 16,
-  viewBox: '0 0 32 32',
-  fill: 'currentColor' as const,
+  viewBox: '0 0 24 24',
+  fill: 'none' as const,
+  stroke: 'currentColor' as const,
+  strokeWidth: 1.75,
+  strokeLinecap: 'round' as const,
+  strokeLinejoin: 'round' as const,
   xmlns: 'http://www.w3.org/2000/svg',
   'aria-hidden': true as const,
 }
 
 export const SunIcon = ({ className }: ThemeIconProps) => {
   return (
-    <svg
-      {...iconProps}
-      className={className || themeIconClassName}
-    >
-      <path d="M15 2H17V7H15z" />
-      <path
-        d="M21.668 6.854H26.626V8.854H21.668z"
-        transform="rotate(-45 24.147 7.853)"
-      />
-      <path d="M25 15H30V17H25z" />
-      <path
-        d="M23.147 21.668H25.147V26.626H23.147z"
-        transform="rotate(-45 24.147 24.146)"
-      />
-      <path d="M15 25H17V30H15z" />
-      <path
-        d="M5.375 23.147H10.333V25.147H5.375z"
-        transform="rotate(-45 7.853 24.146)"
-      />
-      <path d="M2 15H7V17H2z" />
-      <path
-        d="M6.854 5.375H8.854V10.333H6.854z"
-        transform="rotate(-45 7.854 7.853)"
-      />
-      <path d="M16,10a6,6,0,1,0,6,6,6,6,0,0,0-6-6Z" />
+    <svg {...iconProps} className={className ?? 'shrink-0'}>
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
     </svg>
   )
 }
 
 export const MoonIcon = ({ className }: ThemeIconProps) => {
   return (
-    <svg
-      {...iconProps}
-      className={className || themeIconClassName}
-    >
-      <path d="M14.98,3a1.0024,1.0024,0,0,0-.1746.0156A13.0959,13.0959,0,0,0,16.63,28.9973c.1641.006.3282,0,.4909,0a13.0724,13.0724,0,0,0,10.702-5.5556,1.0094,1.0094,0,0,0-.7833-1.5644A13.08,13.08,0,0,1,15.8892,4.38,1.0149,1.0149,0,0,0,14.98,3Z" />
+    <svg {...iconProps} className={className ?? 'shrink-0'}>
+      <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
     </svg>
   )
 }

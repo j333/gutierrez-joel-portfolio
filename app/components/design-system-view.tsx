@@ -6,7 +6,6 @@ import {
   cardTitleClassName,
   chromeLinkClassName,
   chromeLinkNavClassName,
-  navTextClassName,
 } from 'app/components/link-styles'
 import {
   buttonDisabledClassName,
@@ -1084,11 +1083,8 @@ const ComponentSpecimens = {
       className="inline-flex min-h-11 w-fit items-center rounded-sm px-1 py-1 outline-none sm:min-h-0"
       aria-hidden="true"
     >
-      <SunIcon className="shrink-0 dark:hidden" />
-      <MoonIcon className="hidden shrink-0 dark:inline" />
-      <span className={`${navTextClassName} ml-2 whitespace-nowrap`}>
-        Dark mode
-      </span>
+      <SunIcon className="size-4 shrink-0 dark:hidden" />
+      <MoonIcon className="size-4 hidden shrink-0 dark:inline" />
     </span>
   ),
   'image-overlay': (

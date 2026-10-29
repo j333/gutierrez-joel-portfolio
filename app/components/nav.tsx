@@ -3,23 +3,37 @@
 import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from 'react'
 import { usePathname } from 'next/navigation'
 import { useScrollNavVisibility } from '../hooks/use-scroll-nav-visibility'
-import { useScrambleText } from '../hooks/use-scramble-text'
 import { localePath, stripLocale, type Locale } from 'app/lib/locale'
-import { AssistantTrigger } from './assistant/assistant-panel'
 import { ChromeScrambleLink } from './chrome-scramble-link'
+import { LocaleSwitch } from './locale-switch'
 import { chromeLinkNavClassName } from './link-styles'
+import { ThemeToggle, type ThemeToggleCopy } from './theme-toggle'
 
 const navLinkClassName = `${chromeLinkNavClassName} -mx-1 min-h-11 whitespace-nowrap sm:min-h-0`
 
 const desktopNavListClassName =
-  'flex min-w-0 flex-wrap items-center gap-x-6 gap-y-2 sm:flex-nowrap sm:gap-x-8 @max-[40rem]:hidden lg:grid lg:grid-cols-3'
-const menuToggleClassName = `${navLinkClassName} @min-[40rem]:hidden`
+  'flex min-w-0 flex-wrap items-center gap-x-6 gap-y-2 sm:flex-nowrap sm:gap-x-8 @max-[40rem]:hidden lg:grid lg:grid-cols-4'
+const menuToggleClassName =
+  'inline-flex size-11 shrink-0 cursor-pointer items-center justify-center rounded-sm border-0 bg-transparent text-neutral-600 outline-none transition-colors hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 dark:text-neutral-400 dark:hover:text-white dark:focus-visible:outline-neutral-100 @min-[40rem]:hidden'
+
+const menuIconProps = {
+  width: 16,
+  height: 16,
+  viewBox: '0 0 24 24',
+  fill: 'none' as const,
+  stroke: 'currentColor' as const,
+  strokeWidth: 1.75,
+  strokeLinecap: 'round' as const,
+  xmlns: 'http://www.w3.org/2000/svg',
+  'aria-hidden': true as const,
+  className: 'shrink-0',
+}
 
 const sheetLinkClassName =
   'group flex min-h-14 w-full items-center py-4 text-xl font-normal leading-7 tracking-tight text-neutral-600 outline-none transition-colors hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-neutral-900 aria-[current=page]:text-black dark:text-neutral-400 dark:hover:text-white dark:aria-[current=page]:text-white dark:focus-visible:outline-neutral-100'
 
 const sheetClassName =
-  'nav-sheet fixed! inset-x-0 bottom-0 top-[var(--nav-height)] z-30 flex flex-col overflow-y-auto bg-white px-4 pb-[max(2.5rem,calc(1rem+env(safe-area-inset-bottom)))] pt-4 motion-safe:translate-y-0 motion-safe:opacity-100 motion-safe:transition-[opacity,translate] motion-safe:duration-200 motion-safe:ease-out motion-safe:starting:-translate-y-1 motion-safe:starting:opacity-0 dark:bg-black @min-[40rem]:hidden'
+  'nav-sheet fixed! inset-x-0 bottom-0 top-[var(--nav-height)] z-30 flex flex-col overflow-hidden bg-white px-4 pb-[max(2.5rem,calc(1rem+env(safe-area-inset-bottom)))] pt-4 motion-safe:translate-y-0 motion-safe:opacity-100 motion-safe:transition-[opacity,translate] motion-safe:duration-200 motion-safe:ease-out motion-safe:starting:-translate-y-1 motion-safe:starting:opacity-0 dark:bg-black @min-[40rem]:hidden'
 
 const navShellClassName =
   'sticky-nav sticky top-0 z-40 -mx-4 w-[calc(100%+2rem)] border-b border-transparent bg-transparent px-4 pt-4 sm:-mx-6 sm:w-[calc(100%+3rem)] sm:px-6 data-[away-from-top=true]:border-neutral-200 data-[away-from-top=true]:bg-white dark:data-[away-from-top=true]:border-neutral-800 dark:data-[away-from-top=true]:bg-black'
@@ -37,13 +51,43 @@ type NavCopy = {
   brand: string
   menu: string
   close: string
-  assistant: string
 }
 
 type NavbarProps = {
   locale: Locale
   copy: NavCopy
+  languageLabel: string
+  theme: ThemeToggleCopy
 }
+
+const MenuIcon = () => (
+  <svg {...menuIconProps}>
+    <path d="M4 7h16M4 12h16M4 17h16" />
+  </svg>
+)
+
+const CloseIcon = () => (
+  <svg {...menuIconProps}>
+    <path d="M6 6l12 12M18 6L6 18" />
+  </svg>
+)
+
+const NavControls = ({
+  locale,
+  languageLabel,
+  theme,
+  id,
+}: {
+  locale: Locale
+  languageLabel: string
+  theme: ThemeToggleCopy
+  id: string
+}) => (
+  <div className="flex items-center gap-x-6">
+    <LocaleSwitch compact locale={locale} label={languageLabel} id={id} />
+    <ThemeToggle copy={theme} />
+  </div>
+)
 
 const isCurrentPath = (pathname: string, href: string) => {
   const current = stripLocale(pathname)
@@ -60,7 +104,7 @@ const readContainerWidth = (entry: ResizeObserverEntry) => {
   return entry.contentBoxSize[0]?.inlineSize ?? entry.contentRect.width
 }
 
-export const Navbar = ({ locale, copy }: NavbarProps) => {
+export const Navbar = ({ locale, copy, languageLabel, theme }: NavbarProps) => {
   const pathname = usePathname() ?? localePath(locale, '/')
   const { isHidden, isAwayFromTop } = useScrollNavVisibility(pathname)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -73,7 +117,6 @@ export const Navbar = ({ locale, copy }: NavbarProps) => {
   const wasMenuOpenRef = useRef(false)
   const isMenuOpenRef = useRef(isMenuOpen)
   const menuLabel = isMenuOpen ? copy.close : copy.menu
-  const { ref: menuLabelRef, replay: replayMenuLabel } = useScrambleText(menuLabel)
   const home = localePath(locale, '/')
   const navItems = [
     { href: localePath(locale, '/craft'), name: copy.craft },
@@ -237,18 +280,25 @@ export const Navbar = ({ locale, copy }: NavbarProps) => {
                     />
                   </li>
                 ))}
+                <li className="ml-auto flex min-w-0 items-center justify-end">
+                  <NavControls
+                    locale={locale}
+                    languageLabel={languageLabel}
+                    theme={theme}
+                    id="locale-switch"
+                  />
+                </li>
               </ul>
-              <AssistantTrigger label={copy.assistant} />
               <button
                 ref={menuButtonRef}
                 type="button"
                 className={menuToggleClassName}
                 aria-expanded={isMenuOpen}
                 aria-controls="nav-menu"
+                aria-label={menuLabel}
                 onClick={handleToggleMenu}
-                onMouseEnter={replayMenuLabel}
               >
-                <span ref={menuLabelRef}>{menuLabel}</span>
+                {isMenuOpen ? <CloseIcon /> : <MenuIcon />}
               </button>
             </div>
           </div>
@@ -261,7 +311,7 @@ export const Navbar = ({ locale, copy }: NavbarProps) => {
               aria-label={copy.menu}
               className={sheetClassName}
             >
-              <ul className="flex flex-col">
+              <ul className="flex min-h-0 flex-1 flex-col overflow-y-auto">
                 {sheetItems.map((item) => (
                   <li
                     key={item.href}
@@ -279,6 +329,14 @@ export const Navbar = ({ locale, copy }: NavbarProps) => {
                   </li>
                 ))}
               </ul>
+              <div className="flex shrink-0 items-center self-start pt-6">
+                <NavControls
+                  locale={locale}
+                  languageLabel={languageLabel}
+                  theme={theme}
+                  id="locale-switch-menu"
+                />
+              </div>
             </div>
           ) : null}
         </div>

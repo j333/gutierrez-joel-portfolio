@@ -124,6 +124,8 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
             <div className="flex min-h-0 min-w-0 flex-1 flex-col">
               <Navbar
                 locale={locale}
+                languageLabel={copy.footer.language}
+                theme={copy.theme}
                 copy={{
                   primary: copy.nav.primary,
                   home: copy.nav.home,
@@ -133,7 +135,6 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
                   brand: copy.nav.brand,
                   menu: copy.nav.menu,
                   close: copy.nav.close,
-                  assistant: copy.assistant.open,
                 }}
               />
               <main

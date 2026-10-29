@@ -7,6 +7,7 @@ type AssistantOrbProps = {
   mode?: 'icon' | 'backdrop'
   loading?: boolean
   followPointer?: boolean
+  eyes?: boolean
 }
 
 const vertexSource = `
@@ -20,9 +21,11 @@ const fragmentSource = `
 precision highp float;
 uniform vec2 uResolution;
 uniform vec2 uPointer;
+uniform vec2 uLook;
 uniform float uTime;
 uniform float uDark;
 uniform float uLoading;
+uniform float uEyes;
 
 float hash(vec3 p) {
   return fract(sin(dot(p, vec3(127.1, 311.7, 74.7))) * 43758.5453);
@@ -58,6 +61,49 @@ float fbm(vec3 p) {
   return value;
 }
 
+vec3 placeOnSphere(vec2 rest, float radius) {
+  float depth = sqrt(max(radius * radius - dot(rest, rest), 0.0001));
+  return vec3(rest, depth);
+}
+
+vec3 rotateOnSphere(vec3 eye, float yaw, float pitch) {
+  float cy = cos(yaw);
+  float sy = sin(yaw);
+  float x1 = eye.x * cy + eye.z * sy;
+  float z1 = -eye.x * sy + eye.z * cy;
+  float cp = cos(pitch);
+  float sp = sin(pitch);
+  float y2 = eye.y * cp - z1 * sp;
+  float z2 = eye.y * sp + z1 * cp;
+  return vec3(x1, y2, z2);
+}
+
+float sphereEye(vec2 frag, vec3 eye, float radius, float eyeRadius, float openAmount) {
+  float facing = clamp(eye.z / radius, 0.0, 1.0);
+  vec2 delta = frag - eye.xy;
+  delta.y /= max(openAmount, 0.05);
+  float focal = 1.35;
+  float scale = (focal - radius * 0.95) / max(focal - eye.z, 0.25);
+  float major = eyeRadius * scale;
+  float minor = max(major * max(facing, 0.18), 0.003);
+  vec2 tilt = eye.xy;
+  float tiltLen = length(tilt);
+  float along = 0.0;
+  float across = length(delta);
+
+  if (tiltLen >= 0.001) {
+    vec2 axis = tilt / tiltLen;
+    along = dot(delta, axis);
+    across = length(delta - axis * along);
+  }
+
+  float radial = sqrt((along * along) / (minor * minor) + (across * across) / (major * major));
+  float disc = 1.0 - smoothstep(0.84, 1.0, radial);
+  float horizon = smoothstep(0.05, 0.26, facing);
+  float limb = 1.0 - smoothstep(radius * 0.88, radius * 1.16, length(frag));
+  return disc * horizon * limb;
+}
+
 void main() {
   vec2 uv = (gl_FragCoord.xy - 0.5 * uResolution) / min(uResolution.x, uResolution.y);
   vec2 pull = (uPointer - 0.5) * vec2(0.42, -0.42);
@@ -84,7 +130,30 @@ void main() {
   vec3 color = mix(mix(cyan, blue, smoothstep(-0.45, 0.2, -p.y)), violet, violetMix);
   float alpha = sphere * mix(0.78, 1.0, smoke);
   alpha = clamp(alpha, 0.0, 1.0);
-  gl_FragColor = vec4(color * alpha, alpha);
+
+  float body = 0.36;
+  float eyeRadius = body * 0.145;
+  float eyeSpread = body * 0.28;
+  float eyeLift = body * 0.15;
+  float attention = smoothstep(0.02, 0.45, length(uLook));
+  float idleYaw = sin(uTime * 0.33) * 0.13;
+  float idlePitch = cos(uTime * 0.21) * 0.06;
+  float yaw = (uLook.x * 0.82 + idleYaw * (1.0 - attention)) * uEyes;
+  float pitch = (-uLook.y * 0.56 + idlePitch * (1.0 - attention)) * uEyes;
+  float blinkCycle = fract(uTime * 0.14);
+  float blink = smoothstep(0.0, 0.008, blinkCycle) * (1.0 - smoothstep(0.01, 0.028, blinkCycle));
+  float openAmount = mix(1.0, 0.07, blink);
+  vec3 leftEye = rotateOnSphere(placeOnSphere(vec2(-eyeSpread, eyeLift), body), yaw, pitch);
+  vec3 rightEye = rotateOnSphere(placeOnSphere(vec2(eyeSpread, eyeLift), body), yaw, pitch);
+  float eyes = max(
+    sphereEye(p, leftEye, body, eyeRadius, openAmount),
+    sphereEye(p, rightEye, body, eyeRadius, openAmount)
+  );
+  eyes *= uEyes * smoothstep(0.05, 0.5, sphere);
+  vec3 premul = color * alpha;
+  premul = vec3(1.0) * eyes + premul * (1.0 - eyes);
+  alpha = eyes + alpha * (1.0 - eyes);
+  gl_FragColor = vec4(premul, alpha);
 }
 `
 
@@ -109,6 +178,7 @@ export const AssistantOrb = ({
   mode = 'icon',
   loading = false,
   followPointer = true,
+  eyes = true,
 }: AssistantOrbProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const loadingRef = useRef(loading)
@@ -148,6 +218,7 @@ export const AssistantOrb = ({
       gl.compileShader(shader)
 
       if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+        console.error(gl.getShaderInfoLog(shader))
         gl.deleteShader(shader)
         return null
       }
@@ -172,6 +243,7 @@ export const AssistantOrb = ({
     gl.deleteShader(fragment)
 
     if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+      console.error(gl.getProgramInfoLog(program))
       gl.deleteProgram(program)
       setFallback(true)
       return
@@ -186,11 +258,14 @@ export const AssistantOrb = ({
 
     const resolution = gl.getUniformLocation(program, 'uResolution')
     const pointer = gl.getUniformLocation(program, 'uPointer')
+    const lookUniform = gl.getUniformLocation(program, 'uLook')
     const time = gl.getUniformLocation(program, 'uTime')
     const dark = gl.getUniformLocation(program, 'uDark')
     const loadingUniform = gl.getUniformLocation(program, 'uLoading')
+    const eyesUniform = gl.getUniformLocation(program, 'uEyes')
     const motion = window.matchMedia('(prefers-reduced-motion: reduce)')
     const aim = { x: 0.5, y: 0.5, tx: 0.5, ty: 0.5 }
+    const look = { x: 0, y: 0, tx: 0, ty: 0 }
     let reduce = motion.matches
     let visible = true
     let frame = 0
@@ -222,9 +297,11 @@ export const AssistantOrb = ({
       gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0)
       gl.uniform2f(resolution, canvas.width, canvas.height)
       gl.uniform2f(pointer, aim.x, aim.y)
+      gl.uniform2f(lookUniform, look.x, look.y)
       gl.uniform1f(time, reduce ? 0 : now * 0.001)
       gl.uniform1f(dark, isDarkTheme() ? 1 : 0)
       gl.uniform1f(loadingUniform, loadingRef.current ? 1 : 0)
+      gl.uniform1f(eyesUniform, eyes ? 1 : 0)
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4)
     }
 
@@ -243,6 +320,33 @@ export const AssistantOrb = ({
       aim.ty = 0.5
     }
 
+    const handleLook = (event: PointerEvent) => {
+      if (reduce) {
+        return
+      }
+
+      const rect = canvas.getBoundingClientRect()
+      const dx = event.clientX - (rect.left + rect.width * 0.5)
+      const dy = event.clientY - (rect.top + rect.height * 0.5)
+      const dist = Math.hypot(dx, dy)
+
+      if (dist < 1) {
+        look.tx = 0
+        look.ty = 0
+        return
+      }
+
+      const reach = 220
+      const mag = Math.min(1, dist / reach)
+      look.tx = (dx / dist) * mag
+      look.ty = (-dy / dist) * mag
+    }
+
+    const handleLookReset = () => {
+      look.tx = 0
+      look.ty = 0
+    }
+
     const handleMotion = () => {
       reduce = motion.matches
 
@@ -251,6 +355,10 @@ export const AssistantOrb = ({
         aim.y = 0.5
         aim.tx = 0.5
         aim.ty = 0.5
+        look.x = 0
+        look.y = 0
+        look.tx = 0
+        look.ty = 0
         draw(0)
       }
     }
@@ -294,12 +402,20 @@ export const AssistantOrb = ({
       lastDraw = now
       aim.x += (aim.tx - aim.x) * 0.12
       aim.y += (aim.ty - aim.y) * 0.12
+      const lookEase = mode === 'backdrop' ? 0.22 : 0.18
+      look.x += (look.tx - look.x) * lookEase
+      look.y += (look.ty - look.y) * lookEase
       draw(now)
     }
 
     if (followPointer) {
       track.addEventListener('pointermove', handleMove)
       track.addEventListener('pointerleave', handleLeave)
+    }
+
+    if (eyes) {
+      window.addEventListener('pointermove', handleLook)
+      document.documentElement.addEventListener('pointerleave', handleLookReset)
     }
     motion.addEventListener('change', handleMotion)
     resizeObserver.observe(canvas)
@@ -321,6 +437,10 @@ export const AssistantOrb = ({
         track.removeEventListener('pointermove', handleMove)
         track.removeEventListener('pointerleave', handleLeave)
       }
+      if (eyes) {
+        window.removeEventListener('pointermove', handleLook)
+        document.documentElement.removeEventListener('pointerleave', handleLookReset)
+      }
       motion.removeEventListener('change', handleMotion)
       resizeObserver.disconnect()
       themeObserver.disconnect()
@@ -328,12 +448,18 @@ export const AssistantOrb = ({
       gl.deleteBuffer(buffer)
       gl.deleteProgram(program)
     }
-  }, [followPointer, mode])
+  }, [eyes, followPointer, mode])
 
   if (fallback) {
     return (
       <div aria-hidden className={`relative overflow-hidden bg-transparent ${className ?? ''}`}>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_62%,rgba(92,36,196,0.95)_0%,rgba(36,78,196,0.55)_34%,rgba(86,176,214,0.28)_58%,transparent_74%)] dark:bg-[radial-gradient(circle_at_50%_62%,rgba(176,104,255,0.95)_0%,rgba(78,112,255,0.62)_36%,rgba(126,214,255,0.24)_60%,transparent_76%)]" />
+        {eyes ? (
+          <>
+            <div className="absolute top-[42%] left-[40%] size-[13%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white" />
+            <div className="absolute top-[42%] left-[60%] size-[13%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white" />
+          </>
+        ) : null}
       </div>
     )
   }

@@ -26,7 +26,7 @@ export type ThemeToggleCopy = {
 }
 
 const themeToggleClassName =
-  'theme-toggle group relative inline-flex min-h-11 cursor-pointer items-center rounded-sm border-0 bg-transparent -mx-1 px-1 py-1 outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 sm:min-h-0 dark:focus-visible:outline-neutral-100'
+  'theme-toggle group relative inline-flex min-h-11 cursor-pointer items-center justify-center rounded-sm border-0 bg-transparent -mx-1 px-1 py-1 outline-none transition-colors hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 sm:min-h-0 dark:hover:text-white dark:focus-visible:outline-neutral-100'
 
 const themeToggleTouchClassName =
   'theme-toggle group relative inline-flex size-11 cursor-pointer items-center justify-center rounded-sm border-0 bg-transparent outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 dark:focus-visible:outline-neutral-100'
@@ -35,13 +35,11 @@ const themeToggleIconClassName = 'shrink-0'
 
 type ThemeToggleProps = {
   copy: ThemeToggleCopy
-  showLabel?: boolean
   touch?: boolean
 }
 
 export const ThemeToggle = ({
   copy,
-  showLabel = false,
   touch = false,
 }: ThemeToggleProps) => {
   const [theme, setThemeState] = useState<ThemePreference>(DEFAULT_THEME)
@@ -96,9 +94,7 @@ export const ThemeToggle = ({
       className={
         touch
           ? `${navTextClassName} ${themeToggleTouchClassName}`
-          : showLabel
-            ? `${navTextClassName} ${themeToggleClassName} w-full justify-start gap-1 whitespace-nowrap`
-            : `${navTextClassName} ${themeToggleClassName} w-fit`
+          : `${navTextClassName} ${themeToggleClassName} w-fit`
       }
       aria-label={
         mounted
@@ -115,21 +111,18 @@ export const ThemeToggle = ({
             : copy.dark
           : copy.colorTheme}
       </span>
-      {showLabel && mounted ? (
-        <span>{theme === 'light' ? copy.lightShort : copy.darkShort}</span>
-      ) : null}
       <SunIcon
         className={
           touch
             ? `${themeToggleIconClassName} size-5 dark:hidden`
-            : `${themeToggleIconClassName} dark:hidden`
+            : `${themeToggleIconClassName} size-4 dark:hidden`
         }
       />
       <MoonIcon
         className={
           touch
             ? `${themeToggleIconClassName} size-5 hidden dark:inline`
-            : `${themeToggleIconClassName} hidden dark:inline`
+            : `${themeToggleIconClassName} size-4 hidden dark:inline`
         }
       />
     </button>
