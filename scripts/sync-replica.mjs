@@ -58,31 +58,53 @@ const readYamlValue = (raw) => {
   return value
 }
 
+const listKeys = new Set(['tags', 'sources'])
+
+const parseInlineList = (raw) =>
+  raw
+    .replace(/^\[/, '')
+    .replace(/\]$/, '')
+    .split(',')
+    .map((item) => readYamlValue(item))
+    .filter(Boolean)
+
 const parseFrontmatter = (block) => {
   const meta = {}
   const lines = block.split('\n')
+  let index = 0
 
-  for (const line of lines) {
-    const match = line.match(/^([A-Za-z0-9_]+):\s*(.*)$/)
+  while (index < lines.length) {
+    const match = lines[index].match(/^([A-Za-z0-9_]+):\s*(.*)$/)
 
     if (!match) {
+      index += 1
       continue
     }
 
     const [, key, raw] = match
+    const value = raw.trim()
 
-    if (key === 'tags' && raw.trim().startsWith('[')) {
-      meta.tags = raw
-        .trim()
-        .replace(/^\[/, '')
-        .replace(/\]$/, '')
-        .split(',')
-        .map((tag) => tag.trim())
-        .filter(Boolean)
+    if (listKeys.has(key) && value === '') {
+      const items = []
+      index += 1
+
+      while (index < lines.length && /^\s+-\s+/.test(lines[index])) {
+        items.push(readYamlValue(lines[index].replace(/^\s+-\s+/, '')))
+        index += 1
+      }
+
+      meta[key] = items.filter(Boolean)
       continue
     }
 
-    meta[key] = readYamlValue(raw)
+    if (listKeys.has(key) && value.startsWith('[')) {
+      meta[key] = parseInlineList(value)
+      index += 1
+      continue
+    }
+
+    meta[key] = readYamlValue(value)
+    index += 1
   }
 
   return meta
@@ -193,7 +215,7 @@ const translateNote = async (note) => {
       'The email address may stay. Do not add a phone number.',
       '',
       `Title: ${note.titleEs}`,
-      `TLDR: ${note.tldrEs}`,
+      `Summary: ${note.tldrEs}`,
       'Body:',
       note.bodyEs,
     ].join('\n'),
@@ -212,21 +234,15 @@ const translateNote = async (note) => {
   return translated
 }
 
-const mapPool = async (items, limit, mapper) => {
-  const results = new Array(items.length)
-  let next = 0
+const translationGapMs = 5000
 
-  const worker = async () => {
-    while (next < items.length) {
-      const index = next
-      next += 1
-      results[index] = await mapper(items[index], index)
-    }
-  }
+const pause = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
-  await Promise.all(Array.from({ length: Math.min(limit, items.length) }, worker))
-
-  return results
+const writeNotes = async (notes) => {
+  await writeFile(
+    outputPath,
+    `${JSON.stringify({ notes: [...notes].sort((a, b) => a.id.localeCompare(b.id)) }, null, 2)}\n`
+  )
 }
 
 const files = await collectFiles()
@@ -237,8 +253,16 @@ for (const relativePath of files) {
   const raw = await readFile(absolute, 'utf8')
   const { meta, body } = splitNote(raw)
 
-  if (!meta.id || !meta.title || !meta.tldr) {
-    fail(`Missing id, title, or tldr in ${relativePath}`)
+  if (!meta.id || !meta.title || !meta.summary) {
+    fail(`Missing id, title, or summary in ${relativePath}`)
+  }
+
+  const published =
+    meta.status === 'canonical' &&
+    (meta.visibility === 'public' || meta.visibility === 'professional')
+
+  if (!published) {
+    continue
   }
 
   rawNotes.push({
@@ -247,9 +271,9 @@ for (const relativePath of files) {
     stem: path.basename(relativePath, '.md'),
     type: meta.type ?? '',
     period: meta.period ?? '',
-    tags: meta.tags ?? [],
+    tags: Array.isArray(meta.tags) ? meta.tags : [],
     titleEs: meta.title,
-    tldrEs: meta.tldr,
+    tldrEs: meta.summary,
     body,
     hash: hashText(raw),
   })
@@ -259,7 +283,9 @@ const idByStem = new Map(rawNotes.map((note) => [note.stem, note.id]))
 const previous = await readPrevious()
 let translatedCount = 0
 
-const notes = await mapPool(rawNotes, 4, async (note) => {
+const notes = []
+
+for (const note of rawNotes) {
   const cleaned = cleanBody(note.body, idByStem)
   const cached = !force ? previous.get(note.hash) : undefined
 
@@ -270,18 +296,40 @@ const notes = await mapPool(rawNotes, 4, async (note) => {
     !/\+54[\d\s().-]{6,}\d/.test(`${cached.bodyEn}\n${cached.titleEn}`)
   ) {
     console.log(`keep ${note.id}`)
-    return {
+    notes.push({
       ...cached,
       links: cleaned.links,
       bodyEs: cleaned.body,
-    }
+    })
+    continue
+  }
+
+  if (translatedCount > 0) {
+    await pause(translationGapMs)
   }
 
   console.log(`translate ${note.id}`)
   translatedCount += 1
-  const translated = await translateNote({ ...note, bodyEs: cleaned.body })
+  let translated
 
-  return {
+  for (let attempt = 0; attempt < 5; attempt += 1) {
+    try {
+      translated = await translateNote({ ...note, bodyEs: cleaned.body })
+      break
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error)
+      const rateLimited = /quota|429|RESOURCE_EXHAUSTED/i.test(message)
+
+      if (!rateLimited || attempt === 4) {
+        throw error
+      }
+
+      console.log(`rate limit on ${note.id}, waiting 30s`)
+      await pause(30000)
+    }
+  }
+
+  notes.push({
     id: note.id,
     file: note.file,
     type: note.type,
@@ -295,8 +343,9 @@ const notes = await mapPool(rawNotes, 4, async (note) => {
     bodyEn: translated.body,
     links: cleaned.links,
     hash: note.hash,
-  }
-})
+  })
+  await writeNotes(notes)
+}
 
 const missingCore = notes.some((note) => note.id === 'core-perfil-tldr')
 
@@ -304,9 +353,6 @@ if (!missingCore) {
   fail('Core profile note was not included')
 }
 
-await writeFile(
-  outputPath,
-  `${JSON.stringify({ notes: notes.sort((a, b) => a.id.localeCompare(b.id)) }, null, 2)}\n`
-)
+await writeNotes(notes)
 
 console.log(`wrote ${notes.length} notes, translated ${translatedCount}`)
