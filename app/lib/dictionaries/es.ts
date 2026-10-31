@@ -36,22 +36,22 @@ export const es: Dictionary = {
     headline:
       'Desarrollo productos en la intersección entre diseño, desarrollo y estrategia.',
     nowLabel: 'AHORA',
-    now: 'Explorando y construyendo proyectos personales alrededor de las nuevas posibilidades de AI.',
+    now: 'Ahora explorando y construyendo proyectos personales que aprovechan al máximo las nuevas posibilidades de la IA.',
     intro:
       'Más de doce años dando forma a productos y marcas de SaaS e IA. Antes lideré el equipo de diseño en Marketfully.',
-    viewCraft: 'VER PROYECTOS',
-    getInTouch: 'ESCRIBIME',
+    previous: 'Anterior',
+    next: 'Siguiente',
     workedWith: {
       label: 'Marcas',
       years: '2014 — 2026',
     },
     selectedWork: {
-      title: 'Trabajos seleccionados',
+      title: 'Proyectos',
       subtitle: 'Proyectos entre estrategia de producto, diseño y marca.',
-      allCases: 'TODOS LOS CASOS',
+      allCases: 'TODOS LOS PROYECTOS',
       cases: {
         marketfully: {
-          title: 'Plataforma de marketing con IA — del MVP a la adquisición',
+          title: 'Plataforma de marketing con IA',
           meta: 'MARKETFULLY',
         },
         jaga: {
@@ -66,7 +66,7 @@ export const es: Dictionary = {
     },
     aboutTeaser: {
       lead:
-        'La IA multiplica las opciones y la velocidad de trabajo. Mi tarea se centra en colaborar y tomar decisiones para solucionar problemas reales, para ser desarrolladas en equipo, bajo objetivos específicos.',
+        'La IA multiplica las opciones y acelera el trabajo.\nMi rol es colaborar y tomar decisiones que resuelven problemas reales, para que el equipo pueda desarrollarlas hacia objetivos concretos.',
       body: 'Colaboré en proyectos para muchas industrias, como seguros, salud, retail, gastronomía, educación y marketing. El producto cambiaba con el problema: dashboards, landings, web apps y apps de iOS, siempre al lado de producto, ingeniería y negocios. Cuando no estoy entre pantallas, cuadernos y fibras, estoy en la montaña de Mendoza en moto o bici.',
       more: 'MÁS SOBRE MÍ',
       title: 'Sobre mí',
@@ -102,13 +102,13 @@ export const es: Dictionary = {
       title: 'Recomendaciones',
       subtitle:
         'Lo que dicen managers, compañeros y clientes sobre trabajar conmigo.',
-      allOnLinkedIn: 'VER EN LINKEDIN',
+      allOnLinkedIn: 'TODO EN LINKEDIN',
       quotes: [
         {
           name: 'Rob Lyons',
           role: 'Chief Product & Technology Officer, Marketfully',
           quote:
-            '“Diseñaba con los usuarios, no hacia ellos. Armó un entorno liviano de deployment para que los prototipos llegaran a operaciones en días en lugar de esperar un release, y cerró un loop de feedback de verdad. Pensaba como dueño. Agudo en producto, directo con su manager, generoso con su equipo.”',
+            '“Diseñaba con los usuarios, llevaba prototipos a los equipos de operaciones en días y convertía el feedback en acción. Pensaba como dueño: agudo en producto, franco con su manager y generoso con su equipo.”',
         },
         {
           name: 'Asher Feldman',

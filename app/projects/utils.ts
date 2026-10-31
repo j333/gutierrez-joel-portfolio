@@ -29,7 +29,7 @@ export type ProjectImage = {
   height: number
 }
 
-export const projectImageQuality = 100
+export { projectImageQuality } from 'app/lib/image-sizes'
 
 export const getProjects = (locale: Locale) =>
   getMdxData<ProjectMetadata>(

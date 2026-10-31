@@ -93,7 +93,7 @@ Interactive states (hover, underline, focus) live on components, not here.
 
 Page and prose titles stay `font-normal`. Use `font-medium` for card titles and `strong`. Prefer `em` / italic for emphasis in running copy, not bold display weights. Nav and footer chrome links use Meta-size mono, uppercase, with `tracking-wider` so the caps can breathe. Their `neutral-600` idle color is a component state, not a type style. Section headings (`sectionHeadingClassName`) keep Meta metrics with quieter ink (`text-neutral-500` in both themes) so they recede behind the content.
 
-Home section titles use that same voice (`sectionTitleClassName`), once per block below the hero. The words are a noun phrase of one to three words — Brands, Selected work, About, Kind words, Notes, Contact. A sentence, a question, or a year range is body or adjacent meta, not the title. The hero headline stays the page title.
+Home section titles use that same voice (`sectionTitleClassName`), once per block below the hero. The words are a noun phrase of one to three words — Craft, About, Recommendations, Notes. Brand logos sit in the About block without their own title. Contact stays in the footer. A sentence, a question, or a year range is body or adjacent meta, not the title. The hero headline stays the page title.
 
 ## Layout
 
@@ -103,6 +103,7 @@ Wide shell, focused reading column, open vertical rhythm between sections.
 - Reading column: `textColumnClassName` / `articleBodyClassName` → `max-w-xl` (centered for articles)
 - Home / writing grids: `projectGridClassName` → 1 col, 2 cols from `lg`, `gap-x-6 gap-y-8`
 - Major vertical rhythm: `pageStackClassName` (`gap-16`), `pageSectionClassName` (`mb-16`)
+- Home sections below the hero: `pt-32` between blocks (`sectionClassName`); the last block also uses `pb-32`
 - Section headings hug their content (`mb-3`); unrelated blocks sit a full section apart
 - Article case labels (`Label`) stay meta and sit tight above the group they name, with less space than a section title
 - `PageHeader` spacing: `none` → no margin (parent stack), `section` → `mb-8`, `article` → `mb-12`, `hero` → `mb-16`
@@ -118,6 +119,7 @@ Use the rhythm the site already uses. Layout is structure; this is the scale. On
 | Micro | `gap-0.5` `gap-1` `gap-2` `gap-3` `gap-4` `mb-2` `mb-3` `mb-4` `px-1` `py-1` | Meta stacks, heading↔content, chrome padding |
 | Group | `gap-6` `mb-8` `mt-6` `space-y-8` | Header children, card grids, list items |
 | Section | `mb-16` `gap-16` | Page sections and stacks; `mb-12` only for `PageHeader` article |
+| Home | `pt-32` `pb-32` | Space between home sections below the hero |
 | Exceptional | `mt-20` `pb-20` | Long styleguide blocks only |
 
 ## Elevation & shape

@@ -167,9 +167,10 @@ void main() {
     1.0
   );
   float shadowTone = smoothstep(0.04, 0.82, formShadow);
-  float keepThreshold = mix(0.28, 0.02, shadowTone);
+  float stipple = mix(shadowTone, 1.0 - shadowTone, uDark);
+  float keepThreshold = mix(0.28, 0.02, stipple);
   float keep = step(keepThreshold, random + wave * 0.07);
-  float pointRadius = mix(0.25, 0.43, shadowTone);
+  float pointRadius = mix(0.25, 0.43, stipple);
   pointRadius *= 1.0 + uLoading * 0.08 * sin(uTime * 4.2);
   float antialias = 0.5 / max(1.5 * uPixelRatio, 1.0);
   float point = 1.0 - smoothstep(

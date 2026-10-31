@@ -34,22 +34,22 @@ export const en = {
     headline:
       'I build products at the intersection of design, development, and strategy.',
     nowLabel: 'NOW',
-    now: 'Exploring and building personal projects around the new possibilities of AI.',
+    now: 'Now exploring and crafting personal projects that make the most of AI’s new possibilities.',
     intro:
       'Over twelve years shaping SaaS and AI products and brands. Previously led the design team at Marketfully.',
-    viewCraft: 'VIEW CRAFT',
-    getInTouch: 'GET IN TOUCH',
+    previous: 'Previous',
+    next: 'Next',
     workedWith: {
       label: 'Brands',
       years: '2014 — 2026',
     },
     selectedWork: {
-      title: 'Selected work',
+      title: 'Craft',
       subtitle: 'Projects across product strategy, design, and brand.',
-      allCases: 'ALL CASES',
+      allCases: 'ALL PROJECTS',
       cases: {
         marketfully: {
-          title: 'AI marketing platform — from MVP to acquisition',
+          title: 'AI marketing platform',
           meta: 'MARKETFULLY',
         },
         jaga: {
@@ -64,7 +64,7 @@ export const en = {
     },
     aboutTeaser: {
       lead:
-        'AI multiplies the options and the pace of work. My role is to collaborate and make decisions that solve real problems, so they can be developed as a team, against specific goals.',
+        'AI multiplies options and speeds up work.\nMy role is to collaborate and make decisions that solve real problems, so the team can develop them toward specific goals.',
       body: "I've collaborated on projects across many industries, including insurance, healthcare, retail, food, education, and marketing. The product changed with the problem: dashboards, landing pages, web apps, and iOS apps, always alongside product, engineering, and the business. When I'm not between screens, notebooks, and pens, I'm in the mountains of Mendoza on my motorcycle or bike.",
       more: 'MORE ABOUT ME',
       title: 'About',
@@ -99,13 +99,13 @@ export const en = {
     kindWords: {
       title: 'Recommendations',
       subtitle: 'What managers, teammates, and clients say about working with me.',
-      allOnLinkedIn: 'VIEW ON LINKEDIN',
+      allOnLinkedIn: 'ALL ON LINKEDIN',
       quotes: [
         {
           name: 'Rob Lyons',
           role: 'Chief Product & Technology Officer, Marketfully',
           quote:
-            '“He designed with users rather than at them. He set up a lightweight deployment environment so prototypes reached our operations teams in days instead of waiting on a release, then ran a feedback loop that actually closed. He thought like an owner. Sharp on product, straight with his manager, generous with his team.”',
+            '“He designed with users, brought prototypes to operations teams in days, and turned feedback into action. He thought like an owner: sharp on product, candid with his manager, and generous with his team.”',
         },
         {
           name: 'Asher Feldman',

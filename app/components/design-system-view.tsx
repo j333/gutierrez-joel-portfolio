@@ -373,7 +373,7 @@ const typeSampleText = (use: string) => {
     return 'A quiet craft'
   }
   if (key.includes('subsection')) return 'Section rhythm'
-  if (key.includes('home section')) return 'Selected work'
+  if (key.includes('home section')) return 'Craft'
   if (key.includes('section title')) return 'Reading column'
   if (key.includes('card') && key.includes('title')) return 'Project title'
   if (key.includes('lead'))
@@ -653,6 +653,8 @@ const spacingWidthClassName: Record<string, string> = {
   'gap-16': 'w-16',
   'mt-20': 'w-20',
   'pb-20': 'w-20',
+  'pt-32': 'w-32',
+  'pb-32': 'w-32',
 }
 
 const SpacingSpecimens = ({ table }: { table: DesignTable }) => {

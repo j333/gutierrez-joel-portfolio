@@ -190,6 +190,7 @@ const DESIGN_GUIDE_SECTIONS: Record<string, GuideSectionCopy> = {
           Micro: 'Meta stacks, heading to content, and compact chrome',
           Group: 'Header children, card grids, and list items',
           Section: 'Unrelated page sections and stacks',
+          Home: 'Open space between the blocks below the hero',
           Exceptional: 'Rare, extra-open styleguide blocks',
         })
       ),

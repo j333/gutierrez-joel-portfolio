@@ -4,55 +4,63 @@ export const homeBrands = [
     src: '/brands/aig.png',
     width: 159,
     height: 86,
+    markWidth: 46.2,
+    markHeight: 25,
   },
   {
     name: 'Humana',
     src: '/brands/humana.png',
     width: 220,
     height: 46,
+    markWidth: 81,
+    markHeight: 17,
   },
   {
     name: 'Kaiser Permanente',
     src: '/brands/kaiser-permanente.png',
     width: 254,
     height: 71,
+    markWidth: 89.3,
+    markHeight: 25,
   },
   {
     name: 'For Dummies',
     src: '/brands/dummies.png',
     width: 220,
     height: 59,
+    markWidth: 79,
+    markHeight: 21,
   },
   {
     name: "Dickey's Barbecue Pit",
     src: '/brands/dickeys-barbecue.png',
     width: 193,
     height: 109,
+    markWidth: 50,
+    markHeight: 28,
   },
   {
     name: 'Marketfully',
     src: '/brands/marketfully.png',
     width: 276,
     height: 66,
+    markWidth: 99.8,
+    markHeight: 23.9,
   },
   {
     name: "Victoria's Secret",
     src: '/brands/victorias-secret.png',
     width: 245,
     height: 88,
+    markWidth: 82,
+    markHeight: 30,
   },
   {
     name: 'J.D. Power',
     src: '/brands/jd-power.png',
     width: 260,
     height: 39,
+    markWidth: 99.8,
+    markHeight: 15,
   },
 ] as const
-
-export const homeFeaturedCaseSlugs = [
-  'marketfully',
-  'jaga',
-  'getgloby',
-] as const
-
-export type HomeFeaturedCaseSlug = (typeof homeFeaturedCaseSlugs)[number]

@@ -121,11 +121,7 @@ const Page = async () => {
           </div>
         </div>
 
-        <BrandLogos
-          label={copy.home.workedWith.label}
-          years={copy.home.workedWith.years}
-          className={`mt-16 ${pageSectionClassName}`}
-        />
+        <BrandLogos className={`mt-16 ${pageSectionClassName}`} />
 
         {portrait ? (
           <Image
