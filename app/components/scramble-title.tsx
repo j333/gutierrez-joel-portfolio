@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react'
 import { useScrambleText } from 'app/hooks/use-scramble-text'
+import { cx } from 'app/lib/cx'
 
 type ScrambleTitleProps = {
   text: string
@@ -29,8 +30,13 @@ export const ScrambleTitle = ({ text, className }: ScrambleTitleProps) => {
   }, [ref, replay])
 
   return (
-    <span ref={ref} className={className}>
-      {text}
+    <span className={cx('relative', className)}>
+      <span className="invisible select-none" aria-hidden="true">
+        {text}
+      </span>
+      <span ref={ref} className="absolute inset-0 overflow-hidden">
+        {text}
+      </span>
     </span>
   )
 }
