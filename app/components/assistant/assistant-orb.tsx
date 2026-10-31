@@ -136,15 +136,23 @@ void main() {
   float inside = 1.0 - smoothstep(body - pointPitch * 0.55, body + pointPitch * 0.1, centerRadius);
   float sphere = 1.0 - smoothstep(body - 0.006, body + 0.006, length(p));
   vec3 normal = normalize(vec3(center, sphereDepth));
-  float keyLight = max(dot(normal, normalize(vec3(-0.55, 0.68, 1.0))), 0.0);
-  float rimLight = pow(1.0 - normal.z, 2.0);
-  float light = clamp(0.32 + keyLight * 0.62 + rimLight * 0.18, 0.0, 1.0);
-  float edgeRatio = centerRadius / max(body, 0.001);
-  float keepThreshold =
-    mix(0.02, 0.32, smoothstep(0.62, 1.0, edgeRatio)) +
-    (1.0 - light) * 0.12;
+  float keyLight = max(
+    dot(normal, normalize(vec3(0.48, 0.58, 0.82))),
+    0.0
+  );
+  float rimShadow = pow(1.0 - normal.z, 1.7);
+  float lowerShadow = 1.0 - smoothstep(-0.55, 0.35, normal.y);
+  float formShadow = clamp(
+    (1.0 - keyLight) * 0.78 +
+    rimShadow * 0.5 +
+    lowerShadow * 0.12,
+    0.0,
+    1.0
+  );
+  float shadowTone = smoothstep(0.04, 0.82, formShadow);
+  float keepThreshold = mix(0.28, 0.02, shadowTone);
   float keep = step(keepThreshold, random + wave * 0.07);
-  float pointRadius = mix(0.18, 0.38, light);
+  float pointRadius = mix(0.25, 0.43, shadowTone);
   pointRadius *= 1.0 + uLoading * 0.08 * sin(uTime * 4.2);
   float antialias = 0.5 / max(1.5 * uPixelRatio, 1.0);
   float point = 1.0 - smoothstep(
@@ -153,7 +161,7 @@ void main() {
     length(local)
   );
   float alpha = point * inside * keep;
-  vec3 bodyColor = vec3(uDark);
+  vec3 bodyColor = vec3(mix(0.16, 0.84, uDark));
   vec3 premul = bodyColor * alpha;
 
   float eyeRadius = body * 0.145;
