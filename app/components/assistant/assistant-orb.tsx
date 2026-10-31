@@ -10,6 +10,12 @@ type AssistantOrbProps = {
   eyes?: boolean
 }
 
+const GLITCH_BURST_MS = 280
+const GLITCH_PAUSE_MS = 200
+const GLITCH_TAIL_MS = 140
+const GLITCH_BURST_INTENSITY = 1
+const GLITCH_TAIL_INTENSITY = 16 / 18
+
 const vertexSource = `
 attribute vec2 aPosition;
 void main() {
@@ -27,6 +33,7 @@ uniform float uDark;
 uniform float uLoading;
 uniform float uEyes;
 uniform float uPixelRatio;
+uniform float uGlitch;
 
 float hash31(vec3 p) {
   return fract(sin(dot(p, vec3(127.1, 311.7, 74.7))) * 43758.5453);
@@ -106,6 +113,16 @@ float sphereEye(vec2 frag, vec3 eye, float radius, float eyeRadius, float openAm
 
 void main() {
   vec2 uv = (gl_FragCoord.xy - 0.5 * uResolution) / min(uResolution.x, uResolution.y);
+  float glitchFrame = floor(uTime * 46.0);
+  float glitchBand = floor((uv.y + 0.5) * 18.0);
+  float glitchSlice = step(
+    0.64,
+    hash31(vec3(glitchBand, glitchFrame, 11.0))
+  );
+  float glitchOffset = (
+    hash31(vec3(glitchFrame, glitchBand, 23.0)) - 0.5
+  ) * 0.17 * glitchSlice * uGlitch;
+  uv.x += glitchOffset;
   vec2 pull = (uPointer - 0.5) * vec2(0.035, -0.035);
   vec2 p = uv - pull;
   float speed = mix(1.0, 2.2, uLoading);
@@ -296,10 +313,14 @@ export const AssistantOrb = ({
     const loadingUniform = gl.getUniformLocation(program, 'uLoading')
     const eyesUniform = gl.getUniformLocation(program, 'uEyes')
     const pixelRatioUniform = gl.getUniformLocation(program, 'uPixelRatio')
+    const glitchUniform = gl.getUniformLocation(program, 'uGlitch')
     const motion = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const hover = window.matchMedia('(hover: hover) and (pointer: fine)')
     const aim = { x: 0.5, y: 0.5, tx: 0.5, ty: 0.5 }
     const look = { x: 0, y: 0, tx: 0, ty: 0 }
+    const glitchTimeouts: number[] = []
     let reduce = motion.matches
+    let glitchIntensity = 0
     let visible = true
     let frame = 0
     let lastDraw = 0
@@ -336,6 +357,7 @@ export const AssistantOrb = ({
       gl.uniform1f(loadingUniform, loadingRef.current ? 1 : 0)
       gl.uniform1f(eyesUniform, eyes ? 1 : 0)
       gl.uniform1f(pixelRatioUniform, ratio)
+      gl.uniform1f(glitchUniform, glitchIntensity)
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4)
     }
 
@@ -381,10 +403,51 @@ export const AssistantOrb = ({
       look.ty = 0
     }
 
+    const clearGlitchTimers = () => {
+      glitchTimeouts.forEach((id) => window.clearTimeout(id))
+      glitchTimeouts.length = 0
+    }
+
+    const stopGlitch = () => {
+      clearGlitchTimers()
+      glitchIntensity = 0
+    }
+
+    const scheduleGlitch = (callback: () => void, delay: number) => {
+      glitchTimeouts.push(window.setTimeout(callback, delay))
+    }
+
+    const startGlitch = () => {
+      if (mode !== 'icon' || reduce || !hover.matches) {
+        return
+      }
+
+      clearGlitchTimers()
+      glitchIntensity = GLITCH_BURST_INTENSITY
+      scheduleGlitch(() => {
+        glitchIntensity = 0
+      }, GLITCH_BURST_MS)
+      scheduleGlitch(() => {
+        glitchIntensity = GLITCH_TAIL_INTENSITY
+      }, GLITCH_BURST_MS + GLITCH_PAUSE_MS)
+      scheduleGlitch(() => {
+        glitchIntensity = 0
+      }, GLITCH_BURST_MS + GLITCH_PAUSE_MS + GLITCH_TAIL_MS)
+    }
+
+    const handleFocusIn = (event: FocusEvent) => {
+      if (!(event.currentTarget as HTMLElement).matches(':focus-visible')) {
+        return
+      }
+
+      startGlitch()
+    }
+
     const handleMotion = () => {
       reduce = motion.matches
 
       if (reduce) {
+        stopGlitch()
         aim.x = 0.5
         aim.y = 0.5
         aim.tx = 0.5
@@ -447,6 +510,13 @@ export const AssistantOrb = ({
       track.addEventListener('pointerleave', handleLeave)
     }
 
+    if (mode === 'icon') {
+      track.addEventListener('mouseenter', startGlitch)
+      track.addEventListener('mouseleave', stopGlitch)
+      track.addEventListener('focusin', handleFocusIn)
+      track.addEventListener('focusout', stopGlitch)
+    }
+
     if (eyes) {
       window.addEventListener('pointermove', handleLook)
       document.documentElement.addEventListener('pointerleave', handleLookReset)
@@ -467,9 +537,16 @@ export const AssistantOrb = ({
     return () => {
       running = false
       window.cancelAnimationFrame(frame)
+      stopGlitch()
       if (followPointer) {
         track.removeEventListener('pointermove', handleMove)
         track.removeEventListener('pointerleave', handleLeave)
+      }
+      if (mode === 'icon') {
+        track.removeEventListener('mouseenter', startGlitch)
+        track.removeEventListener('mouseleave', stopGlitch)
+        track.removeEventListener('focusin', handleFocusIn)
+        track.removeEventListener('focusout', stopGlitch)
       }
       if (eyes) {
         window.removeEventListener('pointermove', handleLook)
