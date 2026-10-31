@@ -6,7 +6,7 @@ import { useAssistant } from './assistant-context'
 import { rememberAssistantTrigger } from './assistant-panel'
 
 const triggerClassName =
-  'fixed right-4 bottom-[max(1rem,env(safe-area-inset-bottom))] z-50 size-20 cursor-pointer overflow-hidden rounded-sm bg-transparent p-0 outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 sm:right-6 dark:focus-visible:outline-neutral-100'
+  'fixed right-4 bottom-[max(1rem,env(safe-area-inset-bottom))] z-50 size-20 cursor-pointer overflow-hidden rounded-sm bg-transparent p-0 outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 sm:right-6 lg:size-28 dark:focus-visible:outline-neutral-100'
 
 export const AssistantFloatingTrigger = ({ label }: { label: string }) => {
   const { isOpen, openAssistant } = useAssistant()
@@ -26,7 +26,11 @@ export const AssistantFloatingTrigger = ({ label }: { label: string }) => {
       onClick={handleOpen}
       className={triggerClassName}
     >
-      <AssistantOrb className="block size-full" />
+      <span
+        aria-hidden
+        className="absolute inset-[15%] rounded-full bg-white dark:bg-black"
+      />
+      <AssistantOrb className="relative block size-full" />
     </button>
   )
 }
