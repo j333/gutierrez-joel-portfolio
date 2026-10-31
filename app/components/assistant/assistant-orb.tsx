@@ -26,39 +26,39 @@ uniform float uTime;
 uniform float uDark;
 uniform float uLoading;
 uniform float uEyes;
+uniform float uPixelRatio;
 
-float hash(vec3 p) {
+float hash31(vec3 p) {
   return fract(sin(dot(p, vec3(127.1, 311.7, 74.7))) * 43758.5453);
 }
 
-float noise(vec3 p) {
-  vec3 i = floor(p);
-  vec3 f = fract(p);
-  f = f * f * (3.0 - 2.0 * f);
-  float n000 = hash(i);
-  float n100 = hash(i + vec3(1.0, 0.0, 0.0));
-  float n010 = hash(i + vec3(0.0, 1.0, 0.0));
-  float n110 = hash(i + vec3(1.0, 1.0, 0.0));
-  float n001 = hash(i + vec3(0.0, 0.0, 1.0));
-  float n101 = hash(i + vec3(1.0, 0.0, 1.0));
-  float n011 = hash(i + vec3(0.0, 1.0, 1.0));
-  float n111 = hash(i + vec3(1.0, 1.0, 1.0));
-  return mix(
-    mix(mix(n000, n100, f.x), mix(n010, n110, f.x), f.y),
-    mix(mix(n001, n101, f.x), mix(n011, n111, f.x), f.y),
-    f.z
+vec2 hash22(vec2 p) {
+  return fract(
+    sin(vec2(
+      dot(p, vec2(127.1, 311.7)),
+      dot(p, vec2(269.5, 183.3))
+    )) * 43758.5453
   );
 }
 
-float fbm(vec3 p) {
-  float value = 0.0;
-  float weight = 0.5;
-  for (int octave = 0; octave < 3; octave += 1) {
-    value += weight * noise(p);
-    p = p * 2.03 + vec3(1.7, 9.2, 3.4);
-    weight *= 0.5;
-  }
-  return value;
+mat3 rotateX(float angle) {
+  float c = cos(angle);
+  float s = sin(angle);
+  return mat3(
+    1.0, 0.0, 0.0,
+    0.0, c, -s,
+    0.0, s, c
+  );
+}
+
+mat3 rotateY(float angle) {
+  float c = cos(angle);
+  float s = sin(angle);
+  return mat3(
+    c, 0.0, s,
+    0.0, 1.0, 0.0,
+    -s, 0.0, c
+  );
 }
 
 vec3 placeOnSphere(vec2 rest, float radius) {
@@ -106,40 +106,64 @@ float sphereEye(vec2 frag, vec3 eye, float radius, float eyeRadius, float openAm
 
 void main() {
   vec2 uv = (gl_FragCoord.xy - 0.5 * uResolution) / min(uResolution.x, uResolution.y);
-  vec2 pull = (uPointer - 0.5) * vec2(0.42, -0.42);
-  vec2 p = uv - pull * 0.55;
-  float radius = length(p);
-  float breathe = 1.0 + uLoading * 0.07 * sin(uTime * 4.2);
-  float sphere = 1.0 - smoothstep(0.16, 0.45 * breathe, radius);
-  float depth = sqrt(max(0.5 * 0.5 - dot(p, p), 0.0));
-  float smoke = 0.0;
-  float speed = mix(1.0, 2.8, uLoading);
+  vec2 pull = (uPointer - 0.5) * vec2(0.035, -0.035);
+  vec2 p = uv - pull;
+  float speed = mix(1.0, 2.2, uLoading);
+  float breathe = 1.0 + uLoading * 0.025 * sin(uTime * 4.2);
+  float body = 0.35 * breathe;
+  float minResolution = min(uResolution.x, uResolution.y);
+  float pointPitch = 1.5 * uPixelRatio / minResolution;
+  vec2 grid = p / pointPitch;
+  vec2 cellId = floor(grid);
+  vec2 jitter = (hash22(cellId) - 0.5) * 0.36;
+  vec2 center = (cellId + 0.5 + jitter) * pointPitch;
+  vec2 local = (p - center) / pointPitch;
+  float centerRadius = length(center);
+  float sphereDepth = sqrt(max(body * body - dot(center, center), 0.0));
+  vec3 surface = vec3(center, sphereDepth);
+  float rockX = sin(uTime * 0.31 * speed) * 0.16;
+  float rockY = uTime * 0.12 * speed + sin(uTime * 0.19) * 0.18;
+  vec3 rotatedSurface = rotateY(rockY) * rotateX(rockX) * surface;
+  vec3 unitSurface = rotatedSurface / max(body, 0.001);
+  vec3 pointId = floor(rotatedSurface / max(pointPitch, 0.0001) + 0.5);
+  float random = hash31(pointId);
+  float wave = sin(
+    unitSurface.x * 10.0 +
+    unitSurface.y * 13.0 -
+    unitSurface.z * 7.0 +
+    uTime * 0.62 * speed
+  );
+  float inside = 1.0 - smoothstep(body - pointPitch * 0.55, body + pointPitch * 0.1, centerRadius);
+  float sphere = 1.0 - smoothstep(body - 0.006, body + 0.006, length(p));
+  vec3 normal = normalize(vec3(center, sphereDepth));
+  float keyLight = max(dot(normal, normalize(vec3(-0.55, 0.68, 1.0))), 0.0);
+  float rimLight = pow(1.0 - normal.z, 2.0);
+  float light = clamp(0.32 + keyLight * 0.62 + rimLight * 0.18, 0.0, 1.0);
+  float edgeRatio = centerRadius / max(body, 0.001);
+  float keepThreshold =
+    mix(0.02, 0.32, smoothstep(0.62, 1.0, edgeRatio)) +
+    (1.0 - light) * 0.12;
+  float keep = step(keepThreshold, random + wave * 0.07);
+  float pointRadius = mix(0.18, 0.38, light);
+  pointRadius *= 1.0 + uLoading * 0.08 * sin(uTime * 4.2);
+  float antialias = 0.5 / max(1.5 * uPixelRatio, 1.0);
+  float point = 1.0 - smoothstep(
+    pointRadius - antialias,
+    pointRadius + antialias,
+    length(local)
+  );
+  float alpha = point * inside * keep;
+  vec3 bodyColor = vec3(uDark);
+  vec3 premul = bodyColor * alpha;
 
-  for (int layer = 0; layer < 4; layer += 1) {
-    float step = (float(layer) + 0.5) / 4.0;
-    vec3 samplePosition = vec3((p + pull) * 2.15, mix(-depth, depth, step) * 2.8);
-    samplePosition += vec3(uTime * 0.16 * speed, -uTime * 0.1 * speed, uTime * 0.18 * speed);
-    smoke += smoothstep(0.25, 0.68, fbm(samplePosition));
-  }
-
-  smoke = smoothstep(0.18, 0.92, smoke / 4.0);
-  vec3 cyan = mix(vec3(0.05, 0.48, 0.82), vec3(0.48, 0.84, 1.0), uDark);
-  vec3 blue = mix(vec3(0.08, 0.2, 0.78), vec3(0.28, 0.46, 1.0), uDark);
-  vec3 violet = mix(vec3(0.34, 0.04, 0.74), vec3(0.64, 0.24, 1.0), uDark);
-  float violetMix = smoothstep(-0.28, 0.48, -p.y + smoke * 0.22);
-  vec3 color = mix(mix(cyan, blue, smoothstep(-0.45, 0.2, -p.y)), violet, violetMix);
-  float alpha = sphere * mix(0.78, 1.0, smoke);
-  alpha = clamp(alpha, 0.0, 1.0);
-
-  float body = 0.36;
   float eyeRadius = body * 0.145;
   float eyeSpread = body * 0.28;
   float eyeLift = body * 0.15;
   float attention = smoothstep(0.02, 0.45, length(uLook));
   float idleYaw = sin(uTime * 0.33) * 0.13;
   float idlePitch = cos(uTime * 0.21) * 0.06;
-  float yaw = (uLook.x * 0.82 + idleYaw * (1.0 - attention)) * uEyes;
-  float pitch = (-uLook.y * 0.56 + idlePitch * (1.0 - attention)) * uEyes;
+  float yaw = (uLook.x * 0.5 + idleYaw * (1.0 - attention)) * uEyes;
+  float pitch = (-uLook.y * 0.34 + idlePitch * (1.0 - attention)) * uEyes;
   float blinkCycle = fract(uTime * 0.14);
   float blink = smoothstep(0.0, 0.008, blinkCycle) * (1.0 - smoothstep(0.01, 0.028, blinkCycle));
   float openAmount = mix(1.0, 0.07, blink);
@@ -150,8 +174,8 @@ void main() {
     sphereEye(p, rightEye, body, eyeRadius, openAmount)
   );
   eyes *= uEyes * smoothstep(0.05, 0.5, sphere);
-  vec3 premul = color * alpha;
-  premul = vec3(1.0) * eyes + premul * (1.0 - eyes);
+  vec3 eyeColor = vec3(1.0 - uDark);
+  premul = eyeColor * eyes + premul * (1.0 - eyes);
   alpha = eyes + alpha * (1.0 - eyes);
   gl_FragColor = vec4(premul, alpha);
 }
@@ -263,6 +287,7 @@ export const AssistantOrb = ({
     const dark = gl.getUniformLocation(program, 'uDark')
     const loadingUniform = gl.getUniformLocation(program, 'uLoading')
     const eyesUniform = gl.getUniformLocation(program, 'uEyes')
+    const pixelRatioUniform = gl.getUniformLocation(program, 'uPixelRatio')
     const motion = window.matchMedia('(prefers-reduced-motion: reduce)')
     const aim = { x: 0.5, y: 0.5, tx: 0.5, ty: 0.5 }
     const look = { x: 0, y: 0, tx: 0, ty: 0 }
@@ -302,6 +327,7 @@ export const AssistantOrb = ({
       gl.uniform1f(dark, isDarkTheme() ? 1 : 0)
       gl.uniform1f(loadingUniform, loadingRef.current ? 1 : 0)
       gl.uniform1f(eyesUniform, eyes ? 1 : 0)
+      gl.uniform1f(pixelRatioUniform, ratio)
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4)
     }
 
@@ -453,13 +479,14 @@ export const AssistantOrb = ({
   if (fallback) {
     return (
       <div aria-hidden className={`relative overflow-hidden bg-transparent ${className ?? ''}`}>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_62%,rgba(92,36,196,0.95)_0%,rgba(36,78,196,0.55)_34%,rgba(86,176,214,0.28)_58%,transparent_74%)] dark:bg-[radial-gradient(circle_at_50%_62%,rgba(176,104,255,0.95)_0%,rgba(78,112,255,0.62)_36%,rgba(126,214,255,0.24)_60%,transparent_76%)]" />
-        {eyes ? (
-          <>
-            <div className="absolute top-[42%] left-[40%] size-[13%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white" />
-            <div className="absolute top-[42%] left-[60%] size-[13%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white" />
-          </>
-        ) : null}
+        <div className="absolute top-1/2 left-1/2 aspect-square w-[70%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,currentColor_0_0.45px,transparent_0.7px)] [background-size:1.5px_1.5px] text-black dark:text-white">
+          {eyes ? (
+            <>
+              <div className="absolute top-[42%] left-[40%] size-[13%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white dark:bg-black" />
+              <div className="absolute top-[42%] left-[60%] size-[13%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white dark:bg-black" />
+            </>
+          ) : null}
+        </div>
       </div>
     )
   }
