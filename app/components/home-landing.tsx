@@ -1,16 +1,23 @@
 import Link from 'next/link'
 import { ArrowIcon, rowArrowClassName } from 'app/components/arrow-icon'
 import { BrandLogos } from 'app/components/brand-logos'
+import { GlitchCover } from 'app/components/glitch-cover'
 import { HomeActionLink } from 'app/components/home-action-link'
 import {
   HomeCasePager,
-  HomeNotePager,
   HomeQuotePager,
   type HomeCaseSlide,
 } from 'app/components/home-pager'
+import { cardTitleClassName } from 'app/components/link-styles'
 import { ScrambleTitle } from 'app/components/scramble-title'
 import { sectionTitleClassName } from 'app/components/page-layout'
+import { projectGridClassName } from 'app/components/project-card'
 import type { Dictionary } from 'app/lib/dictionaries/en'
+import {
+  imagePlaceholderClassName,
+  projectCardImageSizes,
+  projectImageQuality,
+} from 'app/lib/image-sizes'
 import { localePath, type Locale } from 'app/lib/locale'
 import { socialLinks } from 'app/lib/site'
 import { getProjectImage, type Project } from 'app/projects/utils'
@@ -25,6 +32,9 @@ type HomeLandingProps = {
 
 const metaClassName =
   'shrink-0 font-mono text-xs leading-4 text-neutral-500 dark:text-neutral-400'
+
+const noteLinkClassName =
+  'group flex flex-col gap-3 rounded-sm text-inherit outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900 dark:focus-visible:outline-neutral-100'
 
 const sectionClassName = 'flex w-full flex-col gap-8 pt-32'
 
@@ -75,25 +85,6 @@ export const HomeLanding = ({
     }
   })
 
-  const noteSlides = notes.map((post) => {
-    const image = getWritingPostImage(post)
-
-    return {
-      slug: post.slug,
-      href: localePath(locale, `/notes/${post.slug}`),
-      title: post.metadata.title,
-      dateTime: post.metadata.publishedAt,
-      dateLabel: formatHomeNoteDate(post.metadata.publishedAt, copy.months),
-      image: image
-        ? {
-            src: image.src,
-            width: image.width,
-            height: image.height,
-          }
-        : null,
-    }
-  })
-
   return (
     <div className="flex w-full flex-col">
       <section className="flex w-full max-w-[840px] flex-col gap-6">
@@ -109,8 +100,6 @@ export const HomeLanding = ({
         <h2 className={sectionTitleClassName}>{copy.home.selectedWork.title}</h2>
         <HomeCasePager
           items={caseSlides}
-          previousLabel={copy.home.previous}
-          nextLabel={copy.home.next}
           action={{ href: craftHref, label: copy.home.selectedWork.allCases }}
         />
       </section>
@@ -166,14 +155,49 @@ export const HomeLanding = ({
         />
       </section>
 
-      <section className="flex w-full flex-col gap-4 pt-32 pb-32">
+      <section className={`${sectionClassName} pb-32`}>
         <h2 className={sectionTitleClassName}>{copy.home.notesTeaser.title}</h2>
-        <HomeNotePager
-          items={noteSlides}
-          previousLabel={copy.home.previous}
-          nextLabel={copy.home.next}
-          action={{ href: notesHref, label: copy.home.notesTeaser.allNotes }}
-        />
+        <div className={projectGridClassName}>
+          {notes.map((post) => {
+            const image = getWritingPostImage(post)
+            const title = post.metadata.title
+
+            return (
+              <article key={post.slug} className="min-w-0">
+                <Link
+                  href={localePath(locale, `/notes/${post.slug}`)}
+                  className={noteLinkClassName}
+                >
+                  {image ? (
+                    <GlitchCover
+                      src={image.src}
+                      alt={title}
+                      width={image.width}
+                      height={image.height}
+                      sizes={projectCardImageSizes}
+                      quality={projectImageQuality}
+                    />
+                  ) : (
+                    <div
+                      aria-hidden="true"
+                      className={`aspect-video w-full ${imagePlaceholderClassName}`}
+                    />
+                  )}
+                  <div className="flex w-full items-center justify-between gap-4">
+                    <h3 className={`min-w-0 ${cardTitleClassName}`}>{title}</h3>
+                    <time
+                      dateTime={post.metadata.publishedAt}
+                      className={`${metaClassName} uppercase tracking-wider`}
+                    >
+                      {formatHomeNoteDate(post.metadata.publishedAt, copy.months)}
+                    </time>
+                  </div>
+                </Link>
+              </article>
+            )
+          })}
+        </div>
+        <HomeActionLink href={notesHref}>{copy.home.notesTeaser.allNotes}</HomeActionLink>
       </section>
     </div>
   )
