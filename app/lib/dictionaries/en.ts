@@ -57,7 +57,7 @@ export const en = {
           meta: 'JAGA',
         },
         getgloby: {
-          title: 'Translation landing page',
+          title: 'Marketing translation platform landing page',
           meta: 'GETGLOBY',
         },
       },

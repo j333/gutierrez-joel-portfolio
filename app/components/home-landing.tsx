@@ -19,6 +19,7 @@ import {
   projectImageQuality,
 } from 'app/lib/image-sizes'
 import { localePath, type Locale } from 'app/lib/locale'
+import { recommendationPhoto } from 'app/lib/recommendation-photos'
 import { socialLinks } from 'app/lib/site'
 import { getProjectImage, type Project } from 'app/projects/utils'
 import { getWritingPostImage, type WritingPost } from 'app/notes/utils'
@@ -144,7 +145,15 @@ export const HomeLanding = ({
       <section className={sectionClassName}>
         <h2 className={sectionTitleClassName}>{copy.home.kindWords.title}</h2>
         <HomeQuotePager
-          items={copy.home.kindWords.quotes}
+          items={copy.home.kindWords.quotes.flatMap((quote) => {
+            const image = recommendationPhoto(quote.name)
+
+            if (!image) {
+              return []
+            }
+
+            return [{ ...quote, image }]
+          })}
           previousLabel={copy.home.previous}
           nextLabel={copy.home.next}
           action={{

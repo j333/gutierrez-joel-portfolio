@@ -1,6 +1,7 @@
 'use client'
 
 import { ArrowLeft, ArrowRight } from 'lucide-react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useLayoutEffect, useRef, useState, type ReactNode, type TouchEvent } from 'react'
 import { buttonDisabledClassName } from 'app/components/button-styles'
@@ -8,6 +9,7 @@ import { GlitchCover } from 'app/components/glitch-cover'
 import { HomeActionLink } from 'app/components/home-action-link'
 import { cardTitleClassName } from 'app/components/link-styles'
 import { cx } from 'app/lib/cx'
+import { type RecommendationPhoto } from 'app/lib/recommendation-photos'
 import {
   projectCardImageSizes,
   projectImageQuality,
@@ -22,7 +24,7 @@ const metaClassName =
   'shrink-0 font-mono text-xs leading-4 text-neutral-500 dark:text-neutral-400'
 
 const pagerButtonClassName =
-  'inline-flex size-10 items-center justify-center rounded-sm text-neutral-900 outline-none transition-colors hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 disabled:pointer-events-none disabled:opacity-40 dark:text-white dark:hover:text-white dark:focus-visible:outline-neutral-100'
+  'inline-flex size-10 cursor-pointer items-center justify-center rounded-sm text-neutral-900 outline-none transition-colors hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 disabled:pointer-events-none disabled:opacity-40 dark:text-white dark:hover:text-white dark:focus-visible:outline-neutral-100'
 
 type PagerAction = {
   href: string
@@ -49,6 +51,7 @@ export type HomeQuoteSlide = {
   name: string
   role: string
   quote: string
+  image: RecommendationPhoto
 }
 
 type HomePagerProps<T> = {
@@ -328,13 +331,23 @@ export const HomeQuotePager = ({
         <blockquote className="text-pretty text-base leading-relaxed text-neutral-800 dark:text-neutral-200">
           {item.quote}
         </blockquote>
-        <figcaption className="mt-auto flex flex-col gap-0.5">
-          <cite className="not-italic text-sm font-medium leading-5 text-neutral-800 dark:text-neutral-200">
-            {item.name}
-          </cite>
-          <p className="text-[13px] leading-relaxed text-neutral-500 dark:text-neutral-400">
-            {item.role}
-          </p>
+        <figcaption className="mt-auto flex min-w-0 items-center gap-4">
+          <Image
+            src={item.image.src}
+            alt=""
+            width={item.image.width}
+            height={item.image.height}
+            sizes="40px"
+            className="size-10 shrink-0 object-cover"
+          />
+          <div className="flex min-w-0 flex-1 flex-col">
+            <cite className="not-italic text-sm font-medium leading-5 text-neutral-800 dark:text-neutral-200">
+              {item.name}
+            </cite>
+            <p className="text-[13px] leading-[1.63] text-neutral-500 dark:text-neutral-400">
+              {item.role}
+            </p>
+          </div>
         </figcaption>
       </figure>
     )}

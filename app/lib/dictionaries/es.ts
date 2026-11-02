@@ -59,7 +59,7 @@ export const es: Dictionary = {
           meta: 'JAGA',
         },
         getgloby: {
-          title: 'Landing de traducción',
+          title: 'Landing de plataforma de traducción de marketing',
           meta: 'GETGLOBY',
         },
       },
