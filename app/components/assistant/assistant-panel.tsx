@@ -158,12 +158,108 @@ const CloseIcon = () => (
   </svg>
 )
 
-const SendIcon = () => (
-  <svg {...iconProps}>
-    <path d="M8 13.25V2.75" />
-    <path d="M3.5 7.25 8 2.75 12.5 7.25" />
-  </svg>
-)
+// Send ↔ stop follows the useAnimations play/pause pattern: one outline morphs
+// vertex by vertex, and the secondary line shrinks and fades out of the way.
+// The chevron is the outline. Its last three points sit stacked on the right
+// tip, so the square's remaining edges draw out from that corner and fold back
+// into it on the way home. The shaft is the secondary line.
+type Point = readonly [x: number, y: number]
+
+const arrowOutline: readonly Point[] = [
+  [3.5, 7.25],
+  [8, 2.75],
+  [12.5, 7.25],
+  [12.5, 7.25],
+  [12.5, 7.25],
+]
+
+const squareOutline: readonly Point[] = [
+  [4.25, 4.25],
+  [11.75, 4.25],
+  [11.75, 11.75],
+  [4.25, 11.75],
+  [4.25, 4.25],
+]
+
+const morphDurationMs = 260
+
+const easeInOutCubic = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2)
+
+const formatPoints = (points: readonly Point[]) =>
+  points.map(([x, y]) => `${x},${y}`).join(' ')
+
+// Drives the polyline's `points` attribute from JS so the morph works in every
+// browser (CSS cannot interpolate SVG geometry attributes in Safari). An
+// interrupted morph continues from wherever the outline currently is.
+const useOutlineMorph = (target: readonly Point[]) => {
+  const nodeRef = useRef<SVGPolylineElement>(null)
+  const currentRef = useRef(target)
+  const [initialPoints] = useState(() => formatPoints(target))
+
+  useEffect(() => {
+    const node = nodeRef.current
+    const from = currentRef.current
+
+    if (!node || from === target) {
+      return
+    }
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+    if (reduceMotion) {
+      currentRef.current = target
+      node.setAttribute('points', formatPoints(target))
+      return
+    }
+
+    const startedAt = performance.now()
+    let frame = 0
+
+    const tick = (now: number) => {
+      const progress = Math.min(1, (now - startedAt) / morphDurationMs)
+      const eased = easeInOutCubic(progress)
+      const points: Point[] = target.map(([x, y], index) => {
+        const [fromX, fromY] = from[index]
+        return [fromX + (x - fromX) * eased, fromY + (y - fromY) * eased]
+      })
+
+      currentRef.current = progress < 1 ? points : target
+      node.setAttribute('points', formatPoints(points))
+
+      if (progress < 1) {
+        frame = requestAnimationFrame(tick)
+      }
+    }
+
+    frame = requestAnimationFrame(tick)
+
+    return () => cancelAnimationFrame(frame)
+  }, [target])
+
+  return { nodeRef, initialPoints }
+}
+
+const SendControlIcon = ({ paused }: { paused: boolean }) => {
+  const { nodeRef, initialPoints } = useOutlineMorph(paused ? squareOutline : arrowOutline)
+
+  return (
+    <svg {...iconProps} className="overflow-visible">
+      <polyline ref={nodeRef} points={initialPoints} />
+      <path
+        d="M8 2.75V13.25"
+        className="[transform-box:view-box] origin-[8px_2.75px] transition-[transform,opacity] ease-[cubic-bezier(0.65,0,0.35,1)] motion-reduce:transition-none"
+        style={{
+          // Shaft retracts into the apex and is gone by the halfway point; on the
+          // way back it waits for the outline to open before growing down again.
+          transform: paused ? 'scaleY(0)' : 'scaleY(1)',
+          opacity: paused ? 0 : 1,
+          transitionDuration: `${morphDurationMs}ms, ${morphDurationMs / 2}ms`,
+          transitionDelay: paused ? '0ms, 0ms' : `0ms, ${morphDurationMs / 2}ms`,
+        }}
+      />
+    </svg>
+  )
+}
 
 const chatTextClassName = 'text-base leading-relaxed'
 
@@ -1052,7 +1148,7 @@ export const Assistant = ({ locale, copy, catalog }: AssistantPanelProps) => {
                 aria-label={busy ? copy.stop : copy.send}
                 className="inline-flex size-11 shrink-0 items-center justify-center rounded-sm"
               >
-                {busy ? undefined : <SendIcon />}
+                <SendControlIcon paused={busy} />
               </PromptInputSubmit>
             </PromptInputFooter>
           </div>
