@@ -5,7 +5,6 @@ import { DefaultChatTransport, isToolOutputErrorUIPart } from 'ai'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
-import { useScrambleText } from 'app/hooks/use-scramble-text'
 import { ArrowUpRightIcon } from 'app/components/home-action-link'
 import { AssistantOrb } from './assistant-orb'
 import { GlitchCover } from 'app/components/glitch-cover'
@@ -156,6 +155,13 @@ const CloseIcon = () => (
   <svg {...iconProps}>
     <path d="M3.5 3.5 12.5 12.5" />
     <path d="M12.5 3.5 3.5 12.5" />
+  </svg>
+)
+
+const SendIcon = () => (
+  <svg {...iconProps}>
+    <path d="M8 13.25V2.75" />
+    <path d="M3.5 7.25 8 2.75 12.5 7.25" />
   </svg>
 )
 
@@ -450,10 +456,6 @@ export const Assistant = ({ locale, copy, catalog }: AssistantPanelProps) => {
     frameOffset: '0px',
     frameHeight: '100%',
   })
-  const { ref: sendLabelRef, replay: replaySendLabel } = useScrambleText(copy.send, {
-    scramble: 5,
-  })
-
   const transport = useMemo(
     () =>
       new DefaultChatTransport<AssistantUIMessage>({
@@ -1012,7 +1014,7 @@ export const Assistant = ({ locale, copy, catalog }: AssistantPanelProps) => {
       ) : null}
       <PromptInput
         onSubmit={handleSubmit}
-        className="relative z-10 shrink-0 border-t border-neutral-200 px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] dark:border-neutral-800"
+        className="relative z-10 shrink-0 border-t border-neutral-200 px-4 pt-3 pb-[max(1rem,env(safe-area-inset-bottom))] dark:border-neutral-800"
       >
         <PromptInputBody>
           {quotedText ? (
@@ -1048,9 +1050,9 @@ export const Assistant = ({ locale, copy, catalog }: AssistantPanelProps) => {
                 status={status}
                 onStop={() => stop()}
                 aria-label={busy ? copy.stop : copy.send}
-                onMouseEnter={replaySendLabel}
+                className="inline-flex size-11 shrink-0 items-center justify-center rounded-sm"
               >
-                {busy ? undefined : <span ref={sendLabelRef}>{copy.send}</span>}
+                {busy ? undefined : <SendIcon />}
               </PromptInputSubmit>
             </PromptInputFooter>
           </div>
