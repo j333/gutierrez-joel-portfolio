@@ -63,6 +63,16 @@
   color: #000000;
 }
 
+::highlight(assistant-selection) {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.dark ::highlight(assistant-selection) {
+  background-color: #ffffff;
+  color: #000000;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #000000;

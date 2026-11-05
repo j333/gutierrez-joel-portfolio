@@ -17,12 +17,11 @@ type OpenSource = 'shortcut' | 'button' | 'selection'
 type AssistantContextValue = {
   isOpen: boolean
   quotedText: string
-  pendingQuestion: string
+  composerRequest: number
   openAssistant: (source: OpenSource) => void
   closeAssistant: () => void
   setQuotedText: (text: string) => void
-  clearPendingQuestion: () => void
-  askAboutSelection: (text: string, question: string) => void
+  attachSelection: (text: string, focusComposer: boolean) => void
 }
 
 const AssistantContext = createContext<AssistantContextValue | null>(null)
@@ -34,7 +33,7 @@ export const AssistantProvider = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [quotedText, setQuotedText] = useState('')
-  const [pendingQuestion, setPendingQuestion] = useState('')
+  const [composerRequest, setComposerRequest] = useState(0)
   const isOpenRef = useRef(false)
 
   const openAssistant = useCallback((source: OpenSource) => {
@@ -51,18 +50,18 @@ export const AssistantProvider = ({
     setIsOpen(false)
   }, [])
 
-  const askAboutSelection = useCallback(
-    (text: string, question: string) => {
+  const attachSelection = useCallback(
+    (text: string, focusComposer: boolean) => {
       setQuotedText(text)
-      setPendingQuestion(question)
+
+      if (focusComposer) {
+        setComposerRequest((request) => request + 1)
+      }
+
       openAssistant('selection')
     },
     [openAssistant]
   )
-
-  const clearPendingQuestion = useCallback(() => {
-    setPendingQuestion('')
-  }, [])
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -97,20 +96,18 @@ export const AssistantProvider = ({
     () => ({
       isOpen,
       quotedText,
-      pendingQuestion,
+      composerRequest,
       openAssistant,
       closeAssistant,
       setQuotedText,
-      clearPendingQuestion,
-      askAboutSelection,
+      attachSelection,
     }),
     [
-      askAboutSelection,
-      clearPendingQuestion,
+      attachSelection,
       closeAssistant,
+      composerRequest,
       isOpen,
       openAssistant,
-      pendingQuestion,
       quotedText,
     ]
   )

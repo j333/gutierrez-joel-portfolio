@@ -313,10 +313,7 @@ export const Navbar = ({ locale, copy, languageLabel, theme }: NavbarProps) => {
             >
               <ul className="flex min-h-0 flex-1 flex-col overflow-y-auto">
                 {sheetItems.map((item) => (
-                  <li
-                    key={item.href}
-                    className="border-b border-neutral-200 dark:border-neutral-800"
-                  >
+                  <li key={item.href}>
                     <ChromeScrambleLink
                       href={item.href}
                       text={item.name}

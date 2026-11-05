@@ -149,10 +149,7 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
           </AssistantShell>
           <Assistant locale={locale} copy={copy.assistant} catalog={catalog} />
           <AssistantFloatingTrigger label={copy.assistant.open} />
-          <TextSelectionTooltip
-            label={copy.assistant.ask}
-            question={copy.assistant.selectionQuestion}
-          />
+          <TextSelectionTooltip label={copy.assistant.ask} />
           <Analytics />
         </AssistantProvider>
       </body>

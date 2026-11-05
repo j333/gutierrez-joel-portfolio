@@ -10,6 +10,7 @@ import { ArrowUpRightIcon } from 'app/components/home-action-link'
 import { AssistantOrb } from './assistant-orb'
 import { GlitchCover } from 'app/components/glitch-cover'
 import { cardTitleClassName } from 'app/components/link-styles'
+import { pageTitleClassName } from 'app/components/page-layout'
 import { Conversation, ConversationContent, ConversationScrollButton } from 'app/components/ai-elements/conversation'
 import {
   Message,
@@ -38,13 +39,13 @@ import { useAssistant } from './assistant-context'
 
 export type AssistantCopy = {
   title: string
+  greeting: string
   open: string
   close: string
   restart: string
   placeholder: string
   send: string
   ask: string
-  selectionQuestion: string
   quoteLabel: string
   dismissQuote: string
   copyEmail: string
@@ -434,15 +435,14 @@ export const Assistant = ({ locale, copy, catalog }: AssistantPanelProps) => {
     closeAssistant,
     quotedText,
     setQuotedText,
-    pendingQuestion,
-    clearPendingQuestion,
+    composerRequest,
   } = useAssistant()
   const dialogRef = useRef<HTMLDialogElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
   const restoreInputFocusRef = useRef(false)
   const restoreFocusRef = useRef<HTMLElement | null>(null)
   const seenToolsRef = useRef(new Set<string>())
-  const sentPendingRef = useRef('')
+  const focusedComposerRequestRef = useRef(0)
   const [input, setInput] = useState('')
   const [sheetFrame, setSheetFrame] = useState({
     mobile: false,
@@ -621,11 +621,19 @@ export const Assistant = ({ locale, copy, catalog }: AssistantPanelProps) => {
       dialog.show()
     }
 
+    if (
+      isOpen &&
+      composerRequest !== focusedComposerRequestRef.current
+    ) {
+      focusedComposerRequestRef.current = composerRequest
+      inputRef.current?.focus()
+    }
+
     if (!isOpen && dialog.open) {
       dialog.close()
       restoreFocusRef.current?.focus()
     }
-  }, [isOpen])
+  }, [composerRequest, isOpen])
 
   useLayoutEffect(() => {
     if (!isOpen) {
@@ -755,24 +763,6 @@ export const Assistant = ({ locale, copy, catalog }: AssistantPanelProps) => {
       mobileQuery.removeEventListener('change', updateFrame)
     }
   }, [isOpen])
-
-  useEffect(() => {
-    if (!pendingQuestion) {
-      sentPendingRef.current = ''
-      return
-    }
-
-    if (sentPendingRef.current === pendingQuestion) {
-      return
-    }
-
-    sentPendingRef.current = pendingQuestion
-    const question = pendingQuestion
-    const quote = quotedText
-    clearPendingQuestion()
-    capture('assistant_message_sent')
-    void sendMessage({ text: question }, { body: chatBody(quote) })
-  }, [clearPendingQuestion, pendingQuestion, quotedText, sendMessage, locale, pathname])
 
   const handleSubmit = (message: PromptInputMessage) => {
     const text = (input.trim() || message.text.trim())
@@ -1004,16 +994,21 @@ export const Assistant = ({ locale, copy, catalog }: AssistantPanelProps) => {
         />
       </Conversation>
       {messages.length === 0 ? (
-        <Suggestions className="relative z-10 shrink-0 px-4 pt-3 pb-4">
-          {suggestions.map((question) => (
-            <Suggestion
-              key={question}
-              suggestion={question}
-              onClick={handleSuggestion}
-              disabled={busy}
-            />
-          ))}
-        </Suggestions>
+        <div className="relative z-10 shrink-0 px-4 pt-3 pb-4">
+          <p className={`mb-3 whitespace-pre-line ${pageTitleClassName}`}>
+            {copy.greeting}
+          </p>
+          <Suggestions>
+            {suggestions.slice(0, 3).map((question) => (
+              <Suggestion
+                key={question}
+                suggestion={question}
+                onClick={handleSuggestion}
+                disabled={busy}
+              />
+            ))}
+          </Suggestions>
+        </div>
       ) : null}
       <PromptInput
         onSubmit={handleSubmit}
@@ -1021,19 +1016,22 @@ export const Assistant = ({ locale, copy, catalog }: AssistantPanelProps) => {
       >
         <PromptInputBody>
           {quotedText ? (
-            <p className="flex items-start justify-between gap-3 border-l border-neutral-300 pl-3 text-sm leading-5 text-neutral-600 dark:border-neutral-600 dark:text-neutral-400">
-              <span>
-                <span className="mb-1 block font-mono text-xs uppercase leading-4 tracking-wider text-neutral-500">
+            <p className="flex items-start justify-between gap-3 border-l border-neutral-300 pl-3 dark:border-neutral-600">
+              <span className="min-w-0 flex-1">
+                <span className="mb-1 block font-mono text-[10px] uppercase leading-3 tracking-wider text-neutral-500">
                   {copy.quoteLabel}
                 </span>
-                {quotedText}
+                <span className="block truncate text-sm leading-5 text-neutral-600 dark:text-neutral-400">
+                  {quotedText}
+                </span>
               </span>
               <button
                 type="button"
                 onClick={() => setQuotedText('')}
-                className="cursor-pointer font-mono text-xs uppercase leading-4 tracking-wider text-neutral-500 hover:text-black dark:hover:text-white"
+                aria-label={copy.dismissQuote}
+                className="inline-flex size-4 shrink-0 cursor-pointer items-center justify-center rounded-sm text-neutral-500 outline-none transition-colors hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 dark:text-neutral-400 dark:hover:text-white dark:focus-visible:outline-neutral-100"
               >
-                {copy.dismissQuote}
+                <CloseIcon />
               </button>
             </p>
           ) : null}
