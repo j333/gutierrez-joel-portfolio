@@ -56,7 +56,7 @@ const SpecimenLabel = ({ children }: { children: string }) => (
 
 const SectionLead = ({ children }: { children: string }) => (
   <p
-    className={`${textColumnClassName} mt-4 text-base leading-relaxed text-neutral-600 dark:text-neutral-400 sm:mt-5`}
+    className={`${textColumnClassName} mt-4 text-base leading-relaxed text-neutral-600 dark:text-neutral-400 @min-[40rem]/page:mt-5`}
   >
     {children}
   </p>
@@ -111,7 +111,7 @@ const PaletteSpecimens = ({ table }: { table: DesignTable }) => {
   const notesIndex = headerIndex(table, 'Notes')
 
   return (
-    <ul className="grid list-none grid-cols-2 gap-3 p-0 sm:grid-cols-4 lg:grid-cols-7">
+    <ul className="grid list-none grid-cols-2 gap-3 p-0 @min-[40rem]/page:grid-cols-4 @min-[64rem]/page:grid-cols-7">
       {table.rows.map((row) => {
         const step = row[stepIndex] ?? ''
         const classCell = row[classIndex] ?? ''
@@ -290,7 +290,7 @@ const ColorSpecimens = ({ table }: { table: DesignTable }) => {
                       {role}
                     </p>
                     {isSelection ? (
-                      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                      <div className="grid grid-cols-1 gap-4 @min-[40rem]/page:grid-cols-2">
                         <div className="flex flex-col gap-2">
                           <p className={metaLabelClassName}>Light</p>
                           <p className="bg-white p-3 text-sm leading-5 text-neutral-800">
@@ -317,7 +317,7 @@ const ColorSpecimens = ({ table }: { table: DesignTable }) => {
                         </div>
                       </div>
                     ) : (
-                      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                      <div className="grid grid-cols-1 gap-4 @min-[40rem]/page:grid-cols-2">
                         <ThemeSwatch
                           label="Light"
                           cell={lightCell}
@@ -437,7 +437,7 @@ const TypeGroupHeading = ({
 )
 
 const FaceSpecimens = () => (
-  <ul className="grid list-none grid-cols-1 gap-12 p-0 sm:grid-cols-2">
+  <ul className="grid list-none grid-cols-1 gap-12 p-0 @min-[40rem]/page:grid-cols-2">
     <li className="flex min-w-0 flex-col gap-4 border-t border-neutral-200 pt-6 dark:border-neutral-800">
       <p
         className="font-sans text-5xl font-normal leading-none tracking-tight text-neutral-900 dark:text-neutral-100"
@@ -828,7 +828,7 @@ const InteractionSpecimens = ({ table }: { table: DesignTable }) => {
             {stateKey === 'touch' ? (
               <button
                 type="button"
-                className="inline-flex min-h-11 items-center rounded-sm px-1 py-1 font-mono text-xs leading-4 text-neutral-600 outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 dark:text-neutral-400 dark:focus-visible:outline-neutral-100 sm:min-h-0"
+                className="inline-flex min-h-11 items-center rounded-sm px-1 py-1 font-mono text-xs leading-4 text-neutral-600 outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 dark:text-neutral-400 dark:focus-visible:outline-neutral-100 @min-[40rem]/page:min-h-0"
               >
                 Touch target
               </button>
@@ -940,7 +940,7 @@ const LayoutSpecimens = () => (
   <div className="flex flex-col gap-12">
     <div className="flex flex-col gap-3">
       <SpecimenLabel>Shell and reading column</SpecimenLabel>
-      <div className="border border-neutral-200 px-4 py-6 dark:border-neutral-800 sm:px-6">
+      <div className="border border-neutral-200 px-4 py-6 dark:border-neutral-800 @min-[40rem]/page:px-6">
         <p className={`mb-4 ${typeMetaClassName}`}>
           Site shell · wide, modest padding
         </p>
@@ -997,7 +997,7 @@ const LayoutSpecimens = () => (
 )
 
 const ShapeSpecimens = () => (
-  <div className="grid grid-cols-1 gap-10 sm:grid-cols-3">
+  <div className="grid grid-cols-1 gap-10 @min-[40rem]/page:grid-cols-3">
     <div className="flex flex-col gap-3">
       <SpecimenLabel>Images</SpecimenLabel>
       <div
@@ -1075,14 +1075,14 @@ const ComponentSpecimens = {
           <p className={cardTitleClassName}>
             Project title
           </p>
-          <span className={typeMetaClassName}>2024</span>
+          <span className={`uppercase tracking-wider ${typeMetaClassName}`}>2024</span>
         </div>
       </a>
     </article>
   ),
   'theme-toggle': (
     <span
-      className="inline-flex min-h-11 w-fit items-center rounded-sm px-1 py-1 outline-none sm:min-h-0"
+      className="inline-flex min-h-11 w-fit items-center rounded-sm px-1 py-1 outline-none @min-[40rem]/page:min-h-0"
       aria-hidden="true"
     >
       <SunIcon className="size-4 shrink-0 dark:hidden" />
@@ -1123,7 +1123,7 @@ const DosAndDontsList = ({ items }: { items: string[] }) => {
   )
 
   return (
-    <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
+    <div className="grid grid-cols-1 gap-12 @min-[64rem]/page:grid-cols-2">
       <div className="flex flex-col gap-4">
         <SpecimenLabel>Do</SpecimenLabel>
         <ul className="list-disc space-y-3 pl-6 text-base leading-relaxed text-neutral-800 dark:text-neutral-200">
@@ -1141,7 +1141,7 @@ const DosAndDontsList = ({ items }: { items: string[] }) => {
         </ul>
       </div>
       {other.length > 0 ? (
-        <div className="flex flex-col gap-4 lg:col-span-2">
+        <div className="flex flex-col gap-4 @min-[64rem]/page:col-span-2">
           <ul className="list-disc space-y-3 pl-6 text-base leading-relaxed text-neutral-800 dark:text-neutral-200">
             {other.map((item) => (
               <li key={item}>{item}</li>
@@ -1377,7 +1377,7 @@ export const DesignSystemView = ({
     <div className="flex flex-col">
       <PageHeader title={title} description={description} spacing="article" />
       <IntroMarkdown markdown={rule.introMarkdown} />
-      <div className="mt-16 flex flex-col gap-10 lg:mt-20 lg:grid lg:grid-cols-[13rem_minmax(0,1fr)] lg:gap-14 xl:grid-cols-[15rem_minmax(0,1fr)]">
+      <div className="mt-16 flex flex-col gap-10 @min-[64rem]/page:mt-20 @min-[64rem]/page:grid @min-[64rem]/page:grid-cols-[13rem_minmax(0,1fr)] @min-[64rem]/page:gap-14 @min-[80rem]/page:grid-cols-[15rem_minmax(0,1fr)]">
         <DesignSectionNav sections={navSections} />
         <div
           className={`flex min-w-0 flex-col gap-16 ${pageSectionClassName} pb-20`}

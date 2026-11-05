@@ -5,14 +5,14 @@ import { ChromeScrambleLink } from './chrome-scramble-link'
 import { chromeLinkNavClassName } from './link-styles'
 
 const footerCtaListClassName =
-  'flex min-w-0 flex-wrap items-center gap-x-6 gap-y-2 sm:gap-x-8 lg:grid lg:grid-cols-4'
+  'flex min-w-0 flex-wrap items-center gap-x-6 gap-y-2 @min-[40rem]/page:gap-x-8 @min-[64rem]/page:grid @min-[64rem]/page:grid-cols-4'
 
 const Footer = async () => {
   const copy = await getDictionary()
 
   return (
     <footer>
-      <div className="flex w-full min-w-0 flex-col gap-y-6 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-x-8 lg:grid lg:grid-cols-2 lg:items-center">
+      <div className="flex w-full min-w-0 flex-col gap-y-6 @min-[40rem]/page:flex-row @min-[40rem]/page:flex-wrap @min-[40rem]/page:items-center @min-[40rem]/page:justify-between @min-[40rem]/page:gap-x-8 @min-[64rem]/page:grid @min-[64rem]/page:grid-cols-2 @min-[64rem]/page:items-center">
         <nav aria-label={copy.footer.links} className="min-w-0 max-w-full">
           <ul className={footerCtaListClassName}>
             {socialLinks.map((link) => (

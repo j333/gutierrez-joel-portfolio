@@ -131,7 +131,7 @@ const Project = async ({ params }: SlugPageProps) => {
         {project.content.trim() ? (
           <div className="relative">
             {headings.length >= 3 ? (
-              <aside className="hidden xl:absolute xl:left-0 xl:top-0 xl:block xl:h-full xl:w-44">
+              <aside className="hidden @min-[80rem]/page:absolute @min-[80rem]/page:left-0 @min-[80rem]/page:top-0 @min-[80rem]/page:block @min-[80rem]/page:h-full @min-[80rem]/page:w-44">
                 <div className="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto pr-4">
                   <ArticleToc headings={headings} label={copy.projects.toc} />
                 </div>

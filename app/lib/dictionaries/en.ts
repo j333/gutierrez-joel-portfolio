@@ -103,13 +103,13 @@ export const en = {
       quotes: [
         {
           name: 'Rob Lyons',
-          role: 'Chief Product & Technology Officer, Marketfully',
+          role: 'Chief Product & Technology Officer',
           quote:
             '“He designed with users, brought prototypes to operations teams in days, and turned feedback into action. He thought like an owner: sharp on product, candid with his manager, and generous with his team.”',
         },
         {
           name: 'Asher Feldman',
-          role: 'Head of Data, TodayTix Group · ex-Centric Digital',
+          role: 'Head of Data',
           quote:
             '“Someone I could trust to take an idea I had and make it richer, simpler, and better than I ever could. Working with Joel has undoubtedly made me a better strategist.”',
         },
@@ -127,13 +127,13 @@ export const en = {
         },
         {
           name: 'Juan Fusoni',
-          role: 'Entrepreneur & Angel Investor, GetGloby',
+          role: 'Entrepreneur & Angel Investor',
           quote:
             '“From day one he shaped the product and the systems that let us scale. He turns complexity into structure, and he built the product function from the ground up.”',
         },
         {
           name: 'Cinthia Morabito',
-          role: 'Head of Marketing, Viña Errázuriz',
+          role: 'Head of Marketing',
           quote:
             '“I have worked with him since the start of his career, and I still do, because he is responsible and curious. His work is always strong, functionally and aesthetically.”',
         },

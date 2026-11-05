@@ -15,13 +15,13 @@ import {
   projectImageQuality,
 } from 'app/lib/image-sizes'
 
-const desktopQuery = '(min-width: 1024px)'
+const pageLgRem = 64
 
 const cardLinkClassName =
   'group flex flex-col rounded-sm text-inherit outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900 dark:focus-visible:outline-neutral-100'
 
 const metaClassName =
-  'shrink-0 font-mono text-xs leading-4 text-neutral-500 dark:text-neutral-400'
+  'shrink-0 font-mono text-xs uppercase leading-4 tracking-wider text-neutral-500 dark:text-neutral-400'
 
 const pagerButtonClassName =
   'inline-flex size-10 cursor-pointer items-center justify-center rounded-sm text-neutral-900 outline-none transition-colors hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 disabled:pointer-events-none disabled:opacity-40 dark:text-white dark:hover:text-white dark:focus-visible:outline-neutral-100'
@@ -86,16 +86,30 @@ const HomePager = <T,>({
   const measureRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const media = window.matchMedia(desktopQuery)
+    const frame = document.querySelector('[data-page-frame]')
 
-    const handleChange = () => {
-      setVisible(media.matches ? desktopVisible : 1)
+    if (!(frame instanceof HTMLElement)) {
+      return
     }
 
-    handleChange()
-    media.addEventListener('change', handleChange)
+    const updateVisible = () => {
+      const rootFontSize = Number.parseFloat(
+        getComputedStyle(document.documentElement).fontSize,
+      )
+      const lgBreakpoint = (Number.isFinite(rootFontSize) ? rootFontSize : 16) * pageLgRem
+      const width = frame.getBoundingClientRect().width
 
-    return () => media.removeEventListener('change', handleChange)
+      setVisible(width >= lgBreakpoint ? desktopVisible : 1)
+    }
+
+    updateVisible()
+
+    const observer = new ResizeObserver(updateVisible)
+    observer.observe(frame)
+
+    return () => {
+      observer.disconnect()
+    }
   }, [desktopVisible])
 
   useLayoutEffect(() => {
@@ -137,7 +151,7 @@ const HomePager = <T,>({
     count === 0
       ? []
       : Array.from({ length: windowSize }, (_, offset) => items[(start + offset) % count])
-  const columns = desktopVisible === 2 ? 'lg:grid-cols-2' : 'lg:grid-cols-3'
+  const columns = visible === 1 ? 'grid-cols-1' : desktopVisible === 2 ? 'grid-cols-2' : 'grid-cols-3'
 
   const handlePrevious = () => {
     if (!canLoop) {
@@ -201,7 +215,7 @@ const HomePager = <T,>({
     <div className={cx('flex w-full flex-col', stackClassName)}>
       <div className="relative">
         <div
-          className={cx('grid w-full grid-cols-1 touch-pan-y', columns, gridClassName)}
+          className={cx('grid w-full touch-pan-y', columns, gridClassName)}
           style={matchTallest && tallest > 0 ? { minHeight: tallest } : undefined}
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
@@ -221,7 +235,7 @@ const HomePager = <T,>({
             aria-hidden="true"
             inert
             className={cx(
-              'pointer-events-none invisible absolute inset-x-0 top-0 grid w-full grid-cols-1',
+              'pointer-events-none invisible absolute inset-x-0 top-0 grid w-full',
               columns,
               gridClassName,
             )}
@@ -282,7 +296,7 @@ export const HomeCasePager = ({
 
   return (
     <div className="flex w-full flex-col gap-8">
-      <div className="grid w-full grid-cols-1 gap-8 lg:grid-cols-2">
+      <div className="grid w-full grid-cols-1 gap-8 @min-[64rem]/page:grid-cols-2">
         {cases.map((item) => (
           <Link key={item.slug} href={item.href} className={`${cardLinkClassName} gap-2`}>
             {item.image ? (
@@ -296,7 +310,7 @@ export const HomeCasePager = ({
                 priority={item.priority}
               />
             ) : null}
-            <div className="flex w-full items-center justify-between gap-4">
+            <div className="flex w-full items-baseline justify-between gap-4">
               <h3 className={`min-w-0 ${cardTitleClassName}`}>{item.title}</h3>
               <span className={metaClassName}>{item.meta}</span>
             </div>

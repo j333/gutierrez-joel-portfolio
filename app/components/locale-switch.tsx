@@ -29,13 +29,13 @@ const localeNames: Record<Locale, string> = {
   es: 'Español',
 }
 
-const triggerClassName = `${chromeLinkSharedClassName} min-h-11 cursor-pointer gap-1.5 border-0 bg-transparent uppercase tracking-wider transition-colors hover:text-black aria-expanded:text-neutral-900 sm:min-h-0 dark:hover:text-white dark:aria-expanded:text-neutral-100`
+const triggerClassName = `${chromeLinkSharedClassName} min-h-11 cursor-pointer gap-1.5 border-0 bg-transparent uppercase tracking-wider transition-colors hover:text-black aria-expanded:text-neutral-900 @min-[40rem]/page:min-h-0 dark:hover:text-white dark:aria-expanded:text-neutral-100`
 
 const triggerTouchClassName =
   'inline-flex min-h-11 min-w-11 cursor-pointer items-center gap-2 rounded-sm border-0 bg-transparent px-3 font-mono text-sm uppercase leading-5 tracking-wider text-neutral-600 outline-none transition-colors hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 aria-expanded:text-neutral-900 dark:text-neutral-400 dark:hover:text-white dark:focus-visible:outline-neutral-100 dark:aria-expanded:text-neutral-100'
 
 const menuClassName =
-  'absolute z-50 w-max min-w-32 border border-neutral-200 bg-white py-1 dark:border-neutral-800 dark:bg-black'
+  'absolute right-0 z-50 w-max min-w-32 border border-neutral-200 bg-white py-1 dark:border-neutral-800 dark:bg-black'
 
 const optionClassName =
   'flex w-full cursor-pointer items-center px-3 text-left text-sm leading-5 whitespace-nowrap text-neutral-600 outline-none transition-colors hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-neutral-900 aria-selected:text-black dark:text-neutral-400 dark:hover:text-white dark:focus-visible:outline-neutral-100 dark:aria-selected:text-white'
@@ -44,12 +44,9 @@ const optionTouchClassName = 'min-h-11'
 const optionCompactClassName = 'min-h-9'
 
 const menuMargin = 8
-const menuEstimate = { width: 144, height: 96 }
+const menuEstimateHeight = 96
 
-type MenuPlacement = {
-  vertical: 'up' | 'down'
-  horizontal: 'start' | 'end'
-}
+type MenuPlacement = 'up' | 'down'
 
 type LocaleSwitchProps = {
   locale: Locale
@@ -63,12 +60,8 @@ const rememberLocale = (locale: Locale) => {
   document.cookie = `${localeCookieName}=${locale}; Path=/; Max-Age=${localeCookieMaxAge}; SameSite=Lax`
 }
 
-const placementClassName = ({ vertical, horizontal }: MenuPlacement) => {
-  const verticalClass = vertical === 'down' ? 'top-full mt-1' : 'bottom-full mb-1'
-  const horizontalClass = horizontal === 'start' ? 'left-0' : 'right-0'
-
-  return `${verticalClass} ${horizontalClass}`
-}
+const placementClassName = (vertical: MenuPlacement) =>
+  vertical === 'down' ? 'top-full mt-1' : 'bottom-full mb-1'
 
 export const LocaleSwitch = ({
   locale,
@@ -81,10 +74,7 @@ export const LocaleSwitch = ({
   const router = useRouter()
   const barePath = stripLocale(pathname)
   const [isOpen, setIsOpen] = useState(false)
-  const [placement, setPlacement] = useState<MenuPlacement>({
-    vertical: 'down',
-    horizontal: 'start',
-  })
+  const [placement, setPlacement] = useState<MenuPlacement>('down')
   const rootRef = useRef<HTMLDivElement>(null)
   const buttonRef = useRef<HTMLButtonElement>(null)
   const menuRef = useRef<HTMLDivElement>(null)
@@ -99,22 +89,13 @@ export const LocaleSwitch = ({
     }
 
     const rect = button.getBoundingClientRect()
-    const menuWidth = menuRef.current?.offsetWidth ?? menuEstimate.width
-    const menuHeight = menuRef.current?.offsetHeight ?? menuEstimate.height
+    const menuHeight = menuRef.current?.offsetHeight ?? menuEstimateHeight
     const spaceBelow = window.innerHeight - rect.bottom
     const spaceAbove = rect.top
     const vertical =
       spaceBelow < menuHeight + menuMargin && spaceAbove > spaceBelow ? 'up' : 'down'
-    const horizontal =
-      rect.left + menuWidth > window.innerWidth - menuMargin ? 'end' : 'start'
 
-    setPlacement((current) => {
-      if (current.vertical === vertical && current.horizontal === horizontal) {
-        return current
-      }
-
-      return { vertical, horizontal }
-    })
+    setPlacement((current) => (current === vertical ? current : vertical))
   }
 
   useLayoutEffect(() => {

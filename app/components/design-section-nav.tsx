@@ -24,10 +24,10 @@ type NavChapter = {
 }
 
 const chapterLinkClassName =
-  'inline-flex min-h-11 w-fit items-center rounded-sm py-1 text-sm font-medium leading-5 outline-none transition-colors hover:text-black hover:underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 sm:min-h-0 dark:hover:text-white dark:focus-visible:outline-neutral-100'
+  'inline-flex min-h-11 w-fit items-center rounded-sm py-1 text-sm font-medium leading-5 outline-none transition-colors hover:text-black hover:underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 @min-[40rem]/page:min-h-0 dark:hover:text-white dark:focus-visible:outline-neutral-100'
 
 const subsectionLinkClassName =
-  'inline-flex min-h-11 w-fit items-center rounded-sm py-1 text-sm leading-5 outline-none transition-colors hover:text-black hover:underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 sm:min-h-0 dark:hover:text-white dark:focus-visible:outline-neutral-100'
+  'inline-flex min-h-11 w-fit items-center rounded-sm py-1 text-sm leading-5 outline-none transition-colors hover:text-black hover:underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 @min-[40rem]/page:min-h-0 dark:hover:text-white dark:focus-visible:outline-neutral-100'
 
 const scrollToSection = (id: string) => {
   const element = document.getElementById(id)
@@ -200,9 +200,9 @@ export const DesignSectionNav = ({ sections }: DesignSectionNavProps) => {
   return (
     <nav
       aria-label="Table of content"
-      className="hidden lg:sticky lg:top-[var(--sticky-nav-offset,3.25rem)] lg:mb-16 lg:flex lg:max-h-[calc(100dvh-var(--sticky-nav-offset,3.25rem))] lg:flex-col lg:self-start lg:py-4"
+      className="hidden @min-[64rem]/page:sticky @min-[64rem]/page:top-[var(--sticky-nav-offset,3.25rem)] @min-[64rem]/page:mb-16 @min-[64rem]/page:flex @min-[64rem]/page:max-h-[calc(100dvh-var(--sticky-nav-offset,3.25rem))] @min-[64rem]/page:flex-col @min-[64rem]/page:self-start @min-[64rem]/page:py-4"
     >
-      <div className="min-h-0 overflow-y-auto overscroll-contain scroll-py-4 lg:flex-1">
+      <div className="min-h-0 overflow-y-auto overscroll-contain scroll-py-4 @min-[64rem]/page:flex-1">
         <p className={`${metaLabelClassName} mb-4`}>Table of content</p>
         <ol className="m-0 flex list-none flex-col gap-5 p-0">
         {chapters.map(({ chapter, sections: chapterSections }) => {

@@ -32,7 +32,7 @@ type HomeLandingProps = {
 }
 
 const metaClassName =
-  'shrink-0 font-mono text-xs leading-4 text-neutral-500 dark:text-neutral-400'
+  'shrink-0 font-mono text-xs uppercase leading-4 tracking-wider text-neutral-500 dark:text-neutral-400'
 
 const noteLinkClassName =
   'group flex flex-col gap-3 rounded-sm text-inherit outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900 dark:focus-visible:outline-neutral-100'
@@ -89,7 +89,7 @@ export const HomeLanding = ({
   return (
     <div className="flex w-full flex-col">
       <section className="flex w-full max-w-[840px] flex-col gap-6">
-        <h1 className="w-full text-balance text-[2rem] font-normal leading-[1.12] tracking-[-0.04em] text-black sm:text-4xl md:text-[3.25rem] dark:text-white">
+        <h1 className="w-full text-balance text-[2rem] font-normal leading-[1.12] tracking-[-0.04em] text-black @min-[40rem]/page:text-4xl @min-[48rem]/page:text-[3.25rem] dark:text-white">
           {copy.home.headline}
         </h1>
         <p className="text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
@@ -107,25 +107,25 @@ export const HomeLanding = ({
 
       <section className={sectionClassName}>
         <h2 className={sectionTitleClassName}>{copy.home.aboutTeaser.title}</h2>
-        <div className="grid w-full grid-cols-1 gap-8 lg:grid-cols-2">
-          <p className="whitespace-pre-line text-[1.375rem] font-normal leading-[1.45] tracking-[-0.025em] text-black lg:pr-8 dark:text-white">
+        <div className="grid w-full grid-cols-1 gap-8 @min-[64rem]/page:grid-cols-2">
+          <p className="whitespace-pre-line text-[1.375rem] font-normal leading-[1.45] tracking-[-0.025em] text-black @min-[64rem]/page:pr-8 dark:text-white">
             {copy.home.aboutTeaser.lead}
           </p>
-          <ul className="flex w-full flex-col">
+          <ul className="@container/roles flex w-full flex-col">
             {copy.home.aboutTeaser.roles.map((role, index) => (
               <li key={role.slug}>
                 <Link
                   href={localePath(locale, `/experience/${role.slug}`)}
-                  className={`group flex w-full items-center justify-between gap-3 border-neutral-200 py-3 outline-none transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 dark:border-neutral-800 dark:focus-visible:outline-neutral-100 ${
+                  className={`group flex w-full items-baseline justify-between gap-3 border-neutral-200 py-3 outline-none transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 dark:border-neutral-800 dark:focus-visible:outline-neutral-100 ${
                     index === 0 ? 'border-t-0' : 'border-t'
                   }`}
                 >
-                  <div className="flex min-w-0 flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-3">
+                  <div className="flex min-w-0 flex-col gap-1 @min-[35rem]/roles:flex-row @min-[35rem]/roles:items-baseline @min-[35rem]/roles:gap-3">
                     <ScrambleTitle
                       text={role.company}
-                      className="text-sm font-medium leading-5 text-neutral-800 transition-colors group-hover:text-black dark:text-neutral-200 dark:group-hover:text-white"
+                      className="shrink-0 whitespace-nowrap text-sm font-medium leading-5 text-neutral-800 transition-colors group-hover:text-black dark:text-neutral-200 dark:group-hover:text-white"
                     />
-                    <span className="text-sm leading-5 text-neutral-500 dark:text-neutral-400">
+                    <span className="min-w-0 text-sm leading-5 text-neutral-500 @min-[29rem]/roles:whitespace-nowrap @min-[35rem]/roles:shrink-0 dark:text-neutral-400">
                       {role.role}
                     </span>
                   </div>
@@ -192,11 +192,11 @@ export const HomeLanding = ({
                       className={`aspect-video w-full ${imagePlaceholderClassName}`}
                     />
                   )}
-                  <div className="flex w-full items-center justify-between gap-4">
+                  <div className="flex w-full items-baseline justify-between gap-4">
                     <h3 className={`min-w-0 ${cardTitleClassName}`}>{title}</h3>
                     <time
                       dateTime={post.metadata.publishedAt}
-                      className={`${metaClassName} uppercase tracking-wider`}
+                      className={metaClassName}
                     >
                       {formatHomeNoteDate(post.metadata.publishedAt, copy.months)}
                     </time>

@@ -39,12 +39,12 @@ type AboutSectionProps = {
   children: ReactNode
 }
 
-const aboutListClassName = 'grid grid-cols-2 gap-y-2 sm:grid-cols-3'
+const aboutListClassName = 'grid grid-cols-2 gap-y-2 @min-[40rem]/page:grid-cols-3'
 
 // The grid gutter (gap-x-8) matches the nav and footer grids, so column left
 // edges sit on the chrome axes. Right padding inside each column widens the
 // visible gutter between texts to a full section gap without moving those axes.
-const aboutColumnClassName = `${textColumnClassName} lg:pr-8`
+const aboutColumnClassName = `${textColumnClassName} @min-[64rem]/page:pr-8`
 
 const AboutSection = ({ title, children }: AboutSectionProps) => (
   <section className={aboutColumnClassName}>
@@ -87,7 +87,7 @@ const Page = async () => {
           ))}
         </div>
 
-        <div className="grid w-full grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-x-8">
+        <div className="grid w-full grid-cols-1 gap-16 @min-[64rem]/page:grid-cols-2 @min-[64rem]/page:gap-x-8">
           <AboutSection title={copy.about.experience}>
             <ExperiencePosts heading="h3" />
           </AboutSection>

@@ -67,7 +67,7 @@ const WritingCard = ({
           </Heading>
           <time
             dateTime={publishedAt}
-            className={`shrink-0 ${typeMetaClassName}`}
+            className={`shrink-0 uppercase tracking-wider ${typeMetaClassName}`}
           >
             {formatListDate(publishedAt, locale)}
           </time>

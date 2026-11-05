@@ -294,7 +294,7 @@ export const CustomMDX = async (props: MDXRemoteProps) => {
   )
 
   const Facts = ({ children }: { children?: React.ReactNode }) => (
-    <div className="not-prose my-8 grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="not-prose my-8 grid grid-cols-1 gap-x-8 gap-y-6 @min-[40rem]/page:grid-cols-2 @min-[64rem]/page:grid-cols-3">
       {children}
     </div>
   )
@@ -313,7 +313,7 @@ export const CustomMDX = async (props: MDXRemoteProps) => {
         typeof child.props.src === 'string'
     )
     const columnsClassName =
-      flows.length === 2 ? 'sm:grid-cols-2' : 'sm:grid-cols-2 lg:grid-cols-3'
+      flows.length === 2 ? '@min-[40rem]/page:grid-cols-2' : '@min-[40rem]/page:grid-cols-2 @min-[64rem]/page:grid-cols-3'
 
     // Every image in the group shares the widest ratio, so nothing stretches and
     // taller screenshots only lose a sliver at the bottom.

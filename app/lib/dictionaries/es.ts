@@ -106,13 +106,13 @@ export const es: Dictionary = {
       quotes: [
         {
           name: 'Rob Lyons',
-          role: 'Chief Product & Technology Officer, Marketfully',
+          role: 'Chief Product & Technology Officer',
           quote:
             '“Diseñaba con los usuarios, llevaba prototipos a los equipos de operaciones en días y convertía el feedback en acción. Pensaba como dueño: agudo en producto, franco con su manager y generoso con su equipo.”',
         },
         {
           name: 'Asher Feldman',
-          role: 'Head of Data, TodayTix Group · ex-Centric Digital',
+          role: 'Head of Data',
           quote:
             '“Alguien en quien podía confiar para tomar una idea mía y hacerla más rica, más simple y mejor de lo que yo hubiera podido. Trabajar con Joel me hizo sin duda un mejor estratega.”',
         },
@@ -130,13 +130,13 @@ export const es: Dictionary = {
         },
         {
           name: 'Juan Fusoni',
-          role: 'Entrepreneur & Angel Investor, GetGloby',
+          role: 'Entrepreneur & Angel Investor',
           quote:
             '“Desde el primer día dio forma al producto y a los sistemas que nos permitieron escalar. Convierte la complejidad en estructura, y armó la función de producto desde cero.”',
         },
         {
           name: 'Cinthia Morabito',
-          role: 'Head of Marketing, Viña Errázuriz',
+          role: 'Head of Marketing',
           quote:
             '“Trabajo con él desde el inicio de su carrera, y sigo haciéndolo, porque es responsable y curioso. Su trabajo siempre es sólido, en lo funcional y en lo estético.”',
         },

@@ -26,7 +26,7 @@ export type ThemeToggleCopy = {
 }
 
 const themeToggleClassName =
-  'theme-toggle group relative inline-flex min-h-11 cursor-pointer items-center justify-center rounded-sm border-0 bg-transparent -mx-1 px-1 py-1 outline-none transition-colors hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 sm:min-h-0 dark:hover:text-white dark:focus-visible:outline-neutral-100'
+  'theme-toggle group relative inline-flex min-h-11 cursor-pointer items-center justify-center rounded-sm border-0 bg-transparent -mx-1 px-1 py-1 outline-none transition-colors hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 @min-[40rem]/page:min-h-0 dark:hover:text-white dark:focus-visible:outline-neutral-100'
 
 const themeToggleTouchClassName =
   'theme-toggle group relative inline-flex size-11 cursor-pointer items-center justify-center rounded-sm border-0 bg-transparent outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 dark:focus-visible:outline-neutral-100'

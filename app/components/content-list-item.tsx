@@ -36,7 +36,7 @@ export const ContentListItem = ({
     <article>
       <Link
         href={href}
-        className="group flex flex-col-reverse items-stretch gap-4 rounded-sm text-inherit outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900 sm:flex-row sm:items-start dark:focus-visible:outline-neutral-100"
+        className="group flex flex-col-reverse items-stretch gap-4 rounded-sm text-inherit outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900 @min-[40rem]/page:flex-row @min-[40rem]/page:items-start dark:focus-visible:outline-neutral-100"
       >
         <div className="flex min-w-0 flex-1 flex-col gap-2">
           <div className="flex flex-col gap-1">
@@ -49,7 +49,7 @@ export const ContentListItem = ({
         </div>
         {image ? (
           <div
-            className={`w-full overflow-hidden sm:h-[100px] sm:w-[160px] sm:shrink-0 ${imagePlaceholderClassName}`}
+            className={`w-full overflow-hidden @min-[40rem]/page:h-[100px] @min-[40rem]/page:w-[160px] @min-[40rem]/page:shrink-0 ${imagePlaceholderClassName}`}
           >
             <Image
               src={image.src}
@@ -57,7 +57,7 @@ export const ContentListItem = ({
               width={PREVIEW_WIDTH}
               height={PREVIEW_HEIGHT}
               sizes={`(max-width: 639px) calc(100vw - 2rem), ${PREVIEW_WIDTH}px`}
-              className="h-auto w-full rounded-none object-cover sm:h-full sm:w-full"
+              className="h-auto w-full rounded-none object-cover @min-[40rem]/page:h-full @min-[40rem]/page:w-full"
             />
           </div>
         ) : null}

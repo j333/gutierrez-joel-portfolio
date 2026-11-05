@@ -355,7 +355,7 @@ const ProjectToolCard = ({
         />
         <div className="flex items-baseline justify-between gap-3">
           <h3 className={`min-w-0 ${cardTitleClassName}`}>{title}</h3>
-          <span className="shrink-0 font-mono text-xs leading-4 text-neutral-500 dark:text-neutral-400">
+          <span className="shrink-0 font-mono text-xs uppercase leading-4 tracking-wider text-neutral-500 dark:text-neutral-400">
             {caseStudy.product}
           </span>
         </div>

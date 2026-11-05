@@ -333,14 +333,14 @@ html.dark .prose a:not(.heading-link):hover {
 .article-image--wide {
   position: relative;
   left: 50%;
-  width: min(100vw - 2rem, 56rem);
+  width: min(100cqw - 2rem, 56rem);
   max-width: none;
   translate: -50% 0;
 }
 
-@media (min-width: 640px) {
+@container page (min-width: 40rem) {
   .article-image--wide {
-    width: min(100vw - 3rem, 56rem);
+    width: min(100cqw - 3rem, 56rem);
   }
 }
 

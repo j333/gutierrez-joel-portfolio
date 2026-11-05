@@ -9,12 +9,12 @@ import { LocaleSwitch } from './locale-switch'
 import { chromeLinkNavClassName } from './link-styles'
 import { ThemeToggle, type ThemeToggleCopy } from './theme-toggle'
 
-const navLinkClassName = `${chromeLinkNavClassName} -mx-1 min-h-11 whitespace-nowrap sm:min-h-0`
+const navLinkClassName = `${chromeLinkNavClassName} -mx-1 min-h-11 whitespace-nowrap @min-[40rem]/page:min-h-0`
 
 const desktopNavListClassName =
-  'flex min-w-0 flex-wrap items-center gap-x-6 gap-y-2 sm:flex-nowrap sm:gap-x-8 @max-[40rem]:hidden lg:grid lg:grid-cols-4'
+  'flex min-w-0 flex-wrap items-center gap-x-6 gap-y-2 @min-[40rem]/page:flex-nowrap @min-[40rem]/page:gap-x-8 @max-[40rem]/page:hidden @min-[64rem]/page:grid @min-[64rem]/page:grid-cols-4'
 const menuToggleClassName =
-  'inline-flex size-11 shrink-0 cursor-pointer items-center justify-center rounded-sm border-0 bg-transparent text-neutral-600 outline-none transition-colors hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 dark:text-neutral-400 dark:hover:text-white dark:focus-visible:outline-neutral-100 @min-[40rem]:hidden'
+  'inline-flex size-11 shrink-0 cursor-pointer items-center justify-center rounded-sm border-0 bg-transparent text-neutral-600 outline-none transition-colors hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 dark:text-neutral-400 dark:hover:text-white dark:focus-visible:outline-neutral-100 @min-[40rem]/page:hidden'
 
 const menuIconProps = {
   width: 16,
@@ -33,10 +33,10 @@ const sheetLinkClassName =
   'group flex min-h-14 w-full items-center py-4 text-xl font-normal leading-7 tracking-tight text-neutral-600 outline-none transition-colors hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-neutral-900 aria-[current=page]:text-black dark:text-neutral-400 dark:hover:text-white dark:aria-[current=page]:text-white dark:focus-visible:outline-neutral-100'
 
 const sheetClassName =
-  'nav-sheet fixed! inset-x-0 bottom-0 top-[var(--nav-height)] z-30 flex flex-col overflow-hidden bg-white px-4 pb-[max(2.5rem,calc(1rem+env(safe-area-inset-bottom)))] pt-4 motion-safe:translate-y-0 motion-safe:opacity-100 motion-safe:transition-[opacity,translate] motion-safe:duration-200 motion-safe:ease-out motion-safe:starting:-translate-y-1 motion-safe:starting:opacity-0 dark:bg-black @min-[40rem]:hidden'
+  'nav-sheet fixed! inset-x-0 bottom-0 top-[var(--nav-height)] z-30 flex flex-col overflow-hidden bg-white px-4 pb-[max(2.5rem,calc(1rem+env(safe-area-inset-bottom)))] pt-4 motion-safe:translate-y-0 motion-safe:opacity-100 motion-safe:transition-[opacity,translate] motion-safe:duration-200 motion-safe:ease-out motion-safe:starting:-translate-y-1 motion-safe:starting:opacity-0 dark:bg-black @min-[40rem]/page:hidden'
 
 const navShellClassName =
-  'sticky-nav sticky top-0 z-40 -mx-4 w-[calc(100%+2rem)] border-b border-transparent bg-transparent px-4 pt-4 sm:-mx-6 sm:w-[calc(100%+3rem)] sm:px-6 data-[away-from-top=true]:border-neutral-200 data-[away-from-top=true]:bg-white dark:data-[away-from-top=true]:border-neutral-800 dark:data-[away-from-top=true]:bg-black'
+  'sticky-nav sticky top-0 z-40 -mx-4 w-[calc(100%+2rem)] border-b border-transparent bg-transparent px-4 pt-4 @min-[40rem]/page:-mx-6 @min-[40rem]/page:w-[calc(100%+3rem)] @min-[40rem]/page:px-6 data-[away-from-top=true]:border-neutral-200 data-[away-from-top=true]:bg-white dark:data-[away-from-top=true]:border-neutral-800 dark:data-[away-from-top=true]:bg-black'
 
 const navClassName = 'pointer-events-auto pb-3'
 
@@ -113,7 +113,6 @@ export const Navbar = ({ locale, copy, languageLabel, theme }: NavbarProps) => {
   const sheetRef = useRef<HTMLDivElement>(null)
   const shellRef = useRef<HTMLDivElement>(null)
   const barRef = useRef<HTMLDivElement>(null)
-  const containerRef = useRef<HTMLDivElement>(null)
   const wasMenuOpenRef = useRef(false)
   const isMenuOpenRef = useRef(isMenuOpen)
   const menuLabel = isMenuOpen ? copy.close : copy.menu
@@ -151,9 +150,9 @@ export const Navbar = ({ locale, copy, languageLabel, theme }: NavbarProps) => {
   }, [])
 
   useEffect(() => {
-    const container = containerRef.current
+    const frame = shellRef.current?.closest('[data-page-frame]')
 
-    if (!container) {
+    if (!(frame instanceof HTMLElement)) {
       return
     }
 
@@ -180,7 +179,7 @@ export const Navbar = ({ locale, copy, languageLabel, theme }: NavbarProps) => {
       closeIfWide(readContainerWidth(entry))
     })
 
-    observer.observe(container)
+    observer.observe(frame)
 
     return () => {
       observer.disconnect()
@@ -254,19 +253,19 @@ export const Navbar = ({ locale, copy, languageLabel, theme }: NavbarProps) => {
       data-away-from-top={isMenuOpen || isAwayFromTop ? 'true' : 'false'}
     >
       <nav className={navClassName} id="nav" aria-label={copy.primary}>
-        <div ref={containerRef} className="@container flex w-full flex-col">
+        <div className="flex w-full flex-col">
           <div
             ref={barRef}
-            className="flex w-full items-center justify-between gap-x-6 sm:gap-x-8 lg:grid lg:grid-cols-2"
+            className="flex w-full items-center justify-between gap-x-6 @min-[40rem]/page:gap-x-8 @min-[64rem]/page:grid @min-[64rem]/page:grid-cols-2"
           >
-            <div className="flex min-w-0 items-center gap-x-6 lg:gap-x-8">
+            <div className="flex min-w-0 items-center gap-x-6 @min-[64rem]/page:gap-x-8">
               <ChromeScrambleLink
                 href={home}
                 text={copy.brand}
                 className={navLinkClassName}
               />
             </div>
-            <div className="flex min-w-0 flex-1 items-center justify-end gap-x-6 lg:gap-x-8">
+            <div className="flex min-w-0 flex-1 items-center justify-end gap-x-6 @min-[64rem]/page:gap-x-8">
               <ul className={`${desktopNavListClassName} flex-1`}>
                 {navItems.map((item) => (
                   <li key={item.href} className="flex min-w-0 items-center">

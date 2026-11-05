@@ -57,7 +57,9 @@ export const ProjectCard = async ({
           <Heading className={`min-w-0 ${cardTitleClassName}`}>
             {title}
           </Heading>
-          <span className={`shrink-0 ${typeMetaClassName}`}>{product}</span>
+          <span className={`shrink-0 uppercase tracking-wider ${typeMetaClassName}`}>
+            {product}
+          </span>
         </div>
       </ProjectCaseLink>
     </article>
@@ -65,4 +67,4 @@ export const ProjectCard = async ({
 }
 
 export const projectGridClassName =
-  'grid min-w-0 grid-cols-1 gap-x-6 gap-y-8 lg:grid-cols-2'
+  'grid min-w-0 grid-cols-1 gap-x-6 gap-y-8 @min-[64rem]/page:grid-cols-2'
