@@ -7,14 +7,14 @@ import { rememberAssistantTrigger } from './assistant-panel'
 
 const GREETING_DELAY_MS = 3000
 
-const shellClassName =
-  'fixed right-4 bottom-[max(1rem,env(safe-area-inset-bottom))] z-50 sm:right-6'
-
 const triggerClassName =
-  'relative size-20 cursor-pointer overflow-hidden rounded-sm bg-transparent p-0 outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 lg:size-28 dark:focus-visible:outline-neutral-100'
+  'fixed right-4 bottom-[max(1rem,env(safe-area-inset-bottom))] z-50 flex cursor-pointer items-center rounded-sm bg-transparent p-0 outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 sm:right-6 dark:focus-visible:outline-neutral-100'
+
+const orbClassName =
+  'relative size-20 overflow-hidden rounded-sm lg:size-28'
 
 const greetingClassName =
-  'pointer-events-none absolute top-1/2 right-full -translate-y-1/2 whitespace-nowrap rounded-sm bg-white py-1 pl-2 text-sm leading-5 text-neutral-800 motion-safe:animate-in motion-safe:fade-in motion-safe:duration-300 dark:bg-black dark:text-neutral-200'
+  'whitespace-nowrap rounded-sm bg-white px-2 py-1 text-sm leading-5 text-neutral-800 motion-safe:animate-in motion-safe:fade-in motion-safe:duration-300 dark:bg-black dark:text-neutral-200'
 
 export const AssistantFloatingTrigger = ({ label }: { label: string }) => {
   const { isOpen, openAssistant } = useAssistant()
@@ -42,26 +42,22 @@ export const AssistantFloatingTrigger = ({ label }: { label: string }) => {
   const greetingVisible = showGreeting && !dismissed && !isOpen
 
   return (
-    <div className={shellClassName} hidden={isOpen}>
+    <button
+      type="button"
+      hidden={isOpen}
+      aria-label={label}
+      aria-haspopup="dialog"
+      aria-expanded={isOpen}
+      onClick={handleOpen}
+      className={triggerClassName}
+    >
       {greetingVisible ? (
-        <p className={greetingClassName} role="status">
-          hey there! 👋
-        </p>
+        <span className={greetingClassName}>hey there! 👋</span>
       ) : null}
-      <button
-        type="button"
-        aria-label={label}
-        aria-haspopup="dialog"
-        aria-expanded={isOpen}
-        onClick={handleOpen}
-        className={triggerClassName}
-      >
-        <span
-          aria-hidden
-          className="absolute inset-[15%] rounded-full bg-white dark:bg-black"
-        />
+      <span aria-hidden className={orbClassName}>
+        <span className="absolute inset-[15%] rounded-full bg-white dark:bg-black" />
         <AssistantOrb className="relative block size-full" />
-      </button>
-    </div>
+      </span>
+    </button>
   )
 }
